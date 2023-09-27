@@ -37,6 +37,14 @@ module.exports = {
       {
         'newlines-between': 'always',
         pathGroupsExcludedImportTypes: [],
+        groups: [
+          'external',
+          'builtin',
+          'internal',
+          'sibling',
+          'parent',
+          'index',
+        ],
       },
     ],
     '@typescript-eslint/no-unused-vars': [
