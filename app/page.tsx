@@ -1,10 +1,37 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Image from "next/image";
+import styles from "./page.module.css";
+import { gql } from "@apollo/client";
+import { FC, useEffect, useState } from "react";
+import createApolloClient from "../apollo-client";
 
-export default function Home() {
+const GET_POSTS = gql`
+  query GetPosts {
+    posts {
+      nodes {
+        id
+      }
+    }
+  }
+`;
+
+export async function getPosts() {
+  const client = createApolloClient();
+
+  const { data } = await client.query({
+    query: GET_POSTS,
+  });
+
+  return data;
+}
+
+type HomeProps = { posts: any[] };
+const Home: FC<HomeProps> = async () => {
+  const posts = await getPosts();
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
+        {/* <p>{loading ? "Loading..." : "Loaded!"}</p> */}
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>app/page.tsx</code>
@@ -15,7 +42,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{' '}
+            By{" "}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -91,5 +118,7 @@ export default function Home() {
         </a>
       </div>
     </main>
-  )
-}
+  );
+};
+
+export default Home;
