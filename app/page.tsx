@@ -1,8 +1,10 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import { gql } from "@apollo/client";
-import { FC, useEffect, useState } from "react";
-import createApolloClient from "../apollo-client";
+import { gql } from '@apollo/client';
+import Image from 'next/image';
+import { FC } from 'react';
+
+import styles from './page.module.css';
+
+import createApolloClient from '../apollo-client';
 
 const GET_POSTS = gql`
   query GetPosts {
@@ -24,9 +26,9 @@ export async function getPosts() {
   return data;
 }
 
-type HomeProps = { posts: any[] };
+type HomeProps = { posts: unknown[] };
 const Home: FC<HomeProps> = async () => {
-  const posts = await getPosts();
+  // const posts = await getPosts();
 
   return (
     <main className={styles.main}>
@@ -42,7 +44,7 @@ const Home: FC<HomeProps> = async () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{" "}
+            By{' '}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
