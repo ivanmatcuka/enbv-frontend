@@ -15,16 +15,7 @@ module.exports = {
 
   plugins: ['@typescript-eslint', 'prettier'],
 
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:import/errors',
-    'plugin:import/typescript',
-    'plugin:import/warnings',
-    'plugin:prettier/recommended',
-    'plugin:security/recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:import/errors', 'plugin:import/typescript', 'plugin:import/warnings', 'plugin:prettier/recommended', 'plugin:security/recommended', 'prettier', 'plugin:storybook/recommended'],
 
   rules: {
     '@typescript-eslint/explicit-function-return-type': 0,

@@ -25,11 +25,11 @@ const buttonStyles: ButtonStyles = {
 };
 
 interface ButtonProps {
+  children: ReactNode;
   variant: ButtonVariant;
   state?: 'disabled';
-  children: ReactNode;
 }
-const Button: FC<ButtonProps> = ({ variant, state, children }) => {
+const Button: FC<ButtonProps> = ({ children, variant, state }) => {
   const style: ButtonCSSProperties = buttonStyles[variant];
 
   if (state === 'disabled') {
