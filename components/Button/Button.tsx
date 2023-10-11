@@ -29,7 +29,7 @@ interface ButtonProps {
   variant: ButtonVariant;
   state?: 'disabled';
 }
-const Button: FC<ButtonProps> = ({ children, variant, state }) => {
+export const Button: FC<ButtonProps> = ({ children, variant, state }) => {
   const style: ButtonCSSProperties = buttonStyles[variant];
 
   if (state === 'disabled') {
@@ -38,5 +38,3 @@ const Button: FC<ButtonProps> = ({ children, variant, state }) => {
 
   return <button style={style}>{children}</button>;
 };
-
-export default Button;
