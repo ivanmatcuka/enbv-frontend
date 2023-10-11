@@ -28,12 +28,9 @@ export async function getPosts() {
 
 type HomeProps = { posts: unknown[] };
 const Home: FC<HomeProps> = async () => {
-  // const posts = await getPosts();
-
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        {/* <p>{loading ? "Loading..." : "Loaded!"}</p> */}
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>app/page.tsx</code>
