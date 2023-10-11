@@ -1,4 +1,5 @@
 import React, { CSSProperties, FC, ReactNode } from 'react';
+import { Button as MUIButton, styled } from '@mui/material';
 
 import theme from '../theme';
 
@@ -24,17 +25,19 @@ const buttonStyles: ButtonStyles = {
   },
 };
 
+const StyledButton = styled(MUIButton)({});
+
 interface ButtonProps {
   children: ReactNode;
   variant: ButtonVariant;
   state?: 'disabled';
 }
 export const Button: FC<ButtonProps> = ({ children, variant, state }) => {
-  const style: ButtonCSSProperties = buttonStyles[variant];
+  const style = buttonStyles[variant];
 
   if (state === 'disabled') {
     style.cursor = 'not-allowed';
   }
 
-  return <button style={style}>{children}</button>;
+  return <StyledButton style={style}>{children}</StyledButton>;
 };
