@@ -29,7 +29,7 @@ interface ButtonProps {
   state?: 'disabled';
   children: ReactNode;
 }
-const Button: FC<ButtonProps> = ({ variant, state, children }: ButtonProps) => {
+const Button: FC<ButtonProps> = ({ variant, state, children }) => {
   const style: ButtonCSSProperties = buttonStyles[variant];
 
   if (state === 'disabled') {
