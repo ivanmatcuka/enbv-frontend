@@ -1,33 +1,30 @@
-import { gql } from '@apollo/client';
 import Image from 'next/image';
 import { FC } from 'react';
 
 import styles from './page.module.css';
 
-import createApolloClient from '../apollo-client';
+// const GET_POSTS = gql`
+//   query GetPosts {
+//     posts {
+//       nodes {
+//         id
+//       }
+//     }
+//   }
+// `;
 
-const GET_POSTS = gql`
-  query GetPosts {
-    posts {
-      nodes {
-        id
-      }
-    }
-  }
-`;
+// async function getPosts() {
+//   const client = createApolloClient();
 
-export async function getPosts() {
-  const client = createApolloClient();
+//   const { data } = await client.query({
+//     query: GET_POSTS,
+//   });
 
-  const { data } = await client.query({
-    query: GET_POSTS,
-  });
+//   return data;
+// }
 
-  return data;
-}
-
-type HomeProps = { posts: unknown[] };
-const Home: FC<HomeProps> = async () => {
+// type HomeProps = { posts: unknown[] };
+const Home: FC = async () => {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
