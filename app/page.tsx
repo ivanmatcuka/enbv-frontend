@@ -1,8 +1,30 @@
 import Image from 'next/image';
+import { FC } from 'react';
 
 import styles from './page.module.css';
 
-export default function Home() {
+// const GET_POSTS = gql`
+//   query GetPosts {
+//     posts {
+//       nodes {
+//         id
+//       }
+//     }
+//   }
+// `;
+
+// async function getPosts() {
+//   const client = createApolloClient();
+
+//   const { data } = await client.query({
+//     query: GET_POSTS,
+//   });
+
+//   return data;
+// }
+
+// type HomeProps = { posts: unknown[] };
+const Home: FC = async () => {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -93,4 +115,6 @@ export default function Home() {
       </div>
     </main>
   );
-}
+};
+
+export default Home;
