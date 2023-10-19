@@ -1,12 +1,6 @@
-//   | 'p1'
-//   | 'p2'
-//   | 'p3'
-//   | 'mi'
-//   | 'button'
-//   | 'legend'
-//   | 'caption';
+// import { CSSProperties } from 'react';
 
-import { CSSProperties } from 'react';
+import { CSSProperties } from '@mui/material/styles/createTypography';
 
 export const typography: Record<string, CSSProperties> = {
   h1: {
@@ -14,9 +8,9 @@ export const typography: Record<string, CSSProperties> = {
     fontSize: 70,
     lineHeight: 0.85,
 
-    // [theme.breakpoints.down('md')]: {
-    //   fontSize: 50,
-    // },
+    ['@media (max-width: 600px)']: {
+      fontSize: 50,
+    },
   },
   h2: {
     fontFamily: 'Unbounded',
@@ -32,9 +26,9 @@ export const typography: Record<string, CSSProperties> = {
     fontFamily: 'Nunito Sans',
     fontSize: 24,
 
-    // [theme.breakpoints.down('md')]: {
-    //   fontSize: 20,
-    // },
+    ['@media (max-width: 600px)']: {
+      fontSize: 20,
+    },
   },
 
   p1: {
@@ -45,9 +39,9 @@ export const typography: Record<string, CSSProperties> = {
     fontFamily: 'Nunito Sans',
     fontSize: 22,
 
-    // [theme.breakpoints.down('md')]: {
-    //   fontSize: 18,
-    // },
+    ['@media (max-width: 600px)']: {
+      fontSize: 18,
+    },
   },
   p3: {
     fontFamily: 'Nunito Sans',
@@ -58,9 +52,9 @@ export const typography: Record<string, CSSProperties> = {
     fontFamily: 'Nunito Sans',
     fontSize: 18,
 
-    // [theme.breakpoints.down('md')]: {
-    //   fontSize: 14,
-    // },
+    ['@media (max-width: 600px)']: {
+      fontSize: 14,
+    },
   },
   button: {
     fontFamily: 'Nunito Sans',
