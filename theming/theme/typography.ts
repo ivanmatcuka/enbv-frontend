@@ -1,5 +1,3 @@
-// import { CSSProperties } from 'react';
-
 import { CSSProperties } from '@mui/material/styles/createTypography';
 
 export const typography: Record<string, CSSProperties> = {
