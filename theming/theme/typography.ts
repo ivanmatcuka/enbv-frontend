@@ -1,6 +1,4 @@
-import { CSSProperties } from '@mui/material/styles/createTypography';
-
-export const typography: Record<string, CSSProperties> = {
+export const typography = {
   h1: {
     fontFamily: 'Unbounded',
     fontSize: 70,
@@ -67,6 +65,6 @@ export const typography: Record<string, CSSProperties> = {
     fontFamily: 'Nunito Sans',
     fontSize: 14,
   },
-};
+} as const;
 
 export type TypographyVariants = keyof typeof typography;
