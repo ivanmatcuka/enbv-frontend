@@ -8,7 +8,7 @@
 
 import { CSSProperties } from 'react';
 
-export const typographyVariants: Record<string, CSSProperties> = {
+export const typography: Record<string, CSSProperties> = {
   h1: {
     fontFamily: 'Unbounded',
     fontSize: 70,
@@ -77,4 +77,4 @@ export const typographyVariants: Record<string, CSSProperties> = {
   },
 };
 
-export type TypographyVariants = keyof typeof typographyVariants;
+export type TypographyVariants = keyof typeof typography;
