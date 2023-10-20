@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Typography } from './Typography';
+import { Typography as Component } from './Typography';
 
 import { typography } from '../../theming/theme/typography';
 
@@ -8,7 +8,7 @@ const loremIpsum = 'The quick brown fox jumps over the lazy dog.';
 
 const meta = {
   title: 'Typography',
-  component: Typography,
+  component: Component,
   parameters: {
     layout: 'centered',
   },
@@ -19,12 +19,12 @@ const meta = {
       control: 'select',
     },
   },
-} satisfies Meta<typeof Typography>;
+} satisfies Meta<typeof Component>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const H1: Story = {
+export const Typography: Story = {
   args: {
     variant: 'h1',
     children: loremIpsum,
