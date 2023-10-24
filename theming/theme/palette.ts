@@ -10,7 +10,7 @@ export const colors = {
   red20: tinycolor.mix('#F5545E', '#FFFFFF', 20).toRgbString(),
   red40: tinycolor.mix('#F5545E', '#FFFFFF', 40).toRgbString(),
   yellow: '#EFC556',
-  yellow20: 'F29858',
+  yellow20: '#F29858',
   yellow40: '#F29858',
   green: '#3E4137',
 };
