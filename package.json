@@ -9,7 +9,8 @@
     "lint": "next lint",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token="
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -49,5 +50,7 @@
     "husky": "^8.0.0",
     "prettier": "3.0.3",
     "storybook": "^7.4.6"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "enbv-frontend@0.1.0"
 }
