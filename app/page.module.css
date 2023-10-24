@@ -12,3 +12,10 @@
 .header__subline {
   line-height: 32.74px;
 }
+
+.frame {
+  height: 650px;
+
+  background: url('frame.png') left no-repeat white;
+  background-size: contain;
+}

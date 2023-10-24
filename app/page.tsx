@@ -22,20 +22,32 @@ export default function Home() {
                     Голос для тех, кто вычеркнут
                   </Typography>
                 </Grid>
-                <Grid item margin="auto">
+                <Grid item width="100%">
                   <Typography
                     variant="subtitle1"
                     textAlign="left"
                     width={493}
                     lineHeight="32.74px"
+                    margin="auto"
+                    mb="94px"
                   >
                     Помогите людям, которые подверглись репрессиям за свои
                     взгляды!
                   </Typography>
                 </Grid>
+                <Grid item>
+                  <video
+                    src="/cat-walking.webm"
+                    autoPlay
+                    height={118}
+                    width={190}
+                    loop
+                  />
+                </Grid>
               </Grid>
             </Grid>
-            <Grid item width={493}></Grid>
+            {/* Right */}
+            <Grid item width={493} className={styles.frame}></Grid>
           </Grid>
         </Grid>
       </Grid>
