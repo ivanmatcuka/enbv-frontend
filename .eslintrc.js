@@ -38,6 +38,10 @@ module.exports = {
       {
         'newlines-between': 'always',
         pathGroupsExcludedImportTypes: [],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
         groups: [
           'external',
           'builtin',

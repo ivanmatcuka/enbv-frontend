@@ -2,9 +2,9 @@ import { Grid } from '@mui/material';
 
 import styles from './page.module.css';
 
-import { Typography } from '../components/Typography/Typography';
 import { Logo } from '../components/Logo/Logo';
 import { Menu } from '../components/Menu/Menu';
+import { Typography } from '../components/Typography/Typography';
 
 const MENU_ITEMS = [
   {
