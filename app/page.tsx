@@ -47,7 +47,13 @@ export default function Home() {
               </Grid>
             </Grid>
             {/* Right */}
-            <Grid item width={493} className={styles.frame}></Grid>
+            <Grid item width={493} className={styles.frame}>
+              <img
+                src="/photo.png"
+                width="600px"
+                className={styles.frame__photo}
+              />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

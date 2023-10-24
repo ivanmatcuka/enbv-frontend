@@ -13,6 +13,15 @@
   line-height: 32.74px;
 }
 
+.frame__photo {
+  position: relative;
+
+  top: 138px;
+  left: -52px;
+
+  transform: rotate(-2deg);
+}
+
 .frame {
   height: 650px;
 
