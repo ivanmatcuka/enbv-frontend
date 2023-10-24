@@ -8,7 +8,7 @@ import { TypographyVariants } from '../../theming/theme/typography';
 
 type TypographyProps = {
   variant: TypographyVariants;
-} & Pick<MUITypographyProps, 'component'>;
+} & MUITypographyProps;
 export const Typography: FC<PropsWithChildren<TypographyProps>> = ({
   children,
   ...rest
