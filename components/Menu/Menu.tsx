@@ -1,3 +1,5 @@
+'use client';
+
 import React, { FC } from 'react';
 import {
   styled,
@@ -8,23 +10,28 @@ import {
 } from '@mui/material';
 
 import { Arrow } from '../Arrow/Arrow';
+import { Typography } from '../Typography/Typography';
 
-const StyledMUIList = styled(MUIList)(({ theme }) => {
-  return {
-    li: {
-      padding: 0,
-    },
-    'li, .MuiListItemIcon-root svg': {
-      '&:hover': {
-        color: theme.palette.brand.yellow20,
-        cursor: 'pointer',
-      },
+const StyledMUIListItem = styled(MUIListItem)(({ theme }) => ({
+  padding: 0,
 
-      '&:active': {
-        color: theme.palette.brand.yellow40,
-      },
-    },
-  };
+  '&:hover, &:hover .MuiListItemIcon-root': {
+    color: theme.palette.brand.yellow,
+    cursor: 'pointer',
+  },
+  '&:active, &:active .MuiListItemIcon-root': {
+    color: theme.palette.brand.yellow20,
+  },
+}));
+
+const StyledMUIListItemIcon = styled(MUIListItemIcon)(({ theme }) => ({
+  marginRight: theme.spacing(1),
+
+  minWidth: 'unset',
+}));
+
+const StyledMUIListItemText = styled(MUIListItemText)({
+  margin: 0,
 });
 
 type Item = {
@@ -36,15 +43,17 @@ type MenuProps = {
 };
 export const Menu: FC<MenuProps> = ({ items }) => {
   return (
-    <StyledMUIList>
+    <MUIList>
       {items.map((item, index) => (
-        <MUIListItem key={index}>
-          <MUIListItemIcon>
-            <Arrow />
-          </MUIListItemIcon>
-          <MUIListItemText>{item.label}</MUIListItemText>
-        </MUIListItem>
+        <StyledMUIListItem key={index}>
+          <StyledMUIListItemIcon>
+            <Arrow fill="currentColor" />
+          </StyledMUIListItemIcon>
+          <StyledMUIListItemText>
+            <Typography variant="mi">{item.label}</Typography>
+          </StyledMUIListItemText>
+        </StyledMUIListItem>
       ))}
-    </StyledMUIList>
+    </MUIList>
   );
 };
