@@ -4,8 +4,12 @@ import {
   TypographyProps as MUITypographyProps,
 } from '@mui/material';
 
-type TextProps = Pick<MUITypographyProps, 'variant' | 'component'>;
-export const Text: FC<PropsWithChildren<TextProps>> = ({
+import { TypographyVariants } from '../../theming/theme/typography';
+
+type TypographyProps = {
+  variant: TypographyVariants;
+} & Pick<MUITypographyProps, 'component'>;
+export const Typography: FC<PropsWithChildren<TypographyProps>> = ({
   children,
   ...rest
 }) => {
