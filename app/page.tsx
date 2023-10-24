@@ -4,6 +4,22 @@ import styles from './page.module.css';
 
 import { Typography } from '../components/Typography/Typography';
 import { Logo } from '../components/Logo/Logo';
+import { Menu } from '../components/Menu/Menu';
+
+const MENU_ITEMS = [
+  {
+    label: 'КАК ПОМОЧЬ',
+  },
+  {
+    label: 'КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС',
+  },
+  {
+    label: 'СПИСОК ПРЕСЛЕДУЕМЫХ',
+  },
+  {
+    label: 'ПОЖЕРТВОВАТЬ ПРОЕКТУ',
+  },
+];
 
 export default function Home() {
   return (
@@ -14,8 +30,11 @@ export default function Home() {
             <Grid item flex={1}>
               {/* Left */}
               <Grid container>
-                <Grid item mb="89px">
+                <Grid item mb="89px" mr={1}>
                   <Logo />
+                </Grid>
+                <Grid item mb="89px">
+                  <Menu items={MENU_ITEMS} />
                 </Grid>
                 <Grid item mb={4.5}>
                   <Typography variant="h1" color="brand.red">
