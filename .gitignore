@@ -32,7 +32,11 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+<<<<<<< HEAD
 next-env.d.ts
 
 # Chromatic
 chromatic.log
+=======
+next-env.d.ts
+>>>>>>> 0158adadac35c953005d8ec013456f86ae8d77c9

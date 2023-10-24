@@ -1,13 +1,13 @@
 'use client';
 
-import React, { FC } from 'react';
 import {
-  styled,
   List as MUIList,
   ListItem as MUIListItem,
-  ListItemText as MUIListItemText,
   ListItemIcon as MUIListItemIcon,
+  ListItemText as MUIListItemText,
+  styled,
 } from '@mui/material';
+import { FC } from 'react';
 
 import { Arrow } from '../Arrow/Arrow';
 import { Typography } from '../Typography/Typography';
