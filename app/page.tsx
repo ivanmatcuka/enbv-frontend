@@ -8,7 +8,7 @@ import { Typography } from '../components/Typography/Typography';
 
 const MENU_ITEMS = [
   {
-    label: 'КАК ПОМОЧЬ',
+    label: 'КАК ПОМОЧЬ',
   },
   {
     label: 'КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС',
@@ -71,6 +71,36 @@ export default function Home() {
               width="600px"
               className={styles.frame__photo}
             />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item className={styles.carousel} width="100%">
+        <Grid
+          container
+          height={868}
+          maxWidth={1200}
+          alignItems="end"
+          margin="86px"
+          flexDirection="column"
+        >
+          {/* Right */}
+          <Grid item width={695}>
+            <Typography variant="h1" color="brand.yellow">
+              Жертвы своего мнения
+            </Typography>
+          </Grid>
+          <Grid item width={594} mt={4}>
+            <Typography
+              variant="subtitle1"
+              color="brand.white"
+              lineHeight="32.74px"
+            >
+              В этой базе мы собрали имена людей, которые пострадали за свои
+              поступки или убеждения. Среди них есть и те, кто совершал поджоги
+              и диверсии. Насильственные преступления нельзя оправдать, но мы
+              считаем, что этим людям нужна поддержка. Ведь они были бы на
+              свободе, если бы не было войны.
+            </Typography>
           </Grid>
         </Grid>
       </Grid>

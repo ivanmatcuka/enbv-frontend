@@ -3,8 +3,9 @@
   background-size: contain;
 }
 
-.header__subline {
-  line-height: 32.74px;
+.carousel {
+  background: url('bg-section-carousel.png') center no-repeat white;
+  background-size: cover;
 }
 
 .frame__photo {
