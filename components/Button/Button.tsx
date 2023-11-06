@@ -1,23 +1,117 @@
-import {
-  Button as MUIButton,
-  ButtonProps as MUIButtonProps,
-  styled,
-} from '@mui/material';
-import { FC } from 'react';
+import { Button as MUIButton, styled } from '@mui/material';
+import { FC, PropsWithChildren } from 'react';
+
+import { Typography } from '../Typography/Typography';
 
 const StyledMUIButton = styled(MUIButton)(({ theme }) => ({
-  padding: 0,
+  position: 'relative',
 
-  '&:hover, &:hover .MuiListItemIcon-root': {
-    color: theme.palette.brand.yellow,
-    cursor: 'pointer',
+  height: 36,
+  border: `solid 2px ${theme.palette.brand.black}`,
+  borderRadius: 18,
+  padding: theme.spacing(0, 3),
+
+  '&:before': {
+    content: '""',
+
+    position: 'absolute',
+    right: 0,
+    bottom: -10,
+    left: 0,
+    zIndex: -1,
+
+    transform: 'rotate(1.8deg)',
+
+    height: 54,
+    borderRadius: '50%',
+
+    backgroundColor: theme.palette.brand.yellow,
   },
-  '&:active, &:active .MuiListItemIcon-root': {
-    color: theme.palette.brand.yellow20,
+
+  '&:hover': {
+    '&:before': {
+      backgroundColor: theme.palette.brand.yellow20,
+    },
+  },
+
+  '&:active': {
+    '&:before': {
+      backgroundColor: theme.palette.brand.yellow40,
+    },
   },
 }));
 
-type MenuProps = Pick<MUIButtonProps, 'variant' | 'children'>;
-export const Menu: FC<MenuProps> = ({ ...rest }) => {
-  return <StyledMUIButton {...rest} />;
+const RedMUIButton = styled(StyledMUIButton)(({ theme }) => ({
+  border: `solid 2px ${theme.palette.brand.white}`,
+
+  color: theme.palette.brand.white,
+
+  '&:before': {
+    backgroundColor: theme.palette.brand.red,
+  },
+
+  '&:hover': {
+    '&:before': {
+      backgroundColor: theme.palette.brand.red20,
+    },
+  },
+
+  '&:active': {
+    '&:before': {
+      backgroundColor: theme.palette.brand.red40,
+    },
+  },
+}));
+
+const OutlineMUIButton = styled(StyledMUIButton)(({ theme }) => ({
+  border: `solid 2px ${theme.palette.brand.black}`,
+
+  color: theme.palette.brand.black,
+
+  '&:before': {
+    display: 'none',
+  },
+
+  '&:hover': {
+    backgroundColor: theme.palette.brand.black,
+
+    color: theme.palette.brand.white,
+  },
+
+  '&:active': {
+    backgroundColor: theme.palette.brand.black20,
+
+    color: theme.palette.brand.yellow,
+  },
+}));
+
+const DefaultButton = styled(StyledMUIButton)(({ theme }) => ({
+  color: theme.palette.brand.black,
+}));
+
+type ButtonProps = {
+  variant?: 'red' | 'default' | 'outline';
+};
+export const Button: FC<PropsWithChildren<ButtonProps>> = ({
+  variant = 'default',
+  children,
+}) => {
+  if (variant === 'red') {
+    return (
+      <RedMUIButton>
+        <Typography variant="button">{children}</Typography>
+      </RedMUIButton>
+    );
+  } else if (variant === 'outline') {
+    return (
+      <OutlineMUIButton variant="outlined">
+        <Typography variant="button">{children}</Typography>
+      </OutlineMUIButton>
+    );
+  }
+  return (
+    <DefaultButton>
+      <Typography variant="button">{children}</Typography>
+    </DefaultButton>
+  );
 };

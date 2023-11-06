@@ -55,6 +55,7 @@ export const typography = {
   button: {
     fontFamily: 'Nunito Sans',
     fontSize: 16,
+    fontWeight: 800,
     lineHeight: 1,
   },
   legend: {

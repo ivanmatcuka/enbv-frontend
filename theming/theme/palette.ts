@@ -3,6 +3,7 @@ import tinycolor from 'tinycolor2';
 
 export const colors = {
   black: '#000000',
+  black20: tinycolor.mix('#000000', '#FFFFFF', 20).toRgbString(),
   white: '#FFFFFF',
   bg: '#F8F7F2',
   txt: '#151515',
@@ -10,8 +11,8 @@ export const colors = {
   red20: tinycolor.mix('#F5545E', '#FFFFFF', 20).toRgbString(),
   red40: tinycolor.mix('#F5545E', '#FFFFFF', 40).toRgbString(),
   yellow: '#EFC556',
-  yellow20: '#F29858',
-  yellow40: '#F29858',
+  yellow20: tinycolor.mix('#EFC556', '#FFFFFF', 20).toRgbString(),
+  yellow40: tinycolor.mix('#EFC556', '#FFFFFF', 40).toRgbString(),
   green: '#3E4137',
 };
 

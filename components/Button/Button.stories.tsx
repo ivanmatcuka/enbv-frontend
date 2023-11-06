@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Menu as Component } from './Button';
+import { Button as Component } from './Button';
 
 const meta = {
-  title: 'Menu',
+  title: 'Button',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -14,6 +14,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Menu: Story = {
-  args: {},
+export const DefaultButton: Story = {
+  args: {
+    children: 'ПОМОЧЬ СЕЙЧАС',
+  },
+};
+
+export const RedButton: Story = {
+  args: {
+    children: 'ПОМОЧЬ СЕЙЧАС',
+    variant: 'red',
+  },
+};
+
+export const OutlineButton: Story = {
+  args: {
+    children: 'ПОМОЧЬ СЕЙЧАС',
+    variant: 'outline',
+  },
 };
