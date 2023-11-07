@@ -6,49 +6,53 @@ import { FC, PropsWithChildren } from 'react';
 import { PaletteColors } from '../../theming/theme/palette';
 import { Typography } from '../Typography/Typography';
 
-const Container = styled('div')(() => ({
-  position: 'relative',
-
-  '&:hover': {
-    '.button__body': {
-      transform: 'rotate(2.86deg)',
-    },
-    '.button__background': {
-      transform: 'rotate(-2.92deg)',
-    },
-  },
-}));
-
-const Background = styled('div')<{ variant?: 'red' | 'default' }>(({
-  variant = 'default',
+const Container = styled('div')<{ variant: ButtonProps['variant'] }>(({
   theme,
+  variant,
 }) => {
-  const palette: PaletteColors[] =
-    variant === 'default'
+  const palette: PaletteColors[] | null =
+    variant === 'outline'
+      ? null
+      : variant === 'default'
       ? ['yellow', 'yellow20', 'yellow40']
       : ['red', 'red20', 'red40'];
 
   return {
-    position: 'absolute',
-    inset: '-8px 0 0 0',
-    zIndex: 100,
+    position: 'relative',
 
-    transform: 'rotate(1.8deg)',
-
-    height: 54,
-    borderRadius: '50%',
-
-    backgroundColor: palette ? theme.palette.brand[palette[0]] : undefined,
+    '.button__background': {
+      backgroundColor: palette ? theme.palette.brand[palette[0]] : undefined,
+    },
 
     '&:hover': {
-      backgroundColor: theme.palette.brand[palette[1]],
+      '.button__body': {
+        transform: 'rotate(2.86deg)',
+      },
+      '.button__background': {
+        backgroundColor: palette ? theme.palette.brand[palette[1]] : undefined,
+
+        transform: 'rotate(-2.92deg)',
+      },
     },
 
     '&:active': {
-      backgroundColor: theme.palette.brand[palette[2]],
+      '.button__background': {
+        backgroundColor: palette ? theme.palette.brand[palette[2]] : undefined,
+      },
     },
   };
 });
+
+const Background = styled('div')(() => ({
+  position: 'absolute',
+  inset: '-8px 0 0 0',
+  zIndex: 100,
+
+  transform: 'rotate(1.8deg)',
+
+  height: 54,
+  borderRadius: '50%',
+}));
 
 const StyledMUIButton = styled(MUIButton)(({ theme }) => ({
   position: 'relative',
@@ -118,11 +122,9 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   }
 
   return (
-    <Container>
+    <Container variant={variant}>
       {button}
-      {variant !== 'outline' && (
-        <Background className="button__background" variant={variant} />
-      )}
+      {variant !== 'outline' && <Background className="button__background" />}
     </Container>
   );
 };

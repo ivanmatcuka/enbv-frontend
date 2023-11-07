@@ -33,13 +33,13 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.5.4",
-    "@storybook/addon-essentials": "^7.4.6",
-    "@storybook/addon-interactions": "^7.4.6",
-    "@storybook/addon-links": "^7.4.6",
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
     "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/blocks": "^7.4.6",
-    "@storybook/nextjs": "^7.4.6",
-    "@storybook/react": "^7.4.6",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/nextjs": "^7.5.3",
+    "@storybook/react": "^7.5.3",
     "@storybook/testing-library": "^0.2.2",
     "@types/tinycolor2": "^1.4.4",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
@@ -52,7 +52,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "husky": "^8.0.0",
     "prettier": "3.0.3",
-    "storybook": "^7.4.6"
+    "storybook": "^7.5.3"
   },
   "readme": "ERROR: No README data found!",
   "_id": "enbv-frontend@0.1.0"
