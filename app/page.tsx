@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 
 import styles from './page.module.css';
 
+import { Button } from '../components/Button/Button';
 import { Logo } from '../components/Logo/Logo';
 import { Menu } from '../components/Menu/Menu';
 import { Typography } from '../components/Typography/Typography';
@@ -54,13 +55,20 @@ export default function Home() {
                 </Typography>
               </Grid>
               <Grid item>
-                <video
-                  src="/cat-walking.webm"
-                  autoPlay
-                  height={118}
-                  width={190}
-                  loop
-                />
+                <Grid container alignItems="start">
+                  <Grid item>
+                    <video
+                      src="/cat-walking.webm"
+                      autoPlay
+                      height={118}
+                      width={190}
+                      loop
+                    />
+                  </Grid>
+                  <Grid item pl={1}>
+                    <Button>ПОМОЧЬ СЕЙЧАС</Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
