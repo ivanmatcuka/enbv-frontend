@@ -1,10 +1,10 @@
 .header {
-  background: url('background.png') left no-repeat white;
+  background: url('/background.png') left no-repeat white;
   background-size: contain;
 }
 
 .carousel {
-  background: url('bg-section-carousel.png') center no-repeat white;
+  background: url('/bg-section-carousel.png') center no-repeat white;
   background-size: cover;
 }
 
@@ -20,6 +20,6 @@
 .frame {
   height: 650px;
 
-  background: url('frame.png') left no-repeat white;
+  background: url('/frame.png') left no-repeat white;
   background-size: contain;
 }

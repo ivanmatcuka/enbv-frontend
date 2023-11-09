@@ -13,11 +13,11 @@
     "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.4",
+    "@apollo/experimental-nextjs-app-support": "^0.4.3",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.13",
-    "@apollo/client": "^3.8.4",
-    "@apollo/experimental-nextjs-app-support": "^0.4.3",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -27,6 +27,8 @@
     "next": "13.5.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-multi-carousel": "^2.8.4",
+    "react-responsive-carousel": "^3.2.23",
     "react-svg": "^16.1.29",
     "tinycolor2": "^1.6.0",
     "typescript": "5.2.2"

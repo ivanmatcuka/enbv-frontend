@@ -3,6 +3,7 @@ import { Grid } from '@mui/material';
 import styles from './page.module.css';
 
 import { Button } from '../components/Button/Button';
+import { Carousel } from '../components/Carousel/Carousel';
 import { Logo } from '../components/Logo/Logo';
 import { Menu } from '../components/Menu/Menu';
 import { Typography } from '../components/Typography/Typography';
@@ -91,7 +92,6 @@ export default function Home() {
           margin="86px"
           flexDirection="column"
         >
-          {/* Right */}
           <Grid item width={695}>
             <Typography variant="h1" color="brand.yellow">
               Жертвы своего мнения
@@ -109,6 +109,12 @@ export default function Home() {
               считаем, что этим людям нужна поддержка. Ведь они были бы на
               свободе, если бы не было войны.
             </Typography>
+          </Grid>
+          <Grid item height={150} width="100%" position="relative" mt={7}>
+            <Carousel />
+          </Grid>
+          <Grid item alignSelf="center" mt={8}>
+            <Button variant="red">УЗНАЙТЕ ИХ ИСЧТОРИИ</Button>
           </Grid>
         </Grid>
       </Grid>
