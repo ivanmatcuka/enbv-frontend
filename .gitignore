@@ -39,3 +39,5 @@ chromatic.log
 
 # Storybook
 build-storybook.log
+
+/storybook-static
