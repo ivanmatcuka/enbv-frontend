@@ -27,8 +27,8 @@ const MENU_ITEMS = [
 export default function Home() {
   return (
     <Grid container>
-      <Grid item className={styles.header} width="100%">
-        <Grid container height={650} maxWidth={1200} margin="86px">
+      <Grid item className={styles.header} width="100%" padding="86px">
+        <Grid container height={650} maxWidth={1200} margin="auto">
           <Grid item flex={1}>
             {/* Left */}
             <Grid container>
@@ -84,14 +84,14 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item className={styles.carousel} width="100%">
+      <Grid item className={styles.carousel} width="100%" padding="86px">
         <Grid
           container
           height={868}
           maxWidth={1200}
           alignItems="end"
-          margin="86px"
           flexDirection="column"
+          margin="auto"
         >
           <Grid item width={695}>
             <Typography variant="h1" color="brand.yellow">
