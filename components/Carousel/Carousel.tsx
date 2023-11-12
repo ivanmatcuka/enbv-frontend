@@ -1,89 +1,20 @@
 'use client';
 
-import Image from 'next/image';
 import { FC, PropsWithChildren } from 'react';
+import Slider from 'react-slick';
 
-export const Carousel: FC<PropsWithChildren> = () => {
-  return (
-    <div style={{ whiteSpace: 'nowrap', position: 'absolute', left: 0 }}>
-      <Image
-        src="/carousel/carousel-1.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-2.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-3.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-4.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-5.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-6.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-7.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-8.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-9.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-10.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-11.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-12.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-      <Image
-        src="/carousel/carousel-13.png"
-        alt="test"
-        height={150}
-        width={150}
-      />
-    </div>
-  );
+export const Carousel: FC<PropsWithChildren> = ({ children }) => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 1000,
+    cssEase: 'linear',
+    variableWidth: true,
+  };
+
+  return <Slider {...settings}>{children}</Slider>;
 };

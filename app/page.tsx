@@ -4,6 +4,7 @@ import styles from './page.module.css';
 
 import { Button } from '../components/Button/Button';
 import { Carousel } from '../components/Carousel/Carousel';
+import { CarouselImage } from '../components/CarouselImage/CarouselImage';
 import { Logo } from '../components/Logo/Logo';
 import { Menu } from '../components/Menu/Menu';
 import { Typography } from '../components/Typography/Typography';
@@ -111,10 +112,24 @@ export default function Home() {
             </Typography>
           </Grid>
           <Grid item height={150} width="100%" position="relative" mt={7}>
-            <Carousel />
+            <Carousel>
+              <CarouselImage height={150} src="/carousel/carousel-1.png" />
+              <CarouselImage height={150} src="/carousel/carousel-2.png" />
+              <CarouselImage height={150} src="/carousel/carousel-3.png" />
+              <CarouselImage height={150} src="/carousel/carousel-4.png" />
+              <CarouselImage height={150} src="/carousel/carousel-5.png" />
+              <CarouselImage height={150} src="/carousel/carousel-6.png" />
+              <CarouselImage height={150} src="/carousel/carousel-7.png" />
+              <CarouselImage height={150} src="/carousel/carousel-8.png" />
+              <CarouselImage height={150} src="/carousel/carousel-9.png" />
+              <CarouselImage height={150} src="/carousel/carousel-10.png" />
+              <CarouselImage height={150} src="/carousel/carousel-11.png" />
+              <CarouselImage height={150} src="/carousel/carousel-12.png" />
+              <CarouselImage height={150} src="/carousel/carousel-13.png" />
+            </Carousel>
           </Grid>
           <Grid item alignSelf="center" mt={8}>
-            <Button variant="red">УЗНАЙТЕ ИХ ИСЧТОРИИ</Button>
+            <Button variant="red">УЗНАЙТЕ ИХ ИСТОРИИ</Button>
           </Grid>
         </Grid>
       </Grid>

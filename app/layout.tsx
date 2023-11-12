@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { PropsWithChildren } from 'react';
 
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import ThemeRegistry from '../theming/ThemeRegistry';
 import './globals.css';
-
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {

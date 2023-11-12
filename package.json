@@ -29,7 +29,9 @@
     "react-dom": "18.2.0",
     "react-multi-carousel": "^2.8.4",
     "react-responsive-carousel": "^3.2.23",
+    "react-slick": "^0.29.0",
     "react-svg": "^16.1.29",
+    "slick-carousel": "^1.8.1",
     "tinycolor2": "^1.6.0",
     "typescript": "5.2.2"
   },
@@ -43,6 +45,7 @@
     "@storybook/nextjs": "^7.5.3",
     "@storybook/react": "^7.5.3",
     "@storybook/testing-library": "^0.2.2",
+    "@types/react-slick": "^0.23.12",
     "@types/tinycolor2": "^1.4.4",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.2",
