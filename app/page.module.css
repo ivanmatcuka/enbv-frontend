@@ -23,3 +23,8 @@
   background: url('/frame.png') left no-repeat white;
   background-size: contain;
 }
+
+.numbers {
+  background: url('/background-2.png') left no-repeat white;
+  background-size: cover;
+}
