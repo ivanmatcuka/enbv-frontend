@@ -6,7 +6,7 @@ import { FC, PropsWithChildren } from 'react';
 
 import { TypographyVariants } from '../../theming/theme/typography';
 
-type TypographyProps = {
+export type TypographyProps = {
   variant: TypographyVariants;
 } & MUITypographyProps;
 export const Typography: FC<PropsWithChildren<TypographyProps>> = ({
