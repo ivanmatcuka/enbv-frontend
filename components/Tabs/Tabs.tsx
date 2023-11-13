@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import MUITabs from '@mui/material/Tabs';
-import React from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import { SelectorItem } from '../SelectorItem/SelectorItem';
 
@@ -33,7 +33,15 @@ const a11yProps = (index: number) => {
   };
 };
 
-export const Tabs: React.FC = () => {
+type TabsItem = {
+  label: string;
+  element: ReactNode;
+};
+
+type TabsProps = {
+  items: TabsItem[];
+};
+export const Tabs: FC<TabsProps> = ({ items }) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -49,31 +57,19 @@ export const Tabs: React.FC = () => {
           style: { display: 'none' },
         }}
       >
-        <SelectorItem
-          variant="subtitle1"
-          label="по полу и возрасту:"
-          {...a11yProps(0)}
-        />
-        <SelectorItem
-          variant="subtitle1"
-          label="по полу и возрасту:"
-          {...a11yProps(1)}
-        />
-        <SelectorItem
-          variant="subtitle1"
-          label="по полу и возрасту:"
-          {...a11yProps(2)}
-        />
+        {items.map((item, index) => (
+          <SelectorItem
+            variant="subtitle1"
+            label={item.label}
+            {...a11yProps(index)}
+          />
+        ))}
       </MUITabs>
-      <CustomTabPanel value={value} index={0}>
-        по полу и возрасту
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        Item Two
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        Item Three
-      </CustomTabPanel>
+      {items.map((item, index) => (
+        <CustomTabPanel value={value} index={index}>
+          {item.element}
+        </CustomTabPanel>
+      ))}
     </Box>
   );
 };

@@ -45,6 +45,8 @@ const StyledTab = styled(MUITab)<{ variant: TypographyVariants }>(({
     },
 
     '&.Mui-selected': {
+      opacity: '100%',
+
       color: theme.palette.brand.black,
     },
 
