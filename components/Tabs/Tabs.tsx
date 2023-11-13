@@ -11,7 +11,7 @@ interface TabPanelProps {
 }
 
 const CustomTabPanel = (props: TabPanelProps) => {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, ...rest } = props;
 
   return (
     <div
@@ -19,7 +19,7 @@ const CustomTabPanel = (props: TabPanelProps) => {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
+      {...rest}
     >
       {value === index && <Box>{children}</Box>}
     </div>
