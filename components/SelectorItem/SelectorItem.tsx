@@ -6,6 +6,8 @@ import { Typography, TypographyProps } from '../Typography/Typography';
 const StyledTypography = styled(Typography)({
   position: 'relative',
 
+  opacity: '40%',
+
   '&:after': {
     content: '""',
 
@@ -14,18 +16,23 @@ const StyledTypography = styled(Typography)({
 
     display: 'none',
     transform: 'rotate(-4deg)',
+    opacity: '40%',
 
     background: 'url("/circle.svg") center no-repeat',
     backgroundSize: 'cover',
   },
 
+  '&:hover': {
+    opacity: '100%',
+  },
+
   '&:hover:after': {
     display: 'block',
-
-    opacity: '40%',
   },
 
   '&:active:after': {
+    display: 'block',
+
     opacity: '100%',
   },
 });
