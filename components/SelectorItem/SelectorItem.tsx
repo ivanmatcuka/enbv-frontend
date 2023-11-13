@@ -1,48 +1,61 @@
-import { styled } from '@mui/material';
+import { Tab as MUITab, TabProps as MUITabProps, styled } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
-import { Typography, TypographyProps } from '../Typography/Typography';
+import { TypographyVariants } from '../../theming/theme/typography';
+import { TypographyProps } from '../Typography/Typography';
 
-const StyledTypography = styled(Typography)({
-  position: 'relative',
+const StyledTab = styled(MUITab)<{ variant: TypographyVariants }>(({
+  theme,
+  variant,
+}) => {
+  return {
+    position: 'relative',
 
-  opacity: '40%',
-
-  '&:after': {
-    content: '""',
-
-    position: 'absolute',
-    inset: 0,
-
-    display: 'none',
-    transform: 'rotate(-4deg)',
     opacity: '40%',
 
-    background: 'url("/circle.svg") center no-repeat',
-    backgroundSize: 'cover',
-  },
+    textTransform: 'none',
+    ...theme.typography[variant],
 
-  '&:hover': {
-    opacity: '100%',
-  },
+    '&:after': {
+      content: '""',
 
-  '&:hover:after': {
-    display: 'block',
-  },
+      position: 'absolute',
+      inset: 0,
 
-  '&:active:after': {
-    display: 'block',
+      display: 'none',
+      transform: 'rotate(-4deg)',
+      opacity: '40%',
 
-    opacity: '100%',
-  },
+      background: 'url("/circle.svg") center no-repeat',
+      backgroundSize: 'cover',
+    },
+
+    '&:hover': {
+      opacity: '100%',
+    },
+
+    '&:hover:after': {
+      display: 'block',
+    },
+
+    '&:active:after': {
+      display: 'block',
+
+      opacity: '100%',
+    },
+
+    '&.Mui-selected': {
+      color: theme.palette.brand.black,
+    },
+
+    '.MuiTabs-indicator': {
+      display: 'none',
+    },
+  };
 });
 
-export const SelectorItem: FC<PropsWithChildren<TypographyProps>> = ({
-  children,
-  variant = 'subtitle1',
-  ...rest
-}) => (
-  <StyledTypography variant={variant} {...rest}>
-    {children}
-  </StyledTypography>
-);
+export const SelectorItem: FC<
+  PropsWithChildren<TypographyProps & MUITabProps>
+> = ({ children, variant = 'subtitle1', ...rest }) => {
+  return <StyledTab variant={variant} label={children} {...rest} />;
+};
