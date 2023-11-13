@@ -27,7 +27,7 @@ const StyledTab = styled(MUITab)<{ variant: TypographyVariants }>(({
       opacity: '40%',
 
       background: 'url("/circle.svg") center no-repeat',
-      backgroundSize: 'cover',
+      backgroundSize: 'contain',
     },
 
     '&:hover': {

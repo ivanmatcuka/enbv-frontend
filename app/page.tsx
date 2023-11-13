@@ -7,6 +7,7 @@ import { Carousel } from '../components/Carousel/Carousel';
 import { CarouselImage } from '../components/CarouselImage/CarouselImage';
 import { Logo } from '../components/Logo/Logo';
 import { Menu } from '../components/Menu/Menu';
+import { Tabs } from '../components/Tabs/Tabs';
 import { Typography } from '../components/Typography/Typography';
 
 const MENU_ITEMS = [
@@ -130,6 +131,27 @@ export default function Home() {
           </Grid>
           <Grid item alignSelf="center" mt={8}>
             <Button variant="red">УЗНАЙТЕ ИХ ИСТОРИИ</Button>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item className={styles.numbers} width="100%" padding="86px">
+        <Grid container maxWidth={1200} margin="auto">
+          {/* Left */}
+          <Grid item mb={4.5} flex="1 0 100%">
+            <Typography variant="h1" color="brand.red">
+              Числа и лица
+            </Typography>
+          </Grid>
+          <Grid item width={392}></Grid>
+          {/* Right */}
+          <Grid item width={796}>
+            <Tabs
+              items={[
+                { label: 'по полу и возрасту:', element: 'Lorem ipsum 1' },
+                { label: 'на свободе/под стражей', element: 'Lorem ipsum 2' },
+                { label: 'по роду занятий', element: 'Lorem ipsum 3' },
+              ]}
+            />
           </Grid>
         </Grid>
       </Grid>

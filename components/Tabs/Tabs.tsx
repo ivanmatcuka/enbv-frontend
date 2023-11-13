@@ -1,3 +1,5 @@
+'use client';
+
 import Box from '@mui/material/Box';
 import MUITabs from '@mui/material/Tabs';
 import React, { FC, ReactNode } from 'react';
