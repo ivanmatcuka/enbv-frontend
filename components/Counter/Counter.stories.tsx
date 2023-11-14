@@ -14,14 +14,25 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Counter1: Story = {
-  args: { children: 1117, label: 'Всего политзаключённых:' },
+export const SadCatCounter: Story = {
+  args: {
+    children: 0,
+    label: 'Писем сегодня отправлено:',
+    catPictureUrl: '/cat_sad.svg',
+  },
 };
 
-export const Counter2: Story = {
-  args: { children: 857, label: 'Сколько дел в процессе' },
+export const HappyCatCounter: Story = {
+  args: {
+    children: 1382,
+    label: 'Писем сегодня отправлено:',
+    catPictureUrl: '/cat_happy.svg',
+  },
 };
 
-export const Counter3: Story = {
-  args: { children: 0, label: 'Писем сегодня отправлено:' },
+export const CatlessCounter: Story = {
+  args: {
+    children: 857,
+    label: 'Сколько дел в процессе',
+  },
 };
