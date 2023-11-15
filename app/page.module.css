@@ -28,3 +28,9 @@
   background: url('/background-2.png') left no-repeat white;
   background-size: cover;
 }
+
+.why {
+  background: url('/background-3.png') left no-repeat white;
+  background-size: cover;
+  background-position: right;
+}

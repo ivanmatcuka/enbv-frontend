@@ -173,10 +173,43 @@ export default function Home() {
             <Tabs
               items={[
                 { label: 'по полу и возрасту:', element: 'Lorem ipsum 1' },
-                { label: 'на свободе/под стражей', element: 'Lorem ipsum 2' },
-                { label: 'по роду занятий', element: 'Lorem ipsum 3' },
+                { label: 'на свободе/под стражей', element: 'Lorem ipsum 2' },
+                { label: 'по роду занятий', element: 'Lorem ipsum 3' },
               ]}
             />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item className={styles.why} width="100%" padding="86px">
+        <Grid
+          container
+          maxWidth={1200}
+          margin="auto"
+          flexDirection="column"
+          alignItems="end"
+          position="relative"
+        >
+          <img
+            src="/photo-1.png"
+            style={{ position: 'absolute', left: -210, top: 78 }}
+          />
+          <Grid item mb={4.5} textAlign="right">
+            <Typography variant="h1" color="brand.yellow">
+              Почему помочь —<br />
+              это важно?
+            </Typography>
+          </Grid>
+          <Grid item width={594} mb={7.25}>
+            <Typography variant="subtitle1" component="p">
+              Заключённые лишены не только свободы, но и даже обычных вещей.
+              Время для них фактически останавливается, а за решёткой не
+              происходит почти никаких позитивных событий. Люди в СИЗО и
+              колониях зачастую теряют связь с внешним миром и возможность
+              узнавать о новостях.
+            </Typography>
+          </Grid>
+          <Grid item>
+            <img src="/cat_2.svg" />
           </Grid>
         </Grid>
       </Grid>
