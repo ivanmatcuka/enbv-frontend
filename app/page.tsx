@@ -5,6 +5,7 @@ import styles from './page.module.css';
 import { Button } from '../components/Button/Button';
 import { Carousel } from '../components/Carousel/Carousel';
 import { CarouselImage } from '../components/CarouselImage/CarouselImage';
+import { Counter } from '../components/Counter/Counter';
 import { Logo } from '../components/Logo/Logo';
 import { Menu } from '../components/Menu/Menu';
 import { Tabs } from '../components/Tabs/Tabs';
@@ -136,13 +137,37 @@ export default function Home() {
       </Grid>
       <Grid item className={styles.numbers} width="100%" padding="86px">
         <Grid container maxWidth={1200} margin="auto">
-          {/* Left */}
           <Grid item mb={4.5} flex="1 0 100%">
             <Typography variant="h1" color="brand.red">
               Числа и лица
             </Typography>
           </Grid>
-          <Grid item width={392}></Grid>
+          <Grid item width={392}>
+            <Grid
+              container
+              flexDirection="column"
+              alignItems="baseline"
+              gap={4}
+            >
+              <Grid item>
+                <Counter label="Всего политзаключённых:">1117</Counter>
+              </Grid>
+              <Grid item>
+                <Counter label="Сколько дел в процессе">857</Counter>
+              </Grid>
+              <Grid item>
+                <Counter
+                  label="Писем сегодня отправлено:"
+                  catPictureUrl="/cat_sad.svg"
+                >
+                  0
+                </Counter>
+              </Grid>
+              <Grid item>
+                <Button>НАПИСАТЬ ПИСЬМО</Button>
+              </Grid>
+            </Grid>
+          </Grid>
           {/* Right */}
           <Grid item width={796}>
             <Tabs

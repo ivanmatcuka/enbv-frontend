@@ -1,3 +1,5 @@
+'use client';
+
 import { Grid, styled } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
