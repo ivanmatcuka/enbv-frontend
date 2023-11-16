@@ -14,6 +14,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Logo: Story = {
+export const SelectorItem: Story = {
   args: { children: 'по полу и возрасту', variant: 'subtitle1' },
 };

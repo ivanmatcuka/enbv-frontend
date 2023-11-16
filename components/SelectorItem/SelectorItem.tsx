@@ -57,7 +57,7 @@ const StyledTab = styled(MUITab)<{ variant: TypographyVariants }>(({
 });
 
 export const SelectorItem: FC<
-  PropsWithChildren<TypographyProps & MUITabProps>
+  PropsWithChildren<TypographyProps & Omit<MUITabProps, 'children'>>
 > = ({ children, variant = 'subtitle1', ...rest }) => {
   return <StyledTab variant={variant} label={children} {...rest} />;
 };
