@@ -1,10 +1,19 @@
 'use client';
 
+import { styled } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
-import Slider from 'react-slick';
+import Slider, { Settings } from 'react-slick';
+
+const Container = styled('div')({
+  position: 'absolute',
+
+  left: 0,
+  right: 0,
+});
 
 export const Carousel: FC<PropsWithChildren> = ({ children }) => {
-  const settings = {
+  const settings: Settings = {
+    arrows: false,
     dots: false,
     infinite: true,
     slidesToShow: 1,
@@ -16,5 +25,9 @@ export const Carousel: FC<PropsWithChildren> = ({ children }) => {
     variableWidth: true,
   };
 
-  return <Slider {...settings}>{children}</Slider>;
+  return (
+    <Container>
+      <Slider {...settings}>{children}</Slider>
+    </Container>
+  );
 };

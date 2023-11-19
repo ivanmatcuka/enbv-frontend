@@ -61,6 +61,7 @@ export const Tabs: FC<TabsProps> = ({ items }) => {
       >
         {items.map((item, index) => (
           <SelectorItem
+            key={index + 1}
             variant="subtitle1"
             label={item.label}
             {...a11yProps(index)}
@@ -68,7 +69,7 @@ export const Tabs: FC<TabsProps> = ({ items }) => {
         ))}
       </MUITabs>
       {items.map((item, index) => (
-        <CustomTabPanel value={value} index={index}>
+        <CustomTabPanel key={index + 1} value={value} index={index}>
           {item.element}
         </CustomTabPanel>
       ))}
