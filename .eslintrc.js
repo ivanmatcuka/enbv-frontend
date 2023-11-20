@@ -5,6 +5,7 @@ module.exports = {
     browser: true,
     amd: true,
     node: true,
+    es2021: true,
   },
 
   settings: {
@@ -17,6 +18,8 @@ module.exports = {
 
   extends: [
     'eslint:recommended',
+    'plugin:react/recommended',
+    'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/errors',
     'plugin:import/typescript',
@@ -58,5 +61,7 @@ module.exports = {
     ],
     'import/no-unresolved': ['error', { ignore: ['@cofenster/*'] }],
     'security/detect-object-injection': 0,
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-uses-react': 'off',
   },
 };
