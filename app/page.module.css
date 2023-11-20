@@ -29,10 +29,41 @@
   background-size: cover;
 }
 
+.numbers::before {
+  content: "";
+
+  position: absolute;
+  bottom: -190px;
+  left: 50%;
+  z-index: 100;
+
+  transform: rotate(1deg);
+
+  width: 1078px;
+  height: 206px;
+
+  background-color: #3E4137;
+}
+
 .why {
   background: url('/background-3.png') left no-repeat white;
   background-size: cover;
   background-position: right;
+}
+
+.why::before {
+  content: "";
+
+  position: absolute;
+  top: 12px;
+  right: -2px;
+  left: -2px;
+
+  transform: rotate(1deg);
+
+  height: 206px;
+
+  background-color: #3E4137;
 }
 
 .why__scratches {

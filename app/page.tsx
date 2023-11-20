@@ -14,7 +14,7 @@ import { Typography } from '../components/Typography/Typography';
 
 export default function Home() {
   return (
-    <Grid container>
+    <Grid container overflow="hidden">
       <Grid item className={styles.header} width="100%" padding="86px">
         <Grid container height={650} maxWidth={1200} margin="auto">
           <Grid item flex={1}>
@@ -165,7 +165,13 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item className={styles.numbers} width="100%" padding="86px">
+      <Grid
+        item
+        className={styles.numbers}
+        width="100%"
+        padding="86px"
+        position="relative"
+      >
         <Grid container maxWidth={1200} margin="auto">
           <Grid item mb={4.5} flex="1 0 100%">
             <Typography variant="h1" color="brand.red">
@@ -199,7 +205,7 @@ export default function Home() {
             </Grid>
           </Grid>
           {/* Right */}
-          <Grid item width={796}>
+          <Grid item width={796} mt={-1.5}>
             <Tabs
               items={[
                 { label: 'по полу и возрасту:', element: 'Lorem ipsum 1' },
@@ -210,7 +216,14 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item className={styles.why} id="why" width="100%" padding="86px">
+      <Grid
+        item
+        className={styles.why}
+        id="why"
+        width="100%"
+        padding="86px"
+        position="relative"
+      >
         <Grid
           container
           maxWidth={1200}
@@ -223,7 +236,7 @@ export default function Home() {
             src="/photo-1.png"
             style={{ position: 'absolute', left: -210, top: 78 }}
           />
-          <Grid item mb={4.5} textAlign="right">
+          <Grid item mb={4.5} textAlign="right" zIndex={200}>
             <Typography variant="h1" color="brand.yellow">
               Почему помочь —<br />
               это важно?

@@ -64,6 +64,7 @@ export const Tabs: FC<TabsProps> = ({ items }) => {
             key={index + 1}
             variant="subtitle1"
             label={item.label}
+            padding={0}
             {...a11yProps(index)}
           />
         ))}
