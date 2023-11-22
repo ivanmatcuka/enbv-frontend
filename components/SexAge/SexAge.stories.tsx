@@ -14,7 +14,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Logo: Story = {
+export const SexAge: Story = {
   args: {
     data: [
       { label: '15–19', age: 15, male: 40, female: 3 },
