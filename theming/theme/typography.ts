@@ -46,10 +46,11 @@ export const typography = {
 
   mi: {
     fontFamily: 'Nunito Sans',
-    fontSize: 18,
+    fontWeight: 600,
+    fontSize: 14,
 
     ['@media (max-width: 600px)']: {
-      fontSize: 14,
+      fontSize: 11,
     },
   },
   button: {
