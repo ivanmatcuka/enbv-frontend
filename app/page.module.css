@@ -66,9 +66,16 @@
   background-color: #3E4137;
 }
 
-.why__scratches {
+.carousel__scratches {
   position: absolute;
 
   top: 126px;
   left: -108px;
+}
+
+.why__strokes {
+  position: absolute;
+
+  top: -154px;
+  left: -34px;
 }

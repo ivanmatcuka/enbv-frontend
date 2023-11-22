@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './page.module.css';
@@ -95,9 +96,11 @@ export default function Home() {
           </Grid>
           {/* Right */}
           <Grid item width={493} className={styles.frame}>
-            <img
+            <Image
+              alt="photo"
               src="/photo.png"
-              width="600px"
+              width={600}
+              height={381}
               className={styles.frame__photo}
             />
           </Grid>
@@ -118,12 +121,12 @@ export default function Home() {
           flexDirection="column"
           margin="auto"
         >
-          <img
+          <Image
             alt="scraches"
             src="/scratches.png"
             width={700}
             height={483}
-            className={styles.why__scratches}
+            className={styles.carousel__scratches}
           />
           <Grid item width={695}>
             <Typography variant="h1" color="brand.yellow">
@@ -224,6 +227,13 @@ export default function Home() {
         padding="86px"
         position="relative"
       >
+        <Image
+          alt="strokes"
+          src="/strokes.png"
+          width={548}
+          height={377}
+          className={styles.why__strokes}
+        />
         <Grid
           container
           maxWidth={1200}
@@ -232,8 +242,11 @@ export default function Home() {
           alignItems="end"
           position="relative"
         >
-          <img
+          <Image
+            alt="photo-1"
             src="/photo-1.png"
+            width={645}
+            height={428}
             style={{ position: 'absolute', left: -210, top: 78 }}
           />
           <Grid item mb={4.5} textAlign="right" zIndex={200}>
@@ -252,7 +265,7 @@ export default function Home() {
             </Typography>
           </Grid>
           <Grid item>
-            <img src="/cat_2.svg" />
+            <Image alt="cat_2" width={230} height={177} src="/cat_2.svg" />
           </Grid>
         </Grid>
       </Grid>
