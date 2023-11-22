@@ -32,6 +32,10 @@ const StyledMUIListItemIcon = styled(MUIListItemIcon)(({ theme }) => ({
 
 const StyledMUIListItemText = styled(MUIListItemText)({
   margin: 0,
+
+  a: {
+    all: 'unset',
+  },
 });
 
 type Item = {
