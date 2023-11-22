@@ -10,6 +10,7 @@ import { CarouselImage } from '../components/CarouselImage/CarouselImage';
 import { Counter } from '../components/Counter/Counter';
 import { Logo } from '../components/Logo/Logo';
 import { Menu } from '../components/Menu/Menu';
+import { SexAge } from '../components/SexAge/SexAge';
 import { Tabs } from '../components/Tabs/Tabs';
 import { Typography } from '../components/Typography/Typography';
 
@@ -211,7 +212,45 @@ export default function Home() {
           <Grid item width={796} mt={-1.5}>
             <Tabs
               items={[
-                { label: 'по полу и возрасту:', element: 'Lorem ipsum 1' },
+                {
+                  label: 'по полу и возрасту:',
+                  element: (
+                    <SexAge
+                      data={[
+                        {
+                          age: 15,
+                          female: 3,
+                          label: '15–19',
+                          male: 40,
+                        },
+                        {
+                          age: 20,
+                          female: 4,
+                          label: '20-24',
+                          male: 70,
+                        },
+                        {
+                          age: 25,
+                          female: 10,
+                          label: '25-29',
+                          male: 60,
+                        },
+                        {
+                          age: 30,
+                          female: 10,
+                          label: '30-34',
+                          male: 60,
+                        },
+                        {
+                          age: 35,
+                          female: 10,
+                          label: '35-39',
+                          male: 60,
+                        },
+                      ]}
+                    />
+                  ),
+                },
                 { label: 'на свободе/под стражей', element: 'Lorem ipsum 2' },
               ]}
             />

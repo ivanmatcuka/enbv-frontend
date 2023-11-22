@@ -15,6 +15,10 @@ const StyledHeaderTypography = styled(Typography)({
   fontWeight: 600,
 });
 
+const StyledTable = styled(Table)({
+  width: 'auto',
+});
+
 const StyledTableRow = styled(TableRow)({
   '&': {
     'td, th': {
@@ -23,11 +27,9 @@ const StyledTableRow = styled(TableRow)({
   },
 });
 
-const StyledTableCell = styled(TableCell)({
-  padding: 10,
-
-  maxWidth: 325,
-});
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  padding: theme.spacing(0.5),
+}));
 
 type SexAgeItem = {
   age: number;
@@ -41,7 +43,7 @@ type SexAgeProps = {
 export const SexAge: FC<SexAgeProps> = ({ data }) => {
   return (
     <TableContainer>
-      <Table aria-label="sex-age">
+      <StyledTable aria-label="sex-age">
         <TableHead>
           <StyledTableRow>
             <StyledTableCell align="right">
@@ -61,24 +63,24 @@ export const SexAge: FC<SexAgeProps> = ({ data }) => {
           {[...data]
             .sort((a, b) => b.age - a.age)
             .map((row) => (
-              <StyledTableRow>
+              <StyledTableRow key={row.label}>
                 <StyledTableCell align="right">
-                  {Array.from(Array(row.female).keys()).map(() => (
-                    <img src="/person.svg" />
+                  {Array.from(Array(row.female).keys()).map((_, index) => (
+                    <img key={index} src="/person.svg" />
                   ))}
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <Typography variant="legend">{row.label}</Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left" style={{ maxWidth: 325 }}>
-                  {Array.from(Array(row.male).keys()).map(() => (
-                    <img src="/person.svg" />
+                  {Array.from(Array(row.male).keys()).map((_, index) => (
+                    <img key={index} src="/person.svg" />
                   ))}
                 </StyledTableCell>
               </StyledTableRow>
             ))}
         </TableBody>
-      </Table>
+      </StyledTable>
     </TableContainer>
   );
 };
