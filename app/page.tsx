@@ -8,6 +8,7 @@ import { Button } from '../components/Button/Button';
 import { Carousel } from '../components/Carousel/Carousel';
 import { CarouselImage } from '../components/CarouselImage/CarouselImage';
 import { Counter } from '../components/Counter/Counter';
+import { FreeNotFree } from '../components/FreeNotFree/FreeNotFree';
 import { Logo } from '../components/Logo/Logo';
 import { Menu } from '../components/Menu/Menu';
 import { SexAge } from '../components/SexAge/SexAge';
@@ -187,7 +188,8 @@ export default function Home() {
               container
               flexDirection="column"
               alignItems="baseline"
-              gap={4}
+              justifyContent="space-between"
+              height={577}
             >
               <Grid item>
                 <Counter label="Всего политзаключённых:">1117</Counter>
@@ -251,7 +253,10 @@ export default function Home() {
                     />
                   ),
                 },
-                { label: 'на свободе/под стражей', element: 'Lorem ipsum 2' },
+                {
+                  label: 'на свободе/под стражей',
+                  element: <FreeNotFree free={457} notFree={535} />,
+                },
               ]}
             />
           </Grid>

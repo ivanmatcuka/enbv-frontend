@@ -15,9 +15,11 @@ const StyledHeaderTypography = styled(Typography)({
   fontWeight: 600,
 });
 
-const StyledTable = styled(Table)({
+const StyledTable = styled(Table)(({ theme }) => ({
+  margin: theme.spacing(2),
+
   width: 'auto',
-});
+}));
 
 const StyledTableRow = styled(TableRow)({
   '&': {
@@ -48,13 +50,13 @@ export const SexAge: FC<SexAgeProps> = ({ data }) => {
           <StyledTableRow>
             <StyledTableCell align="right">
               <StyledHeaderTypography variant="legend">
-                Ж
+                ж
               </StyledHeaderTypography>
             </StyledTableCell>
             <StyledTableCell />
             <StyledTableCell align="left">
               <StyledHeaderTypography variant="legend">
-                М
+                м
               </StyledHeaderTypography>
             </StyledTableCell>
           </StyledTableRow>
