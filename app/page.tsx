@@ -213,7 +213,6 @@ export default function Home() {
               items={[
                 { label: 'по полу и возрасту:', element: 'Lorem ipsum 1' },
                 { label: 'на свободе/под стражей', element: 'Lorem ipsum 2' },
-                { label: 'по роду занятий', element: 'Lorem ipsum 3' },
               ]}
             />
           </Grid>
@@ -247,7 +246,7 @@ export default function Home() {
             src="/photo-1.png"
             width={645}
             height={428}
-            style={{ position: 'absolute', left: -210, top: 78 }}
+            className={styles.why__photo}
           />
           <Grid item mb={4.5} textAlign="right" zIndex={200}>
             <Typography variant="h1" color="brand.yellow">

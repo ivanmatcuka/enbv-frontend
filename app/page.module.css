@@ -68,14 +68,18 @@
 
 .carousel__scratches {
   position: absolute;
-
   top: 126px;
   left: -108px;
 }
 
 .why__strokes {
   position: absolute;
-
   top: -154px;
   left: -34px;
+}
+
+.why__photo {
+  position: absolute;
+  left: -210px;
+  top: 78px;
 }
