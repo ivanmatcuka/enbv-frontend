@@ -7,6 +7,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Image from 'next/image';
 import { FC } from 'react';
 
 import { Typography } from '../Typography/Typography';
@@ -68,7 +69,13 @@ export const SexAge: FC<SexAgeProps> = ({ data }) => {
               <StyledTableRow key={row.label}>
                 <StyledTableCell align="right">
                   {Array.from(Array(row.female).keys()).map((_, index) => (
-                    <img key={index} src="/person.svg" />
+                    <Image
+                      alt={`female-${index}`}
+                      key={index}
+                      src="/person.svg"
+                      width={6}
+                      height={12}
+                    />
                   ))}
                 </StyledTableCell>
                 <StyledTableCell align="center">
@@ -76,7 +83,13 @@ export const SexAge: FC<SexAgeProps> = ({ data }) => {
                 </StyledTableCell>
                 <StyledTableCell align="left" style={{ maxWidth: 325 }}>
                   {Array.from(Array(row.male).keys()).map((_, index) => (
-                    <img key={index} src="/person.svg" />
+                    <Image
+                      alt={`male-${index}`}
+                      key={index}
+                      src="/person.svg"
+                      width={6}
+                      height={12}
+                    />
                   ))}
                 </StyledTableCell>
               </StyledTableRow>
