@@ -1,13 +1,16 @@
 'use client';
 
-import { Grid, styled } from '@mui/material';
+import { Box, Grid, styled } from '@mui/material';
 import { FC } from 'react';
 
 import { Typography } from '../Typography/Typography';
 
+const MAX_ITEMS = 972;
+
 const StyledGridItem = styled(Grid)<{ hasFrame?: boolean }>(
   ({ theme, hasFrame }) => ({
     padding: theme.spacing(1),
+    overflow: 'hidden',
 
     backgroundImage: hasFrame ? 'url("/free_frame.svg")' : undefined,
   }),
@@ -27,14 +30,30 @@ export const FreeNotFree: FC<FreeNotFreeProps> = ({ notFree, free }) => {
         <Typography variant="legend">{`${free} – ещё не свободе`}</Typography>
       </Grid>
       <StyledGridItem width={260} height={448} item hasFrame>
-        {Array.from(Array(notFree).keys()).map(() => (
-          <img src="/person.svg" />
-        ))}
+        <Box
+          display="grid"
+          gridTemplateColumns={'repeat(auto-fit, minmax(6px, 9px))'}
+          gridTemplateRows={'repeat(auto-fit, minmax(12px, 15px))'}
+          justifyContent="flex-end"
+        >
+          {Array.from(Array(notFree).keys())
+            .slice(0, MAX_ITEMS)
+            .map(() => (
+              <img src="/person.svg" />
+            ))}
+        </Box>
       </StyledGridItem>
       <StyledGridItem width={260} height={448} item>
-        {Array.from(Array(free).keys()).map(() => (
-          <img src="/person.svg" />
-        ))}
+        <Box
+          display="grid"
+          gridTemplateColumns={'repeat(auto-fit, minmax(6px, 9px))'}
+          gridTemplateRows={'repeat(auto-fit, minmax(12px, 15px))'}
+          justifyContent="flex-end"
+        >
+          {Array.from(Array(free).keys()).map(() => (
+            <img src="/person.svg" />
+          ))}
+        </Box>
       </StyledGridItem>
     </Grid>
   );

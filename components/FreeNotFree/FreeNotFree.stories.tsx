@@ -15,5 +15,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const FreeNotFree: Story = {
-  args: { free: 535, notFree: 457 },
+  args: { free: 535, notFree: 32865 },
 };
