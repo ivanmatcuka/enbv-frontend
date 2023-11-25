@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Card as Component } from './Card';
 
+import { Button } from '../Button/Button';
+
 const meta = {
   title: 'Card',
   component: Component,
@@ -18,5 +20,7 @@ export const Card: Story = {
   args: {
     title: 'НАПИСАТЬ ПИСЬМО',
     body: 'Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе.',
+    action: <Button>Написать</Button>,
+    catPictureUrl: '/icon_letter.svg',
   },
 };
