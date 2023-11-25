@@ -29,32 +29,28 @@ export const FreeNotFree: FC<FreeNotFreeProps> = ({ notFree, free }) => {
       <Grid width={260} textAlign="center">
         <Typography variant="legend">{`${free} – ещё не свободе`}</Typography>
       </Grid>
-      <StyledGridItem width={260} height={448} item hasFrame>
-        <Box
-          display="grid"
-          gridTemplateColumns={'repeat(auto-fit, minmax(6px, 9px))'}
-          gridTemplateRows={'repeat(auto-fit, minmax(12px, 15px))'}
-          justifyContent="flex-end"
+      {[notFree, free].map((value, index) => (
+        <StyledGridItem
+          key={index}
+          width={260}
+          height={448}
+          item
+          hasFrame={index === 0}
         >
-          {Array.from(Array(notFree).keys())
-            .slice(0, MAX_ITEMS)
-            .map(() => (
-              <img src="/person.svg" />
-            ))}
-        </Box>
-      </StyledGridItem>
-      <StyledGridItem width={260} height={448} item>
-        <Box
-          display="grid"
-          gridTemplateColumns={'repeat(auto-fit, minmax(6px, 9px))'}
-          gridTemplateRows={'repeat(auto-fit, minmax(12px, 15px))'}
-          justifyContent="flex-end"
-        >
-          {Array.from(Array(free).keys()).map(() => (
-            <img src="/person.svg" />
-          ))}
-        </Box>
-      </StyledGridItem>
+          <Box
+            display="grid"
+            gridTemplateColumns={'repeat(auto-fit, minmax(6px, 9px))'}
+            gridTemplateRows={'repeat(auto-fit, 12px)'}
+            justifyContent="flex-end"
+          >
+            {Array.from(Array(value).keys())
+              .slice(0, MAX_ITEMS)
+              .map(() => (
+                <img src="/person.svg" />
+              ))}
+          </Box>
+        </StyledGridItem>
+      ))}
     </Grid>
   );
 };
