@@ -2,8 +2,10 @@ import { PaletteOptions } from '@mui/material';
 import tinycolor from 'tinycolor2';
 
 export const colors = {
-  black: '#000000',
-  black20: tinycolor.mix('#000000', '#FFFFFF', 20).toRgbString(),
+  black: '#151515',
+  black20: tinycolor.mix('#151515', '#FFFFFF', 20).toRgbString(),
+  grey: '#B0AAAA',
+  grey40: tinycolor.mix('#151515', '#FFFFFF', 40).toRgbString(),
   white: '#FFFFFF',
   bg: '#F8F7F2',
   txt: '#151515',

@@ -50,6 +50,12 @@ const StyledTab = styled(MUITab)<{ variant: TypographyVariants }>(({
       color: theme.palette.brand.black,
     },
 
+    '&.Mui-selected:after': {
+      display: 'block',
+
+      opacity: '100%',
+    },
+
     '.MuiTabs-indicator': {
       display: 'none',
     },
@@ -59,5 +65,5 @@ const StyledTab = styled(MUITab)<{ variant: TypographyVariants }>(({
 export const SelectorItem: FC<
   PropsWithChildren<TypographyProps & Omit<MUITabProps, 'children'>>
 > = ({ children, variant = 'subtitle1', ...rest }) => (
-  <StyledTab variant={variant} label={children} {...rest} />
+  <StyledTab variant={variant} label={children} disableRipple {...rest} />
 );
