@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Typography as Component } from './Typography';
 
-import { typography } from '../../theming/theme/typography';
+import { typography } from '../../../theming/theme/typography';
 
 const loremIpsum = 'The quick brown fox jumps over the lazy dog.';
 
 const meta = {
-  title: 'Typography',
+  title: 'Typography/Typography',
   component: Component,
   parameters: {
     layout: 'centered',

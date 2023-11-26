@@ -1,8 +1,8 @@
 import { Tab as MUITab, TabProps as MUITabProps, styled } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
+import { TypographyProps } from '../../../components/typography/Typography/Typography';
 import { TypographyVariants } from '../../../theming/theme/typography';
-import { TypographyProps } from '../../Typography/Typography';
 
 const StyledTab = styled(MUITab)<{ variant: TypographyVariants }>(({
   theme,
@@ -27,7 +27,7 @@ const StyledTab = styled(MUITab)<{ variant: TypographyVariants }>(({
       opacity: '40%',
 
       background: 'url("/circle.svg") center no-repeat',
-      backgroundSize: 'cover',
+      backgroundSize: 'contain',
     },
 
     '&:hover': {

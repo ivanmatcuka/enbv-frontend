@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import MUITabs from '@mui/material/Tabs';
 import React, { FC, ReactNode } from 'react';
 
-import { SelectorItem } from '../atoms/SelectorItem/SelectorItem';
+import { SelectorItem } from '../../atoms/SelectorItem/SelectorItem';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -41,7 +41,7 @@ type TabsItem = {
 type TabsProps = {
   items: TabsItem[];
 };
-export const Tabs: FC<TabsProps> = ({ items }) => {
+export const Selector: FC<TabsProps> = ({ items }) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
