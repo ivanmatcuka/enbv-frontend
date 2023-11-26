@@ -3,8 +3,8 @@
 import { Button as MUIButton, styled } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
-import { PaletteColors } from '../../theming/theme/palette';
-import { Typography } from '../Typography/Typography';
+import { PaletteColors } from '../../../theming/theme/palette';
+import { Typography } from '../../Typography/Typography';
 
 const Container = styled('div')<{ variant: ButtonProps['variant'] }>(({
   theme,

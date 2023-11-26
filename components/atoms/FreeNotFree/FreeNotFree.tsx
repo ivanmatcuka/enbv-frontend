@@ -3,7 +3,7 @@
 import { Box, Grid, styled } from '@mui/material';
 import { FC } from 'react';
 
-import { Typography } from '../Typography/Typography';
+import { Typography } from '../../Typography/Typography';
 
 const MAX_ITEMS = 972;
 

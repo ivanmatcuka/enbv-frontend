@@ -4,7 +4,7 @@ import { styled } from '@mui/material';
 import Image from 'next/image';
 import { FC, ReactNode } from 'react';
 
-import { Typography } from '../Typography/Typography';
+import { Typography } from '../../Typography/Typography';
 
 const Container = styled('div')({
   paddingRight: 14,

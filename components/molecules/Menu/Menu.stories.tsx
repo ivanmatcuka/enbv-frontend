@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Menu as Component } from './Menu';
 
 const meta = {
-  title: 'Menu',
+  title: 'Molecules/Menu',
   component: Component,
   parameters: {
     layout: 'centered',

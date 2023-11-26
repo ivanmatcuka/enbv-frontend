@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Arrow as Component } from './Arrow';
+import { SelectorItem as Component } from './SelectorItem';
 
 const meta = {
-  title: 'Arrow',
+  title: 'Atoms/SelectorItem',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -14,6 +14,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Arrow: Story = {
-  args: {},
+export const SelectorItem: Story = {
+  args: { children: 'по полу и возрасту', variant: 'subtitle1' },
 };

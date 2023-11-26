@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Card as Component } from './Card';
 
-import { Button } from '../Button/Button';
+import { Button } from '../../atoms/Button/Button';
 
 const meta = {
-  title: 'Card',
+  title: 'Organisms/Card',
   component: Component,
   parameters: {
     layout: 'centered',
