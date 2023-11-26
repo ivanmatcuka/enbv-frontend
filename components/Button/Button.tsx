@@ -52,6 +52,8 @@ const Background = styled('div')(() => ({
 
   height: 54,
   borderRadius: '50%',
+
+  transition: 'transform 125ms',
 }));
 
 const StyledMUIButton = styled(MUIButton)(({ theme }) => ({
@@ -64,6 +66,8 @@ const StyledMUIButton = styled(MUIButton)(({ theme }) => ({
   padding: theme.spacing(0, 3),
 
   transform: 'rotate(-2.16deg)',
+
+  transition: 'transform 125ms',
 }));
 
 const DefaultButton = styled(StyledMUIButton)(({ theme }) => ({

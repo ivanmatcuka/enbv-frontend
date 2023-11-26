@@ -9,10 +9,10 @@ export const colors = {
   txt: '#151515',
   red: '#F5545E',
   red20: tinycolor.mix('#F5545E', '#FFFFFF', 20).toRgbString(),
-  red40: tinycolor.mix('#F5545E', '#FFFFFF', 40).toRgbString(),
+  red40: tinycolor.mix('#F5545E', '#EFC55666', 40).toRgbString(),
   yellow: '#EFC556',
   yellow20: tinycolor.mix('#EFC556', '#FFFFFF', 20).toRgbString(),
-  yellow40: tinycolor.mix('#EFC556', '#FFFFFF', 40).toRgbString(),
+  yellow40: tinycolor.mix('#EFC556', '#F5545E', 40).toRgbString(),
   green: '#3E4137',
 };
 

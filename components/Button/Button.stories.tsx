@@ -16,20 +16,72 @@ type Story = StoryObj<typeof meta>;
 
 export const DefaultButton: Story = {
   args: {
-    children: 'ПОМОЧЬ СЕЙЧАС',
+    children: 'Default Button',
+    variant: 'default',
+  },
+  argTypes: {
+    children: { control: 'text' },
+    variant: {
+      control: {
+        type: 'select',
+        options: ['default', 'red', 'outline'],
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: 'This is the default button variant.',
+      },
+    },
+    tags: ['button', 'default'],
   },
 };
 
 export const RedButton: Story = {
   args: {
-    children: 'ПОМОЧЬ СЕЙЧАС',
+    children: 'Red Button',
     variant: 'red',
+  },
+  argTypes: {
+    children: { control: 'text' },
+    variant: {
+      control: {
+        type: 'select',
+        options: ['default', 'red', 'outline'],
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: 'This is the red button variant.',
+      },
+    },
+    tags: ['button', 'red'],
   },
 };
 
 export const OutlineButton: Story = {
   args: {
-    children: 'ПОМОЧЬ СЕЙЧАС',
+    children: 'Outline Button',
     variant: 'outline',
+  },
+  argTypes: {
+    children: { control: 'text' },
+    variant: {
+      control: {
+        type: 'select',
+        options: ['default', 'red', 'outline'],
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: 'This is the outline button variant.',
+      },
+    },
+    tags: ['button', 'outline'],
   },
 };
