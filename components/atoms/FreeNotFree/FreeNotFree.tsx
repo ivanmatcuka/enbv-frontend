@@ -48,8 +48,8 @@ export const FreeNotFree: FC<FreeNotFreeProps> = ({ notFree, free }) => {
               .slice(0, MAX_ITEMS)
               .map((_, index) => (
                 <Image
-                  width={12}
-                  height={6}
+                  width={6}
+                  height={12}
                   key={index}
                   alt="person"
                   src="/person.svg"
