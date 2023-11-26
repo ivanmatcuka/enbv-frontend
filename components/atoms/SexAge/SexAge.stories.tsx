@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SexAge as Component } from './SexAge';
 
 const meta = {
-  title: 'SexAge',
+  title: 'Atoms/SexAge',
   component: Component,
   parameters: {
     layout: 'centered',

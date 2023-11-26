@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import MUITabs from '@mui/material/Tabs';
 import React, { FC, ReactNode } from 'react';
 
-import { SelectorItem } from '../SelectorItem/SelectorItem';
+import { SelectorItem } from '../atoms/SelectorItem/SelectorItem';
 
 interface TabPanelProps {
   children?: React.ReactNode;

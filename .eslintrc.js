@@ -59,7 +59,6 @@ module.exports = {
       'error',
       { ignoreRestSiblings: true, varsIgnorePattern: '^_' },
     ],
-    'import/no-unresolved': ['error', { ignore: ['@cofenster/*'] }],
     'security/detect-object-injection': 0,
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',

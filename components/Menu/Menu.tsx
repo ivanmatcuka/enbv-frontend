@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { FC, ReactNode } from 'react';
 
-import { Arrow } from '../Arrow/Arrow';
+// import { Arrow } from '../Arrow/Arrow';
 import { Typography } from '../Typography/Typography';
 
 const StyledMUIListItem = styled(MUIListItem)(({ theme }) => ({
@@ -51,7 +51,7 @@ export const Menu: FC<MenuProps> = ({ items }) => {
       {items.map((item, index) => (
         <StyledMUIListItem key={index}>
           <StyledMUIListItemIcon>
-            <Arrow fill="currentColor" />
+            {/* <Arrow fill="currentColor" /> */}
           </StyledMUIListItemIcon>
           <StyledMUIListItemText>
             <Typography variant="mi">{item.element}</Typography>

@@ -4,14 +4,14 @@ import Link from 'next/link';
 
 import styles from './page.module.css';
 
-import { Button } from '../components/Button/Button';
+import { Button } from '../components/atoms/Button/Button';
+import { Logo } from '../components/atoms/Logo/Logo';
+import { SexAge } from '../components/atoms/SexAge/SexAge';
 import { Carousel } from '../components/Carousel/Carousel';
 import { CarouselImage } from '../components/CarouselImage/CarouselImage';
-import { Counter } from '../components/Counter/Counter';
 import { FreeNotFree } from '../components/FreeNotFree/FreeNotFree';
-import { Logo } from '../components/Logo/Logo';
 import { Menu } from '../components/Menu/Menu';
-import { SexAge } from '../components/SexAge/SexAge';
+import { Counter } from '../components/organisms/Counter/Counter';
 import { Tabs } from '../components/Tabs/Tabs';
 import { Typography } from '../components/Typography/Typography';
 

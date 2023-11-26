@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { SelectorItem as Component } from './SelectorItem';
+import { FreeNotFree as Component } from './FreeNotFree';
 
 const meta = {
-  title: 'SelectorItem',
+  title: 'Atoms/FreeNotFree',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -14,6 +14,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SelectorItem: Story = {
-  args: { children: 'по полу и возрасту', variant: 'subtitle1' },
+export const FreeNotFree: Story = {
+  args: { free: 535, notFree: 32865 },
 };

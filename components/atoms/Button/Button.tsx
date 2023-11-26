@@ -3,8 +3,8 @@
 import { Button as MUIButton, styled } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
-import { PaletteColors } from '../../theming/theme/palette';
-import { Typography } from '../Typography/Typography';
+import { PaletteColors } from '../../../theming/theme/palette';
+import { Typography } from '../../Typography/Typography';
 
 const Container = styled('div')<{ variant: ButtonProps['variant'] }>(({
   theme,
@@ -52,6 +52,8 @@ const Background = styled('div')(() => ({
 
   height: 54,
   borderRadius: '50%',
+
+  transition: 'transform 125ms',
 }));
 
 const StyledMUIButton = styled(MUIButton)(({ theme }) => ({
@@ -64,6 +66,8 @@ const StyledMUIButton = styled(MUIButton)(({ theme }) => ({
   padding: theme.spacing(0, 3),
 
   transform: 'rotate(-2.16deg)',
+
+  transition: 'transform 125ms',
 }));
 
 const DefaultButton = styled(StyledMUIButton)(({ theme }) => ({

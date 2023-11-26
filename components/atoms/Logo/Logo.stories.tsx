@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { FreeNotFree as Component } from './FreeNotFree';
+import { Logo as Component } from './Logo';
 
 const meta = {
-  title: 'FreeNotFree',
+  title: 'Atoms/Logo',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -14,6 +14,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const FreeNotFree: Story = {
-  args: { free: 457, notFree: 535 },
+export const Logo: Story = {
+  args: {},
 };
