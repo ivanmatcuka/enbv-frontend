@@ -7,19 +7,20 @@ import { FC, ReactNode } from 'react';
 import { Typography } from '../../Typography/Typography';
 
 const Container = styled('div')({
-  paddingRight: 14,
+  position: 'relative',
+
   width: 594,
   height: 285,
+  boxSizing: 'border-box',
 
   background: 'url("/drawing_frame.png") no-repeat',
-  backgroundPosition: '12px',
   backgroundSize: 'contain',
 });
 
 const ActionContainer = styled('div')({
   position: 'absolute',
   right: 0,
-  bottom: 16,
+  bottom: 5,
 });
 
 const Title = styled(Typography)({

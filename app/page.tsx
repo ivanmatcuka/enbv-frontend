@@ -11,6 +11,7 @@ import { SexAge } from '../components/atoms/SexAge/SexAge';
 import { Carousel } from '../components/Carousel/Carousel';
 import { CarouselImage } from '../components/CarouselImage/CarouselImage';
 import { Menu } from '../components/molecules/Menu/Menu';
+import { Card } from '../components/organisms/Card/Card';
 import { Counter } from '../components/organisms/Counter/Counter';
 import { Tabs } from '../components/Tabs/Tabs';
 import { Typography } from '../components/Typography/Typography';
@@ -309,6 +310,74 @@ export default function Home() {
           </Grid>
           <Grid item>
             <Image alt="cat_2" width={230} height={177} src="/cat_2.svg" />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid
+        item
+        className={styles.what}
+        id="what"
+        width="100%"
+        padding="86px"
+        position="relative"
+      >
+        <Grid
+          container
+          maxWidth={1200}
+          margin="auto"
+          flexDirection="column"
+          alignItems="start"
+          position="relative"
+        >
+          <Grid item mb={4.5} textAlign="left" zIndex={200}>
+            <Typography variant="h1" color="brand.red">
+              Что вы можете
+              <br />
+              сделать?
+            </Typography>
+          </Grid>
+          <Grid item width={594} mb={7.25} alignSelf="end">
+            <Typography variant="subtitle1" component="p">
+              Мы с вами — это единственный способ связать заключённых с внешним
+              миром. Вы можете писать им письма, отправлять донаты, передачи или
+              посылки и, конечно же, рассказывать об этих людях.
+            </Typography>
+          </Grid>
+          <Grid width="100%" item>
+            <Grid container columnSpacing="0" rowSpacing={2}>
+              <Grid item>
+                <Card
+                  title="НАПИСАТЬ ПИСЬМО"
+                  body="Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе."
+                  catPictureUrl="/icon_letter.svg"
+                  action={<Button>Написать</Button>}
+                />
+              </Grid>
+              <Grid item>
+                <Card
+                  title="СДЕЛАТЬ ПОЖЕРТВОВАНИЕ"
+                  body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
+                  catPictureUrl="/icon_money.svg"
+                  action={<Button>Написать</Button>}
+                />
+              </Grid>
+              <Grid item>
+                <Card
+                  title="ОТНЕСТИ ПЕРЕДАЧКУ"
+                  body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
+                  catPictureUrl="/icon_parcel.svg"
+                  action={<Button>Написать</Button>}
+                />
+              </Grid>
+              <Grid item>
+                <Card
+                  title="РАСПРОСТРАНИТЬ ИНФОРМАЦИЮ"
+                  body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
+                  catPictureUrl="/icon_share.svg"
+                  action={<Button>Написать</Button>}
+                />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
