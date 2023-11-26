@@ -7,7 +7,7 @@ import {
   ListItemText as MUIListItemText,
   styled,
 } from '@mui/material';
-import { FC, SVGProps } from 'react';
+import { FC, ReactNode, SVGProps } from 'react';
 
 import { Typography } from '../../Typography/Typography';
 
@@ -54,7 +54,7 @@ const Arrow = ({ fill = '#151515', ...rest }: SVGProps<SVGSVGElement>) => (
 );
 
 type Item = {
-  label: string;
+  element: ReactNode;
 };
 
 type MenuProps = {
@@ -69,7 +69,7 @@ export const Menu: FC<MenuProps> = ({ items }) => {
             <Arrow fill="currentColor" />
           </StyledMUIListItemIcon>
           <StyledMUIListItemText>
-            <Typography variant="mi">{item.label}</Typography>
+            <Typography variant="mi">{item.element}</Typography>
           </StyledMUIListItemText>
         </StyledMUIListItem>
       ))}

@@ -5,12 +5,12 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 import { Button } from '../components/atoms/Button/Button';
+import { FreeNotFree } from '../components/atoms/FreeNotFree/FreeNotFree';
 import { Logo } from '../components/atoms/Logo/Logo';
 import { SexAge } from '../components/atoms/SexAge/SexAge';
 import { Carousel } from '../components/Carousel/Carousel';
 import { CarouselImage } from '../components/CarouselImage/CarouselImage';
-import { FreeNotFree } from '../components/FreeNotFree/FreeNotFree';
-import { Menu } from '../components/Menu/Menu';
+import { Menu } from '../components/molecules/Menu/Menu';
 import { Counter } from '../components/organisms/Counter/Counter';
 import { Tabs } from '../components/Tabs/Tabs';
 import { Typography } from '../components/Typography/Typography';
