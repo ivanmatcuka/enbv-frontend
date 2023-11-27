@@ -3,7 +3,7 @@
 import { Grid, styled } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
-import { Typography } from '../../Typography/Typography';
+import { Typography } from '../../../components/typography/Typography/Typography';
 
 const CatPicture = styled('img')({
   position: 'absolute',

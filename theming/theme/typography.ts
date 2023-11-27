@@ -11,6 +11,7 @@ export const typography = {
   h2: {
     fontFamily: 'Unbounded',
     fontSize: 28,
+    lineHeight: 'normal',
   },
   h3: {
     fontFamily: 'Unbounded',
@@ -21,6 +22,7 @@ export const typography = {
   subtitle1: {
     fontFamily: 'Nunito Sans',
     fontSize: 24,
+    lineHeight: 'normal',
 
     ['@media (max-width: 600px)']: {
       fontSize: 20,
@@ -30,10 +32,12 @@ export const typography = {
   p1: {
     fontFamily: 'Nunito Sans',
     fontSize: 28,
+    lineHeight: 'normal',
   },
   p2: {
     fontFamily: 'Nunito Sans',
     fontSize: 22,
+    lineHeight: 'normal',
 
     ['@media (max-width: 600px)']: {
       fontSize: 18,
@@ -42,12 +46,14 @@ export const typography = {
   p3: {
     fontFamily: 'Nunito Sans',
     fontSize: 18,
+    lineHeight: 'normal',
   },
 
   mi: {
     fontFamily: 'Nunito Sans',
     fontWeight: 600,
     fontSize: 14,
+    lineHeight: 'normal',
 
     ['@media (max-width: 600px)']: {
       fontSize: 11,
@@ -62,10 +68,12 @@ export const typography = {
   legend: {
     fontFamily: 'Noteworthy',
     fontSize: 16,
+    lineHeight: 'normal',
   },
   caption: {
     fontFamily: 'Nunito Sans',
     fontSize: 14,
+    lineHeight: 'normal',
   },
 } as const;
 

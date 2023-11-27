@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Image from 'next/image';
 import { FC } from 'react';
 
-import { Typography } from '../../Typography/Typography';
+import { Typography } from '../../../components/typography/Typography/Typography';
 
 const StyledHeaderTypography = styled(Typography)({
   fontWeight: 600,

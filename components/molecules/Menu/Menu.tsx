@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { FC, ReactNode, SVGProps } from 'react';
 
-import { Typography } from '../../Typography/Typography';
+import { Typography } from '../../../components/typography/Typography/Typography';
 
 const StyledMUIListItem = styled(MUIListItem)(({ theme }) => ({
   padding: 0,

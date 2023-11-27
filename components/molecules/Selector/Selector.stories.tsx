@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Tabs as Component } from './Tabs';
+import { Selector as Component } from './Selector';
 
 const meta = {
-  title: 'Tabs',
+  title: 'Molecules/Selector',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -14,7 +14,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Tabs: Story = {
+export const Selector: Story = {
   args: {
     items: [
       { label: 'по полу и возрасту:', element: 'Lorem ipsum 1' },

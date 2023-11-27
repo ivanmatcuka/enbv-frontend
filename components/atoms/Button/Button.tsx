@@ -3,8 +3,8 @@
 import { Button as MUIButton, styled } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
+import { Typography } from '../../../components/typography/Typography/Typography';
 import { PaletteColors } from '../../../theming/theme/palette';
-import { Typography } from '../../Typography/Typography';
 
 const Container = styled('div')<{ variant: ButtonProps['variant'] }>(({
   theme,
@@ -106,20 +106,24 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   children,
 }) => {
   let button = (
-    <DefaultButton className="button__body">
+    <DefaultButton className="button__body" disableRipple>
       <Typography variant="button">{children}</Typography>
     </DefaultButton>
   );
 
   if (variant === 'red') {
     button = (
-      <RedMUIButton className="button__body">
+      <RedMUIButton className="button__body" disableRipple>
         <Typography variant="button">{children}</Typography>
       </RedMUIButton>
     );
   } else if (variant === 'outline') {
     button = (
-      <OutlineMUIButton variant="outlined" className="button__body">
+      <OutlineMUIButton
+        variant="outlined"
+        className="button__body"
+        disableRipple
+      >
         <Typography variant="button">{children}</Typography>
       </OutlineMUIButton>
     );
