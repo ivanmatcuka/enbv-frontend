@@ -41,13 +41,14 @@ const StyledCheckbox = styled(MUICheckbox)(({ theme }) => ({
   },
 }));
 
-export const Checkbox: FC<PropsWithChildren<MUICheckboxProps>> = ({
-  ...rest
-}) => (
+export const Checkbox: FC<
+  PropsWithChildren<Pick<MUICheckboxProps, 'checked' | 'disabled'>>
+> = (props) => (
   <StyledCheckbox
-    {...rest}
+    {...props}
     color="default"
     checkedIcon={<CheckedIcon />}
     icon={<UncheckedIcon />}
+    disableRipple
   />
 );
