@@ -73,8 +73,10 @@ export const PersonCard: FC<PropsWithChildren<PersonCardProps>> = ({
       </ButtonContainer>
 
       <PersonCardContent>
-        <Typography variant="h2">{name}</Typography>
-        <Typography variant="subtitle1">{subtitle}</Typography>
+        <Typography variant={size === 'l' ? 'h2' : 'h3'}>{name}</Typography>
+        <Typography variant={size === 'l' ? 'subtitle1' : 'p3'}>
+          {subtitle}
+        </Typography>
       </PersonCardContent>
     </PersonCardContainer>
   );
