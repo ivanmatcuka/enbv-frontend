@@ -5,7 +5,26 @@ import {
   CheckboxProps as MUICheckboxProps,
   styled,
 } from '@mui/material';
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, SVGProps } from 'react';
+
+const UncheckedIcon = (props: SVGProps<SVGSVGElement>) => (
+  <div>
+    <svg width={20} height={20} fill="none" {...props}>
+      <path stroke="currentColor" strokeWidth={2} d="M1 1h18v18H1V1Z" />
+    </svg>
+  </div>
+);
+
+const CheckedIcon = (props: SVGProps<SVGSVGElement>) => (
+  <div>
+    <svg width={20} height={20} fill="none" {...props}>
+      <path
+        d="M0 0V20H20V0H0ZM8.17308 15.0183L4.29808 10.712L5.44183 9.68269L8.13414 12.674L14.5192 5.07019L15.699 6.05769L8.17308 15.0183Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+);
 
 const StyledCheckbox = styled(MUICheckbox)(({ theme }) => ({
   width: 20,
@@ -24,4 +43,11 @@ const StyledCheckbox = styled(MUICheckbox)(({ theme }) => ({
 
 export const Checkbox: FC<PropsWithChildren<MUICheckboxProps>> = ({
   ...rest
-}) => <StyledCheckbox color="default" {...rest} />;
+}) => (
+  <StyledCheckbox
+    {...rest}
+    color="default"
+    checkedIcon={<CheckedIcon />}
+    icon={<UncheckedIcon />}
+  />
+);
