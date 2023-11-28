@@ -2,19 +2,19 @@ import { Grid } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { Carousel } from './components/Carousel/Carousel';
+import { CarouselImage } from './components/CarouselImage/CarouselImage';
 import styles from './page.module.css';
 
 import { Button } from '../components/atoms/Button/Button';
 import { FreeNotFree } from '../components/atoms/FreeNotFree/FreeNotFree';
 import { Logo } from '../components/atoms/Logo/Logo';
 import { SexAge } from '../components/atoms/SexAge/SexAge';
-import { Carousel } from '../components/Carousel/Carousel';
-import { CarouselImage } from '../components/CarouselImage/CarouselImage';
 import { Menu } from '../components/molecules/Menu/Menu';
+import { Selector } from '../components/molecules/Selector/Selector';
 import { Card } from '../components/organisms/Card/Card';
 import { Counter } from '../components/organisms/Counter/Counter';
-import { Tabs } from '../components/Tabs/Tabs';
-import { Typography } from '../components/Typography/Typography';
+import { Typography } from '../components/typography/Typography/Typography';
 
 export default function Home() {
   return (
@@ -213,7 +213,7 @@ export default function Home() {
           </Grid>
           {/* Right */}
           <Grid item width={796} mt={-1.5}>
-            <Tabs
+            <Selector
               items={[
                 {
                   label: 'по полу и возрасту:',
