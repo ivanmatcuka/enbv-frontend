@@ -66,6 +66,12 @@
   background-color: #3E4137;
 }
 
+.whom {
+  background: url('/background-4.png') left no-repeat #3E4137;
+  background-size: cover;
+  background-position: left;
+}
+
 .carousel__scratches {
   position: absolute;
   top: 126px;

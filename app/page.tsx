@@ -14,6 +14,7 @@ import { Menu } from '../components/molecules/Menu/Menu';
 import { Selector } from '../components/molecules/Selector/Selector';
 import { Card } from '../components/organisms/Card/Card';
 import { Counter } from '../components/organisms/Counter/Counter';
+import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
 
 export default function Home() {
@@ -375,6 +376,140 @@ export default function Home() {
                   body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
                   catPictureUrl="/icon_share.svg"
                   action={<Button>Написать</Button>}
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid
+        item
+        className={styles.whom}
+        id="what"
+        width="100%"
+        padding="86px"
+        position="relative"
+      >
+        <Grid
+          container
+          maxWidth={1100}
+          margin="auto"
+          flexDirection="column"
+          alignItems="start"
+          position="relative"
+          gap={7.25}
+        >
+          <Grid item textAlign="left" zIndex={200}>
+            <Typography variant="h1" color="brand.yellow">
+              Кому можно помочь
+              <br />
+              прямо сейчас?
+            </Typography>
+          </Grid>
+
+          <Grid item width="100%" mb={-2.75}>
+            <Typography variant="subtitle1" color="brand.white">
+              Скоро день рождения: можно поздравить
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Grid container gap={1.5} rowGap={4.5} flexWrap="nowrap">
+              <Grid item>
+                <PersonCard
+                  size="l"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
+                />
+              </Grid>
+              <Grid item>
+                <PersonCard
+                  size="l"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
+                />
+              </Grid>
+              <Grid item>
+                <PersonCard
+                  size="l"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
+                />
+              </Grid>
+              <Grid item>
+                <PersonCard
+                  size="l"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container gap={1.5} rowGap={4.5}>
+              <Grid item width="100%">
+                <Typography variant="subtitle1" color="brand.white">
+                  Скоро освобождаются: можно встретить
+                </Typography>
+              </Grid>
+              <Grid item>
+                <PersonCard
+                  size="m"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
+                />
+              </Grid>
+              <Grid item>
+                <PersonCard
+                  size="m"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
+                />
+              </Grid>
+              <Grid item>
+                <PersonCard
+                  size="m"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container gap={1.5} rowGap={4.5}>
+              <Grid item width="100%">
+                <Typography variant="subtitle1" color="brand.white">
+                  Скоро суд: можно сходить
+                </Typography>
+              </Grid>
+              <Grid item>
+                <PersonCard
+                  size="m"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
+                />
+              </Grid>
+              <Grid item>
+                <PersonCard
+                  size="m"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
+                />
+              </Grid>
+              <Grid item>
+                <PersonCard
+                  size="m"
+                  photoUrl="/person.webp"
+                  name="Габышев Александр"
+                  subtitle="18 сентября"
                 />
               </Grid>
             </Grid>
