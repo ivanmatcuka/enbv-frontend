@@ -314,14 +314,7 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid
-        item
-        className={styles.what}
-        id="what"
-        width="100%"
-        padding="86px"
-        position="relative"
-      >
+      <Grid item className={styles.what} id="what" width="100%" padding="86px">
         <Grid
           container
           maxWidth={1200}
@@ -330,14 +323,35 @@ export default function Home() {
           alignItems="start"
           position="relative"
         >
-          <Grid item mb={4.5} textAlign="left" zIndex={200}>
+          <Image
+            alt="arrow"
+            width={89}
+            height={129}
+            src="/arrow.png"
+            className={styles.what__arrow}
+          />
+          <Image
+            alt="scratches_2"
+            width={508}
+            height={347}
+            src="/scratches_2.png"
+            className={styles.what__scratches}
+          />
+          <Image
+            alt="stripes"
+            width={508}
+            height={350}
+            src="/stripes.png"
+            className={styles.what__stripes}
+          />
+          <Grid item textAlign="left" zIndex={200}>
             <Typography variant="h1" color="brand.red">
               Что вы можете
               <br />
               сделать?
             </Typography>
           </Grid>
-          <Grid item width={594} mb={7.25} alignSelf="end">
+          <Grid item width={594} mb={7.25} alignSelf="end" mt="-20px">
             <Typography variant="subtitle1" component="p">
               Мы с вами — это единственный способ связать заключённых с внешним
               миром. Вы можете писать им письма, отправлять донаты, передачи или
