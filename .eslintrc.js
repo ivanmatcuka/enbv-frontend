@@ -24,6 +24,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:security/recommended',
     'prettier',
+    'plugin:storybook/recommended',
   ],
 
   rules: {
