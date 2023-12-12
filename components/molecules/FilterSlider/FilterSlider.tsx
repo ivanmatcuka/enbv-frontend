@@ -1,6 +1,13 @@
 'use client';
 
-import { MenuItem, Select, Slider, styled } from '@mui/material';
+import {
+  MenuItem,
+  MenuList,
+  Paper,
+  Select,
+  Slider,
+  styled,
+} from '@mui/material';
 import { FC, SVGProps, useState } from 'react';
 
 import { Typography } from '../../../components/typography/Typography/Typography';
@@ -38,6 +45,14 @@ const StyledSelect = styled(Select)(({ theme }) => ({
   },
 }));
 
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  boxShadow: 'none',
+
+  borderColor: theme.palette.brand.black,
+  borderStyle: 'solid',
+  borderWidth: 3,
+}));
+
 type FilterSlider = {
   label: string;
   max: number;
@@ -67,10 +82,18 @@ export const FilterSlider: FC<FilterSlider> = ({ label, max, min }) => {
         <Typography variant="button">{`${label} (${value[0]}-${value[1]})`}</Typography>
       )}
       IconComponent={Arrow}
-      variant="outlined"
+      MenuProps={{
+        slots: {
+          paper: StyledPaper,
+        },
+        MenuListProps: {
+          disabledItemsFocusable: true,
+          component: MenuList,
+        },
+      }}
       multiple
     >
-      <MenuItem disableRipple>
+      <MenuItem dense disableRipple>
         <Slider
           value={value}
           onChange={handleSliderChange}
