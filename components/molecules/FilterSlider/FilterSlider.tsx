@@ -46,11 +46,60 @@ const StyledSelect = styled(Select)(({ theme }) => ({
 }));
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
+  position: 'absolute',
+
   boxShadow: 'none',
+
+  marginTop: theme.spacing(0.5),
+  padding: 0,
 
   borderColor: theme.palette.brand.black,
   borderStyle: 'solid',
+  borderRadius: 12,
   borderWidth: 3,
+
+  '.MuiMenuItem-dense': {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+
+  '.MuiList-padding': {
+    padding: 0,
+  },
+}));
+
+const StyledMenuItem = styled(MenuItem)({
+  background: 'none !important',
+});
+
+const StyledSlider = styled(Slider)(({ theme }) => ({
+  padding: 0,
+  height: 2,
+
+  boxShadow: 'none',
+
+  '.MuiSlider-track': {
+    height: 0,
+
+    color: theme.palette.brand.black,
+  },
+
+  '& .MuiSlider-rail': {
+    color: theme.palette.brand.grey,
+  },
+
+  '.MuiSlider-thumb': {
+    height: 15,
+    width: 15,
+
+    boxShadow: 'none !important',
+
+    color: theme.palette.brand.black,
+
+    '&:before, &:after': {
+      display: 'none',
+    },
+  },
 }));
 
 type FilterSlider = {
@@ -92,15 +141,16 @@ export const FilterSlider: FC<FilterSlider> = ({ label, max, min }) => {
         },
       }}
       multiple
+      disableUnderline
     >
-      <MenuItem dense disableRipple>
-        <Slider
+      <StyledMenuItem dense disableRipple autoFocus>
+        <StyledSlider
           value={value}
           onChange={handleSliderChange}
           max={max}
           min={min}
         />
-      </MenuItem>
+      </StyledMenuItem>
     </StyledSelect>
   );
 };
