@@ -27,6 +27,9 @@ const CheckedIcon = (props: SVGProps<SVGSVGElement>) => (
 );
 
 const StyledCheckbox = styled(MUICheckbox)(({ theme }) => ({
+  display: 'block',
+
+  padding: 0,
   width: 20,
   height: 20,
 
