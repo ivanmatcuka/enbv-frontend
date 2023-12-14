@@ -7,7 +7,9 @@ import {
   Select,
   Slider,
   styled,
+  Tooltip,
 } from '@mui/material';
+import { SliderValueLabelProps } from '@mui/material/Slider';
 import { FC, SVGProps, useState } from 'react';
 
 import { Typography } from '../../../components/typography/Typography/Typography';
@@ -108,6 +110,16 @@ type FilterSlider = {
   min: number;
 };
 
+const ValueLabelComponent = (props: SliderValueLabelProps) => {
+  const { children, value } = props;
+
+  return (
+    <Tooltip enterTouchDelay={0} placement="top" title={value}>
+      {children}
+    </Tooltip>
+  );
+};
+
 const Arrow = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} {...props}>
     <path
@@ -127,9 +139,6 @@ export const FilterSlider: FC<FilterSlider> = ({ label, max, min }) => {
     <StyledSelect
       id="range-selector"
       value={value}
-      renderValue={() => (
-        <Typography variant="button">{`${label} (${value[0]}-${value[1]})`}</Typography>
-      )}
       IconComponent={Arrow}
       MenuProps={{
         slots: {
@@ -140,15 +149,20 @@ export const FilterSlider: FC<FilterSlider> = ({ label, max, min }) => {
           component: MenuList,
         },
       }}
-      multiple
+      renderValue={() => (
+        <Typography variant="button">{`${label} (${value[0]}-${value[1]})`}</Typography>
+      )}
       disableUnderline
+      multiple
     >
       <StyledMenuItem dense disableRipple autoFocus>
         <StyledSlider
           value={value}
+          valueLabelDisplay="on"
           onChange={handleSliderChange}
           max={max}
           min={min}
+          slots={{ valueLabel: ValueLabelComponent }}
         />
       </StyledMenuItem>
     </StyledSelect>
