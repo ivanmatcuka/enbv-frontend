@@ -11,8 +11,6 @@ const Container = styled(Grid)({
   position: 'relative',
 
   paddingBottom: 64,
-  width: 392,
-  height: 447,
   boxSizing: 'border-box',
 
   background: 'url("/card_background.png") no-repeat',
@@ -54,13 +52,21 @@ export const CardPZ: FC<CardPZProps> = ({
   pictureUrl,
 }) => {
   return (
-    <Container container flexDirection="column" rowSpacing={2}>
+    <Container
+      container
+      flexDirection="column"
+      rowSpacing={2}
+      height={{ sm: 447, xs: 422 }}
+      width={392}
+      pl={2}
+      pr={2}
+    >
       <Grid item>
-        <Typography variant="h3" component="p" pl={17.5}>
+        <Typography variant="h3" component="p" pl={15.5}>
           {name}
         </Typography>
       </Grid>
-      <Grid pl={2} pr={2} item>
+      <Grid item>
         <Grid container spacing={0.5}>
           {articles?.map((article, index) => (
             <Grid item key={index}>
@@ -70,7 +76,7 @@ export const CardPZ: FC<CardPZProps> = ({
         </Grid>
       </Grid>
       <Grid item>
-        <Typography variant="p3" component="p" pl={2}>
+        <Typography variant="p3" component="p">
           {body}
         </Typography>
       </Grid>
