@@ -216,7 +216,8 @@ export default function Home() {
         item
         className={styles.carousel}
         width="100%"
-        padding="86px"
+        padding={{ xs: 1, sm: 2, lg: 10.75 }}
+        paddingTop={{ xs: 6, lg: 'auto' }}
         position="relative"
       >
         <Grid
@@ -234,12 +235,12 @@ export default function Home() {
             height={483}
             className={styles.carousel__scratches}
           />
-          <Grid item width={695}>
+          <Grid item width={{ xs: 'auto', lg: 695 }}>
             <Typography variant="h1" color="brand.yellow">
               Жертвы своего мнения
             </Typography>
           </Grid>
-          <Grid item width={594} mt={4}>
+          <Grid item width={{ xs: 'auto', lg: 594 }} mt={4} zIndex={200}>
             <Typography
               variant="subtitle1"
               color="brand.white"

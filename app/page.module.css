@@ -98,6 +98,7 @@
   position: absolute;
   top: 126px;
   left: -108px;
+  z-index: 100;
 }
 
 .why__strokes {
