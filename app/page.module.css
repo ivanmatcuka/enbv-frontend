@@ -9,19 +9,22 @@
 }
 
 .frame__photo {
-  position: relative;
-
-  top: 138px;
-  left: -52px;
-
   transform: rotate(-2deg);
+
+  margin: auto;
 }
 
 .frame {
   height: 650px;
 
-  background: url('/frame.png') left no-repeat white;
+  background: url('/frame.png') center no-repeat white;
   background-size: contain;
+
+  @media (max-width: 1200px) {
+    height: 380px;
+
+    background: url('/frame_sm.png') center no-repeat white;
+  }
 }
 
 .numbers {
@@ -30,7 +33,7 @@
 }
 
 .numbers::before {
-  content: "";
+  content: '';
 
   position: absolute;
   bottom: -190px;
@@ -42,7 +45,7 @@
   width: 1078px;
   height: 206px;
 
-  background-color: #3E4137;
+  background-color: #3e4137;
 }
 
 .why {
@@ -52,7 +55,7 @@
 }
 
 .why::before {
-  content: "";
+  content: '';
 
   position: absolute;
   top: 12px;
@@ -63,11 +66,11 @@
 
   height: 206px;
 
-  background-color: #3E4137;
+  background-color: #3e4137;
 }
 
 .whom {
-  background: url('/background-4.png') left no-repeat #3E4137;
+  background: url('/background-4.png') left no-repeat #3e4137;
   background-size: cover;
   background-position: left;
 }

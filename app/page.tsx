@@ -76,12 +76,11 @@ export default function Home() {
         item
         className={styles.header}
         width="100%"
-        padding={{ xs: 1, sm: 10.75 }}
+        padding={{ xs: 1, sm: 2, lg: 10.75 }}
       >
-        <Grid container maxWidth={1200} margin="auto">
+        <Grid container maxWidth={1200} margin="auto" justifyContent="center">
           <Grid item flex={1} xs={12} sm={6}>
-            {/* Left */}
-            <Grid container mb={{ xs: 3, sm: 11 }}>
+            <Grid container mb={{ xs: 3, lg: 11 }}>
               <Grid item mr={1.5} flexBasis="191px">
                 <Logo />
               </Grid>
@@ -119,7 +118,27 @@ export default function Home() {
                   ]}
                 />
               </Grid>
-              <Grid item mt={{ xs: 3, sm: 11.75 }} mb={{ xs: 1.5, sm: 4.5 }}>
+
+              {/* XS photo */}
+              <Grid
+                item
+                className={styles.frame}
+                xs={12}
+                position="relative"
+                justifyContent="center"
+                display={{ xs: 'flex', lg: 'none' }}
+                mt={3}
+              >
+                <Image
+                  alt="photo"
+                  src="/photo.png"
+                  width={572}
+                  height={331}
+                  className={styles.frame__photo}
+                />
+              </Grid>
+
+              <Grid item mt={{ xs: 3, lg: 11.75 }} mb={{ xs: 1.5, lg: 4.5 }}>
                 <Typography variant="h1" color="brand.red">
                   Голос для тех, кто вычеркнут
                 </Typography>
@@ -128,18 +147,17 @@ export default function Home() {
                 <Typography
                   variant="subtitle1"
                   textAlign="left"
-                  width={493}
                   lineHeight="32.74px"
                   margin="auto"
-                  mb="94px"
                 >
                   Помогите людям, которые подверглись репрессиям за свои
                   взгляды!
                 </Typography>
               </Grid>
-              <Grid item>
+
+              <Grid item mt={{ xs: 3, lg: 11.75 }}>
                 <Grid container alignItems="start">
-                  <Grid item>
+                  <Grid item display={{ xs: 'none', lg: 'block' }}>
                     <video
                       src="/cat-walking.webm"
                       autoPlay
@@ -148,15 +166,40 @@ export default function Home() {
                       loop
                     />
                   </Grid>
-                  <Grid item pl={1}>
+                  <Grid
+                    item
+                    flexBasis={{ xs: '140px', lg: 'auto' }}
+                    display={{ xs: 'block', lg: 'none' }}
+                  >
+                    <video
+                      src="/cat-walking.webm"
+                      autoPlay
+                      height={87}
+                      width={140}
+                      loop
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    pl={1.5}
+                    flexBasis={{ xs: 'calc(100% - 140px)', lg: 'auto' }}
+                  >
                     <Button>ПОМОЧЬ СЕЙЧАС</Button>
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-          {/* Right */}
-          <Grid item width={493} className={styles.frame} xs={12} sm={6}>
+
+          {/* LG photo */}
+          <Grid
+            item
+            className={styles.frame}
+            lg={6}
+            display={{ xs: 'none', lg: 'flex' }}
+            position="relative"
+            justifyContent="center"
+          >
             <Image
               alt="photo"
               src="/photo.png"
@@ -167,6 +210,8 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
+
+      {/* Carousel section */}
       <Grid
         item
         className={styles.carousel}
