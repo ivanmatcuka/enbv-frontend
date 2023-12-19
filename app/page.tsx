@@ -13,9 +13,61 @@ import { SexAge } from '../components/atoms/SexAge/SexAge';
 import { Menu } from '../components/molecules/Menu/Menu';
 import { Selector } from '../components/molecules/Selector/Selector';
 import { Card } from '../components/organisms/Card/Card';
+import { CardPZ } from '../components/organisms/CardPZ/CardPZ';
 import { Counter } from '../components/organisms/Counter/Counter';
 import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
+
+const CARDS = [
+  {
+    name: 'Габышев Александр Александрович',
+    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
+    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
+    primaryAction: <Button>Написать</Button>,
+    secondaryAction: <Button variant="outline">Помочь</Button>,
+    pictureUrl: '/card_pz_photo.png',
+  },
+  {
+    name: 'Габышев Александр Александрович',
+    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
+    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
+    primaryAction: <Button>Написать</Button>,
+    secondaryAction: <Button variant="outline">Помочь</Button>,
+    pictureUrl: '/card_pz_photo.png',
+  },
+  {
+    name: 'Габышев Александр Александрович',
+    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
+    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
+    primaryAction: <Button>Написать</Button>,
+    secondaryAction: <Button variant="outline">Помочь</Button>,
+    pictureUrl: '/card_pz_photo.png',
+  },
+  {
+    name: 'Габышев Александр Александрович',
+    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
+    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
+    primaryAction: <Button>Написать</Button>,
+    secondaryAction: <Button variant="outline">Помочь</Button>,
+    pictureUrl: '/card_pz_photo.png',
+  },
+  {
+    name: 'Габышев Александр Александрович',
+    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
+    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
+    primaryAction: <Button>Написать</Button>,
+    secondaryAction: <Button variant="outline">Помочь</Button>,
+    pictureUrl: '/card_pz_photo.png',
+  },
+  {
+    name: 'Габышев Александр Александрович',
+    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
+    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
+    primaryAction: <Button>Написать</Button>,
+    secondaryAction: <Button variant="outline">Помочь</Button>,
+    pictureUrl: '/card_pz_photo.png',
+  },
+];
 
 export default function Home() {
   return (
@@ -371,7 +423,7 @@ export default function Home() {
               <Grid item>
                 <Card
                   title="СДЕЛАТЬ ПОЖЕРТВОВАНИЕ"
-                  body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
+                  body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
                   catPictureUrl="/icon_money.svg"
                   action={<Button>Написать</Button>}
                 />
@@ -379,7 +431,7 @@ export default function Home() {
               <Grid item>
                 <Card
                   title="ОТНЕСТИ ПЕРЕДАЧКУ"
-                  body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
+                  body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
                   catPictureUrl="/icon_parcel.svg"
                   action={<Button>Написать</Button>}
                 />
@@ -387,7 +439,7 @@ export default function Home() {
               <Grid item>
                 <Card
                   title="РАСПРОСТРАНИТЬ ИНФОРМАЦИЮ"
-                  body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
+                  body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
                   catPictureUrl="/icon_share.svg"
                   action={<Button>Написать</Button>}
                 />
@@ -399,7 +451,7 @@ export default function Home() {
       <Grid
         item
         className={styles.whom}
-        id="what"
+        id="whom"
         width="100%"
         padding="86px"
         position="relative"
@@ -525,6 +577,84 @@ export default function Home() {
                   name="Габышев Александр"
                   subtitle="18 сентября"
                 />
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid
+        item
+        className={styles.list}
+        id="list"
+        width="100%"
+        padding="86px"
+        position="relative"
+      >
+        <Grid
+          container
+          maxWidth={1200}
+          margin="auto"
+          alignItems="start"
+          position="relative"
+          gap={7.25}
+        >
+          <Grid item textAlign="left" zIndex={200}>
+            <Typography variant="h1" color="brand.red">
+              Список
+              <br />
+              преследуемых
+            </Typography>
+          </Grid>
+
+          <Grid item>
+            <Grid container width="100%">
+              <Grid item flexBasis={500}>
+                <Image
+                  height={320}
+                  width={500}
+                  alt="photos"
+                  src="/photos.png"
+                />
+              </Grid>
+              <Grid item flexBasis="calc(100% - 500px)">
+                <Typography
+                  variant="subtitle1"
+                  color="brand.black"
+                  component="span"
+                >
+                  Здесь собраны истории тех, кто заперт за решёткой из-за своих
+                  убеждений. Не все они признаны политзаключёнными. Среди
+                  фигурантов этих уголовных дел есть люди с разными
+                  политическими взглядами.
+                  <br />
+                  <br />
+                  Если бы не российский политический режим и война, все они были
+                  бы на свободе. Мы можем рассказать о несправедливо заключённых
+                  людях, чтобы о них узнали во всем мире. В этом списке важно
+                  каждое имя.
+                </Typography>
+              </Grid>
+              <Grid item flex={1} mt={10}>
+                <Grid container rowSpacing={8.5}>
+                  {CARDS.map((card, index) => (
+                    <Grid item xs={12} sm={4} key={index}>
+                      <CardPZ
+                        articles={[
+                          'ст. 280 УК РФ',
+                          'ст. 280 УК РФ',
+                          'ст. 280 УК РФ',
+                        ]}
+                        body="Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности»."
+                        name="Габышев Александр Александрович"
+                        pictureUrl="/card_pz_photo.png"
+                        primaryAction={<Button>Написать</Button>}
+                        secondaryAction={
+                          <Button variant="outline">Помочь</Button>
+                        }
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
