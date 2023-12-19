@@ -57,6 +57,7 @@ export const typography = {
 
     ['@media (max-width: 600px)']: {
       fontSize: 11,
+      lineHeight: '15px',
     },
   },
   button: {

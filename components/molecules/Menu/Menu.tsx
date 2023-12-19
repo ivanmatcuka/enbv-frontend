@@ -68,9 +68,10 @@ export const Menu: FC<MenuProps> = ({ items }) => {
           <StyledMUIListItemIcon>
             <Arrow fill="currentColor" />
           </StyledMUIListItemIcon>
-          <StyledMUIListItemText>
-            <Typography variant="mi">{item.element}</Typography>
-          </StyledMUIListItemText>
+          <StyledMUIListItemText
+            disableTypography
+            primary={<Typography variant="mi">{item.element}</Typography>}
+          />
         </StyledMUIListItem>
       ))}
     </MUIList>

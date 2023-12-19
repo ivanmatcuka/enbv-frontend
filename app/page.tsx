@@ -72,15 +72,20 @@ const CARDS = [
 export default function Home() {
   return (
     <Grid container overflow="hidden">
-      <Grid item className={styles.header} width="100%" padding="86px">
-        <Grid container height={650} maxWidth={1200} margin="auto">
-          <Grid item flex={1}>
+      <Grid
+        item
+        className={styles.header}
+        width="100%"
+        padding={{ xs: 1, sm: 10.75 }}
+      >
+        <Grid container maxWidth={1200} margin="auto">
+          <Grid item flex={1} xs={12} sm={6}>
             {/* Left */}
-            <Grid container>
-              <Grid item mb="89px" mr={1}>
+            <Grid container mb={{ xs: 3, sm: 11 }}>
+              <Grid item mr={1.5} flexBasis="191px">
                 <Logo />
               </Grid>
-              <Grid item mb="89px">
+              <Grid item flexBasis="calc(100% - 203px)">
                 <Menu
                   items={[
                     {
@@ -114,7 +119,7 @@ export default function Home() {
                   ]}
                 />
               </Grid>
-              <Grid item mb={4.5}>
+              <Grid item mt={{ xs: 3, sm: 11.75 }} mb={{ xs: 1.5, sm: 4.5 }}>
                 <Typography variant="h1" color="brand.red">
                   Голос для тех, кто вычеркнут
                 </Typography>
@@ -151,7 +156,7 @@ export default function Home() {
             </Grid>
           </Grid>
           {/* Right */}
-          <Grid item width={493} className={styles.frame}>
+          <Grid item width={493} className={styles.frame} xs={12} sm={6}>
             <Image
               alt="photo"
               src="/photo.png"
