@@ -439,7 +439,14 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item className={styles.what} id="what" width="100%" padding="86px">
+      <Grid
+        item
+        className={styles.what}
+        id="what"
+        width="100%"
+        padding={{ xs: 1, sm: 2, lg: 10.75 }}
+        paddingTop={{ xs: 6, lg: 'auto' }}
+      >
         <Grid
           container
           maxWidth={1200}
@@ -476,7 +483,13 @@ export default function Home() {
               сделать?
             </Typography>
           </Grid>
-          <Grid item width={594} mb={7.25} alignSelf="end" mt="-20px">
+          <Grid
+            item
+            maxWidth={594}
+            mb={7.25}
+            alignSelf="end"
+            mt={{ xs: 4, lg: -20 }}
+          >
             <Typography variant="subtitle1" component="p">
               Мы с вами — это единственный способ связать заключённых с внешним
               миром. Вы можете писать им письма, отправлять донаты, передачи или
