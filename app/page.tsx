@@ -539,8 +539,9 @@ export default function Home() {
         className={styles.whom}
         id="whom"
         width="100%"
-        padding="86px"
         position="relative"
+        padding={{ xs: 1, sm: 2, lg: 10.75 }}
+        paddingTop={{ xs: 6, lg: 'auto' }}
       >
         <Grid
           container
@@ -673,8 +674,9 @@ export default function Home() {
         className={styles.list}
         id="list"
         width="100%"
-        padding="86px"
         position="relative"
+        padding={{ xs: 1, sm: 2, lg: 10.75 }}
+        paddingTop={{ xs: 6, lg: 'auto' }}
       >
         <Grid
           container

@@ -9,18 +9,16 @@ import { Typography } from '../../../components/typography/Typography/Typography
 const Container = styled('div')(({ theme }) => ({
   position: 'relative',
 
-  width: 594,
-  height: 285,
+  maxWidth: 594,
+  minHeight: 285,
   boxSizing: 'border-box',
 
   background: 'url("/drawing_frame.png") no-repeat',
   backgroundSize: 'contain',
 
   [theme.breakpoints.down('lg')]: {
-    width: 373,
-    height: 259,
-
-    backgroundImage: 'url("/drawing_frame_xs.svg")',
+    background: 'url("/drawing_frame_xs.svg") center no-repeat',
+    backgroundSize: 'contain',
   },
 }));
 
