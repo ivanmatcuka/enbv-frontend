@@ -107,10 +107,36 @@
   position: absolute;
   top: -154px;
   left: -34px;
+
+  width: 548px;
+  height: 377px;
+
+  @media (max-width: 1200px) {
+    top: -69px;
+    left: -57px;
+
+    width: 262px;
+    height: 180px;
+  }
 }
 
 .why__photo {
   position: absolute;
   left: -210px;
   top: 78px;
+
+  @media (max-width: 1200px) {
+    top: 181px;
+    left: -56px;
+
+    width: 270px;
+    height: 184px;
+  }
+}
+
+.why__cat {
+  @media (max-width: 1200px) {
+    width: 152px;
+    height: 117px;
+  }
 }

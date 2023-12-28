@@ -382,8 +382,9 @@ export default function Home() {
         className={styles.why}
         id="why"
         width="100%"
-        padding="86px"
         position="relative"
+        padding={{ xs: 1, sm: 2, lg: 10.75 }}
+        paddingTop={{ xs: 6, lg: 'auto' }}
       >
         <Image
           alt="strokes"
@@ -413,7 +414,7 @@ export default function Home() {
               это важно?
             </Typography>
           </Grid>
-          <Grid item width={594} mb={7.25}>
+          <Grid item maxWidth={594} mb={{ lg: 7.25 }} order={{ xs: 2, lg: 1 }}>
             <Typography variant="subtitle1" component="p">
               Заключённые лишены не только свободы, но и даже обычных вещей.
               Время для них фактически останавливается, а за решёткой не
@@ -422,8 +423,19 @@ export default function Home() {
               узнавать о новостях.
             </Typography>
           </Grid>
-          <Grid item>
-            <Image alt="cat_2" width={230} height={177} src="/cat_2.svg" />
+          <Grid
+            item
+            order={{ xs: 1, lg: 2 }}
+            mt={{ xs: 3 }}
+            mb={{ xs: 7, lg: 0 }}
+          >
+            <Image
+              alt="cat_2"
+              width={230}
+              height={177}
+              className={styles.why__cat}
+              src="/cat_2.svg"
+            />
           </Grid>
         </Grid>
       </Grid>
