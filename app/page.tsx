@@ -488,7 +488,7 @@ export default function Home() {
             maxWidth={594}
             mb={7.25}
             alignSelf="end"
-            mt={{ xs: 4, lg: -20 }}
+            mt={{ xs: 4, lg: '-20px' }}
           >
             <Typography variant="subtitle1" component="p">
               Мы с вами — это единственный способ связать заключённых с внешним
