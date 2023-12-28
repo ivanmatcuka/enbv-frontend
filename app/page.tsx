@@ -78,9 +78,18 @@ export default function Home() {
         width="100%"
         padding={{ xs: 1, sm: 2, lg: 10.75 }}
       >
-        <Grid container maxWidth={1200} margin="auto" justifyContent="center">
+        <Grid
+          container
+          maxWidth={1200}
+          margin="auto"
+          justifyContent="space-between"
+        >
           <Grid item flex={1} xs={12} sm={6}>
-            <Grid container mb={{ xs: 3, lg: 11 }}>
+            <Grid
+              container
+              mb={{ xs: 3, lg: 11 }}
+              minWidth={{ xs: 0, lg: 695 }}
+            >
               <Grid item mr={1.5} flexBasis="191px">
                 <Logo />
               </Grid>
@@ -143,7 +152,7 @@ export default function Home() {
                   Голос для тех, кто вычеркнут
                 </Typography>
               </Grid>
-              <Grid item width="100%">
+              <Grid item width="100%" pl={{ xs: 0, lg: '101px' }}>
                 <Typography
                   variant="subtitle1"
                   textAlign="left"
@@ -279,8 +288,9 @@ export default function Home() {
         item
         className={styles.numbers}
         width="100%"
-        padding="86px"
         position="relative"
+        padding={{ xs: 1, sm: 2, lg: 10.75 }}
+        paddingTop={{ xs: 6, lg: 'auto' }}
       >
         <Grid container maxWidth={1200} margin="auto">
           <Grid item mb={4.5} flex="1 0 100%">
@@ -294,7 +304,7 @@ export default function Home() {
               flexDirection="column"
               alignItems="baseline"
               justifyContent="space-between"
-              height={577}
+              height={{ xs: 443, lg: 575 }}
             >
               <Grid item>
                 <Counter label="Всего политзаключённых:">1117</Counter>
@@ -316,7 +326,7 @@ export default function Home() {
             </Grid>
           </Grid>
           {/* Right */}
-          <Grid item width={796} mt={-1.5}>
+          <Grid item mt={{ xs: 3, lg: -1.5 }} mb={{ xs: 8 }}>
             <Selector
               items={[
                 {

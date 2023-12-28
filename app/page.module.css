@@ -15,12 +15,14 @@
 }
 
 .frame {
+  max-width: 493px;
   height: 650px;
 
   background: url('/frame.png') center no-repeat white;
   background-size: contain;
 
   @media (max-width: 1200px) {
+    max-width: 100%;
     height: 380px;
 
     background: url('/frame_sm.png') center no-repeat white;

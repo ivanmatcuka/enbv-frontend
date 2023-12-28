@@ -13,6 +13,7 @@ import { Typography } from '../../../components/typography/Typography/Typography
 
 const StyledMUIListItem = styled(MUIListItem)(({ theme }) => ({
   padding: 0,
+  paddingBottom: theme.spacing(1),
 
   '&:hover, &:hover .MuiListItemIcon-root': {
     color: theme.palette.brand.yellow,

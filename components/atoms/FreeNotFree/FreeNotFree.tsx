@@ -8,12 +8,12 @@ import { Typography } from '../../../components/typography/Typography/Typography
 
 const MAX_ITEMS = 972;
 
-const StyledGridItem = styled(Grid)<{ hasFrame?: boolean }>(
-  ({ theme, hasFrame }) => ({
+const StyledGridItem = styled(Grid)<{ backgroundImage?: string }>(
+  ({ theme, backgroundImage }) => ({
     padding: theme.spacing(1),
     overflow: 'hidden',
 
-    backgroundImage: hasFrame ? 'url("/free_frame.svg")' : undefined,
+    backgroundImage,
   }),
 );
 
@@ -36,7 +36,7 @@ export const FreeNotFree: FC<FreeNotFreeProps> = ({ notFree, free }) => {
           width={260}
           height={448}
           item
-          hasFrame={index === 0}
+          backgroundImage={index === 0 ? 'url("/free_frame.svg")' : undefined}
         >
           <Box
             display="grid"
