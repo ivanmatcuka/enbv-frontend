@@ -497,7 +497,12 @@ export default function Home() {
             </Typography>
           </Grid>
           <Grid width="100%" item>
-            <Grid container columnSpacing="0" rowSpacing={2}>
+            <Grid
+              container
+              columnSpacing="0"
+              rowSpacing={2}
+              justifyContent="center"
+            >
               <Grid item>
                 <Card
                   title="НАПИСАТЬ ПИСЬМО"
@@ -696,15 +701,16 @@ export default function Home() {
 
           <Grid item>
             <Grid container width="100%">
-              <Grid item flexBasis={500}>
+              <Grid item flexBasis={{ xs: 'auto', lg: 500 }}>
                 <Image
                   height={320}
                   width={500}
                   alt="photos"
                   src="/photos.png"
+                  style={{ maxWidth: '100%' }}
                 />
               </Grid>
-              <Grid item flexBasis="calc(100% - 500px)">
+              <Grid item flexBasis={{ xs: 'auto', lg: 'calc(100% - 500px)' }}>
                 <Typography
                   variant="subtitle1"
                   color="brand.black"
@@ -727,18 +733,12 @@ export default function Home() {
                   {CARDS.map((card, index) => (
                     <Grid item xs={12} sm={4} key={index}>
                       <CardPZ
-                        articles={[
-                          'ст. 280 УК РФ',
-                          'ст. 280 УК РФ',
-                          'ст. 280 УК РФ',
-                        ]}
-                        body="Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности»."
-                        name="Габышев Александр Александрович"
-                        pictureUrl="/card_pz_photo.png"
-                        primaryAction={<Button>Написать</Button>}
-                        secondaryAction={
-                          <Button variant="outline">Помочь</Button>
-                        }
+                        articles={card.articles}
+                        body={card.body}
+                        name={card.name}
+                        pictureUrl={card.pictureUrl}
+                        primaryAction={card.primaryAction}
+                        secondaryAction={card.secondaryAction}
                       />
                     </Grid>
                   ))}

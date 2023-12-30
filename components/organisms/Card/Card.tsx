@@ -6,20 +6,12 @@ import { FC, ReactNode } from 'react';
 
 import { Typography } from '../../../components/typography/Typography/Typography';
 
-const Container = styled('div')(({ theme }) => ({
+const Container = styled('div')(() => ({
   position: 'relative',
 
   maxWidth: 594,
   minHeight: 285,
   boxSizing: 'border-box',
-
-  background: 'url("/drawing_frame.png") no-repeat',
-  backgroundSize: 'contain',
-
-  [theme.breakpoints.down('lg')]: {
-    background: 'url("/drawing_frame_xs.svg") center no-repeat',
-    backgroundSize: 'contain',
-  },
 }));
 
 const ActionContainer = styled('div')({
@@ -43,6 +35,14 @@ const StyledImage = styled(Image)(({ theme }) => ({
   },
 }));
 
+const Background = styled('img')({
+  position: 'absolute',
+  inset: 0,
+
+  width: '100%',
+  height: '100%',
+});
+
 type CardProps = {
   title: string;
   body: string;
@@ -64,6 +64,8 @@ export const Card: FC<CardProps> = ({ title, body, action, catPictureUrl }) => {
       >
         {body}
       </Typography>
+      {action && <ActionContainer>{action}</ActionContainer>}
+      <Background src="/drawing_frame.png" />
       {catPictureUrl && (
         <StyledImage
           alt="icon_letter"
@@ -72,7 +74,6 @@ export const Card: FC<CardProps> = ({ title, body, action, catPictureUrl }) => {
           src={catPictureUrl}
         />
       )}
-      {action && <ActionContainer>{action}</ActionContainer>}
     </Container>
   );
 };

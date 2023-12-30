@@ -12,9 +12,6 @@ const Container = styled(Grid)({
 
   paddingBottom: 64,
   boxSizing: 'border-box',
-
-  background: 'url("/card_background.png") no-repeat',
-  backgroundSize: 'contain',
 });
 
 const PrimaryActionContainer = styled('div')(({ theme }) => ({
@@ -28,6 +25,14 @@ const SecondaryActionContainer = styled('div')(({ theme }) => ({
   right: theme.spacing(2),
   bottom: theme.spacing(2),
 }));
+
+const Background = styled('img')({
+  position: 'absolute',
+  inset: 0,
+
+  width: '100%',
+  height: '100%',
+});
 
 const StyledImage = styled(Image)({
   position: 'absolute',
@@ -56,7 +61,6 @@ export const CardPZ: FC<CardPZProps> = ({
       container
       flexDirection="column"
       rowSpacing={2}
-      height={{ sm: 447, xs: 422 }}
       width={392}
       pl={2}
       pr={2}
@@ -75,11 +79,18 @@ export const CardPZ: FC<CardPZProps> = ({
           ))}
         </Grid>
       </Grid>
-      <Grid item>
+      <Grid item pb={2}>
         <Typography variant="p3" component="p">
           {body}
         </Typography>
       </Grid>
+      {primaryAction && (
+        <PrimaryActionContainer>{primaryAction}</PrimaryActionContainer>
+      )}
+      {secondaryAction && (
+        <SecondaryActionContainer>{secondaryAction}</SecondaryActionContainer>
+      )}
+      <Background src="/card_background.png" />
       {pictureUrl && (
         <StyledImage
           alt="icon_letter"
@@ -87,12 +98,6 @@ export const CardPZ: FC<CardPZProps> = ({
           height={121}
           src={pictureUrl}
         />
-      )}
-      {primaryAction && (
-        <PrimaryActionContainer>{primaryAction}</PrimaryActionContainer>
-      )}
-      {secondaryAction && (
-        <SecondaryActionContainer>{secondaryAction}</SecondaryActionContainer>
       )}
     </Container>
   );
