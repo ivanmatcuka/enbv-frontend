@@ -98,21 +98,21 @@ export default function Home() {
                   items={[
                     {
                       element: (
-                        <Link href="#why" scroll={true}>
+                        <Link href="#what" scroll={true}>
                           КАК ПОМОЧЬ
                         </Link>
                       ),
                     },
                     {
                       element: (
-                        <Link href="#why" scroll={true}>
+                        <Link href="#whom" scroll={true}>
                           КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС
                         </Link>
                       ),
                     },
                     {
                       element: (
-                        <Link href="#why" scroll={true}>
+                        <Link href="#list" scroll={true}>
                           СПИСОК ПРЕСЛЕДУЕМЫХ
                         </Link>
                       ),
