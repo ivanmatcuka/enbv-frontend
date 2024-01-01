@@ -6,10 +6,6 @@ body {
   margin: 0;
 }
 
-body {
-  display: flex;
-}
-
 .footer {
   position: relative;
 }

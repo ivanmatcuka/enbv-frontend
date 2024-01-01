@@ -12,7 +12,6 @@ import { DrawingFrame } from './components/DrawingFrame/DrawingFrame';
 
 import { Button } from '../components/atoms/Button/Button';
 import { Typography } from '../components/typography/Typography/Typography';
-import { palette } from '../theming/theme/palette';
 import ThemeRegistry from '../theming/ThemeRegistry';
 
 import './globals.css';
@@ -28,162 +27,143 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <body className={inter.className}>
         <ThemeRegistry>
-          <Grid
-            flexDirection="column"
-            container
-            alignItems="center"
-            overflow="hidden"
-          >
-            <Grid item>{children}</Grid>
-            <Grid item width="100%">
+          {children}
+          <div>
+            <Grid
+              container
+              maxWidth={1200}
+              width="100%"
+              flexDirection="column"
+              margin="auto"
+              className="footer"
+              pt={10.75}
+            >
+              <Grid alignSelf="flex-start" item>
+                <Typography variant="h1" color="brand.yellow">
+                  Помочь нашему
+                  <br />
+                  проекту
+                </Typography>
+              </Grid>
               <Grid
-                container
-                maxWidth={1200}
-                width="100%"
-                flexDirection="column"
-                margin="auto"
-                className="footer"
-                pt={10.75}
+                item
+                pt={2}
+                my={8}
+                maxWidth={{ xs: '100%', lg: '594px' }}
+                alignSelf="center"
               >
-                <Grid alignSelf="flex-start" item>
-                  <Typography variant="h1" color="brand.yellow">
-                    Помочь нашему
-                    <br />
-                    проекту
-                  </Typography>
-                </Grid>
-                <Grid
-                  item
-                  pt={2}
-                  my={8}
-                  maxWidth={{ xs: '100%', lg: '594px' }}
-                  alignSelf="center"
-                >
-                  <Typography variant="subtitle1" textAlign="center">
-                    Проект существует на пожертвования. Помогите проекту
-                    держаться на плаву и развиваться!
-                  </Typography>
-                </Grid>
-                <DrawingFrame
-                  maxWidth={{ xs: '380px', lg: '796px' }}
-                  height={{ xs: '620px', lg: '343px' }}
-                  width="100%"
-                  p={3}
-                  alignSelf="center"
-                  item
-                >
-                  <Grid container>
-                    <Grid item flexBasis="100%">
-                      <Typography
-                        variant="subtitle1"
-                        textAlign="center"
-                        width="100%"
-                      >
-                        Вы можете поддержать нас через Boosty или Patreon:
-                      </Typography>
-                    </Grid>
-                    <Grid flexBasis="50%" alignSelf="end" textAlign="center">
-                      <Image
-                        alt="boosty"
-                        src="/boosty.png"
-                        width={181}
-                        height={57}
-                        className="footer__image"
-                      />
-                      <div>
-                        <Button>Поддержать</Button>
-                      </div>
-                    </Grid>
-                    <Grid flexBasis="50%" alignSelf="end" textAlign="center">
-                      <Image
-                        alt="patreon"
-                        src="/patreon.png"
-                        width={208}
-                        height={71}
-                        className="footer__image"
-                      />
-                      <div>
-                        <Button>Поддержать</Button>
-                      </div>
-                    </Grid>
-                    <Grid item flex={1} pt={5}>
-                      <Typography
-                        variant="subtitle1"
-                        textAlign="center"
-                        width="100%"
-                      >
-                        Или перевести напрямую по следующим реквизитам:
-                      </Typography>
-                    </Grid>
+                <Typography variant="subtitle1" textAlign="center">
+                  Проект существует на пожертвования. Помогите проекту держаться
+                  на плаву и развиваться!
+                </Typography>
+              </Grid>
+              <DrawingFrame
+                maxWidth={{ xs: '380px', lg: '796px' }}
+                height={{ xs: '620px', lg: '343px' }}
+                width="100%"
+                p={3}
+                alignSelf="center"
+                item
+              >
+                <Grid container>
+                  <Grid item flexBasis="100%">
+                    <Typography
+                      variant="subtitle1"
+                      textAlign="center"
+                      width="100%"
+                    >
+                      Вы можете поддержать нас через Boosty или Patreon:
+                    </Typography>
                   </Grid>
-                </DrawingFrame>
-                <Grid item mt={4.5} alignSelf="center">
-                  <Typography variant="subtitle1" textAlign="center">
-                    Также вы можете купить наш мерч:
-                  </Typography>
-                </Grid>
-                <Grid
-                  item
-                  alignSelf="center"
-                  maxWidth={748}
-                  width="100%"
-                  mt={3}
-                >
-                  <Grid container justifyContent="space-between">
-                    <DrawingFrame
-                      item
-                      width={313}
-                      height={325}
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
+                  <Grid
+                    flexBasis={{ xs: '100%', lg: '50%' }}
+                    alignSelf="end"
+                    textAlign="center"
+                  >
+                    <Image
+                      alt="boosty"
+                      src="/boosty.png"
+                      width={181}
+                      height={57}
+                      className="footer__image"
+                    />
+                    <div>
+                      <Button>Поддержать</Button>
+                    </div>
+                  </Grid>
+                  <Grid
+                    flexBasis={{ xs: '100%', lg: '50%' }}
+                    alignSelf="end"
+                    textAlign="center"
+                  >
+                    <Image
+                      alt="patreon"
+                      src="/patreon.png"
+                      width={208}
+                      height={71}
+                      className="footer__image"
+                    />
+                    <div>
+                      <Button>Поддержать</Button>
+                    </div>
+                  </Grid>
+                  <Grid item flex={1} pt={5}>
+                    <Typography
+                      variant="subtitle1"
+                      textAlign="center"
+                      width="100%"
                     >
-                      <Image
-                        alt="merch_1"
-                        width={364}
-                        height={210}
-                        src="/merch_1.png"
-                        className="footer__merch"
-                      />
-                    </DrawingFrame>
-                    <DrawingFrame
-                      item
-                      width={313}
-                      height={325}
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Image
-                        alt="merch_2"
-                        width={364}
-                        height={210}
-                        src="/merch_2.png"
-                        className="footer__merch"
-                      />
-                    </DrawingFrame>
+                      Или перевести напрямую по следующим реквизитам:
+                    </Typography>
                   </Grid>
                 </Grid>
-                <Grid item mt={3} mb={14} alignSelf="center">
-                  <Button>В МАГАЗИН</Button>
+              </DrawingFrame>
+              <Grid item mt={4.5} alignSelf="center">
+                <Typography variant="subtitle1" textAlign="center">
+                  Также вы можете купить наш мерч:
+                </Typography>
+              </Grid>
+              <Grid item alignSelf="center" maxWidth={748} width="100%" mt={3}>
+                <Grid container justifyContent="space-between">
+                  <DrawingFrame
+                    item
+                    width={313}
+                    height={325}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Image
+                      alt="merch_1"
+                      width={364}
+                      height={210}
+                      src="/merch_1.png"
+                      className="footer__merch"
+                    />
+                  </DrawingFrame>
+                  <DrawingFrame
+                    item
+                    width={313}
+                    height={325}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Image
+                      alt="merch_2"
+                      width={364}
+                      height={210}
+                      src="/merch_2.png"
+                      className="footer__merch"
+                    />
+                  </DrawingFrame>
                 </Grid>
               </Grid>
+              <Grid item mt={3} mb={14} alignSelf="center">
+                <Button>В МАГАЗИН</Button>
+              </Grid>
             </Grid>
-            <Grid
-              p={8}
-              width="100%"
-              className="footer__bottom"
-              style={{ backgroundColor: palette.brand.green }}
-            >
-              <Typography
-                variant="subtitle1"
-                component="span"
-                color="brand.white"
-              >
-                Дизайн сайта разработан студией Neklistic
-              </Typography>
-            </Grid>
-          </Grid>
+          </div>
         </ThemeRegistry>
       </body>
     </html>
