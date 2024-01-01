@@ -12,6 +12,7 @@ import { DrawingFrame } from './components/DrawingFrame/DrawingFrame';
 
 import { Button } from '../components/atoms/Button/Button';
 import { Typography } from '../components/typography/Typography/Typography';
+import { palette } from '../theming/theme/palette';
 import ThemeRegistry from '../theming/ThemeRegistry';
 
 import './globals.css';
@@ -163,7 +164,24 @@ export default function RootLayout({ children }: PropsWithChildren) {
                     </DrawingFrame>
                   </Grid>
                 </Grid>
+                <Grid item mt={3} mb={14} alignSelf="center">
+                  <Button>В МАГАЗИН</Button>
+                </Grid>
               </Grid>
+            </Grid>
+            <Grid
+              p={8}
+              width="100%"
+              className="footer__bottom"
+              style={{ backgroundColor: palette.brand.green }}
+            >
+              <Typography
+                variant="subtitle1"
+                component="span"
+                color="brand.white"
+              >
+                Дизайн сайта разработан студией Neklistic
+              </Typography>
             </Grid>
           </Grid>
         </ThemeRegistry>
