@@ -36,7 +36,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
               flexDirection="column"
               margin="auto"
               className="footer"
-              pt={10.75}
+              py={{ xs: 6, lg: 10.75 }}
+              px={2}
             >
               <Grid alignSelf="flex-start" item>
                 <Typography variant="h1" color="brand.yellow">

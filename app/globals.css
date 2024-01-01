@@ -4,6 +4,8 @@
 html,
 body {
   margin: 0;
+
+  overflow-x: hidden;
 }
 
 .footer {
@@ -19,15 +21,19 @@ body {
 
   position: absolute;
   top: -14px;
-  right: 244px;
+  right: 40%;
   z-index: -1;
 
   transform: rotate(-1deg);
 
-  height: 281px;
+  height: 251px;
   width: 1197px;
 
   background-color: #3e4137;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 }
 
 .footer::before {
@@ -35,7 +41,7 @@ body {
 
   position: absolute;
   top: -4px;
-  left: 481px;
+  left: 40%;
   z-index: -1;
 
   transform: rotate(-1deg);
@@ -44,6 +50,10 @@ body {
   width: 1174px;
 
   background-color: #3e4137;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 }
 
 .footer__merch {

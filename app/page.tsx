@@ -82,9 +82,9 @@ export default function Home() {
           container
           maxWidth={1200}
           margin="auto"
-          justifyContent="space-between"
+          justifyContent={{ xs: 'center', lg: 'space-between' }}
         >
-          <Grid item flex={1} xs={12} sm={6}>
+          <Grid item flex={1} xs={12} lg={6}>
             <Grid
               container
               mb={{ xs: 3, lg: 11 }}
@@ -225,13 +225,12 @@ export default function Home() {
         item
         className={styles.carousel}
         width="100%"
-        padding={{ xs: 1, sm: 2, lg: 10.75 }}
-        paddingTop={{ xs: 6, lg: 'auto' }}
+        py={{ xs: 6, lg: 10.75 }}
+        px={2}
         position="relative"
       >
         <Grid
           container
-          height={868}
           maxWidth={1200}
           alignItems="end"
           flexDirection="column"
@@ -244,7 +243,7 @@ export default function Home() {
             height={483}
             className={styles.carousel__scratches}
           />
-          <Grid item width={{ xs: 'auto', lg: 695 }}>
+          <Grid item width={{ xs: 'auto', lg: 695 }} zIndex={200}>
             <Typography variant="h1" color="brand.yellow">
               Жертвы своего мнения
             </Typography>
@@ -262,7 +261,7 @@ export default function Home() {
               свободе, если бы не было войны.
             </Typography>
           </Grid>
-          <Grid item height={150} width="100%" mt={7}>
+          <Grid item height={150} width="100%" mt={7} zIndex={200}>
             <Carousel>
               <CarouselImage height={150} src="/carousel/carousel-1.png" />
               <CarouselImage height={150} src="/carousel/carousel-2.png" />
@@ -289,8 +288,8 @@ export default function Home() {
         className={styles.numbers}
         width="100%"
         position="relative"
-        padding={{ xs: 1, sm: 2, lg: 10.75 }}
-        paddingTop={{ xs: 6, lg: 'auto' }}
+        py={{ xs: 6, lg: 10.75 }}
+        px={2}
       >
         <Grid container maxWidth={1200} margin="auto">
           <Grid item mb={4.5} flex="1 0 100%">
@@ -505,7 +504,13 @@ export default function Home() {
             >
               <Grid item>
                 <Card
-                  title="НАПИСАТЬ ПИСЬМО"
+                  title={
+                    <>
+                      НАПИСАТЬ
+                      <br />
+                      ПИСЬМО
+                    </>
+                  }
                   body="Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе."
                   catPictureUrl="/icon_letter.svg"
                   action={<Button>Написать</Button>}
@@ -513,7 +518,13 @@ export default function Home() {
               </Grid>
               <Grid item>
                 <Card
-                  title="СДЕЛАТЬ ПОЖЕРТВОВАНИЕ"
+                  title={
+                    <>
+                      СДЕЛАТЬ
+                      <br />
+                      ПОЖЕРТВОВАНИЕ
+                    </>
+                  }
                   body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
                   catPictureUrl="/icon_money.svg"
                   action={<Button>Написать</Button>}
@@ -521,7 +532,13 @@ export default function Home() {
               </Grid>
               <Grid item>
                 <Card
-                  title="ОТНЕСТИ ПЕРЕДАЧКУ"
+                  title={
+                    <>
+                      ОТНЕСТИ
+                      <br />
+                      ПЕРЕДАЧКУ
+                    </>
+                  }
                   body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
                   catPictureUrl="/icon_parcel.svg"
                   action={<Button>Написать</Button>}
@@ -680,8 +697,8 @@ export default function Home() {
         id="list"
         width="100%"
         position="relative"
-        padding={{ xs: 1, sm: 2, lg: 10.75 }}
-        paddingTop={{ xs: 6, lg: 'auto' }}
+        py={{ xs: 6, lg: 10.75 }}
+        px={2}
       >
         <Grid
           container
@@ -729,9 +746,9 @@ export default function Home() {
                 </Typography>
               </Grid>
               <Grid item flex={1} mt={10}>
-                <Grid container rowSpacing={8.5}>
+                <Grid container rowSpacing={8.5} justifyContent="center">
                   {CARDS.map((card, index) => (
-                    <Grid item xs={12} sm={4} key={index}>
+                    <Grid item xs={12} lg={6} xl={4} key={index}>
                       <CardPZ
                         articles={card.articles}
                         body={card.body}

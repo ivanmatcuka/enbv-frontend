@@ -44,8 +44,8 @@ const Background = styled('img')({
 });
 
 type CardProps = {
-  title: string;
-  body: string;
+  title: ReactNode;
+  body: ReactNode;
 
   action?: ReactNode;
   catPictureUrl?: string;
