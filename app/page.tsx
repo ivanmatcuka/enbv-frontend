@@ -748,7 +748,15 @@ export default function Home() {
               <Grid item flex={1} mt={10}>
                 <Grid container rowSpacing={8.5} justifyContent="center">
                   {CARDS.map((card, index) => (
-                    <Grid item xs={12} lg={6} xl={4} key={index}>
+                    <Grid
+                      item
+                      xs={12}
+                      lg={6}
+                      xl={4}
+                      key={index}
+                      display="flex"
+                      justifyContent="center"
+                    >
                       <CardPZ
                         articles={card.articles}
                         body={card.body}
