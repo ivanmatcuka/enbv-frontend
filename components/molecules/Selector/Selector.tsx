@@ -1,3 +1,6 @@
+'use client';
+
+import { styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import MUITabs from '@mui/material/Tabs';
 import React, { FC, ReactNode } from 'react';
@@ -26,6 +29,16 @@ const CustomTabPanel = (props: TabPanelProps) => {
   );
 };
 
+const StyledMUITabs = styled(MUITabs)(() => ({
+  '.MuiTabs-flexContainer': {
+    '@media (max-width: 1200px)': {
+      alignItems: 'flex-start',
+
+      flexDirection: 'column',
+    },
+  },
+}));
+
 const a11yProps = (index: number) => {
   return {
     id: `simple-tab-${index}`,
@@ -50,7 +63,7 @@ export const Selector: FC<TabsProps> = ({ items }) => {
 
   return (
     <Box>
-      <MUITabs
+      <StyledMUITabs
         value={value}
         onChange={handleChange}
         TabIndicatorProps={{
@@ -59,14 +72,15 @@ export const Selector: FC<TabsProps> = ({ items }) => {
       >
         {items.map((item, index) => (
           <SelectorItem
+            key={index + 1}
             variant="subtitle1"
             label={item.label}
             {...a11yProps(index)}
           />
         ))}
-      </MUITabs>
+      </StyledMUITabs>
       {items.map((item, index) => (
-        <CustomTabPanel value={value} index={index}>
+        <CustomTabPanel key={index + 1} value={value} index={index}>
           {item.element}
         </CustomTabPanel>
       ))}

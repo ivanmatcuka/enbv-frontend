@@ -8,10 +8,13 @@ import {
 import { FC } from 'react';
 
 const StyledChip = styled(MUIChip)(({ theme }) => ({
-  height: 23,
-  padding: '1px 0',
-
   ...theme.typography.caption,
+
+  height: 23,
+
+  '.MuiChip-label': {
+    padding: '0 9px',
+  },
 }));
 
 export const Article: FC<Pick<MUIChipProps, 'label'>> = (props) => (

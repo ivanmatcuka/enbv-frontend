@@ -1,18 +1,19 @@
 'use client';
 
 import { Box, Grid, styled } from '@mui/material';
+import Image from 'next/image';
 import { FC } from 'react';
 
 import { Typography } from '../../../components/typography/Typography/Typography';
 
 const MAX_ITEMS = 972;
 
-const StyledGridItem = styled(Grid)<{ hasFrame?: boolean }>(
-  ({ theme, hasFrame }) => ({
+const StyledGridItem = styled(Grid)<{ backgroundImage?: string }>(
+  ({ theme, backgroundImage }) => ({
     padding: theme.spacing(1),
     overflow: 'hidden',
 
-    backgroundImage: hasFrame ? 'url("/free_frame.svg")' : undefined,
+    backgroundImage,
   }),
 );
 
@@ -35,7 +36,7 @@ export const FreeNotFree: FC<FreeNotFreeProps> = ({ notFree, free }) => {
           width={260}
           height={448}
           item
-          hasFrame={index === 0}
+          backgroundImage={index === 0 ? 'url("/free_frame.svg")' : undefined}
         >
           <Box
             display="grid"
@@ -45,8 +46,14 @@ export const FreeNotFree: FC<FreeNotFreeProps> = ({ notFree, free }) => {
           >
             {Array.from(Array(value).keys())
               .slice(0, MAX_ITEMS)
-              .map(() => (
-                <img src="/person.svg" />
+              .map((_, index) => (
+                <Image
+                  width={6}
+                  height={12}
+                  key={index}
+                  alt="person"
+                  src="/person.svg"
+                />
               ))}
           </Box>
         </StyledGridItem>

@@ -1,3 +1,5 @@
+'use client';
+
 import { Grid, styled } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
@@ -8,6 +10,14 @@ const CatPicture = styled('img')({
 
   top: 0,
   left: '-35%',
+
+  width: 130,
+  height: 135,
+
+  '@media (max-width: 1200px)': {
+    width: 102,
+    height: 106,
+  },
 });
 
 type CounterProps = {

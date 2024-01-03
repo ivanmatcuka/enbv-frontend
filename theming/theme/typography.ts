@@ -4,7 +4,7 @@ export const typography = {
     fontSize: 70,
     lineHeight: 0.85,
 
-    ['@media (max-width: 600px)']: {
+    ['@media (max-width: 1200px)']: {
       fontSize: 50,
     },
   },
@@ -24,7 +24,7 @@ export const typography = {
     fontSize: 24,
     lineHeight: 'normal',
 
-    ['@media (max-width: 600px)']: {
+    ['@media (max-width: 1200px)']: {
       fontSize: 20,
     },
   },
@@ -39,7 +39,7 @@ export const typography = {
     fontSize: 22,
     lineHeight: 'normal',
 
-    ['@media (max-width: 600px)']: {
+    ['@media (max-width: 1200px)']: {
       fontSize: 18,
     },
   },
@@ -55,8 +55,9 @@ export const typography = {
     fontSize: 14,
     lineHeight: 'normal',
 
-    ['@media (max-width: 600px)']: {
+    ['@media (max-width: 1200px)']: {
       fontSize: 11,
+      lineHeight: '15px',
     },
   },
   button: {

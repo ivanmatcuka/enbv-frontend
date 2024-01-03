@@ -7,12 +7,13 @@ import {
   ListItemText as MUIListItemText,
   styled,
 } from '@mui/material';
-import { FC, SVGProps } from 'react';
+import { FC, ReactNode, SVGProps } from 'react';
 
 import { Typography } from '../../../components/typography/Typography/Typography';
 
 const StyledMUIListItem = styled(MUIListItem)(({ theme }) => ({
   padding: 0,
+  paddingBottom: theme.spacing(1),
 
   '&:hover, &:hover .MuiListItemIcon-root': {
     color: theme.palette.brand.yellow,
@@ -54,7 +55,7 @@ const Arrow = ({ fill = '#151515', ...rest }: SVGProps<SVGSVGElement>) => (
 );
 
 type Item = {
-  label: string;
+  element: ReactNode;
 };
 
 type MenuProps = {
@@ -68,9 +69,10 @@ export const Menu: FC<MenuProps> = ({ items }) => {
           <StyledMUIListItemIcon>
             <Arrow fill="currentColor" />
           </StyledMUIListItemIcon>
-          <StyledMUIListItemText>
-            <Typography variant="mi">{item.label}</Typography>
-          </StyledMUIListItemText>
+          <StyledMUIListItemText
+            disableTypography
+            primary={<Typography variant="mi">{item.element}</Typography>}
+          />
         </StyledMUIListItem>
       ))}
     </MUIList>

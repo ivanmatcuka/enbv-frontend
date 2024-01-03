@@ -6,35 +6,46 @@ import { FC, ReactNode } from 'react';
 
 import { Typography } from '../../../components/typography/Typography/Typography';
 
-const Container = styled('div')({
-  paddingRight: 14,
-  width: 594,
-  height: 285,
+const Container = styled('div')(() => ({
+  position: 'relative',
 
-  background: 'url("/drawing_frame.png") no-repeat',
-  backgroundPosition: '12px',
-  backgroundSize: 'contain',
-});
+  maxWidth: 594,
+  minHeight: 285,
+  boxSizing: 'border-box',
+}));
 
 const ActionContainer = styled('div')({
   position: 'absolute',
   right: 0,
-  bottom: 16,
+  bottom: 5,
 });
 
 const Title = styled(Typography)({
   transform: 'rotate(-2.47deg)',
 });
 
-const StyledImage = styled(Image)({
+const StyledImage = styled(Image)(({ theme }) => ({
   position: 'absolute',
   top: 150,
   left: 0,
+
+  [theme.breakpoints.down('lg')]: {
+    width: 100,
+    height: 90,
+  },
+}));
+
+const Background = styled('img')({
+  position: 'absolute',
+  inset: 0,
+
+  width: '100%',
+  height: '100%',
 });
 
 type CardProps = {
-  title: string;
-  body: string;
+  title: ReactNode;
+  body: ReactNode;
 
   action?: ReactNode;
   catPictureUrl?: string;
@@ -45,9 +56,16 @@ export const Card: FC<CardProps> = ({ title, body, action, catPictureUrl }) => {
       <Title variant="h2" component="p">
         {title}
       </Title>
-      <Typography variant="p2" component="p" pt={1.5} pl={17.5}>
+      <Typography
+        variant="p2"
+        component="p"
+        pt={1.5}
+        pl={{ xs: 12.5, lg: 17.5 }}
+      >
         {body}
       </Typography>
+      {action && <ActionContainer>{action}</ActionContainer>}
+      <Background src="/drawing_frame.png" />
       {catPictureUrl && (
         <StyledImage
           alt="icon_letter"
@@ -56,7 +74,6 @@ export const Card: FC<CardProps> = ({ title, body, action, catPictureUrl }) => {
           src={catPictureUrl}
         />
       )}
-      {action && <ActionContainer>{action}</ActionContainer>}
     </Container>
   );
 };

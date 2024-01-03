@@ -18,17 +18,15 @@ const Container = styled('div')<{ variant: ButtonProps['variant'] }>(({
       : ['red', 'red20', 'red40'];
 
   return {
-    position: 'relative',
+    display: 'inline',
 
-    '.button__background': {
-      backgroundColor: palette ? theme.palette.brand[palette[0]] : undefined,
-    },
+    position: 'relative',
 
     '&:hover': {
       '.button__body': {
         transform: 'rotate(2.86deg)',
       },
-      '.button__background': {
+      '&:after': {
         backgroundColor: palette ? theme.palette.brand[palette[1]] : undefined,
 
         transform: 'rotate(-2.92deg)',
@@ -36,25 +34,31 @@ const Container = styled('div')<{ variant: ButtonProps['variant'] }>(({
     },
 
     '&:active': {
-      '.button__background': {
+      '&:after': {
         backgroundColor: palette ? theme.palette.brand[palette[2]] : undefined,
       },
+    },
+
+    '&:after': {
+      content: '""',
+
+      position: 'absolute',
+      inset: '-16px 0 0 0',
+      zIndex: 100,
+
+      transform: 'rotate(1.8deg)',
+
+      height: 54,
+      borderRadius: '50%',
+
+      backgroundColor: palette ? theme.palette.brand[palette[0]] : undefined,
+
+      transition: 'transform 125ms',
     },
   };
 });
 
-const Background = styled('div')(() => ({
-  position: 'absolute',
-  inset: '-8px 0 0 0',
-  zIndex: 100,
-
-  transform: 'rotate(1.8deg)',
-
-  height: 54,
-  borderRadius: '50%',
-
-  transition: 'transform 125ms',
-}));
+const Background = styled('div')(() => ({}));
 
 const StyledMUIButton = styled(MUIButton)(({ theme }) => ({
   position: 'relative',
