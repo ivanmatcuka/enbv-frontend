@@ -125,7 +125,10 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 </Typography>
               </Grid>
               <Grid item alignSelf="center" maxWidth={748} width="100%" mt={3}>
-                <Grid container justifyContent="space-between">
+                <Grid
+                  container
+                  justifyContent={{ xs: 'center', lg: 'space-between' }}
+                >
                   <DrawingFrame
                     item
                     width={313}
