@@ -1,0 +1,33 @@
+fragment PrisonerItem on Prisoner {
+  id
+  title
+  prisonerData {
+    article
+    birthdate
+    city
+    dateArrested
+    fieldGroupName
+    name
+    postAddress
+    region
+    sex
+    status
+    supportTeam
+  }
+  link
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+}
+
+query prisoners {
+  prisoners {
+    edges {
+      node {
+        ...PrisonerItem
+      }
+    }
+  }
+}

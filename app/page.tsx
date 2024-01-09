@@ -1,3 +1,5 @@
+'use client';
+
 import { Grid } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,6 +8,7 @@ import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
 import styles from './page.module.css';
 
+import { usePrisoners } from '../apollo/hooks/usePrisoners';
 import { Button } from '../components/atoms/Button/Button';
 import { FreeNotFree } from '../components/atoms/FreeNotFree/FreeNotFree';
 import { Logo } from '../components/atoms/Logo/Logo';
@@ -18,58 +21,9 @@ import { Counter } from '../components/organisms/Counter/Counter';
 import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
 
-const CARDS = [
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-];
-
 export default function Home() {
+  const { data } = usePrisoners();
+
   return (
     <Grid container overflow="hidden">
       <Grid
@@ -747,26 +701,29 @@ export default function Home() {
               </Grid>
               <Grid item flex={1} mt={10}>
                 <Grid container rowSpacing={8.5} justifyContent="center">
-                  {CARDS.map((card, index) => (
-                    <Grid
-                      item
-                      xs={12}
-                      lg={6}
-                      xl={4}
-                      key={index}
-                      display="flex"
-                      justifyContent="center"
-                    >
-                      <CardPZ
-                        articles={card.articles}
-                        body={card.body}
-                        name={card.name}
-                        pictureUrl={card.pictureUrl}
-                        primaryAction={card.primaryAction}
-                        secondaryAction={card.secondaryAction}
-                      />
-                    </Grid>
-                  ))}
+                  {data?.prisoners &&
+                    data.prisoners.edges.map(({ node: card }, index) => (
+                      <Grid
+                        item
+                        xs={12}
+                        lg={6}
+                        xl={4}
+                        key={index}
+                        display="flex"
+                        justifyContent="center"
+                      >
+                        <CardPZ
+                          articles={
+                            card.prisonerData?.article?.split(',') ?? ['1', '2']
+                          }
+                          body={card.prisonerData?.status ?? ''}
+                          name={card.prisonerData?.name ?? ''}
+                          pictureUrl={card.featuredImage?.node.sourceUrl ?? ''}
+                          primaryAction={''}
+                          secondaryAction={''}
+                        />
+                      </Grid>
+                    ))}
                 </Grid>
               </Grid>
             </Grid>
