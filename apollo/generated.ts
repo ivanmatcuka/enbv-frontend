@@ -10469,6 +10469,13 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type PrisonerQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?: 'Prisoner', id: string, title?: string | null, link?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', article?: string | null, birthdate?: string | null, city?: string | null, dateArrested?: string | null, fieldGroupName?: string | null, name?: string | null, postAddress?: string | null, region?: string | null, sex?: string | null, status?: string | null, supportTeam?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null } | null };
+
 export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, title?: string | null, link?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', article?: string | null, birthdate?: string | null, city?: string | null, dateArrested?: string | null, fieldGroupName?: string | null, name?: string | null, postAddress?: string | null, region?: string | null, sex?: string | null, status?: string | null, supportTeam?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null };
 
 export type PrisonersQueryVariables = Exact<{ [key: string]: never; }>;
@@ -10501,6 +10508,46 @@ export const PrisonerItemFragmentDoc = gql`
   }
 }
     `;
+export const PrisonerDocument = gql`
+    query prisoner($id: ID!) {
+  prisoner(id: $id) {
+    ...PrisonerItem
+  }
+}
+    ${PrisonerItemFragmentDoc}`;
+
+/**
+ * __usePrisonerQuery__
+ *
+ * To run a query within a React component, call `usePrisonerQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePrisonerQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePrisonerQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePrisonerQuery(baseOptions: Apollo.QueryHookOptions<PrisonerQuery, PrisonerQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PrisonerQuery, PrisonerQueryVariables>(PrisonerDocument, options);
+      }
+export function usePrisonerLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PrisonerQuery, PrisonerQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PrisonerQuery, PrisonerQueryVariables>(PrisonerDocument, options);
+        }
+export function usePrisonerSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PrisonerQuery, PrisonerQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PrisonerQuery, PrisonerQueryVariables>(PrisonerDocument, options);
+        }
+export type PrisonerQueryHookResult = ReturnType<typeof usePrisonerQuery>;
+export type PrisonerLazyQueryHookResult = ReturnType<typeof usePrisonerLazyQuery>;
+export type PrisonerSuspenseQueryHookResult = ReturnType<typeof usePrisonerSuspenseQuery>;
+export type PrisonerQueryResult = Apollo.QueryResult<PrisonerQuery, PrisonerQueryVariables>;
 export const PrisonersDocument = gql`
     query prisoners {
   prisoners {

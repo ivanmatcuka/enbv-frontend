@@ -1,0 +1,5 @@
+query prisoner($id: ID!) {
+  prisoner(id: $id) {
+    ...PrisonerItem
+  }
+}

@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 
-import { usePrisonersQuery } from '../generated';
+import { usePrisonerQuery } from '../generated';
 
-export const usePrisoners = () => {
-  const { loading, error, data } = usePrisonersQuery({
+export const usePrisoner = (id: string) => {
+  const { loading, error, data } = usePrisonerQuery({
+    variables: { id },
     fetchPolicy: 'no-cache',
     errorPolicy: 'all',
   });
