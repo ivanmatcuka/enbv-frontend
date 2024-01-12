@@ -713,9 +713,7 @@ export default function Home() {
                         justifyContent="center"
                       >
                         <CardPZ
-                          articles={
-                            card.prisonerData?.article?.split(',') ?? ['1', '2']
-                          }
+                          articles={card.prisonerData?.article?.split('● ')}
                           body={card.prisonerData?.status ?? ''}
                           name={card.prisonerData?.name ?? ''}
                           pictureUrl={card.featuredImage?.node.sourceUrl ?? ''}

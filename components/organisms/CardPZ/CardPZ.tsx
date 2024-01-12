@@ -1,7 +1,6 @@
 'use client';
 
 import { Grid, styled } from '@mui/material';
-import Image from 'next/image';
 import { FC, ReactNode } from 'react';
 
 import { Article } from '../../atoms/Article/Article';
@@ -34,7 +33,7 @@ const Background = styled('img')({
   height: '100%',
 });
 
-const StyledImage = styled(Image)({
+const StyledImage = styled('img')({
   position: 'absolute',
   top: -40,
   left: -6,

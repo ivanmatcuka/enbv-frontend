@@ -10,7 +10,7 @@ import {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: process.env.API_URL,
+    uri: 'https://staging.politzek.org/graphql',
   });
 
   return new NextSSRApolloClient({
