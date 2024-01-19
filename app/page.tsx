@@ -2,7 +2,6 @@
 
 import { Grid } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
@@ -11,9 +10,7 @@ import styles from './page.module.css';
 import { usePrisoners } from '../apollo/hooks/usePrisoners';
 import { Button } from '../components/atoms/Button/Button';
 import { FreeNotFree } from '../components/atoms/FreeNotFree/FreeNotFree';
-import { Logo } from '../components/atoms/Logo/Logo';
 import { SexAge } from '../components/atoms/SexAge/SexAge';
-import { Menu } from '../components/molecules/Menu/Menu';
 import { Selector } from '../components/molecules/Selector/Selector';
 import { Card } from '../components/organisms/Card/Card';
 import { CardPZ } from '../components/organisms/CardPZ/CardPZ';
@@ -44,44 +41,6 @@ export default function Home() {
               mb={{ xs: 3, lg: 11 }}
               minWidth={{ xs: 0, lg: 695 }}
             >
-              <Grid item mr={1.5} flexBasis="191px">
-                <Logo />
-              </Grid>
-              <Grid item flexBasis="calc(100% - 203px)">
-                <Menu
-                  items={[
-                    {
-                      element: (
-                        <Link href="#what" scroll={true}>
-                          КАК ПОМОЧЬ
-                        </Link>
-                      ),
-                    },
-                    {
-                      element: (
-                        <Link href="#whom" scroll={true}>
-                          КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС
-                        </Link>
-                      ),
-                    },
-                    {
-                      element: (
-                        <Link href="#list" scroll={true}>
-                          СПИСОК ПРЕСЛЕДУЕМЫХ
-                        </Link>
-                      ),
-                    },
-                    {
-                      element: (
-                        <Link href="#why" scroll={true}>
-                          ПОЖЕРТВОВАТЬ ПРОЕКТУ
-                        </Link>
-                      ),
-                    },
-                  ]}
-                />
-              </Grid>
-
               {/* XS photo */}
               <Grid
                 item

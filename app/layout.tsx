@@ -14,7 +14,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 import { DrawingFrame } from './components/DrawingFrame/DrawingFrame';
-import styles from './globals.css';
+import './globals.css';
 
 import { ApolloWrapper } from '../ApolloWrapper';
 import { Button } from '../components/atoms/Button/Button';
@@ -35,12 +35,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <ApolloWrapper>
           <ThemeRegistry>
             <Grid container overflow="hidden">
-              <Grid
-                item
-                className={styles.header}
-                width="100%"
-                padding={{ xs: 1, sm: 2, lg: 10.75 }}
-              >
+              <Grid item width="100%" padding={{ xs: 1, sm: 2, lg: 10.75 }}>
                 <Grid
                   container
                   maxWidth={1200}
@@ -54,14 +49,16 @@ export default function RootLayout({ children }: PropsWithChildren) {
                       minWidth={{ xs: 0, lg: 695 }}
                     >
                       <Grid item mr={1.5} flexBasis="191px">
-                        <Logo />
+                        <Link href="/">
+                          <Logo />
+                        </Link>
                       </Grid>
                       <Grid item flexBasis="calc(100% - 203px)">
                         <Menu
                           items={[
                             {
                               element: (
-                                <Link href="#what" scroll={true}>
+                                <Link href="/" scroll={true}>
                                   КАК ПОМОЧЬ
                                 </Link>
                               ),
