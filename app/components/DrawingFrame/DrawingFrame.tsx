@@ -17,15 +17,13 @@ const StyledImage = styled(Image)({
 });
 
 export const DrawingFrame: FC<GridProps> = ({ children, ...rest }) => (
-  <>
-    <Frame {...rest}>
-      {children}
-      <StyledImage
-        alt="frame"
-        width={300}
-        height={300}
-        src="/drawing_frame.png"
-      />
-    </Frame>
-  </>
+  <Frame {...rest}>
+    {children}
+    <StyledImage
+      alt="frame"
+      width={300}
+      height={300}
+      src="/drawing_frame.png"
+    />
+  </Frame>
 );

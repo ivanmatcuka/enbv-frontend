@@ -3,20 +3,24 @@
 import { Grid } from '@mui/material';
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
+import Link from 'next/link';
 import { PropsWithChildren } from 'react';
+
+import { Logo } from '@/components/atoms/Logo/Logo';
+import { Menu } from '@/components/molecules/Menu/Menu';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 import { DrawingFrame } from './components/DrawingFrame/DrawingFrame';
+import styles from './globals.css';
 
 import { ApolloWrapper } from '../ApolloWrapper';
 import { Button } from '../components/atoms/Button/Button';
 import { Typography } from '../components/typography/Typography/Typography';
 import ThemeRegistry from '../theming/ThemeRegistry';
 
-import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 // export const metadata: Metadata = {
@@ -30,6 +34,67 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className={inter.className}>
         <ApolloWrapper>
           <ThemeRegistry>
+            <Grid container overflow="hidden">
+              <Grid
+                item
+                className={styles.header}
+                width="100%"
+                padding={{ xs: 1, sm: 2, lg: 10.75 }}
+              >
+                <Grid
+                  container
+                  maxWidth={1200}
+                  margin="auto"
+                  justifyContent={{ xs: 'center', lg: 'space-between' }}
+                >
+                  <Grid item flex={1} xs={12} lg={6}>
+                    <Grid
+                      container
+                      mb={{ xs: 3, lg: 11 }}
+                      minWidth={{ xs: 0, lg: 695 }}
+                    >
+                      <Grid item mr={1.5} flexBasis="191px">
+                        <Logo />
+                      </Grid>
+                      <Grid item flexBasis="calc(100% - 203px)">
+                        <Menu
+                          items={[
+                            {
+                              element: (
+                                <Link href="#what" scroll={true}>
+                                  КАК ПОМОЧЬ
+                                </Link>
+                              ),
+                            },
+                            {
+                              element: (
+                                <Link href="#whom" scroll={true}>
+                                  КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС
+                                </Link>
+                              ),
+                            },
+                            {
+                              element: (
+                                <Link href="#list" scroll={true}>
+                                  СПИСОК ПРЕСЛЕДУЕМЫХ
+                                </Link>
+                              ),
+                            },
+                            {
+                              element: (
+                                <Link href="#why" scroll={true}>
+                                  ПОЖЕРТВОВАТЬ ПРОЕКТУ
+                                </Link>
+                              ),
+                            },
+                          ]}
+                        />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
             {children}
             <div>
               <Grid
