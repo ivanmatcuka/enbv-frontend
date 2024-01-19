@@ -1,24 +1,17 @@
 'use client';
 
-import { Grid } from '@mui/material';
 import { Inter } from 'next/font/google';
-import Image from 'next/image';
-import Link from 'next/link';
 import { PropsWithChildren } from 'react';
-
-import { Logo } from '@/components/atoms/Logo/Logo';
-import { Menu } from '@/components/molecules/Menu/Menu';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
-import { DrawingFrame } from './components/DrawingFrame/DrawingFrame';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 import './globals.css';
 
 import { ApolloWrapper } from '../ApolloWrapper';
-import { Button } from '../components/atoms/Button/Button';
-import { Typography } from '../components/typography/Typography/Typography';
 import ThemeRegistry from '../theming/ThemeRegistry';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -34,211 +27,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className={inter.className}>
         <ApolloWrapper>
           <ThemeRegistry>
-            <Grid container overflow="hidden">
-              <Grid item width="100%" padding={{ xs: 1, sm: 2, lg: 10.75 }}>
-                <Grid
-                  container
-                  maxWidth={1200}
-                  margin="auto"
-                  justifyContent={{ xs: 'center', lg: 'space-between' }}
-                >
-                  <Grid item flex={1} xs={12} lg={6}>
-                    <Grid
-                      container
-                      mb={{ xs: 3, lg: 11 }}
-                      minWidth={{ xs: 0, lg: 695 }}
-                    >
-                      <Grid item mr={1.5} flexBasis="191px">
-                        <Link href="/">
-                          <Logo />
-                        </Link>
-                      </Grid>
-                      <Grid item flexBasis="calc(100% - 203px)">
-                        <Menu
-                          items={[
-                            {
-                              element: (
-                                <Link href="/" scroll={true}>
-                                  КАК ПОМОЧЬ
-                                </Link>
-                              ),
-                            },
-                            {
-                              element: (
-                                <Link href="#whom" scroll={true}>
-                                  КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС
-                                </Link>
-                              ),
-                            },
-                            {
-                              element: (
-                                <Link href="#list" scroll={true}>
-                                  СПИСОК ПРЕСЛЕДУЕМЫХ
-                                </Link>
-                              ),
-                            },
-                            {
-                              element: (
-                                <Link href="#why" scroll={true}>
-                                  ПОЖЕРТВОВАТЬ ПРОЕКТУ
-                                </Link>
-                              ),
-                            },
-                          ]}
-                        />
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
+            <Header />
             {children}
-            <div>
-              <Grid
-                container
-                maxWidth={1200}
-                width="100%"
-                flexDirection="column"
-                margin="auto"
-                className="footer"
-                py={{ xs: 6, lg: 10.75 }}
-                px={2}
-              >
-                <Grid alignSelf="flex-start" item>
-                  <Typography variant="h1" color="brand.yellow">
-                    Помочь нашему
-                    <br />
-                    проекту
-                  </Typography>
-                </Grid>
-                <Grid
-                  item
-                  pt={2}
-                  my={8}
-                  maxWidth={{ xs: '100%', lg: '594px' }}
-                  alignSelf="center"
-                >
-                  <Typography variant="subtitle1" textAlign="center">
-                    Проект существует на пожертвования. Помогите проекту
-                    держаться на плаву и развиваться!
-                  </Typography>
-                </Grid>
-                <DrawingFrame
-                  maxWidth={{ xs: '380px', lg: '796px' }}
-                  height={{ xs: '620px', lg: '343px' }}
-                  width="100%"
-                  p={3}
-                  alignSelf="center"
-                  item
-                >
-                  <Grid container>
-                    <Grid item flexBasis="100%">
-                      <Typography
-                        variant="subtitle1"
-                        textAlign="center"
-                        width="100%"
-                      >
-                        Вы можете поддержать нас через Boosty или Patreon:
-                      </Typography>
-                    </Grid>
-                    <Grid
-                      flexBasis={{ xs: '100%', lg: '50%' }}
-                      alignSelf="end"
-                      textAlign="center"
-                    >
-                      <Image
-                        alt="boosty"
-                        src="/boosty.png"
-                        width={181}
-                        height={57}
-                        className="footer__image"
-                      />
-                      <div>
-                        <Button>Поддержать</Button>
-                      </div>
-                    </Grid>
-                    <Grid
-                      flexBasis={{ xs: '100%', lg: '50%' }}
-                      alignSelf="end"
-                      textAlign="center"
-                    >
-                      <Image
-                        alt="patreon"
-                        src="/patreon.png"
-                        width={208}
-                        height={71}
-                        className="footer__image"
-                      />
-                      <div>
-                        <Button>Поддержать</Button>
-                      </div>
-                    </Grid>
-                    <Grid item flex={1} pt={5}>
-                      <Typography
-                        variant="subtitle1"
-                        textAlign="center"
-                        width="100%"
-                      >
-                        Или перевести напрямую по следующим реквизитам:
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </DrawingFrame>
-                <Grid item mt={4.5} alignSelf="center">
-                  <Typography variant="subtitle1" textAlign="center">
-                    Также вы можете купить наш мерч:
-                  </Typography>
-                </Grid>
-                <Grid
-                  item
-                  alignSelf="center"
-                  maxWidth={748}
-                  width="100%"
-                  mt={3}
-                >
-                  <Grid
-                    container
-                    justifyContent={{ xs: 'center', lg: 'space-between' }}
-                  >
-                    <DrawingFrame
-                      item
-                      width={313}
-                      height={325}
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Image
-                        alt="merch_1"
-                        width={364}
-                        height={210}
-                        src="/merch_1.png"
-                        className="footer__merch"
-                      />
-                    </DrawingFrame>
-                    <DrawingFrame
-                      item
-                      width={313}
-                      height={325}
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Image
-                        alt="merch_2"
-                        width={364}
-                        height={210}
-                        src="/merch_2.png"
-                        className="footer__merch"
-                      />
-                    </DrawingFrame>
-                  </Grid>
-                </Grid>
-                <Grid item mt={3} mb={14} alignSelf="center">
-                  <Button>В МАГАЗИН</Button>
-                </Grid>
-              </Grid>
-            </div>
+            <Footer />
           </ThemeRegistry>
         </ApolloWrapper>
       </body>
