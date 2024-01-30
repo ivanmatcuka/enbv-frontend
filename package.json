@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.4",
-    "@apollo/experimental-nextjs-app-support": "^0.4.3",
+    "@apollo/experimental-nextjs-app-support": "^0.7.0",
     "@mui/material": "^5.14.13",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
