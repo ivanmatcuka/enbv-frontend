@@ -1,6 +1,6 @@
 'use client';
 
-import { Grid } from '@mui/material';
+import { Grid, styled } from '@mui/material';
 import moment from 'moment';
 
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
@@ -9,12 +9,21 @@ import { Typography } from '@/components/typography/Typography/Typography';
 
 import { usePrisoner } from '../../../apollo/hooks/usePrisoner';
 
+const ProfileImage = styled('img')({
+  position: 'absolute',
+  zIndex: 100,
+
+  inset: 0,
+});
+
 export default function Prisoner({ params }: { params: { id: string } }) {
   const { data } = usePrisoner(params.id);
-  moment.locale('fr');
+
   const prisonerData = data?.prisoner?.prisonerData;
   const birthday = moment(prisonerData?.birthdate ?? '');
   const arrested = moment(prisonerData?.dateArrested ?? '');
+
+  if (!data?.prisoner?.featuredImage?.node.sourceUrl) return;
 
   return (
     <Grid
@@ -22,7 +31,15 @@ export default function Prisoner({ params }: { params: { id: string } }) {
       maxWidth={{ xs: '100%', lg: '1128px' }}
       margin="auto"
       flexDirection="column"
+      mt={4}
+      position="relative"
     >
+      <ProfileImage
+        alt={prisonerData?.name ?? 'profile'}
+        width={297}
+        height={306}
+        src={data.prisoner.featuredImage.node.sourceUrl}
+      />
       <Grid item ml={40} mb={4}>
         <Typography variant="h1">
           {prisonerData?.name && prisonerData?.name.split(' ')[0]}
