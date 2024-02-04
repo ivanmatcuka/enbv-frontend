@@ -22,12 +22,13 @@ export default function Home() {
   const { data } = usePrisoners();
 
   return (
-    <Grid container overflow="hidden">
+    <Grid container>
       <Grid
         item
         className={styles.header}
         width="100%"
         padding={{ xs: 1, sm: 2, lg: 10.75 }}
+        pt={{ xs: 0, sm: 0, lg: 0 }}
       >
         <Grid
           container
@@ -121,6 +122,7 @@ export default function Home() {
             display={{ xs: 'none', lg: 'flex' }}
             position="relative"
             justifyContent="center"
+            mt="-130px"
           >
             <Image
               alt="photo"

@@ -7,7 +7,12 @@ import { Menu } from '@/components/molecules/Menu/Menu';
 export default function Header() {
   return (
     <Grid container overflow="hidden">
-      <Grid item width="100%" padding={{ xs: 1, sm: 2, lg: 10.75 }}>
+      <Grid
+        item
+        width="100%"
+        padding={{ xs: 1, sm: 2, lg: 10.75 }}
+        pb={{ xs: 0, sm: 0, lg: 0 }}
+      >
         <Grid
           container
           maxWidth={1200}
@@ -15,11 +20,7 @@ export default function Header() {
           justifyContent={{ xs: 'center', lg: 'space-between' }}
         >
           <Grid item flex={1} xs={12} lg={6}>
-            <Grid
-              container
-              mb={{ xs: 3, lg: 11 }}
-              minWidth={{ xs: 0, lg: 695 }}
-            >
+            <Grid container minWidth={{ xs: 0, lg: 695 }}>
               <Grid item mr={1.5} flexBasis="191px">
                 <Link href="/">
                   <Logo />
