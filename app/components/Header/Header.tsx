@@ -31,28 +31,28 @@ export default function Header() {
                   items={[
                     {
                       element: (
-                        <Link href="/" scroll={true}>
+                        <Link href="/" scroll={false}>
                           КАК ПОМОЧЬ
                         </Link>
                       ),
                     },
                     {
                       element: (
-                        <Link href="#whom" scroll={true}>
+                        <Link href="#whom" scroll>
                           КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС
                         </Link>
                       ),
                     },
                     {
                       element: (
-                        <Link href="#list" scroll={true}>
+                        <Link href="#list" scroll>
                           СПИСОК ПРЕСЛЕДУЕМЫХ
                         </Link>
                       ),
                     },
                     {
                       element: (
-                        <Link href="#why" scroll={true}>
+                        <Link href="#why" scroll>
                           ПОЖЕРТВОВАТЬ ПРОЕКТУ
                         </Link>
                       ),
