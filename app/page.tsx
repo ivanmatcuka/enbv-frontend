@@ -491,7 +491,7 @@ export default function Home() {
                   body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
                   catPictureUrl="/icon_share.svg"
                   action={
-                    <Link href="/doc.pdf" scroll>
+                    <Link href="/doc.pdf" target="_blank" scroll>
                       <Button>распространить</Button>
                     </Link>
                   }
@@ -702,7 +702,7 @@ export default function Home() {
                           }
                           primaryAction={
                             <Link href={`/prisoner/${card.id}`} key={card.id}>
-                              <Button>написать</Button>
+                              <Button>написать ✉</Button>
                             </Link>
                           }
                           secondaryAction={

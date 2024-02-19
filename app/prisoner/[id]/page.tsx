@@ -2,9 +2,12 @@
 
 import { Grid, styled } from '@mui/material';
 import moment from 'moment';
+import Link from 'next/link';
 
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
+import { Article } from '@/components/atoms/Article/Article';
 import { Button } from '@/components/atoms/Button/Button';
+import { Card } from '@/components/organisms/Card/Card';
 import { Typography } from '@/components/typography/Typography/Typography';
 
 import { usePrisoner } from '../../../apollo/hooks/usePrisoner';
@@ -31,10 +34,11 @@ export default function Prisoner({ params }: { params: { id: string } }) {
   return (
     <Grid
       container
-      maxWidth={{ xs: '100%', lg: '1128px' }}
+      maxWidth={{ xs: '100%', lg: '1200px' }}
       margin="auto"
       flexDirection="column"
       mt={4}
+      mb={8}
       position="relative"
     >
       <ProfileImage
@@ -61,6 +65,15 @@ export default function Prisoner({ params }: { params: { id: string } }) {
       <DrawingFrame width="100%" p={4} alignSelf="center" item mb={3}>
         <Grid flexDirection="column" container>
           <Grid ml={36} item>
+            <Grid spacing={1} mb={2} container>
+              {data.prisoner.article?.map((article) => (
+                <Grid key={article} item>
+                  <Article label={article} />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+          <Grid ml={36} item>
             <Typography variant="p3">
               {`${birthday.format('DD MMMM YYYY')} (${parseInt(
                 birthday.fromNow(),
@@ -69,7 +82,11 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           </Grid>
           <Grid ml={36} item>
             <Typography variant="p3">
-              {`Задержан: ${arrested.format('DD MMMM YYYY')}`}
+              {`Дата задержания: ${
+                prisonerData?.dateofarrest
+                  ? arrested.format('DD MMMM YYYY')
+                  : '–'
+              }`}
             </Typography>
           </Grid>
           <Grid ml={36} item>
@@ -80,9 +97,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
             </Typography>
           </Grid>
           <Grid ml={36} item mb={4}>
-            <Typography variant="p3">
-              {`Следующий суд: ${arrested.format('DD MMMM YYYY')}`}
-            </Typography>
+            <Typography variant="p3">Следующий суд: –</Typography>
           </Grid>
           <Grid item>
             <Typography variant="p1">
@@ -101,6 +116,74 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           </Grid>
         </Grid>
       </DrawingFrame>
+
+      <Grid width="100%" mt={2} item>
+        <Grid
+          container
+          columnSpacing="0"
+          rowSpacing={2}
+          justifyContent="center"
+        >
+          <Grid item>
+            <Card
+              title={
+                <>
+                  НАПИСАТЬ
+                  <br />
+                  ПИСЬМО
+                </>
+              }
+              body="Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе."
+              catPictureUrl="/icon_letter.svg"
+              action={
+                <Link href="#list" scroll>
+                  <Button>Написать</Button>
+                </Link>
+              }
+            />
+          </Grid>
+          <Grid item>
+            <Card
+              title={
+                <>
+                  СДЕЛАТЬ
+                  <br />
+                  ПОЖЕРТВОВАНИЕ
+                </>
+              }
+              body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
+              catPictureUrl="/icon_money.svg"
+              // action={<Button variant="outline">Написать</Button>}
+            />
+          </Grid>
+          <Grid item>
+            <Card
+              title={
+                <>
+                  ОТНЕСТИ
+                  <br />
+                  ПЕРЕДАЧКУ
+                </>
+              }
+              body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
+              catPictureUrl="/icon_parcel.svg"
+              // action={<Button variant="outline">Написать</Button>}
+            />
+          </Grid>
+          <Grid item>
+            <Card
+              title="РАСПРОСТРАНИТЬ ИНФОРМАЦИЮ"
+              body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
+              catPictureUrl="/icon_share.svg"
+              action={
+                <Link href="/doc.pdf" target="_blank" scroll>
+                  <Button>распространить</Button>
+                </Link>
+              }
+            />
+          </Grid>
+        </Grid>
+      </Grid>
     </Grid>
   );
 }
