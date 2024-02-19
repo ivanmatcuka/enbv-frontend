@@ -1,6 +1,7 @@
 'use client';
 
 import { styled } from '@mui/material';
+import Link from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
 import { Button } from '../../../components/atoms/Button/Button';
@@ -50,6 +51,7 @@ const ButtonContainer = styled('div')({
 });
 
 type PersonCardProps = {
+  id: string;
   size: 'l' | 'm';
   photoUrl: string;
   name: string;
@@ -57,6 +59,7 @@ type PersonCardProps = {
 };
 
 export const PersonCard: FC<PropsWithChildren<PersonCardProps>> = ({
+  id,
   size,
   photoUrl,
   name,
@@ -71,7 +74,9 @@ export const PersonCard: FC<PropsWithChildren<PersonCardProps>> = ({
       photoUrl={photoUrl}
     >
       <ButtonContainer className="button">
-        <Button variant="red">НАПИСАТЬ</Button>
+        <Link href={`/prisoner/${id}`}>
+          <Button variant="red">НАПИСАТЬ</Button>
+        </Link>
       </ButtonContainer>
 
       <PersonCardContent>

@@ -61,6 +61,26 @@ export default function Home() {
       .slice(0, 3);
   }, [data?.prisoners]);
 
+  const releases = useMemo(() => {
+    if (!data?.prisoners) return [];
+
+    return [...data.prisoners.edges]
+      .filter((a) => {
+        const now = moment();
+        const releaseThisYear = moment(a.node.prisonerData?.freedomdate);
+
+        return releaseThisYear.diff(now) >= 0;
+      })
+      .sort((a, b) => {
+        const now = moment();
+        const aRelease = moment(a.node.prisonerData?.freedomdate);
+        const bRelease = moment(b.node.prisonerData?.freedomdate);
+
+        return aRelease.diff(now) - bRelease.diff(now);
+      })
+      .slice(0, 3);
+  }, [data?.prisoners]);
+
   const free = prisonersCount - notFree ?? 0;
 
   return (
@@ -539,6 +559,7 @@ export default function Home() {
                   {birthdays.map((prisoner) => (
                     <Grid item key={prisoner.node.id}>
                       <PersonCard
+                        id={prisoner.node.id}
                         size="l"
                         photoUrl={
                           prisoner.node.featuredImage?.node.mediaItemUrl
@@ -560,68 +581,38 @@ export default function Home() {
           )}
           <Grid item>
             <Grid container gap={1.5} rowGap={4.5}>
-              <Grid item width="100%">
-                <Typography variant="subtitle1" color="brand.white">
-                  Скоро освобождаются: можно встретить
-                </Typography>
-              </Grid>
-              <Grid item>
-                <PersonCard
-                  size="m"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
-              <Grid item>
-                <PersonCard
-                  size="m"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
-              <Grid item>
-                <PersonCard
-                  size="m"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid container gap={1.5} rowGap={4.5}>
-              <Grid item width="100%">
-                <Typography variant="subtitle1" color="brand.white">
-                  Скоро суд: можно сходить
-                </Typography>
-              </Grid>
-              <Grid item>
-                <PersonCard
-                  size="m"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
-              <Grid item>
-                <PersonCard
-                  size="m"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
-              <Grid item>
-                <PersonCard
-                  size="m"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
+              {!!releases.length && (
+                <>
+                  <Grid item width="100%">
+                    <Typography variant="subtitle1" color="brand.white">
+                      Скоро освобождаются: можно встретить
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Grid container gap={1.5} rowGap={4.5} flexWrap="nowrap">
+                      {releases.map((prisoner) => (
+                        <Grid item key={prisoner.node.id}>
+                          <PersonCard
+                            id={prisoner.node.id}
+                            size="m"
+                            photoUrl={
+                              prisoner.node.featuredImage?.node.mediaItemUrl
+                                ? prisoner.node.featuredImage?.node.mediaItemUrl
+                                : prisoner.node.prisonerData?.sex === 'мужской'
+                                ? '/default_man.png'
+                                : '/default_woman.png'
+                            }
+                            name={prisoner.node.prisonerData?.name ?? ''}
+                            subtitle={moment(
+                              prisoner.node.prisonerData?.birthdate ?? '',
+                            ).format('DD MMMM')}
+                          />
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </Grid>
+                </>
+              )}
             </Grid>
           </Grid>
         </Grid>

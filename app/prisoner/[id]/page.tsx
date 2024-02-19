@@ -77,9 +77,13 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           </Grid>
           <Grid ml={36} item>
             <Typography variant="p3">
-              {`${birthday.format('DD MMMM YYYY')} (${parseInt(
-                birthday.fromNow(),
-              )})`}
+              {`День рождения: ${
+                prisonerData?.birthdate
+                  ? `${birthday.format('DD MMMM YYYY')} (${parseInt(
+                      birthday.fromNow(),
+                    )})`
+                  : '–'
+              }`}
             </Typography>
           </Grid>
           <Grid ml={36} item>
