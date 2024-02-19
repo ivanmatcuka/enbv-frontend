@@ -659,7 +659,7 @@ export default function Home() {
                   width={500}
                   alt="photos"
                   src="/photos.png"
-                  style={{ maxWidth: '100%' }}
+                  style={{ maxWidth: '100%', height: 'auto' }}
                 />
               </Grid>
               <Grid item flexBasis={{ xs: 'auto', lg: 'calc(100% - 500px)' }}>
@@ -693,7 +693,7 @@ export default function Home() {
                         justifyContent="center"
                       >
                         <CardPZ
-                          articles={[]}
+                          articles={card.article ?? []}
                           body={card.prisonerData?.description ?? ''}
                           name={card.prisonerData?.name ?? ''}
                           sex={card.prisonerData?.sex ?? ''}

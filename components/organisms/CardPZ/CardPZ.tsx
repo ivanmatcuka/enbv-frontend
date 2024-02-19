@@ -39,13 +39,21 @@ const StyledImage = styled('img')({
   position: 'absolute',
   top: -40,
   left: -6,
+
+  objectFit: 'contain',
+});
+
+const StyledName = styled(Typography)({
+  minHeight: 66,
+
+  wordSpacing: 999,
 });
 
 type CardPZProps = {
   name: string;
   body: string;
   sex: string;
-  articles?: string[];
+  articles?: (null | string)[];
   primaryAction?: ReactNode;
   secondaryAction?: ReactNode;
   pictureUrl?: string;
@@ -68,9 +76,9 @@ export const CardPZ: FC<CardPZProps> = ({
     pr={2}
   >
     <Grid item>
-      <Typography variant="h3" component="p" pl={15.5}>
+      <StyledName variant="h3" component="p" pl={15.5}>
         {name}
-      </Typography>
+      </StyledName>
     </Grid>
     <Grid item>
       <Grid container spacing={0.5}>
