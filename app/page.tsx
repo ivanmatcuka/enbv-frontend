@@ -667,17 +667,19 @@ export default function Home() {
                       <Grid
                         item
                         xs={12}
-                        lg={6}
-                        xl={4}
+                        lg={4}
                         key={index}
                         display="flex"
                         justifyContent="center"
                       >
                         <CardPZ
-                          articles={card.prisonerData?.article?.split('● ')}
-                          body={card.prisonerData?.status ?? ''}
+                          articles={[]}
+                          body={card.prisonerData?.description ?? ''}
                           name={card.prisonerData?.name ?? ''}
-                          pictureUrl={card.featuredImage?.node.sourceUrl ?? ''}
+                          sex={card.prisonerData?.sex ?? ''}
+                          pictureUrl={
+                            card.featuredImage?.node.mediaItemUrl ?? ''
+                          }
                           primaryAction={''}
                           secondaryAction={''}
                         />

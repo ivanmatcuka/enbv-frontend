@@ -86,7 +86,7 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
   /** Connection between the TermNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
@@ -965,18 +965,21 @@ export type CommentToParentCommentConnectionWhereArgs = {
 /** Field Group */
 export type Comment_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Comment_Prisonerdata';
-  article?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+  article?: Maybe<Array<Maybe<Category>>>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  dateArrested?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
+  dateofarrest?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  freedomdate?: Maybe<Scalars['String']['output']>;
+  institution?: Maybe<Scalars['String']['output']>;
+  mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  postAddress?: Maybe<Scalars['String']['output']>;
-  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
-  supportTeam?: Maybe<Scalars['String']['output']>;
 };
 
 /** The author of a comment */
@@ -1075,7 +1078,7 @@ export type ContentNode = {
   enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
   /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
   guid?: Maybe<Scalars['String']['output']>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
@@ -1265,18 +1268,21 @@ export type ContentNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStyleshe
 /** Field Group */
 export type ContentNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentNode_Prisonerdata';
-  article?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+  article?: Maybe<Array<Maybe<Category>>>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  dateArrested?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
+  dateofarrest?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  freedomdate?: Maybe<Scalars['String']['output']>;
+  institution?: Maybe<Scalars['String']['output']>;
+  mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  postAddress?: Maybe<Scalars['String']['output']>;
-  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
-  supportTeam?: Maybe<Scalars['String']['output']>;
 };
 
 /** The template assigned to a node of content */
@@ -1290,18 +1296,21 @@ export type ContentTemplate = {
 /** Field Group */
 export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentTemplate_Prisonerdata';
-  article?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+  article?: Maybe<Array<Maybe<Category>>>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  dateArrested?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
+  dateofarrest?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  freedomdate?: Maybe<Scalars['String']['output']>;
+  institution?: Maybe<Scalars['String']['output']>;
+  mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  postAddress?: Maybe<Scalars['String']['output']>;
-  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
-  supportTeam?: Maybe<Scalars['String']['output']>;
 };
 
 /** An Post Type object */
@@ -3276,7 +3285,7 @@ export type MenuItemConnectionPageInfo = {
 export type MenuItemLinkable = {
   /** The unique identifier stored in the database */
   databaseId: Scalars['Int']['output'];
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
@@ -3371,18 +3380,21 @@ export type MenuItemToMenuItemLinkableConnectionEdge = Edge & MenuItemLinkableCo
 /** Field Group */
 export type MenuItem_Prisonerdata = AcfFieldGroup & {
   __typename?: 'MenuItem_Prisonerdata';
-  article?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+  article?: Maybe<Array<Maybe<Category>>>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  dateArrested?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
+  dateofarrest?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  freedomdate?: Maybe<Scalars['String']['output']>;
+  institution?: Maybe<Scalars['String']['output']>;
+  mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  postAddress?: Maybe<Scalars['String']['output']>;
-  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
-  supportTeam?: Maybe<Scalars['String']['output']>;
 };
 
 /** Registered menu locations */
@@ -3453,18 +3465,21 @@ export type MenuToMenuItemConnectionWhereArgs = {
 /** Field Group */
 export type Menu_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Menu_Prisonerdata';
-  article?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+  article?: Maybe<Array<Maybe<Category>>>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  dateArrested?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
+  dateofarrest?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  freedomdate?: Maybe<Scalars['String']['output']>;
+  institution?: Maybe<Scalars['String']['output']>;
+  mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  postAddress?: Maybe<Scalars['String']['output']>;
-  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
-  supportTeam?: Maybe<Scalars['String']['output']>;
 };
 
 /** The MimeType of the object */
@@ -4573,7 +4588,7 @@ export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceI
   enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
   /** Connection between the TermNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
@@ -8333,7 +8348,7 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
   /** Connection between the TermNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
@@ -8943,7 +8958,7 @@ export type TermNode = {
   enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
   /** Connection between the TermNode type and the EnqueuedStylesheet type */
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
@@ -9100,18 +9115,21 @@ export type TermNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetC
 /** Field Group */
 export type TermNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'TermNode_Prisonerdata';
-  article?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+  article?: Maybe<Array<Maybe<Category>>>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  dateArrested?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
+  dateofarrest?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  freedomdate?: Maybe<Scalars['String']['output']>;
+  institution?: Maybe<Scalars['String']['output']>;
+  mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  postAddress?: Maybe<Scalars['String']['output']>;
-  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
-  supportTeam?: Maybe<Scalars['String']['output']>;
 };
 
 /** Options for ordering the connection by */
@@ -9191,7 +9209,7 @@ export type ThemeConnectionPageInfo = {
 
 /** Any node that has a URI */
 export type UniformResourceIdentifiable = {
-  /** The unique resource identifier path */
+  /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
@@ -10390,18 +10408,21 @@ export type UserToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPage
 /** Field Group */
 export type User_Prisonerdata = AcfFieldGroup & {
   __typename?: 'User_Prisonerdata';
-  article?: Maybe<Scalars['String']['output']>;
+  address?: Maybe<Scalars['String']['output']>;
+  article?: Maybe<Array<Maybe<Category>>>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  dateArrested?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
+  dateofarrest?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  freedomdate?: Maybe<Scalars['String']['output']>;
+  institution?: Maybe<Scalars['String']['output']>;
+  mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
-  postAddress?: Maybe<Scalars['String']['output']>;
-  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
-  supportTeam?: Maybe<Scalars['String']['output']>;
 };
 
 /** Field to order the connection by */
@@ -10474,36 +10495,33 @@ export type PrisonerQueryVariables = Exact<{
 }>;
 
 
-export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?: 'Prisoner', id: string, title?: string | null, link?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', article?: string | null, birthdate?: string | null, city?: string | null, dateArrested?: string | null, fieldGroupName?: string | null, name?: string | null, postAddress?: string | null, region?: string | null, sex?: string | null, status?: string | null, supportTeam?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null } | null };
+export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?: 'Prisoner', id: string, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null };
 
-export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, title?: string | null, link?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', article?: string | null, birthdate?: string | null, city?: string | null, dateArrested?: string | null, fieldGroupName?: string | null, name?: string | null, postAddress?: string | null, region?: string | null, sex?: string | null, status?: string | null, supportTeam?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null };
+export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null };
 
 export type PrisonersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, title?: string | null, link?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', article?: string | null, birthdate?: string | null, city?: string | null, dateArrested?: string | null, fieldGroupName?: string | null, name?: string | null, postAddress?: string | null, region?: string | null, sex?: string | null, status?: string | null, supportTeam?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', sourceUrl?: string | null } } | null } }> } | null };
+export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } }> } | null };
 
 export const PrisonerItemFragmentDoc = gql`
     fragment PrisonerItem on Prisoner {
   id
-  title
   prisonerData {
-    article
     birthdate
     city
-    dateArrested
+    dateofarrest
+    description
     fieldGroupName
+    freedomdate
     name
-    postAddress
-    region
+    mailinterests
     sex
     status
-    supportTeam
   }
-  link
   featuredImage {
     node {
-      sourceUrl
+      mediaItemUrl
     }
   }
 }

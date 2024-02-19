@@ -1,23 +1,20 @@
 fragment PrisonerItem on Prisoner {
   id
-  title
   prisonerData {
-    article
     birthdate
     city
-    dateArrested
+    dateofarrest
+    description
     fieldGroupName
+    freedomdate
     name
-    postAddress
-    region
+    mailinterests
     sex
     status
-    supportTeam
   }
-  link
   featuredImage {
     node {
-      sourceUrl
+      mediaItemUrl
     }
   }
 }

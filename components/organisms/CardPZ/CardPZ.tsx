@@ -28,6 +28,7 @@ const SecondaryActionContainer = styled('div')(({ theme }) => ({
 const Background = styled('img')({
   position: 'absolute',
   inset: 0,
+  zIndex: -1,
 
   width: '100%',
   height: '100%',
@@ -39,9 +40,17 @@ const StyledImage = styled('img')({
   left: -6,
 });
 
+const StyledBody = styled(Typography)({
+  maxHeight: 175,
+
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+});
+
 type CardPZProps = {
   name: string;
   body: string;
+  sex: string;
   articles?: string[];
   primaryAction?: ReactNode;
   secondaryAction?: ReactNode;
@@ -50,11 +59,13 @@ type CardPZProps = {
 export const CardPZ: FC<CardPZProps> = ({
   name,
   body,
+  sex,
   articles,
   primaryAction,
   secondaryAction,
   pictureUrl,
 }) => {
+  console.log(sex);
   return (
     <Container
       container
@@ -78,10 +89,10 @@ export const CardPZ: FC<CardPZProps> = ({
           ))}
         </Grid>
       </Grid>
-      <Grid item pb={2}>
-        <Typography variant="p3" component="p">
+      <Grid item pb={2} height={175}>
+        <StyledBody variant="p3" component="p">
           {body}
-        </Typography>
+        </StyledBody>
       </Grid>
       {primaryAction && (
         <PrimaryActionContainer>{primaryAction}</PrimaryActionContainer>
@@ -90,14 +101,19 @@ export const CardPZ: FC<CardPZProps> = ({
         <SecondaryActionContainer>{secondaryAction}</SecondaryActionContainer>
       )}
       <Background src="/card_background.png" />
-      {pictureUrl && (
-        <StyledImage
-          alt="icon_letter"
-          width={135}
-          height={121}
-          src={pictureUrl}
-        />
-      )}
+
+      <StyledImage
+        alt="icon_letter"
+        width={135}
+        height={121}
+        src={
+          pictureUrl
+            ? pictureUrl
+            : sex === 'мужской'
+            ? '/default_man.png'
+            : '/default_woman.png'
+        }
+      />
     </Container>
   );
 };
