@@ -1,82 +1,76 @@
+'use client';
+
 import { Grid } from '@mui/material';
+import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo } from 'react';
 
 import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
 import styles from './page.module.css';
 
+import { usePrisoners } from '../apollo/hooks/usePrisoners';
 import { Button } from '../components/atoms/Button/Button';
 import { FreeNotFree } from '../components/atoms/FreeNotFree/FreeNotFree';
-import { Logo } from '../components/atoms/Logo/Logo';
 import { SexAge } from '../components/atoms/SexAge/SexAge';
-import { Menu } from '../components/molecules/Menu/Menu';
 import { Selector } from '../components/molecules/Selector/Selector';
 import { Card } from '../components/organisms/Card/Card';
 import { CardPZ } from '../components/organisms/CardPZ/CardPZ';
 import { Counter } from '../components/organisms/Counter/Counter';
 import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
-
-const CARDS = [
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-  {
-    name: 'Габышев Александр Александрович',
-    body: 'Согласно постановлению о возбуждении дела, он «с 6 марта по 22 мая, находясь в неустановленном месте, обратился лично в устной форме к группе людей в общественном месте, то есть публично, с призывами к осуществлению экстремистской деятельности».',
-    articles: ['ст. 280 УК РФ', 'ст. 280 УК РФ', 'ст. 280 УК РФ'],
-    primaryAction: <Button>Написать</Button>,
-    secondaryAction: <Button variant="outline">Помочь</Button>,
-    pictureUrl: '/card_pz_photo.png',
-  },
-];
+import { groupPrisonersByAgeAndGender } from '../helpers/groupPrisonersByAgeAndGender';
 
 export default function Home() {
+  const { data } = usePrisoners();
+
+  const prisonersCount = data?.prisoners?.edges.length ?? 0;
+  const notFree = useMemo(
+    () =>
+      data?.prisoners?.edges.filter(
+        ({ node: prisoner }) =>
+          prisoner.prisonerData?.status === 'лишен/а свободы',
+      ).length ?? 0,
+    [data?.prisoners?.edges],
+  );
+
+  const birthdays = useMemo(() => {
+    if (!data?.prisoners) return [];
+
+    return [...data.prisoners.edges]
+      .filter((a) => {
+        const now = moment();
+        const aBirthdayThisYear = moment(a.node.prisonerData?.birthdate).year(
+          now.year(),
+        );
+
+        return now.diff(aBirthdayThisYear) >= 0;
+      })
+      .sort((a, b) => {
+        const now = moment();
+        const aBirthdayThisYear = moment(a.node.prisonerData?.birthdate).year(
+          now.year(),
+        );
+        const bBirthdayThisYear = moment(b.node.prisonerData?.birthdate).year(
+          now.year(),
+        );
+
+        return aBirthdayThisYear.diff(now) - bBirthdayThisYear.diff(now);
+      })
+      .slice(0, 3);
+  }, [data?.prisoners]);
+
+  const free = prisonersCount - notFree ?? 0;
+
   return (
-    <Grid container overflow="hidden">
+    <Grid container>
       <Grid
         item
         className={styles.header}
         width="100%"
         padding={{ xs: 1, sm: 2, lg: 10.75 }}
+        pt={{ xs: 0, sm: 0, lg: 0 }}
       >
         <Grid
           container
@@ -90,44 +84,6 @@ export default function Home() {
               mb={{ xs: 3, lg: 11 }}
               minWidth={{ xs: 0, lg: 695 }}
             >
-              <Grid item mr={1.5} flexBasis="191px">
-                <Logo />
-              </Grid>
-              <Grid item flexBasis="calc(100% - 203px)">
-                <Menu
-                  items={[
-                    {
-                      element: (
-                        <Link href="#what" scroll={true}>
-                          КАК ПОМОЧЬ
-                        </Link>
-                      ),
-                    },
-                    {
-                      element: (
-                        <Link href="#whom" scroll={true}>
-                          КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС
-                        </Link>
-                      ),
-                    },
-                    {
-                      element: (
-                        <Link href="#list" scroll={true}>
-                          СПИСОК ПРЕСЛЕДУЕМЫХ
-                        </Link>
-                      ),
-                    },
-                    {
-                      element: (
-                        <Link href="#why" scroll={true}>
-                          ПОЖЕРТВОВАТЬ ПРОЕКТУ
-                        </Link>
-                      ),
-                    },
-                  ]}
-                />
-              </Grid>
-
               {/* XS photo */}
               <Grid
                 item
@@ -193,7 +149,9 @@ export default function Home() {
                     pl={1.5}
                     flexBasis={{ xs: 'calc(100% - 140px)', lg: 'auto' }}
                   >
-                    <Button>ПОМОЧЬ СЕЙЧАС</Button>
+                    <Link href="#list" scroll>
+                      <Button>ПОМОЧЬ СЕЙЧАС</Button>
+                    </Link>
                   </Grid>
                 </Grid>
               </Grid>
@@ -208,6 +166,7 @@ export default function Home() {
             display={{ xs: 'none', lg: 'flex' }}
             position="relative"
             justifyContent="center"
+            mt="-130px"
           >
             <Image
               alt="photo"
@@ -263,23 +222,27 @@ export default function Home() {
           </Grid>
           <Grid item height={150} width="100%" mt={7} zIndex={200}>
             <Carousel>
-              <CarouselImage height={150} src="/carousel/carousel-1.png" />
-              <CarouselImage height={150} src="/carousel/carousel-2.png" />
-              <CarouselImage height={150} src="/carousel/carousel-3.png" />
-              <CarouselImage height={150} src="/carousel/carousel-4.png" />
-              <CarouselImage height={150} src="/carousel/carousel-5.png" />
-              <CarouselImage height={150} src="/carousel/carousel-6.png" />
-              <CarouselImage height={150} src="/carousel/carousel-7.png" />
-              <CarouselImage height={150} src="/carousel/carousel-8.png" />
-              <CarouselImage height={150} src="/carousel/carousel-9.png" />
-              <CarouselImage height={150} src="/carousel/carousel-10.png" />
-              <CarouselImage height={150} src="/carousel/carousel-11.png" />
-              <CarouselImage height={150} src="/carousel/carousel-12.png" />
-              <CarouselImage height={150} src="/carousel/carousel-13.png" />
+              {data?.prisoners?.edges.map(({ node: prisoner }) => (
+                <Link href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
+                  <CarouselImage
+                    key={prisoner.id}
+                    height={150}
+                    src={
+                      prisoner.featuredImage?.node.mediaItemUrl
+                        ? prisoner.featuredImage.node.mediaItemUrl
+                        : prisoner.prisonerData?.sex === 'мужской'
+                        ? '/default_man.png'
+                        : '/default_woman.png'
+                    }
+                  />
+                </Link>
+              ))}
             </Carousel>
           </Grid>
           <Grid item alignSelf="center" mt={8}>
-            <Button variant="red">УЗНАЙТЕ ИХ ИСТОРИИ</Button>
+            <Link href="/#list">
+              <Button variant="red">УЗНАЙТЕ ИХ ИСТОРИИ</Button>
+            </Link>
           </Grid>
         </Grid>
       </Grid>
@@ -306,10 +269,13 @@ export default function Home() {
               height={{ xs: 443, lg: 575 }}
             >
               <Grid item>
-                <Counter label="Всего политзаключённых:">1117</Counter>
+                <Counter label="Всего политзаключённых:">
+                  {data?.prisoners?.edges.length}
+                  {/* лишен/а свободы */}
+                </Counter>
               </Grid>
               <Grid item>
-                <Counter label="Сколько дел в процессе">857</Counter>
+                <Counter label="Сколько дел в процессе">{notFree}</Counter>
               </Grid>
               <Grid item>
                 <Counter
@@ -319,9 +285,7 @@ export default function Home() {
                   0
                 </Counter>
               </Grid>
-              <Grid item>
-                <Button>НАПИСАТЬ ПИСЬМО</Button>
-              </Grid>
+              <Grid item>{/* <Button>НАПИСАТЬ ПИСЬМО</Button> */}</Grid>
             </Grid>
           </Grid>
           {/* Right */}
@@ -332,44 +296,17 @@ export default function Home() {
                   label: 'по полу и возрасту:',
                   element: (
                     <SexAge
-                      data={[
-                        {
-                          age: 15,
-                          female: 3,
-                          label: '15–19',
-                          male: 40,
-                        },
-                        {
-                          age: 20,
-                          female: 4,
-                          label: '20-24',
-                          male: 70,
-                        },
-                        {
-                          age: 25,
-                          female: 10,
-                          label: '25-29',
-                          male: 60,
-                        },
-                        {
-                          age: 30,
-                          female: 10,
-                          label: '30-34',
-                          male: 60,
-                        },
-                        {
-                          age: 35,
-                          female: 10,
-                          label: '35-39',
-                          male: 60,
-                        },
-                      ]}
+                      data={groupPrisonersByAgeAndGender(
+                        data?.prisoners?.edges.map(
+                          ({ node }) => node.prisonerData,
+                        ) ?? [],
+                      )}
                     />
                   ),
                 },
                 {
                   label: 'на свободе/под стражей',
-                  element: <FreeNotFree free={457} notFree={535} />,
+                  element: <FreeNotFree free={free} notFree={notFree} />,
                 },
               ]}
             />
@@ -513,7 +450,11 @@ export default function Home() {
                   }
                   body="Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе."
                   catPictureUrl="/icon_letter.svg"
-                  action={<Button>Написать</Button>}
+                  action={
+                    <Link href="#list" scroll>
+                      <Button>Написать</Button>
+                    </Link>
+                  }
                 />
               </Grid>
               <Grid item>
@@ -527,7 +468,7 @@ export default function Home() {
                   }
                   body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
                   catPictureUrl="/icon_money.svg"
-                  action={<Button>Написать</Button>}
+                  // action={<Button variant="outline">Написать</Button>}
                 />
               </Grid>
               <Grid item>
@@ -541,7 +482,7 @@ export default function Home() {
                   }
                   body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
                   catPictureUrl="/icon_parcel.svg"
-                  action={<Button>Написать</Button>}
+                  // action={<Button variant="outline">Написать</Button>}
                 />
               </Grid>
               <Grid item>
@@ -549,7 +490,11 @@ export default function Home() {
                   title="РАСПРОСТРАНИТЬ ИНФОРМАЦИЮ"
                   body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
                   catPictureUrl="/icon_share.svg"
-                  action={<Button>Написать</Button>}
+                  action={
+                    <Link href="/doc.pdf" scroll>
+                      <Button>распространить</Button>
+                    </Link>
+                  }
                 />
               </Grid>
             </Grid>
@@ -582,47 +527,37 @@ export default function Home() {
             </Typography>
           </Grid>
 
-          <Grid item width="100%" mb={-2.75}>
-            <Typography variant="subtitle1" color="brand.white">
-              Скоро день рождения: можно поздравить
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Grid container gap={1.5} rowGap={4.5} flexWrap="nowrap">
-              <Grid item>
-                <PersonCard
-                  size="l"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
+          {!!birthdays.length && (
+            <>
+              <Grid item width="100%" mb={-2.75}>
+                <Typography variant="subtitle1" color="brand.white">
+                  Скоро день рождения: можно поздравить
+                </Typography>
               </Grid>
               <Grid item>
-                <PersonCard
-                  size="l"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
+                <Grid container gap={1.5} rowGap={4.5} flexWrap="nowrap">
+                  {birthdays.map((prisoner) => (
+                    <Grid item key={prisoner.node.id}>
+                      <PersonCard
+                        size="l"
+                        photoUrl={
+                          prisoner.node.featuredImage?.node.mediaItemUrl
+                            ? prisoner.node.featuredImage?.node.mediaItemUrl
+                            : prisoner.node.prisonerData?.sex === 'мужской'
+                            ? '/default_man.png'
+                            : '/default_woman.png'
+                        }
+                        name={prisoner.node.prisonerData?.name ?? ''}
+                        subtitle={moment(
+                          prisoner.node.prisonerData?.birthdate ?? '',
+                        ).format('DD MMMM')}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
               </Grid>
-              <Grid item>
-                <PersonCard
-                  size="l"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
-              <Grid item>
-                <PersonCard
-                  size="l"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
-            </Grid>
-          </Grid>
+            </>
+          )}
           <Grid item>
             <Grid container gap={1.5} rowGap={4.5}>
               <Grid item width="100%">
@@ -747,26 +682,37 @@ export default function Home() {
               </Grid>
               <Grid item flex={1} mt={10}>
                 <Grid container rowSpacing={8.5} justifyContent="center">
-                  {CARDS.map((card, index) => (
-                    <Grid
-                      item
-                      xs={12}
-                      lg={6}
-                      xl={4}
-                      key={index}
-                      display="flex"
-                      justifyContent="center"
-                    >
-                      <CardPZ
-                        articles={card.articles}
-                        body={card.body}
-                        name={card.name}
-                        pictureUrl={card.pictureUrl}
-                        primaryAction={card.primaryAction}
-                        secondaryAction={card.secondaryAction}
-                      />
-                    </Grid>
-                  ))}
+                  {data?.prisoners &&
+                    data.prisoners.edges.map(({ node: card }, index) => (
+                      <Grid
+                        item
+                        xs={12}
+                        lg={4}
+                        key={index}
+                        display="flex"
+                        justifyContent="center"
+                      >
+                        <CardPZ
+                          articles={[]}
+                          body={card.prisonerData?.description ?? ''}
+                          name={card.prisonerData?.name ?? ''}
+                          sex={card.prisonerData?.sex ?? ''}
+                          pictureUrl={
+                            card.featuredImage?.node.mediaItemUrl ?? ''
+                          }
+                          primaryAction={
+                            <Link href={`/prisoner/${card.id}`} key={card.id}>
+                              <Button>написать</Button>
+                            </Link>
+                          }
+                          secondaryAction={
+                            <Link href={`/prisoner/${card.id}`} key={card.id}>
+                              <Button variant="outline">помочь</Button>
+                            </Link>
+                          }
+                        />
+                      </Grid>
+                    ))}
                 </Grid>
               </Grid>
             </Grid>
