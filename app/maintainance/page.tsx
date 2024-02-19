@@ -3,7 +3,7 @@
 import { Grid } from '@mui/material';
 import Link from 'next/link';
 
-import styles from './maintainance.module.css';
+import styles from './page.module.css';
 
 import { Button } from '../../components/atoms/Button/Button';
 import { Typography } from '../../components/typography/Typography/Typography';

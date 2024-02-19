@@ -1,8 +1,5 @@
-// 'use client';
-
 import { Inter } from 'next/font/google';
 import { PropsWithChildren } from 'react';
-
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -10,6 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import './globals.css';
+import Maintainance from './maintainance/page';
 
 import { ApolloWrapper } from '../ApolloWrapper';
 import ThemeRegistry from '../theming/ThemeRegistry';
@@ -28,7 +26,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <ApolloWrapper>
           <ThemeRegistry>
             <Header />
-            {children}
+            {process.env.MAINTAINANCE !== 'true' ? children : <Maintainance />}
             <Footer />
           </ThemeRegistry>
         </ApolloWrapper>
