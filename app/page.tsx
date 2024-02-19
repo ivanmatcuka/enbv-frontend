@@ -2,6 +2,7 @@
 
 import { Grid } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
@@ -178,19 +179,20 @@ export default function Home() {
           </Grid>
           <Grid item height={150} width="100%" mt={7} zIndex={200}>
             <Carousel>
-              <CarouselImage height={150} src="/carousel/carousel-1.png" />
-              <CarouselImage height={150} src="/carousel/carousel-2.png" />
-              <CarouselImage height={150} src="/carousel/carousel-3.png" />
-              <CarouselImage height={150} src="/carousel/carousel-4.png" />
-              <CarouselImage height={150} src="/carousel/carousel-5.png" />
-              <CarouselImage height={150} src="/carousel/carousel-6.png" />
-              <CarouselImage height={150} src="/carousel/carousel-7.png" />
-              <CarouselImage height={150} src="/carousel/carousel-8.png" />
-              <CarouselImage height={150} src="/carousel/carousel-9.png" />
-              <CarouselImage height={150} src="/carousel/carousel-10.png" />
-              <CarouselImage height={150} src="/carousel/carousel-11.png" />
-              <CarouselImage height={150} src="/carousel/carousel-12.png" />
-              <CarouselImage height={150} src="/carousel/carousel-13.png" />
+              {data?.prisoners?.edges
+                .map(
+                  ({ node: prisoner }) =>
+                    prisoner.featuredImage?.node.mediaItemUrl && (
+                      <Link href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
+                        <CarouselImage
+                          key={prisoner.id}
+                          height={150}
+                          src={prisoner.featuredImage.node.mediaItemUrl}
+                        />
+                      </Link>
+                    ),
+                )
+                .filter(Boolean)}
             </Carousel>
           </Grid>
           <Grid item alignSelf="center" mt={8}>
@@ -680,8 +682,16 @@ export default function Home() {
                           pictureUrl={
                             card.featuredImage?.node.mediaItemUrl ?? ''
                           }
-                          primaryAction={''}
-                          secondaryAction={''}
+                          primaryAction={
+                            <Link href={`/prisoner/${card.id}`} key={card.id}>
+                              <Button>написать</Button>
+                            </Link>
+                          }
+                          secondaryAction={
+                            <Link href={`/prisoner/${card.id}`} key={card.id}>
+                              <Button variant="outline">помочь</Button>
+                            </Link>
+                          }
                         />
                       </Grid>
                     ))}

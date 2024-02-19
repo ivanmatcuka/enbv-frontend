@@ -2,6 +2,7 @@
 
 import { Grid, styled } from '@mui/material';
 import { FC, ReactNode } from 'react';
+import ShowMoreText from 'react-show-more-text';
 
 import { Article } from '../../atoms/Article/Article';
 import { Typography } from '../../typography/Typography/Typography';
@@ -40,13 +41,6 @@ const StyledImage = styled('img')({
   left: -6,
 });
 
-const StyledBody = styled(Typography)({
-  maxHeight: 175,
-
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-});
-
 type CardPZProps = {
   name: string;
   body: string;
@@ -64,56 +58,60 @@ export const CardPZ: FC<CardPZProps> = ({
   primaryAction,
   secondaryAction,
   pictureUrl,
-}) => {
-  console.log(sex);
-  return (
-    <Container
-      container
-      flexDirection="column"
-      rowSpacing={2}
-      width={392}
-      pl={2}
-      pr={2}
-    >
-      <Grid item>
-        <Typography variant="h3" component="p" pl={15.5}>
-          {name}
-        </Typography>
+}) => (
+  <Container
+    container
+    flexDirection="column"
+    rowSpacing={2}
+    width={392}
+    pl={2}
+    pr={2}
+  >
+    <Grid item>
+      <Typography variant="h3" component="p" pl={15.5}>
+        {name}
+      </Typography>
+    </Grid>
+    <Grid item>
+      <Grid container spacing={0.5}>
+        {articles?.map((article, index) => (
+          <Grid item key={index}>
+            <Article label={article} />
+          </Grid>
+        ))}
       </Grid>
-      <Grid item>
-        <Grid container spacing={0.5}>
-          {articles?.map((article, index) => (
-            <Grid item key={index}>
-              <Article label={article} />
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
-      <Grid item pb={2} height={175}>
-        <StyledBody variant="p3" component="p">
+    </Grid>
+    <Grid item pb={2} height={175}>
+      <Typography variant="p3" component="p">
+        <ShowMoreText
+          lines={6}
+          more=""
+          less=""
+          truncatedEndingComponent={'...'}
+        >
           {body}
-        </StyledBody>
-      </Grid>
-      {primaryAction && (
-        <PrimaryActionContainer>{primaryAction}</PrimaryActionContainer>
-      )}
-      {secondaryAction && (
-        <SecondaryActionContainer>{secondaryAction}</SecondaryActionContainer>
-      )}
-      <Background src="/card_background.png" />
+        </ShowMoreText>
+      </Typography>
+    </Grid>
+    {primaryAction && (
+      <PrimaryActionContainer>{primaryAction}</PrimaryActionContainer>
+    )}
+    {secondaryAction && (
+      <SecondaryActionContainer>{secondaryAction}</SecondaryActionContainer>
+    )}
+    <Background src="/card_background.png" />
 
-      <StyledImage
-        alt="icon_letter"
-        width={135}
-        height={121}
-        src={
-          pictureUrl
-            ? pictureUrl
-            : sex === 'мужской'
-            ? '/default_man.png'
-            : '/default_woman.png'
-        }
-      />
-    </Container>
-  );
-};
+    <StyledImage
+      alt="icon_letter"
+      width={135}
+      height={121}
+      src={
+        pictureUrl
+          ? pictureUrl
+          : sex === 'мужской'
+          ? '/default_man.png'
+          : '/default_woman.png'
+      }
+    />
+  </Container>
+);

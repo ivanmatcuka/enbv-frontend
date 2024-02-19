@@ -21,9 +21,12 @@ export default function Prisoner({ params }: { params: { id: string } }) {
 
   const prisonerData = data?.prisoner?.prisonerData;
   const birthday = moment(prisonerData?.birthdate ?? '');
-  const arrested = moment(prisonerData?.dateArrested ?? '');
+  const arrested = moment(prisonerData?.dateofarrest ?? '');
+  const freed = moment(prisonerData?.freedomdate ?? '');
 
-  if (!data?.prisoner?.featuredImage?.node.sourceUrl) return;
+  const pictureUrl = data?.prisoner?.featuredImage?.node.mediaItemUrl ?? '';
+
+  if (!data?.prisoner) return;
 
   return (
     <Grid
@@ -38,7 +41,13 @@ export default function Prisoner({ params }: { params: { id: string } }) {
         alt={prisonerData?.name ?? 'profile'}
         width={297}
         height={306}
-        src={data.prisoner.featuredImage.node.sourceUrl}
+        src={
+          pictureUrl
+            ? pictureUrl
+            : data.prisoner.prisonerData?.sex === 'мужской'
+            ? '/default_man.png'
+            : '/default_woman.png'
+        }
       />
       <Grid item ml={40} mb={4}>
         <Typography variant="h1">
@@ -60,12 +69,14 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           </Grid>
           <Grid ml={36} item>
             <Typography variant="p3">
-              {`Задержан ${arrested.format('DD MMMM YYYY')}`}
+              {`Задержан: ${arrested.format('DD MMMM YYYY')}`}
             </Typography>
           </Grid>
           <Grid ml={36} item>
             <Typography variant="p3">
-              {`Освобождается ${arrested.format('DD MMMM YYYY')}`}
+              {`Освобождается: ${
+                prisonerData?.freedomdate ? freed.format('DD MMMM YYYY') : '–'
+              }`}
             </Typography>
           </Grid>
           <Grid ml={36} item mb={4}>
@@ -75,16 +86,16 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           </Grid>
           <Grid item>
             <Typography variant="p1">
-              {data?.prisoner?.prisonerData?.article}
+              {data?.prisoner?.prisonerData?.description}
             </Typography>
           </Grid>
           <Grid mt={10} item>
             <Grid container columnGap={2}>
               <Grid item>
-                <Button>НАПИСАТЬ ПИСЬМО</Button>
+                <Button>написать письмо</Button>
               </Grid>
               <Grid item>
-                <Button variant="outline">НАПИСАТЬ ПИСЬМО</Button>
+                <Button variant="outline">помочь по-другому</Button>
               </Grid>
             </Grid>
           </Grid>
