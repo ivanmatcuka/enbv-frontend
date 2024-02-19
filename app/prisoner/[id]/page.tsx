@@ -17,6 +17,8 @@ const ProfileImage = styled('img')({
   zIndex: 100,
 
   inset: 0,
+
+  objectFit: 'cover',
 });
 
 export default function Prisoner({ params }: { params: { id: string } }) {
