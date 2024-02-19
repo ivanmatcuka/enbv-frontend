@@ -38,21 +38,21 @@ export default function Header() {
                     },
                     {
                       element: (
-                        <Link href="#whom" scroll>
+                        <Link href="/#whom" scroll>
                           КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС
                         </Link>
                       ),
                     },
                     {
                       element: (
-                        <Link href="#list" scroll>
+                        <Link href="/#list" scroll>
                           СПИСОК ПРЕСЛЕДУЕМЫХ
                         </Link>
                       ),
                     },
                     {
                       element: (
-                        <Link href="#why" scroll>
+                        <Link href="/#why" scroll>
                           ПОЖЕРТВОВАТЬ ПРОЕКТУ
                         </Link>
                       ),

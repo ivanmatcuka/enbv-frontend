@@ -24,5 +24,6 @@ export const CardPZ: Story = {
     primaryAction: <Button>Написать</Button>,
     secondaryAction: <Button variant="outline">Помочь</Button>,
     pictureUrl: '/card_pz_photo.png',
+    sex: 'мужской',
   },
 };

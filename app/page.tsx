@@ -18,9 +18,19 @@ import { CardPZ } from '../components/organisms/CardPZ/CardPZ';
 import { Counter } from '../components/organisms/Counter/Counter';
 import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
+import { groupPrisonersByAgeAndGender } from '../helpers/groupPrisonersByAgeAndGender';
 
 export default function Home() {
   const { data } = usePrisoners();
+
+  const prisonersCount = data?.prisoners?.edges.length ?? 0;
+  const notFree =
+    data?.prisoners?.edges.filter(
+      ({ node: prisoner }) =>
+        prisoner.prisonerData?.status === 'лишен/а свободы',
+    ).length ?? 0;
+
+  const free = prisonersCount - notFree ?? 0;
 
   return (
     <Grid container>
@@ -108,7 +118,9 @@ export default function Home() {
                     pl={1.5}
                     flexBasis={{ xs: 'calc(100% - 140px)', lg: 'auto' }}
                   >
-                    <Button>ПОМОЧЬ СЕЙЧАС</Button>
+                    <Link href="#list" scroll>
+                      <Button>ПОМОЧЬ СЕЙЧАС</Button>
+                    </Link>
                   </Grid>
                 </Grid>
               </Grid>
@@ -179,24 +191,27 @@ export default function Home() {
           </Grid>
           <Grid item height={150} width="100%" mt={7} zIndex={200}>
             <Carousel>
-              {data?.prisoners?.edges
-                .map(
-                  ({ node: prisoner }) =>
-                    prisoner.featuredImage?.node.mediaItemUrl && (
-                      <Link href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
-                        <CarouselImage
-                          key={prisoner.id}
-                          height={150}
-                          src={prisoner.featuredImage.node.mediaItemUrl}
-                        />
-                      </Link>
-                    ),
-                )
-                .filter(Boolean)}
+              {data?.prisoners?.edges.map(({ node: prisoner }) => (
+                <Link href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
+                  <CarouselImage
+                    key={prisoner.id}
+                    height={150}
+                    src={
+                      prisoner.featuredImage?.node.mediaItemUrl
+                        ? prisoner.featuredImage.node.mediaItemUrl
+                        : prisoner.prisonerData?.sex === 'мужской'
+                        ? '/default_man.png'
+                        : '/default_woman.png'
+                    }
+                  />
+                </Link>
+              ))}
             </Carousel>
           </Grid>
           <Grid item alignSelf="center" mt={8}>
-            <Button variant="red">УЗНАЙТЕ ИХ ИСТОРИИ</Button>
+            <Link href="/#list">
+              <Button variant="red">УЗНАЙТЕ ИХ ИСТОРИИ</Button>
+            </Link>
           </Grid>
         </Grid>
       </Grid>
@@ -223,10 +238,13 @@ export default function Home() {
               height={{ xs: 443, lg: 575 }}
             >
               <Grid item>
-                <Counter label="Всего политзаключённых:">1117</Counter>
+                <Counter label="Всего политзаключённых:">
+                  {data?.prisoners?.edges.length}
+                  {/* лишен/а свободы */}
+                </Counter>
               </Grid>
               <Grid item>
-                <Counter label="Сколько дел в процессе">857</Counter>
+                <Counter label="Сколько дел в процессе">{notFree}</Counter>
               </Grid>
               <Grid item>
                 <Counter
@@ -236,9 +254,7 @@ export default function Home() {
                   0
                 </Counter>
               </Grid>
-              <Grid item>
-                <Button>НАПИСАТЬ ПИСЬМО</Button>
-              </Grid>
+              <Grid item>{/* <Button>НАПИСАТЬ ПИСЬМО</Button> */}</Grid>
             </Grid>
           </Grid>
           {/* Right */}
@@ -249,44 +265,17 @@ export default function Home() {
                   label: 'по полу и возрасту:',
                   element: (
                     <SexAge
-                      data={[
-                        {
-                          age: 15,
-                          female: 3,
-                          label: '15–19',
-                          male: 40,
-                        },
-                        {
-                          age: 20,
-                          female: 4,
-                          label: '20-24',
-                          male: 70,
-                        },
-                        {
-                          age: 25,
-                          female: 10,
-                          label: '25-29',
-                          male: 60,
-                        },
-                        {
-                          age: 30,
-                          female: 10,
-                          label: '30-34',
-                          male: 60,
-                        },
-                        {
-                          age: 35,
-                          female: 10,
-                          label: '35-39',
-                          male: 60,
-                        },
-                      ]}
+                      data={groupPrisonersByAgeAndGender(
+                        data?.prisoners?.edges.map(
+                          ({ node }) => node.prisonerData,
+                        ) ?? [],
+                      )}
                     />
                   ),
                 },
                 {
                   label: 'на свободе/под стражей',
-                  element: <FreeNotFree free={457} notFree={535} />,
+                  element: <FreeNotFree free={free} notFree={notFree} />,
                 },
               ]}
             />

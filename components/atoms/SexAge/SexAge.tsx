@@ -64,6 +64,7 @@ export const SexAge: FC<SexAgeProps> = ({ data }) => {
         </TableHead>
         <TableBody>
           {[...data]
+            .filter((row) => row.male || row.female)
             .sort((a, b) => b.age - a.age)
             .map((row) => (
               <StyledTableRow key={row.label}>
