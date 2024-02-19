@@ -1,6 +1,7 @@
 fragment PrisonerItem on Prisoner {
   id
   prisonerData {
+    article
     birthdate
     city
     dateofarrest

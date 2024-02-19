@@ -966,7 +966,7 @@ export type CommentToParentCommentConnectionWhereArgs = {
 export type Comment_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Comment_Prisonerdata';
   address?: Maybe<Scalars['String']['output']>;
-  article?: Maybe<Array<Maybe<Category>>>;
+  article?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -1269,7 +1269,7 @@ export type ContentNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStyleshe
 export type ContentNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentNode_Prisonerdata';
   address?: Maybe<Scalars['String']['output']>;
-  article?: Maybe<Array<Maybe<Category>>>;
+  article?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -1297,7 +1297,7 @@ export type ContentTemplate = {
 export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentTemplate_Prisonerdata';
   address?: Maybe<Scalars['String']['output']>;
-  article?: Maybe<Array<Maybe<Category>>>;
+  article?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -3381,7 +3381,7 @@ export type MenuItemToMenuItemLinkableConnectionEdge = Edge & MenuItemLinkableCo
 export type MenuItem_Prisonerdata = AcfFieldGroup & {
   __typename?: 'MenuItem_Prisonerdata';
   address?: Maybe<Scalars['String']['output']>;
-  article?: Maybe<Array<Maybe<Category>>>;
+  article?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -3466,7 +3466,7 @@ export type MenuToMenuItemConnectionWhereArgs = {
 export type Menu_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Menu_Prisonerdata';
   address?: Maybe<Scalars['String']['output']>;
-  article?: Maybe<Array<Maybe<Category>>>;
+  article?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -9116,7 +9116,7 @@ export type TermNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetC
 export type TermNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'TermNode_Prisonerdata';
   address?: Maybe<Scalars['String']['output']>;
-  article?: Maybe<Array<Maybe<Category>>>;
+  article?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -10409,7 +10409,7 @@ export type UserToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPage
 export type User_Prisonerdata = AcfFieldGroup & {
   __typename?: 'User_Prisonerdata';
   address?: Maybe<Scalars['String']['output']>;
-  article?: Maybe<Array<Maybe<Category>>>;
+  article?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -10495,19 +10495,20 @@ export type PrisonerQueryVariables = Exact<{
 }>;
 
 
-export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?: 'Prisoner', id: string, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null };
+export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?: 'Prisoner', id: string, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', article?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null };
 
-export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null };
+export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', article?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null };
 
 export type PrisonersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } }> } | null };
+export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', article?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } }> } | null };
 
 export const PrisonerItemFragmentDoc = gql`
     fragment PrisonerItem on Prisoner {
   id
   prisonerData {
+    article
     birthdate
     city
     dateofarrest

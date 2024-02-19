@@ -1,8 +1,10 @@
 'use client';
 
 import { Grid } from '@mui/material';
+import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo } from 'react';
 
 import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
@@ -24,11 +26,40 @@ export default function Home() {
   const { data } = usePrisoners();
 
   const prisonersCount = data?.prisoners?.edges.length ?? 0;
-  const notFree =
-    data?.prisoners?.edges.filter(
-      ({ node: prisoner }) =>
-        prisoner.prisonerData?.status === 'лишен/а свободы',
-    ).length ?? 0;
+  const notFree = useMemo(
+    () =>
+      data?.prisoners?.edges.filter(
+        ({ node: prisoner }) =>
+          prisoner.prisonerData?.status === 'лишен/а свободы',
+      ).length ?? 0,
+    [data?.prisoners?.edges],
+  );
+
+  const birthdays = useMemo(() => {
+    if (!data?.prisoners) return [];
+
+    return [...data.prisoners.edges]
+      .filter((a) => {
+        const now = moment();
+        const aBirthdayThisYear = moment(a.node.prisonerData?.birthdate).year(
+          now.year(),
+        );
+
+        return now.diff(aBirthdayThisYear) >= 0;
+      })
+      .sort((a, b) => {
+        const now = moment();
+        const aBirthdayThisYear = moment(a.node.prisonerData?.birthdate).year(
+          now.year(),
+        );
+        const bBirthdayThisYear = moment(b.node.prisonerData?.birthdate).year(
+          now.year(),
+        );
+
+        return aBirthdayThisYear.diff(now) - bBirthdayThisYear.diff(now);
+      })
+      .slice(0, 3);
+  }, [data?.prisoners]);
 
   const free = prisonersCount - notFree ?? 0;
 
@@ -419,7 +450,11 @@ export default function Home() {
                   }
                   body="Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе."
                   catPictureUrl="/icon_letter.svg"
-                  action={<Button>Написать</Button>}
+                  action={
+                    <Link href="#list" scroll>
+                      <Button>Написать</Button>
+                    </Link>
+                  }
                 />
               </Grid>
               <Grid item>
@@ -433,7 +468,7 @@ export default function Home() {
                   }
                   body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
                   catPictureUrl="/icon_money.svg"
-                  action={<Button>Написать</Button>}
+                  // action={<Button variant="outline">Написать</Button>}
                 />
               </Grid>
               <Grid item>
@@ -447,7 +482,7 @@ export default function Home() {
                   }
                   body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
                   catPictureUrl="/icon_parcel.svg"
-                  action={<Button>Написать</Button>}
+                  // action={<Button variant="outline">Написать</Button>}
                 />
               </Grid>
               <Grid item>
@@ -455,7 +490,11 @@ export default function Home() {
                   title="РАСПРОСТРАНИТЬ ИНФОРМАЦИЮ"
                   body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
                   catPictureUrl="/icon_share.svg"
-                  action={<Button>Написать</Button>}
+                  action={
+                    <Link href="/doc.pdf" scroll>
+                      <Button>распространить</Button>
+                    </Link>
+                  }
                 />
               </Grid>
             </Grid>
@@ -488,47 +527,37 @@ export default function Home() {
             </Typography>
           </Grid>
 
-          <Grid item width="100%" mb={-2.75}>
-            <Typography variant="subtitle1" color="brand.white">
-              Скоро день рождения: можно поздравить
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Grid container gap={1.5} rowGap={4.5} flexWrap="nowrap">
-              <Grid item>
-                <PersonCard
-                  size="l"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
+          {!!birthdays.length && (
+            <>
+              <Grid item width="100%" mb={-2.75}>
+                <Typography variant="subtitle1" color="brand.white">
+                  Скоро день рождения: можно поздравить
+                </Typography>
               </Grid>
               <Grid item>
-                <PersonCard
-                  size="l"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
+                <Grid container gap={1.5} rowGap={4.5} flexWrap="nowrap">
+                  {birthdays.map((prisoner) => (
+                    <Grid item key={prisoner.node.id}>
+                      <PersonCard
+                        size="l"
+                        photoUrl={
+                          prisoner.node.featuredImage?.node.mediaItemUrl
+                            ? prisoner.node.featuredImage?.node.mediaItemUrl
+                            : prisoner.node.prisonerData?.sex === 'мужской'
+                            ? '/default_man.png'
+                            : '/default_woman.png'
+                        }
+                        name={prisoner.node.prisonerData?.name ?? ''}
+                        subtitle={moment(
+                          prisoner.node.prisonerData?.birthdate ?? '',
+                        ).format('DD MMMM')}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
               </Grid>
-              <Grid item>
-                <PersonCard
-                  size="l"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
-              <Grid item>
-                <PersonCard
-                  size="l"
-                  photoUrl="/person.webp"
-                  name="Габышев Александр"
-                  subtitle="18 сентября"
-                />
-              </Grid>
-            </Grid>
-          </Grid>
+            </>
+          )}
           <Grid item>
             <Grid container gap={1.5} rowGap={4.5}>
               <Grid item width="100%">
