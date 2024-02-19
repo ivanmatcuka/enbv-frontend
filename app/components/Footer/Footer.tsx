@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Button } from '../../../components/atoms/Button/Button';
 import { Typography } from '../../../components/typography/Typography/Typography';
@@ -37,9 +38,9 @@ export default function Footer() {
       </Grid>
       <DrawingFrame
         maxWidth={{ xs: '380px', lg: '796px' }}
-        height={{ xs: '620px', lg: '343px' }}
         width="100%"
         p={3}
+        pb={4}
         alignSelf="center"
         item
       >
@@ -62,7 +63,9 @@ export default function Footer() {
               className="footer__image"
             />
             <div>
-              <Button>Поддержать</Button>
+              <Link href="https://boosty.to/avtozaklive" target="_blank">
+                <Button>Поддержать</Button>
+              </Link>
             </div>
           </Grid>
           <Grid
@@ -78,60 +81,13 @@ export default function Footer() {
               className="footer__image"
             />
             <div>
-              <Button>Поддержать</Button>
+              <Link href="https://www.patreon.com/avtozak" target="_blank">
+                <Button>Поддержать</Button>
+              </Link>
             </div>
-          </Grid>
-          <Grid item flex={1} pt={5}>
-            <Typography variant="subtitle1" textAlign="center" width="100%">
-              Или перевести напрямую по следующим реквизитам:
-            </Typography>
           </Grid>
         </Grid>
       </DrawingFrame>
-      <Grid item mt={4.5} alignSelf="center">
-        <Typography variant="subtitle1" textAlign="center">
-          Также вы можете купить наш мерч:
-        </Typography>
-      </Grid>
-      <Grid item alignSelf="center" maxWidth={748} width="100%" mt={3}>
-        <Grid container justifyContent={{ xs: 'center', lg: 'space-between' }}>
-          <DrawingFrame
-            item
-            width={313}
-            height={325}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Image
-              alt="merch_1"
-              width={364}
-              height={210}
-              src="/merch_1.png"
-              className="footer__merch"
-            />
-          </DrawingFrame>
-          <DrawingFrame
-            item
-            width={313}
-            height={325}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Image
-              alt="merch_2"
-              width={364}
-              height={210}
-              src="/merch_2.png"
-              className="footer__merch"
-            />
-          </DrawingFrame>
-        </Grid>
-      </Grid>
-      <Grid item mt={3} mb={14} alignSelf="center">
-        <Button>В МАГАЗИН</Button>
-      </Grid>
     </Grid>
   );
 }
