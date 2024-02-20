@@ -16,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const PersonCardBig: Story = {
   args: {
+    id: 'id',
     size: 'l',
     photoUrl:
       'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200',
@@ -26,6 +27,7 @@ export const PersonCardBig: Story = {
 
 export const PersonCardSmall: Story = {
   args: {
+    id: 'id',
     size: 'm',
     photoUrl:
       'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200',
