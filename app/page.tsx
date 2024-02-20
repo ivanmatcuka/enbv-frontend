@@ -692,12 +692,20 @@ export default function Home() {
                             card.featuredImage?.node.mediaItemUrl ?? ''
                           }
                           primaryAction={
-                            <Link href={`/prisoner/${card.id}`} key={card.id}>
+                            <Link
+                              href={`/prisoner/${card.id}`}
+                              key={card.id}
+                              scroll
+                            >
                               <Button>написать ✉</Button>
                             </Link>
                           }
                           secondaryAction={
-                            <Link href={`/prisoner/${card.id}`} key={card.id}>
+                            <Link
+                              href={`/prisoner/${card.id}`}
+                              key={card.id}
+                              scroll
+                            >
                               <Button variant="outline">помочь</Button>
                             </Link>
                           }
