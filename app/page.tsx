@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
 
+import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
+
 import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
 import styles from './page.module.css';
@@ -242,21 +244,20 @@ export default function Home() {
           </Grid>
           <Grid item height={150} width="100%" mt={7} zIndex={200}>
             <Carousel>
-              {data?.prisoners?.edges.map(({ node: prisoner }) => (
-                <Link href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
-                  <CarouselImage
-                    key={prisoner.id}
-                    height={150}
-                    src={
-                      prisoner.featuredImage?.node.mediaItemUrl
-                        ? prisoner.featuredImage.node.mediaItemUrl
-                        : prisoner.prisonerData?.sex === 'мужской'
-                        ? '/default_man.png'
-                        : '/default_woman.png'
-                    }
-                  />
-                </Link>
-              ))}
+              {data?.prisoners?.edges
+                .filter(
+                  ({ node: prisoner }) =>
+                    !!prisoner.featuredImage?.node.mediaItemUrl,
+                )
+                .map(({ node: prisoner }) => (
+                  <Link href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
+                    <CarouselImage
+                      key={prisoner.id}
+                      height={150}
+                      src={getPrisonerPicture(prisoner)}
+                    />
+                  </Link>
+                ))}
             </Carousel>
           </Grid>
           <Grid item alignSelf="center" mt={8}>
@@ -556,21 +557,15 @@ export default function Home() {
               </Grid>
               <Grid item>
                 <Grid container gap={1.5} rowGap={4.5} flexWrap="nowrap">
-                  {birthdays.map((prisoner) => (
-                    <Grid item key={prisoner.node.id}>
+                  {birthdays.map(({ node: prisoner }) => (
+                    <Grid item key={prisoner.id}>
                       <PersonCard
-                        id={prisoner.node.id}
+                        id={prisoner.id}
                         size="l"
-                        photoUrl={
-                          prisoner.node.featuredImage?.node.mediaItemUrl
-                            ? prisoner.node.featuredImage?.node.mediaItemUrl
-                            : prisoner.node.prisonerData?.sex === 'мужской'
-                            ? '/default_man.png'
-                            : '/default_woman.png'
-                        }
-                        name={prisoner.node.prisonerData?.name ?? ''}
+                        photoUrl={getPrisonerPicture(prisoner)}
+                        name={prisoner.prisonerData?.name ?? ''}
                         subtitle={moment(
-                          prisoner.node.prisonerData?.birthdate ?? '',
+                          prisoner.prisonerData?.birthdate ?? '',
                         ).format('DD MMMM')}
                       />
                     </Grid>
@@ -590,21 +585,15 @@ export default function Home() {
                   </Grid>
                   <Grid item>
                     <Grid container gap={1.5} rowGap={4.5} flexWrap="nowrap">
-                      {releases.map((prisoner) => (
-                        <Grid item key={prisoner.node.id}>
+                      {releases.map(({ node: prisoner }) => (
+                        <Grid item key={prisoner.id}>
                           <PersonCard
-                            id={prisoner.node.id}
+                            id={prisoner.id}
                             size="m"
-                            photoUrl={
-                              prisoner.node.featuredImage?.node.mediaItemUrl
-                                ? prisoner.node.featuredImage?.node.mediaItemUrl
-                                : prisoner.node.prisonerData?.sex === 'мужской'
-                                ? '/default_man.png'
-                                : '/default_woman.png'
-                            }
-                            name={prisoner.node.prisonerData?.name ?? ''}
+                            photoUrl={getPrisonerPicture(prisoner)}
+                            name={prisoner.prisonerData?.name ?? ''}
                             subtitle={moment(
-                              prisoner.node.prisonerData?.birthdate ?? '',
+                              prisoner.prisonerData?.birthdate ?? '',
                             ).format('DD MMMM')}
                           />
                         </Grid>

@@ -1,6 +1,11 @@
 import { useMemo } from 'react';
 
-import { usePrisonersQuery } from '../generated';
+import { PrisonersQueryResult, usePrisonersQuery } from '../generated';
+
+export type Prisoners = NonNullable<
+  NonNullable<PrisonersQueryResult['data']>['prisoners']
+>['edges'];
+export type Prisoner = Prisoners[number]['node'];
 
 export const usePrisoners = () => {
   const { loading, error, data } = usePrisonersQuery({
