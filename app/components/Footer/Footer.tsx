@@ -14,7 +14,13 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 
 export default function Footer() {
   return (
-    <Grid width="100%" flexDirection="column" justifyContent="center" container>
+    <Grid
+      width="100%"
+      flexDirection="column"
+      justifyContent="center"
+      id="footer"
+      container
+    >
       <Grid item flex={1}>
         <Grid
           container

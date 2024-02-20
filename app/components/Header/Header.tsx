@@ -30,31 +30,21 @@ export default function Header() {
                 <Menu
                   items={[
                     {
-                      element: (
-                        <Link href="/" scroll={false}>
-                          КАК ПОМОЧЬ
-                        </Link>
-                      ),
+                      element: <Link href="/#what">КАК ПОМОЧЬ</Link>,
                     },
                     {
                       element: (
-                        <Link href="/#whom" scroll>
+                        <Link href="/#whom">
                           КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС
                         </Link>
                       ),
                     },
                     {
-                      element: (
-                        <Link href="/#list" scroll>
-                          СПИСОК ПРЕСЛЕДУЕМЫХ
-                        </Link>
-                      ),
+                      element: <Link href="/#list">СПИСОК ПРЕСЛЕДУЕМЫХ</Link>,
                     },
                     {
                       element: (
-                        <Link href="/#why" scroll>
-                          ПОЖЕРТВОВАТЬ ПРОЕКТУ
-                        </Link>
+                        <Link href="/#footer">ПОЖЕРТВОВАТЬ ПРОЕКТУ</Link>
                       ),
                     },
                   ]}
