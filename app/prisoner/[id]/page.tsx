@@ -5,6 +5,7 @@ import moment from 'moment';
 import Link from 'next/link';
 
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
+import Scroll from '@/app/components/Scroll/Scroll';
 import { Article } from '@/components/atoms/Article/Article';
 import { Button } from '@/components/atoms/Button/Button';
 import { Card } from '@/components/organisms/Card/Card';
@@ -43,6 +44,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
       mb={8}
       position="relative"
     >
+      <Scroll />
       <ProfileImage
         alt={prisonerData?.name ?? 'profile'}
         width={297}

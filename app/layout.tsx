@@ -6,7 +6,6 @@ import 'slick-carousel/slick/slick.css';
 
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import Scroll from './components/Scroll/Scroll';
 import './globals.css';
 import Maintainance from './maintainance/page';
 
@@ -23,7 +22,6 @@ export const metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <Scroll />
       <body className={inter.className}>
         <ApolloWrapper>
           <ThemeRegistry>
