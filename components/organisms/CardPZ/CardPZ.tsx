@@ -66,60 +66,68 @@ export const CardPZ: FC<CardPZProps> = ({
   primaryAction,
   secondaryAction,
   pictureUrl,
-}) => (
-  <Container
-    container
-    flexDirection="column"
-    rowSpacing={2}
-    width={392}
-    pl={2}
-    pr={2}
-  >
-    <Grid item>
-      <StyledName variant="h3" component="p" pl={15.5}>
-        {name}
-      </StyledName>
-    </Grid>
-    <Grid item>
-      <Grid container spacing={0.5}>
-        {articles?.map((article, index) => (
-          <Grid item key={index}>
-            <Article label={article} />
-          </Grid>
-        ))}
-      </Grid>
-    </Grid>
-    <Grid item pb={2} height={175}>
-      <Typography variant="p3" component="p">
-        <ShowMoreText
-          lines={6}
-          more=""
-          less=""
-          truncatedEndingComponent={'...'}
-        >
-          {body}
-        </ShowMoreText>
-      </Typography>
-    </Grid>
-    {primaryAction && (
-      <PrimaryActionContainer>{primaryAction}</PrimaryActionContainer>
-    )}
-    {secondaryAction && (
-      <SecondaryActionContainer>{secondaryAction}</SecondaryActionContainer>
-    )}
-    <Background src="/card_background.png" />
+}) => {
+  const filteredArticles = articles?.slice(0, 5).filter((a) => a);
 
-    <StyledImage
-      alt="icon_letter"
-      width={135}
-      height={121}
-      src={
-        pictureUrl
-          ? pictureUrl
-          : sex === 'мужской'
-          ? '/default_man.png'
-          : '/default_woman.png'
-      }
-    />
-  </Container>
-);
+  return (
+    <Container
+      container
+      flexDirection="column"
+      rowSpacing={2}
+      width={392}
+      pl={2}
+      pr={2}
+    >
+      {/* Name */}
+      <Grid item>
+        <StyledName variant="h3" component="p" pl={15.5}>
+          {name}
+        </StyledName>
+      </Grid>
+      {/* Articles */}
+      {filteredArticles && filteredArticles.length > 0 && (
+        <Grid item>
+          <Grid container spacing={0.5}>
+            {filteredArticles.map((article, index) => (
+              <Grid item key={index}>
+                <Article label={article} />
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+      )}
+      <Grid item pb={2} height={175}>
+        <Typography variant="p3" component="p">
+          <ShowMoreText
+            lines={6}
+            more=""
+            less=""
+            truncatedEndingComponent={'...'}
+          >
+            {body}
+          </ShowMoreText>
+        </Typography>
+      </Grid>
+      {primaryAction && (
+        <PrimaryActionContainer>{primaryAction}</PrimaryActionContainer>
+      )}
+      {secondaryAction && (
+        <SecondaryActionContainer>{secondaryAction}</SecondaryActionContainer>
+      )}
+      <Background src="/card_background.png" />
+
+      <StyledImage
+        alt="icon_letter"
+        width={135}
+        height={121}
+        src={
+          pictureUrl
+            ? pictureUrl
+            : sex === 'мужской'
+            ? '/default_man.png'
+            : '/default_woman.png'
+        }
+      />
+    </Container>
+  );
+};
