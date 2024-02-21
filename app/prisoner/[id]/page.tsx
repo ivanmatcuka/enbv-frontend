@@ -2,14 +2,14 @@
 
 import { Grid, styled } from '@mui/material';
 import moment from 'moment';
-import Link from 'next/link';
 
+import { Cards } from '@/app/components/Cards/Cards';
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
 import Scroll from '@/app/components/Scroll/Scroll';
 import { Article } from '@/components/atoms/Article/Article';
 import { Button } from '@/components/atoms/Button/Button';
-import { Card } from '@/components/organisms/Card/Card';
 import { Typography } from '@/components/typography/Typography/Typography';
+import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
 
 import { usePrisoner } from '../../../apollo/hooks/usePrisoner';
 
@@ -25,10 +25,11 @@ const ProfileImage = styled('img')({
 export default function Prisoner({ params }: { params: { id: string } }) {
   const { data } = usePrisoner(params.id);
 
-  const prisonerData = data?.prisoner?.prisonerData;
-  const birthday = moment(prisonerData?.birthdate ?? '');
-  const arrested = moment(prisonerData?.dateofarrest ?? '');
-  const freed = moment(prisonerData?.freedomdate ?? '');
+  const pd = data?.prisoner?.prisonerData;
+
+  const birthday = pd?.birthdate ? moment(pd.birthdate) : null;
+  const arrested = pd?.dateofarrest ? moment(pd.dateofarrest) : null;
+  const freed = pd?.freedomdate ? moment(pd.freedomdate) : null;
 
   const pictureUrl = data?.prisoner?.featuredImage?.node.mediaItemUrl ?? '';
 
@@ -46,24 +47,17 @@ export default function Prisoner({ params }: { params: { id: string } }) {
     >
       <Scroll />
       <ProfileImage
-        alt={prisonerData?.name ?? 'profile'}
+        alt={pd?.name ?? 'profile'}
         width={297}
         height={306}
-        src={
-          pictureUrl
-            ? pictureUrl
-            : data.prisoner.prisonerData?.sex === 'мужской'
-            ? '/default_man.png'
-            : '/default_woman.png'
-        }
+        src={getPrisonerPicture(pictureUrl, pd?.sex)}
       />
       <Grid item ml={40} mb={4}>
         <Typography variant="h1">
-          {prisonerData?.name && prisonerData?.name.split(' ')[0]}
+          {pd?.name && pd?.name.split(' ')[0]}
         </Typography>
         <Typography variant="h2">
-          {prisonerData?.name &&
-            prisonerData.name.split(' ').slice(1).join(' ')}
+          {pd?.name && pd.name.split(' ').slice(1).join(' ')}
         </Typography>
       </Grid>
       <DrawingFrame width="100%" p={4} alignSelf="center" item mb={3}>
@@ -80,7 +74,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           <Grid ml={36} item>
             <Typography variant="p3">
               {`День рождения: ${
-                prisonerData?.birthdate
+                birthday
                   ? `${birthday.format('DD MMMM YYYY')} (${parseInt(
                       birthday.fromNow(),
                     )})`
@@ -91,17 +85,13 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           <Grid ml={36} item>
             <Typography variant="p3">
               {`Дата задержания: ${
-                prisonerData?.dateofarrest
-                  ? arrested.format('DD MMMM YYYY')
-                  : '–'
+                arrested ? arrested.format('DD MMMM YYYY') : '–'
               }`}
             </Typography>
           </Grid>
           <Grid ml={36} item>
             <Typography variant="p3">
-              {`Освобождается: ${
-                prisonerData?.freedomdate ? freed.format('DD MMMM YYYY') : '–'
-              }`}
+              {`Освобождается: ${freed ? freed.format('DD MMMM YYYY') : '–'}`}
             </Typography>
           </Grid>
           <Grid ml={36} item mb={4}>
@@ -126,71 +116,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
       </DrawingFrame>
 
       <Grid width="100%" mt={2} item>
-        <Grid
-          container
-          columnSpacing="0"
-          rowSpacing={2}
-          justifyContent="center"
-        >
-          <Grid item>
-            <Card
-              title={
-                <>
-                  НАПИСАТЬ
-                  <br />
-                  ПИСЬМО
-                </>
-              }
-              body="Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе."
-              catPictureUrl="/icon_letter.svg"
-              action={
-                <Link href="#list" scroll>
-                  <Button>Написать</Button>
-                </Link>
-              }
-            />
-          </Grid>
-          <Grid item>
-            <Card
-              title={
-                <>
-                  СДЕЛАТЬ
-                  <br />
-                  ПОЖЕРТВОВАНИЕ
-                </>
-              }
-              body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
-              catPictureUrl="/icon_money.svg"
-              // action={<Button variant="outline">Написать</Button>}
-            />
-          </Grid>
-          <Grid item>
-            <Card
-              title={
-                <>
-                  ОТНЕСТИ
-                  <br />
-                  ПЕРЕДАЧКУ
-                </>
-              }
-              body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
-              catPictureUrl="/icon_parcel.svg"
-              // action={<Button variant="outline">Написать</Button>}
-            />
-          </Grid>
-          <Grid item>
-            <Card
-              title="РАСПРОСТРАНИТЬ ИНФОРМАЦИЮ"
-              body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
-              catPictureUrl="/icon_share.svg"
-              action={
-                <Link href="/doc.pdf" target="_blank" scroll>
-                  <Button>распространить</Button>
-                </Link>
-              }
-            />
-          </Grid>
-        </Grid>
+        <Cards />
       </Grid>
     </Grid>
   );

@@ -8,6 +8,7 @@ import { useMemo } from 'react';
 
 import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
 
+import { Cards } from './components/Cards/Cards';
 import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
 import { PrisonersList } from './components/PrisonersList/PrisonersList';
@@ -18,7 +19,6 @@ import { Button } from '../components/atoms/Button/Button';
 import { FreeNotFree } from '../components/atoms/FreeNotFree/FreeNotFree';
 import { SexAge } from '../components/atoms/SexAge/SexAge';
 import { Selector } from '../components/molecules/Selector/Selector';
-import { Card } from '../components/organisms/Card/Card';
 import { Counter } from '../components/organisms/Counter/Counter';
 import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
@@ -254,7 +254,10 @@ export default function Home() {
                     <CarouselImage
                       key={prisoner.id}
                       height={150}
-                      src={getPrisonerPicture(prisoner)}
+                      src={getPrisonerPicture(
+                        prisoner.featuredImage?.node.mediaItemUrl,
+                        prisoner.prisonerData?.sex,
+                      )}
                     />
                   </Link>
                 ))}
@@ -454,71 +457,7 @@ export default function Home() {
             </Typography>
           </Grid>
           <Grid width="100%" item>
-            <Grid
-              container
-              columnSpacing="0"
-              rowSpacing={2}
-              justifyContent="center"
-            >
-              <Grid item>
-                <Card
-                  title={
-                    <>
-                      НАПИСАТЬ
-                      <br />
-                      ПИСЬМО
-                    </>
-                  }
-                  body="Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе."
-                  catPictureUrl="/icon_letter.svg"
-                  action={
-                    <Link href="#list" scroll>
-                      <Button>Написать</Button>
-                    </Link>
-                  }
-                />
-              </Grid>
-              <Grid item>
-                <Card
-                  title={
-                    <>
-                      СДЕЛАТЬ
-                      <br />
-                      ПОЖЕРТВОВАНИЕ
-                    </>
-                  }
-                  body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
-                  catPictureUrl="/icon_money.svg"
-                  // action={<Button variant="outline">Написать</Button>}
-                />
-              </Grid>
-              <Grid item>
-                <Card
-                  title={
-                    <>
-                      ОТНЕСТИ
-                      <br />
-                      ПЕРЕДАЧКУ
-                    </>
-                  }
-                  body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
-                  catPictureUrl="/icon_parcel.svg"
-                  // action={<Button variant="outline">Написать</Button>}
-                />
-              </Grid>
-              <Grid item>
-                <Card
-                  title="РАСПРОСТРАНИТЬ ИНФОРМАЦИЮ"
-                  body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
-                  catPictureUrl="/icon_share.svg"
-                  action={
-                    <Link href="/doc.pdf" target="_blank" scroll>
-                      <Button>распространить</Button>
-                    </Link>
-                  }
-                />
-              </Grid>
-            </Grid>
+            <Cards />
           </Grid>
         </Grid>
       </Grid>
@@ -562,7 +501,10 @@ export default function Home() {
                       <PersonCard
                         id={prisoner.id}
                         size="l"
-                        photoUrl={getPrisonerPicture(prisoner)}
+                        photoUrl={getPrisonerPicture(
+                          prisoner.featuredImage?.node.mediaItemUrl,
+                          prisoner.prisonerData?.sex,
+                        )}
                         name={prisoner.prisonerData?.name ?? ''}
                         subtitle={moment(
                           prisoner.prisonerData?.birthdate ?? '',
@@ -590,7 +532,10 @@ export default function Home() {
                           <PersonCard
                             id={prisoner.id}
                             size="m"
-                            photoUrl={getPrisonerPicture(prisoner)}
+                            photoUrl={getPrisonerPicture(
+                              prisoner.featuredImage?.node.mediaItemUrl,
+                              prisoner.prisonerData?.sex,
+                            )}
                             name={prisoner.prisonerData?.name ?? ''}
                             subtitle={moment(
                               prisoner.prisonerData?.freedomdate ?? '',
@@ -606,7 +551,20 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
-      <PrisonersList />
+
+      <Grid container>
+        <Grid
+          item
+          className={styles.list}
+          id="list"
+          width="100%"
+          position="relative"
+          py={{ xs: 6, lg: 10.75 }}
+          px={2}
+        >
+          <PrisonersList />
+        </Grid>
+      </Grid>
     </Grid>
   );
 }
