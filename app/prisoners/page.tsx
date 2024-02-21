@@ -10,7 +10,7 @@ import { usePrisoners } from '../../apollo/hooks/usePrisoners';
 import { Button } from '../../components/atoms/Button/Button';
 import { CardPZ } from '../../components/organisms/CardPZ/CardPZ';
 import { Typography } from '../../components/typography/Typography/Typography';
-export const Prisoners = () => {
+export default function Prisoners() {
   const { data } = usePrisoners();
 
   return (
@@ -118,4 +118,4 @@ export const Prisoners = () => {
       </Grid>
     </Grid>
   );
-};
+}
