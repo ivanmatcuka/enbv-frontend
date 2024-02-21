@@ -108,7 +108,7 @@ const OutlineMUIButton = styled(StyledMUIButton)(({ theme }) => ({
 
 type ButtonProps = {
   variant?: 'red' | 'default' | 'outline';
-} & Pick<MUIButtonProps, 'onClick'>;
+} & Pick<MUIButtonProps, 'onClick' | 'endIcon'>;
 export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   variant = 'default',
   children,

@@ -28,8 +28,6 @@ export const PrisonersList: FC = () => {
     setCachedPrisoners(prisoners);
   }, [prisoners, loading]);
 
-  if (loading) return 'Loading...';
-
   return (
     <Grid container>
       <Grid
