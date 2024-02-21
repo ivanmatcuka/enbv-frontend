@@ -20,8 +20,8 @@ fragment PrisonerItem on Prisoner {
   }
 }
 
-query prisoners {
-  prisoners {
+query prisoners($offset: Int!) {
+  prisoners(first: $offset) {
     edges {
       node {
         ...PrisonerItem

@@ -50,15 +50,15 @@ const StyledName = styled(Typography)({
 });
 
 type CardPZProps = {
-  name: string;
-  body: string;
-  sex: string;
-  articles?: (null | string)[];
-  primaryAction?: ReactNode;
-  secondaryAction?: ReactNode;
-  pictureUrl?: string;
+  name: string | null;
+  body: string | null;
+  sex: string | null;
+  articles: (null | string)[];
+  primaryAction: ReactNode;
+  secondaryAction: ReactNode;
+  pictureUrl: string | null;
 };
-export const CardPZ: FC<CardPZProps> = ({
+export const CardPZ: FC<Partial<CardPZProps>> = ({
   name,
   body,
   sex,

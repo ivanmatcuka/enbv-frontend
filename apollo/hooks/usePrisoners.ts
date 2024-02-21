@@ -6,10 +6,13 @@ export type Prisoners = NonNullable<
 >['edges'];
 export type Prisoner = Prisoners[number]['node'];
 
-export const usePrisoners = () => {
+export const usePrisoners = (offset: number) => {
   const { loading, error, data } = usePrisonersQuery({
     fetchPolicy: 'no-cache',
     errorPolicy: 'all',
+    variables: {
+      offset,
+    },
   });
 
   return useMemo(() => ({ loading, error, data }), [loading, error, data]);

@@ -1,6 +1,10 @@
 'use client';
 
-import { Button as MUIButton, styled } from '@mui/material';
+import {
+  Button as MUIButton,
+  ButtonProps as MUIButtonProps,
+  styled,
+} from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
 import { Typography } from '../../../components/typography/Typography/Typography';
@@ -104,20 +108,21 @@ const OutlineMUIButton = styled(StyledMUIButton)(({ theme }) => ({
 
 type ButtonProps = {
   variant?: 'red' | 'default' | 'outline';
-};
+} & Pick<MUIButtonProps, 'onClick'>;
 export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   variant = 'default',
   children,
+  ...rest
 }) => {
   let button = (
-    <DefaultButton className="button__body" disableRipple>
+    <DefaultButton className="button__body" disableRipple {...rest}>
       <Typography variant="button">{children}</Typography>
     </DefaultButton>
   );
 
   if (variant === 'red') {
     button = (
-      <RedMUIButton className="button__body" disableRipple>
+      <RedMUIButton className="button__body" disableRipple {...rest}>
         <Typography variant="button">{children}</Typography>
       </RedMUIButton>
     );
@@ -127,6 +132,7 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
         variant="outlined"
         className="button__body"
         disableRipple
+        {...rest}
       >
         <Typography variant="button">{children}</Typography>
       </OutlineMUIButton>

@@ -25,7 +25,7 @@ import { Typography } from '../components/typography/Typography/Typography';
 import { groupPrisonersByAgeAndGender } from '../helpers/groupPrisonersByAgeAndGender';
 
 export default function Home() {
-  const { data } = usePrisoners();
+  const { data } = usePrisoners(10);
 
   const prisonersCount = data?.prisoners?.edges.length ?? 0;
   const notFree = useMemo(
@@ -606,9 +606,7 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
-      {data?.prisoners?.edges && (
-        <PrisonersList prisoners={data?.prisoners?.edges} />
-      )}
+      <PrisonersList />
     </Grid>
   );
 }

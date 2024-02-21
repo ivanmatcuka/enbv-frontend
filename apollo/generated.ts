@@ -10519,7 +10519,9 @@ export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?
 
 export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null };
 
-export type PrisonersQueryVariables = Exact<{ [key: string]: never; }>;
+export type PrisonersQueryVariables = Exact<{
+  offset: Scalars['Int']['input'];
+}>;
 
 
 export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } }> } | null };
@@ -10588,8 +10590,8 @@ export type PrisonerLazyQueryHookResult = ReturnType<typeof usePrisonerLazyQuery
 export type PrisonerSuspenseQueryHookResult = ReturnType<typeof usePrisonerSuspenseQuery>;
 export type PrisonerQueryResult = Apollo.QueryResult<PrisonerQuery, PrisonerQueryVariables>;
 export const PrisonersDocument = gql`
-    query prisoners {
-  prisoners {
+    query prisoners($offset: Int!) {
+  prisoners(first: $offset) {
     edges {
       node {
         ...PrisonerItem
@@ -10611,10 +10613,11 @@ export const PrisonersDocument = gql`
  * @example
  * const { data, loading, error } = usePrisonersQuery({
  *   variables: {
+ *      offset: // value for 'offset'
  *   },
  * });
  */
-export function usePrisonersQuery(baseOptions?: Apollo.QueryHookOptions<PrisonersQuery, PrisonersQueryVariables>) {
+export function usePrisonersQuery(baseOptions: Apollo.QueryHookOptions<PrisonersQuery, PrisonersQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<PrisonersQuery, PrisonersQueryVariables>(PrisonersDocument, options);
       }
