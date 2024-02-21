@@ -965,6 +965,8 @@ export type CommentToParentCommentConnectionWhereArgs = {
 /** Field Group */
 export type Comment_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Comment_Prisonerdata';
+  address?: Maybe<Scalars['String']['output']>;
+  articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -973,7 +975,7 @@ export type Comment_Prisonerdata = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institution?: Maybe<Scalars['String']['output']>;
+  institutionshortname?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -1266,6 +1268,8 @@ export type ContentNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStyleshe
 /** Field Group */
 export type ContentNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentNode_Prisonerdata';
+  address?: Maybe<Scalars['String']['output']>;
+  articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -1274,7 +1278,7 @@ export type ContentNode_Prisonerdata = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institution?: Maybe<Scalars['String']['output']>;
+  institutionshortname?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -1292,6 +1296,8 @@ export type ContentTemplate = {
 /** Field Group */
 export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentTemplate_Prisonerdata';
+  address?: Maybe<Scalars['String']['output']>;
+  articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -1300,7 +1306,7 @@ export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institution?: Maybe<Scalars['String']['output']>;
+  institutionshortname?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -3374,6 +3380,8 @@ export type MenuItemToMenuItemLinkableConnectionEdge = Edge & MenuItemLinkableCo
 /** Field Group */
 export type MenuItem_Prisonerdata = AcfFieldGroup & {
   __typename?: 'MenuItem_Prisonerdata';
+  address?: Maybe<Scalars['String']['output']>;
+  articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -3382,7 +3390,7 @@ export type MenuItem_Prisonerdata = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institution?: Maybe<Scalars['String']['output']>;
+  institutionshortname?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -3457,6 +3465,8 @@ export type MenuToMenuItemConnectionWhereArgs = {
 /** Field Group */
 export type Menu_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Menu_Prisonerdata';
+  address?: Maybe<Scalars['String']['output']>;
+  articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -3465,7 +3475,7 @@ export type Menu_Prisonerdata = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institution?: Maybe<Scalars['String']['output']>;
+  institutionshortname?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -9125,6 +9135,8 @@ export type TermNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetC
 /** Field Group */
 export type TermNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'TermNode_Prisonerdata';
+  address?: Maybe<Scalars['String']['output']>;
+  articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -9133,7 +9145,7 @@ export type TermNode_Prisonerdata = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institution?: Maybe<Scalars['String']['output']>;
+  institutionshortname?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -10416,6 +10428,8 @@ export type UserToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPage
 /** Field Group */
 export type User_Prisonerdata = AcfFieldGroup & {
   __typename?: 'User_Prisonerdata';
+  address?: Maybe<Scalars['String']['output']>;
+  articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinates?: Maybe<Scalars['String']['output']>;
@@ -10424,7 +10438,7 @@ export type User_Prisonerdata = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institution?: Maybe<Scalars['String']['output']>;
+  institutionshortname?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;

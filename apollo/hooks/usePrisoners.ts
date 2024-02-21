@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 
-import { PrisonersQueryResult, usePrisonersQuery } from '../generated';
-
+import { usePrisonersQuery } from '../generated';
 export type Prisoners = NonNullable<
-  NonNullable<PrisonersQueryResult['data']>['prisoners']
+  NonNullable<ReturnType<typeof usePrisoners>['data']>['prisoners']
 >['edges'];
 export type Prisoner = Prisoners[number]['node'];
 
