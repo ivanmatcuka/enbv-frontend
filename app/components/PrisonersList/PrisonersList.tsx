@@ -16,7 +16,7 @@ const DEFAULT_OFFSET = 9;
 
 export const PrisonersList: FC = () => {
   const [offset, setOffset] = useState(DEFAULT_OFFSET);
-  const [cachedPrisoners, setCachedPrisoners] = useState<Prisoners>();
+  const [cachedPrisoners, setCachedPrisoners] = useState<Prisoners>([]);
 
   const { data, loading } = usePrisoners(offset);
 
@@ -28,7 +28,7 @@ export const PrisonersList: FC = () => {
     setCachedPrisoners(prisoners);
   }, [prisoners, loading]);
 
-  if (!cachedPrisoners && loading) return 'Loading...';
+  if (loading) return 'Loading...';
 
   return (
     <Grid container>
@@ -88,50 +88,44 @@ export const PrisonersList: FC = () => {
               </Grid>
               <Grid item flex={1} mt={10}>
                 <Grid container rowSpacing={8.5} justifyContent="center">
-                  {cachedPrisoners
-                    ?.map(({ node: prisoner }, index) => {
-                      if (!prisoner.prisonerData) return;
-
-                      return (
-                        <Grid
-                          item
-                          xs={12}
-                          lg={4}
-                          key={index}
-                          display="flex"
-                          justifyContent="center"
-                        >
-                          <CardPZ
-                            articles={prisoner.article ?? []}
-                            body={prisoner.prisonerData.description}
-                            name={prisoner.prisonerData.name}
-                            sex={prisoner.prisonerData.sex}
-                            pictureUrl={
-                              prisoner.featuredImage?.node.mediaItemUrl ?? ''
-                            }
-                            primaryAction={
-                              <Link
-                                href={`/prisoner/${prisoner.id}`}
-                                key={prisoner.id}
-                                scroll
-                              >
-                                <Button>написать ✉</Button>
-                              </Link>
-                            }
-                            secondaryAction={
-                              <Link
-                                href={`/prisoner/${prisoner.id}`}
-                                key={prisoner.id}
-                                scroll
-                              >
-                                <Button variant="outline">помочь</Button>
-                              </Link>
-                            }
-                          />
-                        </Grid>
-                      );
-                    })
-                    .filter(Boolean)}
+                  {cachedPrisoners.map(({ node: prisoner }, index) => (
+                    <Grid
+                      item
+                      xs={12}
+                      lg={4}
+                      key={index}
+                      display="flex"
+                      justifyContent="center"
+                    >
+                      <CardPZ
+                        articles={prisoner.article}
+                        body={prisoner.prisonerData?.description}
+                        name={prisoner.prisonerData?.name}
+                        sex={prisoner.prisonerData?.sex}
+                        pictureUrl={
+                          prisoner.featuredImage?.node.mediaItemUrl ?? ''
+                        }
+                        primaryAction={
+                          <Link
+                            href={`/prisoner/${prisoner.id}`}
+                            key={prisoner.id}
+                            scroll
+                          >
+                            <Button>написать ✉</Button>
+                          </Link>
+                        }
+                        secondaryAction={
+                          <Link
+                            href={`/prisoner/${prisoner.id}`}
+                            key={prisoner.id}
+                            scroll
+                          >
+                            <Button variant="outline">помочь</Button>
+                          </Link>
+                        }
+                      />
+                    </Grid>
+                  ))}
                 </Grid>
               </Grid>
             </Grid>
