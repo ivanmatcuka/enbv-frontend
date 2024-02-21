@@ -112,6 +112,7 @@ export const PrisonersList: FC = () => {
       </Grid>
       <Grid m="auto" item>
         <Button
+          disabled={loading}
           variant="outline"
           onClick={() => setOffset(offset + DEFAULT_OFFSET)}
         >

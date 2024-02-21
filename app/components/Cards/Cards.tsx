@@ -35,7 +35,11 @@ export const Cards = () => (
         }
         body="Даже маленький донат поможет сделать жизнь заключённых лучше. Все пожертвования пойдут на улучшение условий их содержания и на услуги адвокатов."
         catPictureUrl="/icon_money.svg"
-        // action={<Button variant="outline">Написать</Button>}
+        action={
+          <Button variant="outline" disabled>
+            Написать
+          </Button>
+        }
       />
     </Grid>
     <Grid item>
@@ -49,7 +53,11 @@ export const Cards = () => (
         }
         body="Люди в заключении лишены обычных вещей: вкусной еды, одежды и средств гигиены. Каждая передача облегчает жизнь человека за решёткой."
         catPictureUrl="/icon_parcel.svg"
-        // action={<Button variant="outline">Написать</Button>}
+        action={
+          <Button variant="outline" disabled>
+            Написать
+          </Button>
+        }
       />
     </Grid>
     <Grid item>

@@ -19,6 +19,7 @@ export default function Footer() {
       flexDirection="column"
       justifyContent="center"
       id="footer"
+      flexWrap="nowrap"
       container
     >
       <Grid item flex={1}>
@@ -41,7 +42,7 @@ export default function Footer() {
           </Grid>
           <Grid
             item
-            pt={2}
+            pt={{ xs: 2, sm: 8, lg: 2 }}
             my={8}
             maxWidth={{ xs: '100%', lg: '594px' }}
             alignSelf="center"
