@@ -11,7 +11,7 @@ import { Button } from '../../components/atoms/Button/Button';
 import { CardPZ } from '../../components/organisms/CardPZ/CardPZ';
 import { Typography } from '../../components/typography/Typography/Typography';
 export default function Prisoners() {
-  const { data } = usePrisoners();
+  const { data } = usePrisoners(10);
 
   return (
     <Grid container>
