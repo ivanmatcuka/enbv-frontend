@@ -593,7 +593,7 @@ export default function Home() {
                             photoUrl={getPrisonerPicture(prisoner)}
                             name={prisoner.prisonerData?.name ?? ''}
                             subtitle={moment(
-                              prisoner.prisonerData?.birthdate ?? '',
+                              prisoner.prisonerData?.freedomdate ?? '',
                             ).format('DD MMMM')}
                           />
                         </Grid>
