@@ -120,13 +120,13 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                 <Typography variant="p3">Следующий суд: –</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="p1">
+                <Typography variant="p2">
                   {data?.prisoner?.prisonerData?.description}
                 </Typography>
               </Grid>
               {!!data?.prisoner?.prisonerData?.mailinterests && (
                 <Grid item>
-                  <Typography variant="p1">
+                  <Typography variant="p2">
                     Интересы: {data?.prisoner?.prisonerData?.mailinterests}
                   </Typography>
                 </Grid>
