@@ -23,6 +23,17 @@ export type AcfFieldGroup = {
   fieldGroupName?: Maybe<Scalars['String']['output']>;
 };
 
+/** Counts of prisoners by age range and sex. */
+export type AgeRangeCount = {
+  __typename?: 'AgeRangeCount';
+  /** Age range. */
+  ageRange?: Maybe<Scalars['String']['output']>;
+  /** Count of female prisoners in this age range. */
+  female?: Maybe<Scalars['Int']['output']>;
+  /** Count of male prisoners in this age range. */
+  male?: Maybe<Scalars['Int']['output']>;
+};
+
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
 export type Avatar = {
   __typename?: 'Avatar';
@@ -5826,6 +5837,19 @@ export enum PrisonerIdType {
   Uri = 'URI'
 }
 
+/** Counts of prisoners by status, age, and sex. */
+export type PrisonerStatusCounts = {
+  __typename?: 'PrisonerStatusCounts';
+  /** Counts of prisoners by age range and sex. */
+  ageRanges?: Maybe<Array<Maybe<AgeRangeCount>>>;
+  /** Count of imprisoned prisoners. */
+  imprisonedCount?: Maybe<Scalars['Int']['output']>;
+  /** Count of prisoners who are not imprisoned. */
+  outCount?: Maybe<Scalars['Int']['output']>;
+  /** Total count of prisoners. */
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
 /** Set relationships between the prisoner to tags */
 export type PrisonerTagsInput = {
   /** If true, this will append the tag to existing related tags. If false, this will replace existing relationships. Default true. */
@@ -6550,6 +6574,7 @@ export type RootQuery = {
    * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
    */
   prisonerBy?: Maybe<Prisoner>;
+  prisonerStatusCounts?: Maybe<PrisonerStatusCounts>;
   /** Connection between the RootQuery type and the prisoner type */
   prisoners?: Maybe<RootQueryToPrisonerConnection>;
   /** Fields of the &#039;ReadingSettings&#039; settings group */
@@ -10547,6 +10572,11 @@ export type PrisonersQueryVariables = Exact<{
 
 export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } }> } | null };
 
+export type PrisonerStatusCountsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PrisonerStatusCountsQuery = { __typename?: 'RootQuery', prisonerStatusCounts?: { __typename?: 'PrisonerStatusCounts', outCount?: number | null, totalCount?: number | null, imprisonedCount?: number | null, ageRanges?: Array<{ __typename?: 'AgeRangeCount', ageRange?: string | null, male?: number | null, female?: number | null } | null> | null } | null };
+
 export const PrisonerItemFragmentDoc = gql`
     fragment PrisonerItem on Prisoner {
   id
@@ -10657,3 +10687,49 @@ export type PrisonersQueryHookResult = ReturnType<typeof usePrisonersQuery>;
 export type PrisonersLazyQueryHookResult = ReturnType<typeof usePrisonersLazyQuery>;
 export type PrisonersSuspenseQueryHookResult = ReturnType<typeof usePrisonersSuspenseQuery>;
 export type PrisonersQueryResult = Apollo.QueryResult<PrisonersQuery, PrisonersQueryVariables>;
+export const PrisonerStatusCountsDocument = gql`
+    query prisonerStatusCounts {
+  prisonerStatusCounts {
+    outCount
+    totalCount
+    ageRanges {
+      ageRange
+      male
+      female
+    }
+    imprisonedCount
+  }
+}
+    `;
+
+/**
+ * __usePrisonerStatusCountsQuery__
+ *
+ * To run a query within a React component, call `usePrisonerStatusCountsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePrisonerStatusCountsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePrisonerStatusCountsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePrisonerStatusCountsQuery(baseOptions?: Apollo.QueryHookOptions<PrisonerStatusCountsQuery, PrisonerStatusCountsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PrisonerStatusCountsQuery, PrisonerStatusCountsQueryVariables>(PrisonerStatusCountsDocument, options);
+      }
+export function usePrisonerStatusCountsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PrisonerStatusCountsQuery, PrisonerStatusCountsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PrisonerStatusCountsQuery, PrisonerStatusCountsQueryVariables>(PrisonerStatusCountsDocument, options);
+        }
+export function usePrisonerStatusCountsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PrisonerStatusCountsQuery, PrisonerStatusCountsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PrisonerStatusCountsQuery, PrisonerStatusCountsQueryVariables>(PrisonerStatusCountsDocument, options);
+        }
+export type PrisonerStatusCountsQueryHookResult = ReturnType<typeof usePrisonerStatusCountsQuery>;
+export type PrisonerStatusCountsLazyQueryHookResult = ReturnType<typeof usePrisonerStatusCountsLazyQuery>;
+export type PrisonerStatusCountsSuspenseQueryHookResult = ReturnType<typeof usePrisonerStatusCountsSuspenseQuery>;
+export type PrisonerStatusCountsQueryResult = Apollo.QueryResult<PrisonerStatusCountsQuery, PrisonerStatusCountsQueryVariables>;

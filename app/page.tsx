@@ -12,31 +12,17 @@ import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
 import { Cards } from './components/Cards/Cards';
 import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
+import Dashboard from './components/Dashboard/Dashboard';
 import { PrisonersList } from './components/PrisonersList/PrisonersList';
 import styles from './page.module.css';
 
 import { usePrisoners } from '../apollo/hooks/usePrisoners';
 import { Button } from '../components/atoms/Button/Button';
-import { FreeNotFree } from '../components/atoms/FreeNotFree/FreeNotFree';
-import { SexAge } from '../components/atoms/SexAge/SexAge';
-import { Selector } from '../components/molecules/Selector/Selector';
-import { Counter } from '../components/organisms/Counter/Counter';
 import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
-import { groupPrisonersByAgeAndGender } from '../helpers/groupPrisonersByAgeAndGender';
 
 export default function Home() {
   const { data } = usePrisoners(10);
-
-  const prisonersCount = data?.prisoners?.edges.length ?? 0;
-  const notFree = useMemo(
-    () =>
-      data?.prisoners?.edges.filter(
-        ({ node: prisoner }) =>
-          prisoner.prisonerData?.status === 'лишен/а свободы',
-      ).length ?? 0,
-    [data?.prisoners?.edges],
-  );
 
   const birthdays = useMemo(() => {
     if (!data?.prisoners) return [];
@@ -83,8 +69,6 @@ export default function Home() {
       })
       .slice(0, 3);
   }, [data?.prisoners]);
-
-  const free = prisonersCount - notFree ?? 0;
 
   return (
     <Grid container>
@@ -279,64 +263,7 @@ export default function Home() {
         py={{ xs: 6, lg: 10.75 }}
         px={2}
       >
-        <Grid container maxWidth={1200} margin="auto">
-          <Grid item mb={4.5} flex="1 0 100%">
-            <Typography variant="h1" color="brand.red">
-              Числа и лица
-            </Typography>
-          </Grid>
-          <Grid item width={392}>
-            <Grid
-              container
-              flexDirection="column"
-              alignItems="baseline"
-              justifyContent="space-between"
-              height={{ xs: 443, lg: 575 }}
-            >
-              <Grid item>
-                <Counter label="Всего политзаключённых:">
-                  {data?.prisoners?.edges.length}
-                  {/* лишен/а свободы */}
-                </Counter>
-              </Grid>
-              <Grid item>
-                <Counter label="Сколько дел в процессе">{notFree}</Counter>
-              </Grid>
-              <Grid item>
-                <Counter
-                  label="Писем сегодня отправлено:"
-                  catPictureUrl="/cat_sad.svg"
-                >
-                  0
-                </Counter>
-              </Grid>
-              <Grid item>{/* <Button>НАПИСАТЬ ПИСЬМО</Button> */}</Grid>
-            </Grid>
-          </Grid>
-          {/* Right */}
-          <Grid item mt={{ xs: 3, lg: -1.5 }} mb={{ xs: 8 }}>
-            <Selector
-              items={[
-                {
-                  label: 'по полу и возрасту:',
-                  element: (
-                    <SexAge
-                      data={groupPrisonersByAgeAndGender(
-                        data?.prisoners?.edges.map(
-                          ({ node }) => node.prisonerData,
-                        ) ?? [],
-                      )}
-                    />
-                  ),
-                },
-                {
-                  label: 'на свободе/под стражей',
-                  element: <FreeNotFree free={free} notFree={notFree} />,
-                },
-              ]}
-            />
-          </Grid>
-        </Grid>
+        <Dashboard />
       </Grid>
       <Grid
         item

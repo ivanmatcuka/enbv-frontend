@@ -1,0 +1,12 @@
+query prisonerStatusCounts {
+  prisonerStatusCounts {
+    outCount
+    totalCount
+    ageRanges {
+      ageRange
+      male
+      female
+    }
+    imprisonedCount
+  }
+}
