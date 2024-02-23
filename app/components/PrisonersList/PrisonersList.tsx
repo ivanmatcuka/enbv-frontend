@@ -118,7 +118,7 @@ export const PrisonersList: FC = () => {
               }
             />
           </Grid>
-          <Grid item flexBasis="100%" textAlign="center" mb={4}>
+          <Grid item flexBasis="100%" textAlign="center" mt={1} mb={4}>
             <Typography variant="subtitle1">
               {loading
                 ? 'Загрузка...'

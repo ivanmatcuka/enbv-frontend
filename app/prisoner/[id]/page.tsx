@@ -30,6 +30,17 @@ const ProfileImage = styled('img')(({ theme }) => ({
   },
 }));
 
+const DescriptionLayout = styled(Typography)({
+  p: {
+    '&:first-of-type': {
+      marginTop: 0,
+    },
+    '&:last-of-type': {
+      marginBottom: 0,
+    },
+  },
+});
+
 export default function Prisoner({ params }: { params: { id: string } }) {
   const { data, loading } = usePrisoner(params.id);
 
@@ -127,13 +138,13 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                 <Typography variant="p3">Следующий суд: –</Typography>
               </Grid>
               <Grid item>
-                <Typography variant="p2">
+                <DescriptionLayout variant="p2">
                   <div
                     dangerouslySetInnerHTML={{
                       __html: data?.prisoner?.content ?? '',
                     }}
                   />
-                </Typography>
+                </DescriptionLayout>
               </Grid>
               {!!data?.prisoner?.prisonerData?.mailinterests && (
                 <Grid item>
