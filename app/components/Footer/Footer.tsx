@@ -25,7 +25,7 @@ export default function Footer() {
       flexWrap="nowrap"
       container
       style={{
-        overflow: 'hidden',
+        overflowX: 'clip',
       }}
     >
       <Grid item flex={1}>
