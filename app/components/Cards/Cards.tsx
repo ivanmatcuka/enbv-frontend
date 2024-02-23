@@ -18,7 +18,7 @@ export const Cards = () => (
         body="Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе."
         catPictureUrl="/icon_letter.svg"
         action={
-          <Link href="#list" scroll>
+          <Link href="#list" scroll={false}>
             <Button>Написать</Button>
           </Link>
         }
@@ -66,7 +66,7 @@ export const Cards = () => (
         body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
         catPictureUrl="/icon_share.svg"
         action={
-          <Link href="/doc.pdf" target="_blank" scroll>
+          <Link href="/doc.pdf" target="_blank" scroll={false}>
             <Button>распространить</Button>
           </Link>
         }

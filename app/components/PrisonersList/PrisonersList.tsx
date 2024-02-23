@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 
+import { FilterSlider } from '@/components/molecules/FilterSlider/FilterSlider';
 import { Input } from '@/components/molecules/Input/Input';
 
 import {
@@ -80,13 +81,7 @@ export const PrisonersList: FC = () => {
               чтобы о них узнали во всем мире. В этом списке важно каждое имя.
             </Typography>
           </Grid>
-          <Grid
-            item
-            flexBasis="100%"
-            mt={9.25}
-            display="flex"
-            justifyContent="stretch"
-          >
+          <Grid item flexBasis="100%" mt={9.25} mb={1}>
             <SearchField
               startAdornment={<SearchIcon />}
               placeholder="Поиск по ФИО"
@@ -95,7 +90,24 @@ export const PrisonersList: FC = () => {
               }}
             />
           </Grid>
-          <Grid item flex={1} mt={10}>
+          <Grid item>
+            <FilterSlider
+              label="Возраст"
+              min={0}
+              max={99}
+              onChange={(value: number[]) =>
+                setFilter({ ...filter, ageMin: value[0], ageMax: value[1] })
+              }
+            />
+          </Grid>
+          <Grid item flexBasis="100%" textAlign="center" mb={4}>
+            <Typography variant="subtitle1">
+              {loading
+                ? 'Загрузка...'
+                : `Показано преследуемых: ${prisoners?.length}`}
+            </Typography>
+          </Grid>
+          <Grid item flex={1} mt={10} flexBasis="100%">
             <Grid container rowSpacing={8.5} justifyContent="center">
               {cachedPrisoners.map(({ node: prisoner }, index) => (
                 <Grid
@@ -116,7 +128,7 @@ export const PrisonersList: FC = () => {
                       <Link
                         href={`/prisoner/${prisoner.id}`}
                         key={prisoner.id}
-                        scroll
+                        scroll={false}
                       >
                         <Button>написать ✉</Button>
                       </Link>
@@ -125,7 +137,7 @@ export const PrisonersList: FC = () => {
                       <Link
                         href={`/prisoner/${prisoner.id}`}
                         key={prisoner.id}
-                        scroll
+                        scroll={false}
                       >
                         <Button variant="outline">помочь</Button>
                       </Link>
@@ -137,15 +149,17 @@ export const PrisonersList: FC = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid m="auto" item>
-        <Button
-          disabled={loading}
-          variant="outline"
-          onClick={() => setOffset(offset + DEFAULT_OFFSET)}
-        >
-          {loading ? 'загрузка...' : 'загрузить ещё'}
-        </Button>
-      </Grid>
+      {!!data?.prisoners?.edges.length && (
+        <Grid m="auto" item>
+          <Button
+            disabled={loading}
+            variant="outline"
+            onClick={() => setOffset(offset + DEFAULT_OFFSET)}
+          >
+            {loading ? 'загрузка...' : 'загрузить ещё'}
+          </Button>
+        </Grid>
+      )}
     </Grid>
   );
 };

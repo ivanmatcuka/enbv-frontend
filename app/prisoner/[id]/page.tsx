@@ -5,7 +5,6 @@ import moment from 'moment';
 
 import { Cards } from '@/app/components/Cards/Cards';
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
-import Scroll from '@/app/components/Scroll/Scroll';
 import { Article } from '@/components/atoms/Article/Article';
 import { Button } from '@/components/atoms/Button/Button';
 import { Typography } from '@/components/typography/Typography/Typography';
@@ -30,7 +29,7 @@ const ProfileImage = styled('img')(({ theme }) => ({
 }));
 
 export default function Prisoner({ params }: { params: { id: string } }) {
-  const { data } = usePrisoner(params.id);
+  const { data, loading } = usePrisoner(params.id);
 
   const pd = data?.prisoner?.prisonerData;
 
@@ -39,8 +38,6 @@ export default function Prisoner({ params }: { params: { id: string } }) {
   const freed = pd?.freedomdate ? moment(pd.freedomdate) : null;
 
   const pictureUrl = data?.prisoner?.featuredImage?.node.mediaItemUrl;
-
-  if (!data?.prisoner) return;
 
   return (
     <Grid container>
@@ -59,7 +56,6 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           mb={8}
           position="relative"
         >
-          <Scroll />
           <Grid item ml={{ xs: 0, lg: 40 }} mb={4}>
             <Typography variant="h1">
               {pd?.name && pd?.name.split(' ')[0]}
@@ -86,11 +82,13 @@ export default function Prisoner({ params }: { params: { id: string } }) {
             <Grid flexDirection="column" container>
               <Grid ml={{ xs: 0, lg: 36 }} item>
                 <Grid spacing={1} mb={2} container>
-                  {data.prisoner.article?.map((article) => (
-                    <Grid key={article} item>
-                      <Article label={article} />
-                    </Grid>
-                  ))}
+                  {loading && 'Загрузка...'}
+                  {data?.prisoner &&
+                    data.prisoner.article?.map((article) => (
+                      <Grid key={article} item>
+                        <Article label={article} />
+                      </Grid>
+                    ))}
                 </Grid>
               </Grid>
               <Grid ml={{ xs: 0, lg: 36 }} item>

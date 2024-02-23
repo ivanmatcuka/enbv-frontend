@@ -171,7 +171,7 @@ export default function Home() {
                     pl={1.5}
                     flexBasis={{ xs: 'calc(100% - 140px)', lg: 'auto' }}
                   >
-                    <Link href="#list" scroll>
+                    <Link href="#list">
                       <Button>ПОМОЧЬ СЕЙЧАС</Button>
                     </Link>
                   </Grid>

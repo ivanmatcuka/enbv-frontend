@@ -1,8 +1,8 @@
 'use client';
 
-import { MenuList, styled, Tooltip, Slider } from '@mui/material';
+import { MenuList, Slider, Tooltip, styled } from '@mui/material';
 import { SliderValueLabelProps } from '@mui/material/Slider';
-import { FC, useCallback, useState } from 'react';
+import { FC, SyntheticEvent, useCallback, useState } from 'react';
 
 import { Typography } from '../../../components/typography/Typography/Typography';
 import { Arrow } from '../Filter/Arrow';
@@ -14,7 +14,7 @@ type FilterSlider = {
   label: string;
   max: number;
   min: number;
-  onChange?: (value: number | number[]) => void;
+  onChange?: (value: number[]) => void;
 };
 
 const StyledSlider = styled(Slider)(({ theme }) => ({
@@ -66,9 +66,8 @@ export const FilterSlider: FC<FilterSlider> = ({
   const [value, setValue] = useState<number[]>([min, max]);
 
   const handleSliderChange = useCallback(
-    (_: Event, value: number | number[]) => {
-      setValue(value as number[]);
-      onChange && onChange(value);
+    (_: SyntheticEvent | Event, value: number | number[]) => {
+      onChange && onChange(value as number[]);
     },
     [onChange],
   );
@@ -96,7 +95,8 @@ export const FilterSlider: FC<FilterSlider> = ({
         <StyledSlider
           value={value}
           valueLabelDisplay="on"
-          onChange={handleSliderChange}
+          onChange={(_, value) => setValue(value as number[])}
+          onChangeCommitted={handleSliderChange}
           max={max}
           min={min}
           slots={{ valueLabel: ValueLabelComponent }}
