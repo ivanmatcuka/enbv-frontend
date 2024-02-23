@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material';
-import Link from 'next/link';
 
 import { Button } from '@/components/atoms/Button/Button';
 import { Card } from '@/components/organisms/Card/Card';
@@ -18,9 +17,9 @@ export const Cards = () => (
         body="Людям за решёткой не хватает тёплого и душевного общения. Вы можете писать заключённым письма: рассказать о происходящем в мире и о себе."
         catPictureUrl="/icon_letter.svg"
         action={
-          <Link href="#list" scroll={false}>
+          <a href="#list">
             <Button>Написать</Button>
-          </Link>
+          </a>
         }
       />
     </Grid>
@@ -66,9 +65,9 @@ export const Cards = () => (
         body="Каждую историю несправедливо задержанного или осуждённого человека нельзя замалчивать. О заключённых по политическим мотивам должны знать."
         catPictureUrl="/icon_share.svg"
         action={
-          <Link href="/doc.pdf" target="_blank" scroll={false}>
+          <a href="/doc.pdf" target="_blank">
             <Button>распространить</Button>
-          </Link>
+          </a>
         }
       />
     </Grid>

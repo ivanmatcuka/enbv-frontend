@@ -1,7 +1,6 @@
 'use client';
 
 import { styled } from '@mui/material';
-import Link from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
 import { Button } from '../../../components/atoms/Button/Button';
@@ -74,9 +73,9 @@ export const PersonCard: FC<PropsWithChildren<PersonCardProps>> = ({
       photoUrl={photoUrl}
     >
       <ButtonContainer className="button">
-        <Link href={`/prisoner/${id}`}>
+        <a href={`/prisoner/${id}`}>
           <Button variant="red">НАПИСАТЬ</Button>
-        </Link>
+        </a>
       </ButtonContainer>
 
       <PersonCardContent>

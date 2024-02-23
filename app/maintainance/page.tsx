@@ -1,7 +1,6 @@
 'use client';
 
 import { Grid } from '@mui/material';
-import Link from 'next/link';
 
 import styles from './page.module.css';
 
@@ -77,9 +76,9 @@ export default function Maintainance() {
                     pl={1.5}
                     flexBasis={{ xs: 'calc(100% - 140px)', lg: 'auto' }}
                   >
-                    <Link href="https://t.me/+fl5X4ur0GsFmOTYy" target="_blank">
+                    <a href="https://t.me/+fl5X4ur0GsFmOTYy" target="_blank">
                       <Button>Хочу подписаться!</Button>
-                    </Link>
+                    </a>
                   </Grid>
                 </Grid>
               </Grid>

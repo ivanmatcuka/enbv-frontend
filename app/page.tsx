@@ -3,7 +3,6 @@
 import { Grid } from '@mui/material';
 import moment from 'moment';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useMemo } from 'react';
 
 import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
@@ -171,9 +170,9 @@ export default function Home() {
                     pl={1.5}
                     flexBasis={{ xs: 'calc(100% - 140px)', lg: 'auto' }}
                   >
-                    <Link href="#list">
+                    <a href="#list">
                       <Button>ПОМОЧЬ СЕЙЧАС</Button>
-                    </Link>
+                    </a>
                   </Grid>
                 </Grid>
               </Grid>
@@ -250,7 +249,7 @@ export default function Home() {
                     !!prisoner.featuredImage?.node.mediaItemUrl,
                 )
                 .map(({ node: prisoner }) => (
-                  <Link href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
+                  <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
                     <CarouselImage
                       key={prisoner.id}
                       height={150}
@@ -259,14 +258,14 @@ export default function Home() {
                         prisoner.prisonerData?.sex,
                       )}
                     />
-                  </Link>
+                  </a>
                 ))}
             </Carousel>
           </Grid>
           <Grid item alignSelf="center" mt={8}>
-            <Link href="/#list">
+            <a href="/#list">
               <Button variant="red">УЗНАЙТЕ ИХ ИСТОРИИ</Button>
-            </Link>
+            </a>
           </Grid>
         </Grid>
       </Grid>

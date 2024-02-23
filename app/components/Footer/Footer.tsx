@@ -2,7 +2,6 @@
 
 import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { Button } from '../../../components/atoms/Button/Button';
 import { Typography } from '../../../components/typography/Typography/Typography';
@@ -79,9 +78,9 @@ export default function Footer() {
                   className="footer__image"
                 />
                 <div>
-                  <Link href="https://boosty.to/avtozaklive" target="_blank">
+                  <a href="https://boosty.to/avtozaklive" target="_blank">
                     <Button>Поддержать</Button>
-                  </Link>
+                  </a>
                 </div>
               </Grid>
               <Grid
@@ -97,9 +96,9 @@ export default function Footer() {
                   className="footer__image"
                 />
                 <div>
-                  <Link href="https://www.patreon.com/avtozak" target="_blank">
+                  <a href="https://www.patreon.com/avtozak" target="_blank">
                     <Button>Поддержать</Button>
-                  </Link>
+                  </a>
                 </div>
               </Grid>
             </Grid>

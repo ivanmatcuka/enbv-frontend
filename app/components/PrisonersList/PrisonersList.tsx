@@ -1,6 +1,5 @@
 import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 
 import { FilterSlider } from '@/components/molecules/FilterSlider/FilterSlider';
@@ -125,22 +124,22 @@ export const PrisonersList: FC = () => {
                     sex={prisoner.prisonerData?.sex}
                     pictureUrl={prisoner.featuredImage?.node.mediaItemUrl ?? ''}
                     primaryAction={
-                      <Link
+                      <a
                         href={`/prisoner/${prisoner.id}`}
                         key={prisoner.id}
                         scroll={false}
                       >
                         <Button>написать ✉</Button>
-                      </Link>
+                      </a>
                     }
                     secondaryAction={
-                      <Link
+                      <a
                         href={`/prisoner/${prisoner.id}`}
                         key={prisoner.id}
                         scroll={false}
                       >
                         <Button variant="outline">помочь</Button>
-                      </Link>
+                      </a>
                     }
                   />
                 </Grid>

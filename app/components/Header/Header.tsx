@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material';
-import Link from 'next/link';
 
 import { Logo } from '@/components/atoms/Logo/Logo';
 import { Menu } from '@/components/molecules/Menu/Menu';
@@ -22,30 +21,26 @@ export default function Header() {
           <Grid item flex={1} xs={12} lg={6}>
             <Grid container minWidth={{ xs: 0, lg: 695 }}>
               <Grid item mr={1.5} flexBasis="191px">
-                <Link href="/">
+                <a href="/">
                   <Logo />
-                </Link>
+                </a>
               </Grid>
               <Grid item flexBasis="calc(100% - 203px)">
                 <Menu
                   items={[
                     {
-                      element: <Link href="/#what">КАК ПОМОЧЬ</Link>,
+                      element: <a href="/#what">КАК ПОМОЧЬ</a>,
                     },
                     {
                       element: (
-                        <Link href="/#whom">
-                          КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС
-                        </Link>
+                        <a href="/#whom">КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС</a>
                       ),
                     },
                     {
-                      element: <Link href="/#list">СПИСОК ПРЕСЛЕДУЕМЫХ</Link>,
+                      element: <a href="/#list">СПИСОК ПРЕСЛЕДУЕМЫХ</a>,
                     },
                     {
-                      element: (
-                        <Link href="/#footer">ПОЖЕРТВОВАТЬ ПРОЕКТУ</Link>
-                      ),
+                      element: <a href="/#footer">ПОЖЕРТВОВАТЬ ПРОЕКТУ</a>,
                     },
                   ]}
                 />
