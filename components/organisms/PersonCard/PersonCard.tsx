@@ -74,7 +74,7 @@ export const PersonCard: FC<PropsWithChildren<PersonCardProps>> = ({
     >
       <ButtonContainer className="button">
         <a href={`/prisoner/${id}`}>
-          <Button variant="red">НАПИСАТЬ</Button>
+          <Button variant="red">перейти</Button>
         </a>
       </ButtonContainer>
 

@@ -1,6 +1,6 @@
 import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { FilterCheckbox } from '@/components/molecules/FilterCheckbox/FilterCheckbox';
 import { FilterSlider } from '@/components/molecules/FilterSlider/FilterSlider';
@@ -29,12 +29,9 @@ export const PrisonersList: FC = () => {
   const [filter, setFilter] = useState<PrisonersInput>({});
   const [cachedPrisoners, setCachedPrisoners] = useState<Prisoners>([]);
 
-  const hasFilters = useMemo(() => Object.keys(filter).length > 0, [filter]);
+  // const hasFilters = useMemo(() => Object.keys(filter).length > 0, [filter]);
 
-  const { data, loading } = usePrisoners(
-    hasFilters ? DEFAULT_OFFSET : undefined,
-    filter,
-  );
+  const { data, loading } = usePrisoners(DEFAULT_OFFSET, filter);
 
   const prisoners = data?.prisoners?.edges;
 
@@ -123,7 +120,13 @@ export const PrisonersList: FC = () => {
           </Grid>
           <Grid item flexBasis="100%" textAlign="center" mb={4}>
             <Typography variant="subtitle1">
-              {loading ? 'Загрузка...' : `Найдено: ${prisoners?.length}`}
+              {loading
+                ? 'Загрузка...'
+                : `Найдено: ${
+                    (prisoners?.length ?? 0) >= 300
+                      ? `${prisoners?.length}+`
+                      : `${prisoners?.length}`
+                  }`}
             </Typography>
           </Grid>
           <Grid item flex={1} mt={10} flexBasis="100%">
