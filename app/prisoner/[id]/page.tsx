@@ -124,6 +124,13 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                   {data?.prisoner?.prisonerData?.description}
                 </Typography>
               </Grid>
+              {!!data?.prisoner?.prisonerData?.mailinterests && (
+                <Grid item>
+                  <Typography variant="p1">
+                    Интересы: {data?.prisoner?.prisonerData?.mailinterests}
+                  </Typography>
+                </Grid>
+              )}
               <Grid mt={10} item>
                 <Grid
                   container
