@@ -124,20 +124,12 @@ export const PrisonersList: FC = () => {
                     sex={prisoner.prisonerData?.sex}
                     pictureUrl={prisoner.featuredImage?.node.mediaItemUrl ?? ''}
                     primaryAction={
-                      <a
-                        href={`/prisoner/${prisoner.id}`}
-                        key={prisoner.id}
-                        scroll={false}
-                      >
+                      <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
                         <Button>написать ✉</Button>
                       </a>
                     }
                     secondaryAction={
-                      <a
-                        href={`/prisoner/${prisoner.id}`}
-                        key={prisoner.id}
-                        scroll={false}
-                      >
+                      <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
                         <Button variant="outline">помочь</Button>
                       </a>
                     }
