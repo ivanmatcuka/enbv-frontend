@@ -92,7 +92,7 @@ export const PrisonersList: FC = () => {
               startAdornment={<SearchIcon />}
               placeholder="Поиск по ФИО"
               onChange={(e) => {
-                setFilter({ ...filter, search: e.target.value });
+                setFilter({ ...filter, prisonerName: e.target.value });
               }}
             />
           </Grid>
