@@ -1,9 +1,13 @@
-import { Grid } from '@mui/material';
+import { Grid, Input } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 
-import { Prisoners, usePrisoners } from '../../../apollo/hooks/usePrisoners';
+import {
+  Prisoners,
+  PrisonersInput,
+  usePrisoners,
+} from '../../../apollo/hooks/usePrisoners';
 import { Button } from '../../../components/atoms/Button/Button';
 import { CardPZ } from '../../../components/organisms/CardPZ/CardPZ';
 import { Typography } from '../../../components/typography/Typography/Typography';
@@ -12,9 +16,10 @@ const DEFAULT_OFFSET = 9;
 
 export const PrisonersList: FC = () => {
   const [offset, setOffset] = useState(DEFAULT_OFFSET);
+  const [filter, setFilter] = useState<PrisonersInput>({});
   const [cachedPrisoners, setCachedPrisoners] = useState<Prisoners>([]);
 
-  const { data, loading } = usePrisoners(offset);
+  const { data, loading } = usePrisoners(offset, filter);
 
   const prisoners = data?.prisoners?.edges;
 
@@ -67,6 +72,18 @@ export const PrisonersList: FC = () => {
               на свободе. Мы можем рассказать о несправедливо заключённых людях,
               чтобы о них узнали во всем мире. В этом списке важно каждое имя.
             </Typography>
+          </Grid>
+          <Grid item flexBasis="100%" mt={9.25}>
+            <Input
+              startAdornment="🔎"
+              placeholder="Поиск по ФИО"
+              style={{
+                width: '100%',
+              }}
+              onChange={(e) => {
+                setFilter({ ...filter, search: e.target.value });
+              }}
+            />
           </Grid>
           <Grid item flex={1} mt={10}>
             <Grid container rowSpacing={8.5} justifyContent="center">

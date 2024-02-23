@@ -965,17 +965,18 @@ export type CommentToParentCommentConnectionWhereArgs = {
 /** Field Group */
 export type Comment_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Comment_Prisonerdata';
-  address?: Maybe<Scalars['String']['output']>;
+  addressparsed?: Maybe<Scalars['String']['output']>;
+  age?: Maybe<Scalars['Float']['output']>;
   articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  coordinates?: Maybe<Scalars['String']['output']>;
+  coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institutionshortname?: Maybe<Scalars['String']['output']>;
+  institutionshortnameparsed?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -1268,17 +1269,18 @@ export type ContentNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStyleshe
 /** Field Group */
 export type ContentNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentNode_Prisonerdata';
-  address?: Maybe<Scalars['String']['output']>;
+  addressparsed?: Maybe<Scalars['String']['output']>;
+  age?: Maybe<Scalars['Float']['output']>;
   articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  coordinates?: Maybe<Scalars['String']['output']>;
+  coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institutionshortname?: Maybe<Scalars['String']['output']>;
+  institutionshortnameparsed?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -1296,17 +1298,18 @@ export type ContentTemplate = {
 /** Field Group */
 export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentTemplate_Prisonerdata';
-  address?: Maybe<Scalars['String']['output']>;
+  addressparsed?: Maybe<Scalars['String']['output']>;
+  age?: Maybe<Scalars['Float']['output']>;
   articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  coordinates?: Maybe<Scalars['String']['output']>;
+  coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institutionshortname?: Maybe<Scalars['String']['output']>;
+  institutionshortnameparsed?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -3380,17 +3383,18 @@ export type MenuItemToMenuItemLinkableConnectionEdge = Edge & MenuItemLinkableCo
 /** Field Group */
 export type MenuItem_Prisonerdata = AcfFieldGroup & {
   __typename?: 'MenuItem_Prisonerdata';
-  address?: Maybe<Scalars['String']['output']>;
+  addressparsed?: Maybe<Scalars['String']['output']>;
+  age?: Maybe<Scalars['Float']['output']>;
   articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  coordinates?: Maybe<Scalars['String']['output']>;
+  coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institutionshortname?: Maybe<Scalars['String']['output']>;
+  institutionshortnameparsed?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -3465,17 +3469,18 @@ export type MenuToMenuItemConnectionWhereArgs = {
 /** Field Group */
 export type Menu_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Menu_Prisonerdata';
-  address?: Maybe<Scalars['String']['output']>;
+  addressparsed?: Maybe<Scalars['String']['output']>;
+  age?: Maybe<Scalars['Float']['output']>;
   articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  coordinates?: Maybe<Scalars['String']['output']>;
+  coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institutionshortname?: Maybe<Scalars['String']['output']>;
+  institutionshortnameparsed?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -7809,6 +7814,10 @@ export type RootQueryToPrisonerConnectionPageInfo = PageInfo & PrisonerConnectio
 
 /** Arguments for filtering the RootQueryToPrisonerConnection connection */
 export type RootQueryToPrisonerConnectionWhereArgs = {
+  /** The ID of the post object to filter by */
+  ageMax?: InputMaybe<Scalars['Int']['input']>;
+  /** The ID of the post object to filter by */
+  ageMin?: InputMaybe<Scalars['Int']['input']>;
   /** Category ID */
   categoryId?: InputMaybe<Scalars['Int']['input']>;
   /** Array of category IDs, used to display objects from one category OR another */
@@ -9135,17 +9144,18 @@ export type TermNodeToEnqueuedStylesheetConnectionPageInfo = EnqueuedStylesheetC
 /** Field Group */
 export type TermNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'TermNode_Prisonerdata';
-  address?: Maybe<Scalars['String']['output']>;
+  addressparsed?: Maybe<Scalars['String']['output']>;
+  age?: Maybe<Scalars['Float']['output']>;
   articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  coordinates?: Maybe<Scalars['String']['output']>;
+  coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institutionshortname?: Maybe<Scalars['String']['output']>;
+  institutionshortnameparsed?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -10428,17 +10438,18 @@ export type UserToUserRoleConnectionPageInfo = PageInfo & UserRoleConnectionPage
 /** Field Group */
 export type User_Prisonerdata = AcfFieldGroup & {
   __typename?: 'User_Prisonerdata';
-  address?: Maybe<Scalars['String']['output']>;
+  addressparsed?: Maybe<Scalars['String']['output']>;
+  age?: Maybe<Scalars['Float']['output']>;
   articleraw?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
-  coordinates?: Maybe<Scalars['String']['output']>;
+  coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   freedomdate?: Maybe<Scalars['String']['output']>;
-  institutionshortname?: Maybe<Scalars['String']['output']>;
+  institutionshortnameparsed?: Maybe<Scalars['String']['output']>;
   mailinterests?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
@@ -10521,6 +10532,7 @@ export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, articl
 
 export type PrisonersQueryVariables = Exact<{
   offset: Scalars['Int']['input'];
+  filter?: InputMaybe<RootQueryToPrisonerConnectionWhereArgs>;
 }>;
 
 
@@ -10590,8 +10602,8 @@ export type PrisonerLazyQueryHookResult = ReturnType<typeof usePrisonerLazyQuery
 export type PrisonerSuspenseQueryHookResult = ReturnType<typeof usePrisonerSuspenseQuery>;
 export type PrisonerQueryResult = Apollo.QueryResult<PrisonerQuery, PrisonerQueryVariables>;
 export const PrisonersDocument = gql`
-    query prisoners($offset: Int!) {
-  prisoners(first: $offset) {
+    query prisoners($offset: Int!, $filter: RootQueryToPrisonerConnectionWhereArgs) {
+  prisoners(first: $offset, where: $filter) {
     edges {
       node {
         ...PrisonerItem
@@ -10614,6 +10626,7 @@ export const PrisonersDocument = gql`
  * const { data, loading, error } = usePrisonersQuery({
  *   variables: {
  *      offset: // value for 'offset'
+ *      filter: // value for 'filter'
  *   },
  * });
  */
