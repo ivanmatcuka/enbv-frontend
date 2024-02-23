@@ -34,7 +34,7 @@
   background: url('/background-2.png') left no-repeat white;
   background-size: cover;
 
-  overflow: hidden;
+  overflow-x: clip;
 }
 
 .numbers::before {
@@ -58,7 +58,7 @@
   background-size: cover;
   background-position: right;
 
-  overflow: hidden;
+  overflow-x: clip;
 }
 
 .why::before {
@@ -83,7 +83,7 @@
 }
 
 .what {
-  overflow: hidden;
+  overflow-x: clip;
 }
 
 .what__arrow {

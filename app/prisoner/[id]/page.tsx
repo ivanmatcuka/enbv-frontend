@@ -2,6 +2,8 @@
 
 import { Grid, styled } from '@mui/material';
 import moment from 'moment';
+import 'moment/locale/ru';
+moment.locale('ru_RU');
 
 import { Cards } from '@/app/components/Cards/Cards';
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
@@ -121,7 +123,11 @@ export default function Prisoner({ params }: { params: { id: string } }) {
               </Grid>
               <Grid item>
                 <Typography variant="p2">
-                  {data?.prisoner?.prisonerData?.description}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: data?.prisoner?.content ?? '',
+                    }}
+                  />
                 </Typography>
               </Grid>
               {!!data?.prisoner?.prisonerData?.mailinterests && (

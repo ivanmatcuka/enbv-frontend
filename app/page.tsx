@@ -2,8 +2,10 @@
 
 import { Grid } from '@mui/material';
 import moment from 'moment';
+import 'moment/locale/ru';
 import Image from 'next/image';
 import { useMemo } from 'react';
+moment.locale('ru_RU');
 
 import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
 

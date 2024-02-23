@@ -1,4 +1,6 @@
 import moment from 'moment';
+import 'moment/locale/ru';
+moment.locale('ru_RU');
 
 import { Prisoner } from '@/apollo/generated';
 
