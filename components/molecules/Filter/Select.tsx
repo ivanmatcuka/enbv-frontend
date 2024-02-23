@@ -1,4 +1,4 @@
-import { styled, Select as MUISelect } from '@mui/material';
+import { Select as MUISelect, styled } from '@mui/material';
 
 export const Select = styled(MUISelect)(({ theme }) => ({
   borderRadius: 20,

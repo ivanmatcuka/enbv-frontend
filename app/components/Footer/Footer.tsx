@@ -11,6 +11,10 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.brand.green,
 }));
 
+const StyledTypography = styled(Typography)(() => ({
+  width: '100%',
+}));
+
 export default function Footer() {
   return (
     <Grid
@@ -20,6 +24,9 @@ export default function Footer() {
       id="footer"
       flexWrap="nowrap"
       container
+      style={{
+        overflow: 'hidden',
+      }}
     >
       <Grid item flex={1}>
         <Grid
@@ -106,9 +113,9 @@ export default function Footer() {
         </Grid>
       </Grid>
       <StyledGrid flex={1} item py={6} px={{ xs: 2, lg: 6 }}>
-        <Typography variant="p3" component="p" width={1200} color="white">
+        <StyledTypography variant="p3" component="p" width={1200} color="white">
           Дизайн сайта разработан студией Neklistic
-        </Typography>
+        </StyledTypography>
       </StyledGrid>
     </Grid>
   );

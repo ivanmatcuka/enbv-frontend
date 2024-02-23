@@ -1,6 +1,6 @@
 'use client';
 
-import { MenuList, SelectChangeEvent } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material';
 import { FC, useCallback, useState } from 'react';
 
 import { Checkbox } from '../../../components/atoms/Checkbox/Checkbox';
@@ -32,10 +32,10 @@ export const FilterCheckbox: FC<FilterCheckboxProps> = ({
 
   const handleChange = useCallback(
     (event: SelectChangeEvent<unknown>) => {
-      const value = event.target.value as Value;
+      const newValue = event.target.value as Value;
 
-      setValue(value);
-      onChange && onChange(value);
+      setValue(newValue);
+      onChange && onChange(newValue);
     },
     [onChange],
   );
@@ -51,11 +51,14 @@ export const FilterCheckbox: FC<FilterCheckboxProps> = ({
         },
         MenuListProps: {
           disabledItemsFocusable: true,
-          component: MenuList,
         },
       }}
       displayEmpty
-      renderValue={() => <Typography variant="button">{label}</Typography>}
+      renderValue={() => (
+        <Typography variant="button">{`${label}${
+          value ? ` (${value})` : ''
+        }`}</Typography>
+      )}
       onChange={handleChange}
     >
       <MenuItem value="">

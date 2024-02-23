@@ -2,8 +2,10 @@ import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 
+import { FilterCheckbox } from '@/components/molecules/FilterCheckbox/FilterCheckbox';
 import { FilterSlider } from '@/components/molecules/FilterSlider/FilterSlider';
 import { Input } from '@/components/molecules/Input/Input';
+import { getRegions } from '@/helpers/getRegions';
 
 import {
   Prisoners,
@@ -89,13 +91,25 @@ export const PrisonersList: FC = () => {
               }}
             />
           </Grid>
-          <Grid item>
+          <Grid item mr={1}>
             <FilterSlider
               label="Возраст"
               min={0}
               max={99}
               onChange={(value: number[]) =>
                 setFilter({ ...filter, ageMin: value[0], ageMax: value[1] })
+              }
+            />
+          </Grid>
+          <Grid item>
+            <FilterCheckbox
+              label="регион"
+              options={getRegions().map(({ name }) => ({
+                id: name,
+                value: name,
+              }))}
+              onChange={(value: number | string | null) =>
+                setFilter({ ...filter, search: String(value) })
               }
             />
           </Grid>

@@ -132,9 +132,11 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                   alignItems="center"
                   flexDirection={{ xs: 'column', lg: 'row' }}
                 >
-                  <Grid item>
-                    <Button>написать письмо</Button>
-                  </Grid>
+                  {!!data?.prisoner?.prisonerData?.addressparsed && (
+                    <Grid item>
+                      <Button>написать письмо</Button>
+                    </Grid>
+                  )}
                   <Grid item>
                     <Button variant="outline" disabled>
                       помочь по-другому

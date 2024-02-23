@@ -4,9 +4,6 @@
 html,
 body {
   margin: 0;
-  padding-right: 0 !important;
-
-  overflow-x: hidden;
 
   scroll-behavior: smooth;
 }

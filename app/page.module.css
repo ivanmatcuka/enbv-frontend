@@ -26,12 +26,15 @@
     height: 380px;
 
     background: url('/frame_sm.png') center no-repeat white;
+    background-size: contain;
   }
 }
 
 .numbers {
   background: url('/background-2.png') left no-repeat white;
   background-size: cover;
+
+  overflow: hidden;
 }
 
 .numbers::before {
@@ -54,6 +57,8 @@
   background: url('/background-3.png') left no-repeat white;
   background-size: cover;
   background-position: right;
+
+  overflow: hidden;
 }
 
 .why::before {
@@ -75,6 +80,10 @@
   background: url('/background-4.png') left no-repeat #3e4137;
   background-size: cover;
   background-position: left;
+}
+
+.what {
+  overflow: hidden;
 }
 
 .what__arrow {
