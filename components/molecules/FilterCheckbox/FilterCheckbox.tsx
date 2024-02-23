@@ -1,7 +1,7 @@
 'use client';
 
 import { MenuList, SelectChangeEvent } from '@mui/material';
-import { FC, useState, useCallback } from 'react';
+import { FC, useCallback, useState } from 'react';
 
 import { Checkbox } from '../../../components/atoms/Checkbox/Checkbox';
 import { Typography } from '../../../components/typography/Typography/Typography';
@@ -17,13 +17,13 @@ type Option = {
 
 type Value = number | string | null;
 
-type FilterCheckbox = {
+type FilterCheckboxProps = {
   label: string;
   options: Option[];
   onChange?: (value: Value) => void;
 };
 
-export const FilterCheckbox: FC<FilterCheckbox> = ({
+export const FilterCheckbox: FC<FilterCheckboxProps> = ({
   label,
   options,
   onChange,

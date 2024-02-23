@@ -1,7 +1,9 @@
-import { Grid, Input } from '@mui/material';
+import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
+
+import { Input } from '@/components/molecules/Input/Input';
 
 import {
   Prisoners,
@@ -11,8 +13,13 @@ import {
 import { Button } from '../../../components/atoms/Button/Button';
 import { CardPZ } from '../../../components/organisms/CardPZ/CardPZ';
 import { Typography } from '../../../components/typography/Typography/Typography';
+import { SearchIcon } from '../icons/SearchIcon/SearchIcon';
 
 const DEFAULT_OFFSET = 9;
+
+const SearchField = styled(Input)(() => ({
+  width: '100%',
+}));
 
 export const PrisonersList: FC = () => {
   const [offset, setOffset] = useState(DEFAULT_OFFSET);
@@ -73,13 +80,16 @@ export const PrisonersList: FC = () => {
               чтобы о них узнали во всем мире. В этом списке важно каждое имя.
             </Typography>
           </Grid>
-          <Grid item flexBasis="100%" mt={9.25}>
-            <Input
-              startAdornment="🔎"
+          <Grid
+            item
+            flexBasis="100%"
+            mt={9.25}
+            display="flex"
+            justifyContent="stretch"
+          >
+            <SearchField
+              startAdornment={<SearchIcon />}
               placeholder="Поиск по ФИО"
-              style={{
-                width: '100%',
-              }}
               onChange={(e) => {
                 setFilter({ ...filter, search: e.target.value });
               }}
