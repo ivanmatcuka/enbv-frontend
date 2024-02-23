@@ -114,7 +114,7 @@ export const PrisonersList: FC = () => {
                 value: fullname,
               }))}
               onChange={(value: number | string | null) =>
-                setFilter({ ...filter, search: String(value) })
+                setFilter({ ...filter, regionName: String(value) })
               }
             />
           </Grid>

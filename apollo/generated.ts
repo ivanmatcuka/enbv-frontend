@@ -991,6 +991,7 @@ export type Comment_Prisonerdata = AcfFieldGroup & {
   mailinterests?: Maybe<Scalars['String']['output']>;
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -1296,6 +1297,7 @@ export type ContentNode_Prisonerdata = AcfFieldGroup & {
   mailinterests?: Maybe<Scalars['String']['output']>;
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -1326,6 +1328,7 @@ export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   mailinterests?: Maybe<Scalars['String']['output']>;
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -3412,6 +3415,7 @@ export type MenuItem_Prisonerdata = AcfFieldGroup & {
   mailinterests?: Maybe<Scalars['String']['output']>;
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -3499,6 +3503,7 @@ export type Menu_Prisonerdata = AcfFieldGroup & {
   mailinterests?: Maybe<Scalars['String']['output']>;
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -7884,6 +7889,8 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   password?: InputMaybe<Scalars['String']['input']>;
   /** The ID of the post object to filter by */
   prisonerName?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the post object to filter by */
+  regionName?: InputMaybe<Scalars['String']['input']>;
   /** Show Posts based on a keyword search */
   search?: InputMaybe<Scalars['String']['input']>;
   /** Retrieve posts where post status is in an array. */
@@ -9191,6 +9198,7 @@ export type TermNode_Prisonerdata = AcfFieldGroup & {
   mailinterests?: Maybe<Scalars['String']['output']>;
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -10486,6 +10494,7 @@ export type User_Prisonerdata = AcfFieldGroup & {
   mailinterests?: Maybe<Scalars['String']['output']>;
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  region?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
