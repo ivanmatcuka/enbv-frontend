@@ -10,7 +10,7 @@ export type Prisoners = NonNullable<
 export type Prisoner = Prisoners[number]['node'];
 export type PrisonersInput = RootQueryToPrisonerConnectionWhereArgs;
 
-export const usePrisoners = (offset: number, filter?: PrisonersInput) => {
+export const usePrisoners = (offset?: number, filter?: PrisonersInput) => {
   const { loading, error, data } = usePrisonersQuery({
     fetchPolicy: 'no-cache',
     errorPolicy: 'all',

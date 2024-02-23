@@ -1,6 +1,6 @@
 import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 
 import { FilterCheckbox } from '@/components/molecules/FilterCheckbox/FilterCheckbox';
 import { FilterSlider } from '@/components/molecules/FilterSlider/FilterSlider';
@@ -17,26 +17,34 @@ import { CardPZ } from '../../../components/organisms/CardPZ/CardPZ';
 import { Typography } from '../../../components/typography/Typography/Typography';
 import { SearchIcon } from '../icons/SearchIcon/SearchIcon';
 
-const DEFAULT_OFFSET = 9;
+const DEFAULT_OFFSET = 300;
+const DEFAULT_PAGINATION = 9;
 
 const SearchField = styled(Input)(() => ({
   width: '100%',
 }));
 
 export const PrisonersList: FC = () => {
-  const [offset, setOffset] = useState(DEFAULT_OFFSET);
+  const [pagination, setPgination] = useState(DEFAULT_PAGINATION);
   const [filter, setFilter] = useState<PrisonersInput>({});
   const [cachedPrisoners, setCachedPrisoners] = useState<Prisoners>([]);
 
-  const { data, loading } = usePrisoners(offset, filter);
+  const hasFilters = useMemo(() => Object.keys(filter).length > 0, [filter]);
+
+  const { data, loading } = usePrisoners(
+    hasFilters ? DEFAULT_OFFSET : undefined,
+    filter,
+  );
 
   const prisoners = data?.prisoners?.edges;
 
   useEffect(() => {
     if (!prisoners || loading) return;
 
-    setCachedPrisoners(prisoners);
-  }, [prisoners, loading]);
+    setCachedPrisoners(prisoners.slice(0, pagination));
+  }, [prisoners, loading, pagination]);
+
+  const hasMore = !!((data?.prisoners?.edges.length ?? 0) + 1 > pagination);
 
   return (
     <Grid
@@ -115,9 +123,7 @@ export const PrisonersList: FC = () => {
           </Grid>
           <Grid item flexBasis="100%" textAlign="center" mb={4}>
             <Typography variant="subtitle1">
-              {loading
-                ? 'Загрузка...'
-                : `Показано преследуемых: ${prisoners?.length}`}
+              {loading ? 'Загрузка...' : `Найдено: ${prisoners?.length}`}
             </Typography>
           </Grid>
           <Grid item flex={1} mt={10} flexBasis="100%">
@@ -154,14 +160,14 @@ export const PrisonersList: FC = () => {
           </Grid>
         </Grid>
       </Grid>
-      {!!data?.prisoners?.edges.length && (
+      {hasMore && (
         <Grid m="auto" item>
           <Button
             disabled={loading}
             variant="outline"
-            onClick={() => setOffset(offset + DEFAULT_OFFSET)}
+            onClick={() => setPgination(pagination + DEFAULT_PAGINATION)}
           >
-            {loading ? 'загрузка...' : 'загрузить ещё'}
+            {loading ? 'загрузка...' : ' показать ещё'}
           </Button>
         </Grid>
       )}

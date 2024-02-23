@@ -7857,6 +7857,8 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Show posts with a specific password. */
   password?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the post object to filter by */
+  prisonerName?: InputMaybe<Scalars['String']['input']>;
   /** Show Posts based on a keyword search */
   search?: InputMaybe<Scalars['String']['input']>;
   /** Retrieve posts where post status is in an array. */
@@ -10538,7 +10540,7 @@ export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?
 export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null };
 
 export type PrisonersQueryVariables = Exact<{
-  offset: Scalars['Int']['input'];
+  offset?: InputMaybe<Scalars['Int']['input']>;
   filter?: InputMaybe<RootQueryToPrisonerConnectionWhereArgs>;
 }>;
 
@@ -10611,7 +10613,7 @@ export type PrisonerLazyQueryHookResult = ReturnType<typeof usePrisonerLazyQuery
 export type PrisonerSuspenseQueryHookResult = ReturnType<typeof usePrisonerSuspenseQuery>;
 export type PrisonerQueryResult = Apollo.QueryResult<PrisonerQuery, PrisonerQueryVariables>;
 export const PrisonersDocument = gql`
-    query prisoners($offset: Int!, $filter: RootQueryToPrisonerConnectionWhereArgs) {
+    query prisoners($offset: Int, $filter: RootQueryToPrisonerConnectionWhereArgs) {
   prisoners(first: $offset, where: $filter) {
     edges {
       node {
@@ -10639,7 +10641,7 @@ export const PrisonersDocument = gql`
  *   },
  * });
  */
-export function usePrisonersQuery(baseOptions: Apollo.QueryHookOptions<PrisonersQuery, PrisonersQueryVariables>) {
+export function usePrisonersQuery(baseOptions?: Apollo.QueryHookOptions<PrisonersQuery, PrisonersQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<PrisonersQuery, PrisonersQueryVariables>(PrisonersDocument, options);
       }

@@ -22,10 +22,7 @@ fragment PrisonerItem on Prisoner {
   }
 }
 
-query prisoners(
-  $offset: Int!
-  $filter: RootQueryToPrisonerConnectionWhereArgs
-) {
+query prisoners($offset: Int, $filter: RootQueryToPrisonerConnectionWhereArgs) {
   prisoners(first: $offset, where: $filter) {
     edges {
       node {
