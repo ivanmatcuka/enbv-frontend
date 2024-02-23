@@ -109,9 +109,9 @@ export const PrisonersList: FC = () => {
           <Grid item>
             <FilterCheckbox
               label="регион"
-              options={getRegions().map(({ name }) => ({
-                id: name,
-                value: name,
+              options={getRegions().map(({ fullname }) => ({
+                id: fullname,
+                value: fullname,
               }))}
               onChange={(value: number | string | null) =>
                 setFilter({ ...filter, search: String(value) })
