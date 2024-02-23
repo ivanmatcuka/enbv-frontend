@@ -11,7 +11,6 @@ const Frame = styled(Grid)({
 const StyledImage = styled(Image)({
   position: 'absolute',
   inset: 0,
-  zIndex: -1,
 
   width: '100%',
   height: '100%',

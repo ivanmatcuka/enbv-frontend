@@ -3,9 +3,11 @@
 import { Grid, styled } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/ru';
+import { useState } from 'react';
 moment.locale('ru_RU');
 
 import { Cards } from '@/app/components/Cards/Cards';
+import { MessageDialog } from '@/app/components/Dialog/Dialog';
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
 import { Article } from '@/components/atoms/Article/Article';
 import { Button } from '@/components/atoms/Button/Button';
@@ -42,6 +44,8 @@ const DescriptionLayout = styled(Typography)({
 });
 
 export default function Prisoner({ params }: { params: { id: string } }) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const { data, loading } = usePrisoner(params.id);
 
   const pd = data?.prisoner?.prisonerData;
@@ -59,6 +63,13 @@ export default function Prisoner({ params }: { params: { id: string } }) {
 
   return (
     <Grid container>
+      {data?.prisoner && (
+        <MessageDialog
+          prisoner={data.prisoner}
+          open={isDialogOpen}
+          onClose={() => setIsDialogOpen(false)}
+        />
+      )}
       <Grid
         item
         width="100%"
@@ -163,7 +174,9 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                 >
                   {hasAddress && (
                     <Grid item>
-                      <Button>написать письмо</Button>
+                      <Button onClick={() => setIsDialogOpen(true)}>
+                        написать письмо
+                      </Button>
                     </Grid>
                   )}
                   <Grid item>

@@ -106,7 +106,7 @@ export const PrisonersList: FC = () => {
               }
             />
           </Grid>
-          <Grid item>
+          <Grid item mr={1}>
             <FilterCheckbox
               label="регион"
               options={getRegions().map(({ fullname }) => ({
@@ -115,6 +115,18 @@ export const PrisonersList: FC = () => {
               }))}
               onChange={(value: number | string | null) =>
                 setFilter({ ...filter, regionName: String(value) })
+              }
+            />
+          </Grid>
+          <Grid item>
+            <FilterCheckbox
+              label="пол"
+              options={[
+                { id: 'мужской', value: 'мужской' },
+                { id: 'женский', value: 'женский' },
+              ]}
+              onChange={(value: number | string | null) =>
+                setFilter({ ...filter, sex: String(value) })
               }
             />
           </Grid>

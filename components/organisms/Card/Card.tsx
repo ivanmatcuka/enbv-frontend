@@ -38,7 +38,6 @@ const StyledImage = styled(Image)(({ theme }) => ({
 const Background = styled('img')({
   position: 'absolute',
   inset: 0,
-  zIndex: -1,
 
   width: '100%',
   height: '100%',
@@ -62,6 +61,7 @@ export const Card: FC<CardProps> = ({ title, body, action, catPictureUrl }) => {
         component="p"
         pt={1.5}
         pl={{ xs: 12.5, lg: 17.5 }}
+        pb={{ xs: 9 }}
       >
         {body}
       </Typography>

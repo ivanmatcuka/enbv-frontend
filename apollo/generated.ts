@@ -7861,8 +7861,6 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   categoryName?: InputMaybe<Scalars['String']['input']>;
   /** Array of category IDs, used to display objects from one category OR another */
   categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** The ID of the post object to filter by */
-  date?: InputMaybe<Scalars['String']['input']>;
   /** Filter the connection based on dates */
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
@@ -7895,6 +7893,8 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   regionName?: InputMaybe<Scalars['String']['input']>;
   /** Show Posts based on a keyword search */
   search?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the post object to filter by */
+  sex?: InputMaybe<Scalars['String']['input']>;
   /** Retrieve posts where post status is in an array. */
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */

@@ -13,6 +13,7 @@ export type TypographyProps = {
   | 'component'
   | 'pl'
   | 'pt'
+  | 'pb'
   | 'color'
   | 'textAlign'
   | 'width'
