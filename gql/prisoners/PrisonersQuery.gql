@@ -4,6 +4,7 @@ fragment PrisonerItem on Prisoner {
   content
   prisonerData {
     addressparsed
+    coordinatesparsed
     birthdate
     city
     dateofarrest

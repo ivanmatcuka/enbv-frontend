@@ -78,13 +78,11 @@ export const CardPZ: FC<Partial<CardPZProps>> = ({
       pl={2}
       pr={2}
     >
-      {/* Name */}
       <Grid item>
         <StyledName variant="h3" component="p" pl={15.5}>
           {name}
         </StyledName>
       </Grid>
-      {/* Articles */}
       {filteredArticles && filteredArticles.length > 0 && (
         <Grid item>
           <Grid container spacing={0.5}>

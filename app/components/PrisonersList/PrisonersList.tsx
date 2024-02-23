@@ -148,7 +148,13 @@ export const PrisonersList: FC = () => {
                     pictureUrl={prisoner.featuredImage?.node.mediaItemUrl ?? ''}
                     primaryAction={
                       <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
-                        <Button>написать ✉</Button>
+                        {['нет информации', 'домашний арест'].includes(
+                          prisoner.prisonerData?.coordinatesparsed ?? '',
+                        ) || !prisoner.prisonerData?.coordinatesparsed ? (
+                          <Button>подробнее</Button>
+                        ) : (
+                          <Button>написать ✉</Button>
+                        )}
                       </a>
                     }
                     secondaryAction={
