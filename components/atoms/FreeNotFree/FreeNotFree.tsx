@@ -25,10 +25,10 @@ export const FreeNotFree: FC<FreeNotFreeProps> = ({ notFree, free }) => {
   return (
     <Grid container width={536} gap={2}>
       <Grid width={260} textAlign="center">
-        <Typography variant="legend">{`${notFree} – уже лишены свободы`}</Typography>
+        <Typography variant="legend">{`${notFree} – лишены свободы`}</Typography>
       </Grid>
       <Grid width={260} textAlign="center">
-        <Typography variant="legend">{`${free} – ещё не свободе`}</Typography>
+        <Typography variant="legend">{`${free} – на свободе`}</Typography>
       </Grid>
       {[notFree, free].map((value, index) => (
         <StyledGridItem

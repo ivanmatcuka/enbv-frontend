@@ -54,8 +54,8 @@ export default function Footer() {
             alignSelf="center"
           >
             <Typography variant="subtitle1" textAlign="center">
-              Проект существует на пожертвования. Помогите проекту держаться на
-              плаву и развиваться!
+              Над большой базой данных работает целая команда. Помогите нам
+              продолжать и развивать этот проект.
             </Typography>
           </Grid>
           <DrawingFrame

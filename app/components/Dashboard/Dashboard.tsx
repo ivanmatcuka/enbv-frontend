@@ -18,7 +18,7 @@ export default function Dashboard() {
     <Grid container maxWidth={1200} margin="auto">
       <Grid item mb={4.5} flex="1 0 100%">
         <Typography variant="h1" color="brand.red">
-          Числа и лица
+          Антивоенное дело в цифрах
         </Typography>
       </Grid>
       <Grid item width={392}>
@@ -30,19 +30,19 @@ export default function Dashboard() {
           height={{ xs: 443, lg: 575 }}
         >
           <Grid item>
-            <Counter label="Всего политзаключённых:">
+            <Counter label="Всего фигурантов уголовных дел">
               {prisonerStatusCounts?.totalCount}
             </Counter>
           </Grid>
           <Grid item>
-            <Counter label="Сколько дел в процессе">
+            <Counter label="Имена фигурантов известны">
               {prisonerStatusCounts?.imprisonedCount}
             </Counter>
           </Grid>
           <Grid item>
             <Counter
-              label="Писем сегодня отправлено:"
-              catPictureUrl="/cat_sad.svg"
+              label="«Заключенным можно написать"
+              catPictureUrl="/cat_3.svg"
             >
               0
             </Counter>
@@ -74,7 +74,7 @@ export default function Dashboard() {
               ),
             },
             {
-              label: 'на свободе/под стражей',
+              label: 'лишены свободы/на свободе',
               element: (
                 <FreeNotFree
                   free={prisonerStatusCounts?.outCount ?? 0}
