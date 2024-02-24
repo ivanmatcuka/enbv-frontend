@@ -36,7 +36,7 @@ export default function Dashboard() {
           </Grid>
           <Grid item>
             <Counter label="Имена фигурантов известны">
-              {prisonerStatusCounts?.imprisonedCount}
+              {prisonerStatusCounts?.inProcessCount}
             </Counter>
           </Grid>
           <Grid item>
@@ -44,7 +44,7 @@ export default function Dashboard() {
               label="Заключенным можно написать"
               catPictureUrl="/cat_3.svg"
             >
-              0
+              {prisonerStatusCounts?.addressCount}
             </Counter>
           </Grid>
           <Grid item>{/* <Button>НАПИСАТЬ ПИСЬМО</Button> */}</Grid>
