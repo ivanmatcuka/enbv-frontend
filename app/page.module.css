@@ -6,6 +6,8 @@
 .carousel {
   background: url('/bg-section-carousel.png') center no-repeat white;
   background-size: cover;
+
+  overflow-x: clip;
 }
 
 .frame__photo {

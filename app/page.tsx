@@ -115,7 +115,12 @@ export default function Home() {
                   Если б не было войны
                 </Typography>
               </Grid>
-              <Grid item width="100%" pl={{ xs: 0, lg: '101px' }}>
+              <Grid
+                item
+                width="100%"
+                pl={{ xs: 0, lg: '101px' }}
+                pr={{ xs: 0, lg: 4 }}
+              >
                 <Typography
                   variant="subtitle1"
                   textAlign="left"

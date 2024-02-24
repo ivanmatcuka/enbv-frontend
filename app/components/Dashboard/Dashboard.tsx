@@ -41,7 +41,7 @@ export default function Dashboard() {
           </Grid>
           <Grid item>
             <Counter
-              label="«Заключенным можно написать"
+              label="Заключенным можно написать"
               catPictureUrl="/cat_3.svg"
             >
               0
