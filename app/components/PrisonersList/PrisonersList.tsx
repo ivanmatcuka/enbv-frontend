@@ -67,7 +67,7 @@ export const PrisonersList: FC = () => {
         </Typography>
       </Grid>
 
-      <Grid item>
+      <Grid width={'100%'} item>
         <Grid container width="100%">
           <Grid item flexBasis={{ xs: 'auto', lg: 500 }}>
             <Image
@@ -111,7 +111,7 @@ export const PrisonersList: FC = () => {
               }}
             />
           </Grid>
-          <Grid item mr={1}>
+          <Grid item mr={1} mt={1}>
             <FilterSlider
               label="Возраст"
               value={[age[0], age[1]]}
@@ -126,7 +126,7 @@ export const PrisonersList: FC = () => {
               }
             />
           </Grid>
-          <Grid item mr={1}>
+          <Grid item mr={1} mt={1}>
             <FilterCheckbox
               label="регион"
               value={region}
@@ -140,7 +140,7 @@ export const PrisonersList: FC = () => {
               }}
             />
           </Grid>
-          <Grid item mr={1}>
+          <Grid item mr={1} mt={1}>
             <FilterCheckbox
               label="пол"
               value={sex}
@@ -154,7 +154,7 @@ export const PrisonersList: FC = () => {
               }}
             />
           </Grid>
-          <Grid item>
+          <Grid item mt={1}>
             <Button
               variant="outline"
               onClick={() => {
@@ -179,7 +179,7 @@ export const PrisonersList: FC = () => {
                   }`}
             </Typography>
           </Grid>
-          <Grid item flex={1} mt={10} flexBasis="100%">
+          <Grid item flex={1} mt={10} flexBasis="100%" maxWidth="100%">
             <Grid container rowSpacing={8.5} justifyContent="center">
               {cachedPrisoners.map(({ node: prisoner }, index) => (
                 <Grid
