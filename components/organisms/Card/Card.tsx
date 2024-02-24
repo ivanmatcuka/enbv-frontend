@@ -60,6 +60,7 @@ export const Card: FC<CardProps> = ({ title, body, action, catPictureUrl }) => {
         variant="p2"
         component="p"
         pt={1.5}
+        pr={1.5}
         pl={{ xs: 12.5, lg: 17.5 }}
         pb={{ xs: 9 }}
       >

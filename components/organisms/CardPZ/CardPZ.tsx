@@ -29,6 +29,7 @@ const SecondaryActionContainer = styled('div')(({ theme }) => ({
 const Background = styled('img')({
   position: 'absolute',
   inset: 0,
+  zIndex: -1,
 
   width: '100%',
   height: '100%',
