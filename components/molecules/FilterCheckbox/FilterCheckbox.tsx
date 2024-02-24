@@ -1,7 +1,7 @@
 'use client';
 
-import { SelectChangeEvent } from '@mui/material';
-import { FC, useCallback, useState } from 'react';
+import { SelectChangeEvent, SelectProps } from '@mui/material';
+import { FC, useCallback } from 'react';
 
 import { Checkbox } from '../../../components/atoms/Checkbox/Checkbox';
 import { Typography } from '../../../components/typography/Typography/Typography';
@@ -21,20 +21,18 @@ type FilterCheckboxProps = {
   label: string;
   options: Option[];
   onChange?: (value: Value) => void;
-};
+} & Pick<SelectProps, 'value'>;
 
 export const FilterCheckbox: FC<FilterCheckboxProps> = ({
   label,
   options,
+  value,
   onChange,
 }) => {
-  const [value, setValue] = useState<Value>('');
-
   const handleChange = useCallback(
     (event: SelectChangeEvent<unknown>) => {
       const newValue = event.target.value as Value;
 
-      setValue(newValue);
       onChange && onChange(newValue);
     },
     [onChange],

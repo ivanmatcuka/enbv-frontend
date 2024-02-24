@@ -24,10 +24,17 @@ const SearchField = styled(Input)(() => ({
   width: '100%',
 }));
 
+type Value = number | string | null;
+
 export const PrisonersList: FC = () => {
   const [pagination, setPgination] = useState(DEFAULT_PAGINATION);
   const [filter, setFilter] = useState<PrisonersInput>({});
   const [cachedPrisoners, setCachedPrisoners] = useState<Prisoners>([]);
+
+  const [name, setName] = useState<Value>();
+  const [age, setAge] = useState<number[]>([0, 99]);
+  const [region, setRegion] = useState<Value>();
+  const [sex, setSex] = useState<Value>();
 
   // const hasFilters = useMemo(() => Object.keys(filter).length > 0, [filter]);
 
@@ -93,46 +100,73 @@ export const PrisonersList: FC = () => {
           </Grid>
           <Grid item flexBasis="100%" mt={9.25} mb={1}>
             <SearchField
+              value={name}
               startAdornment={<SearchIcon />}
               placeholder="Поиск по ФИО"
               onChange={(e) => {
-                setFilter({ ...filter, prisonerName: e.target.value });
+                {
+                  setName(e.target.value);
+                  setFilter({ ...filter, prisonerName: e.target.value });
+                }
               }}
             />
           </Grid>
           <Grid item mr={1}>
             <FilterSlider
               label="Возраст"
+              value={[age[0], age[1]]}
               min={0}
               max={99}
-              onChange={(value: number[]) =>
-                setFilter({ ...filter, ageMin: value[0], ageMax: value[1] })
+              onChange={(_, value) => {
+                if (!Array.isArray(value)) return;
+                setAge([value[0], value[1]]);
+              }}
+              onChangeCommitted={() =>
+                setFilter({ ...filter, ageMin: age[0], ageMax: age[1] })
               }
             />
           </Grid>
           <Grid item mr={1}>
             <FilterCheckbox
               label="регион"
+              value={region}
               options={getRegions().map(({ fullname }) => ({
                 id: fullname,
                 value: fullname,
               }))}
-              onChange={(value: number | string | null) =>
-                setFilter({ ...filter, regionName: String(value) })
-              }
+              onChange={(value: number | string | null) => {
+                setRegion(String(value));
+                setFilter({ ...filter, regionName: String(value) });
+              }}
             />
           </Grid>
-          <Grid item>
+          <Grid item mr={1}>
             <FilterCheckbox
               label="пол"
+              value={sex}
               options={[
                 { id: 'мужской', value: 'мужской' },
                 { id: 'женский', value: 'женский' },
               ]}
-              onChange={(value: number | string | null) =>
-                setFilter({ ...filter, sex: String(value) })
-              }
+              onChange={(value: number | string | null) => {
+                setSex(String(value));
+                setFilter({ ...filter, sex: String(value) });
+              }}
             />
+          </Grid>
+          <Grid item>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setAge([0, 99]);
+                setRegion('');
+                setSex('');
+                setName('');
+                setFilter({});
+              }}
+            >
+              очистить
+            </Button>
           </Grid>
           <Grid item flexBasis="100%" textAlign="center" mt={1} mb={4}>
             <Typography variant="subtitle1">

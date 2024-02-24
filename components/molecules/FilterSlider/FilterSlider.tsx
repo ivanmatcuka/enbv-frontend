@@ -1,8 +1,8 @@
 'use client';
 
 import { MenuList, Slider, Tooltip, styled } from '@mui/material';
-import { SliderValueLabelProps } from '@mui/material/Slider';
-import { FC, SyntheticEvent, useCallback, useState } from 'react';
+import { SliderProps, SliderValueLabelProps } from '@mui/material/Slider';
+import { FC } from 'react';
 
 import { Typography } from '../../../components/typography/Typography/Typography';
 import { Arrow } from '../Filter/Arrow';
@@ -10,12 +10,11 @@ import { MenuItem } from '../Filter/MenuItem';
 import { Paper } from '../Filter/Paper';
 import { Select } from '../Filter/Select';
 
-type FilterSlider = {
+type FilterSliderProps = {
   label: string;
   max: number;
   min: number;
-  onChange?: (value: number[]) => void;
-};
+} & Pick<SliderProps, 'value' | 'onChange' | 'onChangeCommitted'>;
 
 const StyledSlider = styled(Slider)(({ theme }) => ({
   padding: 0,
@@ -57,21 +56,14 @@ const ValueLabelComponent = (props: SliderValueLabelProps) => {
   );
 };
 
-export const FilterSlider: FC<FilterSlider> = ({
+export const FilterSlider: FC<FilterSliderProps> = ({
+  value,
   label,
   max,
   min,
   onChange,
+  onChangeCommitted,
 }) => {
-  const [value, setValue] = useState<number[]>([min, max]);
-
-  const handleSliderChange = useCallback(
-    (_: SyntheticEvent | Event, value: number | number[]) => {
-      onChange && onChange(value as number[]);
-    },
-    [onChange],
-  );
-
   return (
     <Select
       id="range-selector"
@@ -86,17 +78,19 @@ export const FilterSlider: FC<FilterSlider> = ({
           component: MenuList,
         },
       }}
-      renderValue={() => (
-        <Typography variant="button">{`${label} (${value[0]}-${value[1]})`}</Typography>
-      )}
+      renderValue={() =>
+        Array.isArray(value) && (
+          <Typography variant="button">{`${label} (${value[0]}-${value[1]})`}</Typography>
+        )
+      }
       multiple
     >
       <MenuItem dense disableRipple autoFocus>
         <StyledSlider
           value={value}
           valueLabelDisplay="on"
-          onChange={(_, value) => setValue(value as number[])}
-          onChangeCommitted={handleSliderChange}
+          onChange={onChange}
+          onChangeCommitted={onChangeCommitted}
           max={max}
           min={min}
           slots={{ valueLabel: ValueLabelComponent }}
