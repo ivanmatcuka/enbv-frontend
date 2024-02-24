@@ -22,7 +22,7 @@ import { Button } from '../components/atoms/Button/Button';
 import { Typography } from '../components/typography/Typography/Typography';
 
 export default function Home() {
-  const { data } = usePrisoners(10);
+  const { data } = usePrisoners(50);
 
   // const birthdays = useMemo(() => {
   //   if (!data?.prisoners) return [];
