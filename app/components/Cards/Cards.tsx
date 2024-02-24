@@ -17,7 +17,7 @@ export const Cards = () => (
         body="Самый простой и быстрый способ поддержать заключенного – отправить ему письмо. Мы поможем выбрать собеседника и расскажем, куда отправлять письмо!"
         catPictureUrl="/icon_letter.svg"
         action={
-          <a href="#list">
+          <a href="/#list">
             <Button>Написать</Button>
           </a>
         }
