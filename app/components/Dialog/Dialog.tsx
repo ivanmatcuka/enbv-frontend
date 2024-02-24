@@ -57,6 +57,10 @@ export const MessageDialog: FC<MessageDialogProps> = ({
           <Typography variant="p3">
             {prisoner.prisonerData?.addressparsed}
           </Typography>
+          <br />
+          <Typography variant="p3">
+            {prisoner.prisonerData?.institutionshortnameparsed}
+          </Typography>
         </Grid>
         <Grid mt={8} item flex={1}>
           <Button variant="outline" onClick={handleClose}>
