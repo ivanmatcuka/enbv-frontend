@@ -180,9 +180,9 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                     </Grid>
                   )}
                   <Grid item>
-                    <Button variant="outline" disabled>
-                      помочь по-другому
-                    </Button>
+                    <a href="https://t.me/avtozakinfo_bot" target="_blank">
+                      <Button variant="outline">Сообщить о неточности</Button>
+                    </a>
                   </Grid>
                 </Grid>
               </Grid>
