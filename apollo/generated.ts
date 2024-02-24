@@ -5845,10 +5845,14 @@ export enum PrisonerIdType {
 /** Counts of prisoners by status, age, and sex. */
 export type PrisonerStatusCounts = {
   __typename?: 'PrisonerStatusCounts';
+  /** Count of prisoners with address. */
+  addressCount?: Maybe<Scalars['Int']['output']>;
   /** Counts of prisoners by age range and sex. */
   ageRanges?: Maybe<Array<Maybe<AgeRangeCount>>>;
   /** Count of imprisoned prisoners. */
   imprisonedCount?: Maybe<Scalars['Int']['output']>;
+  /** Total count of prisoners. */
+  inProcessCount?: Maybe<Scalars['Int']['output']>;
   /** Count of prisoners who are not imprisoned. */
   outCount?: Maybe<Scalars['Int']['output']>;
   /** Total count of prisoners. */
@@ -10586,7 +10590,7 @@ export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typenam
 export type PrisonerStatusCountsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PrisonerStatusCountsQuery = { __typename?: 'RootQuery', prisonerStatusCounts?: { __typename?: 'PrisonerStatusCounts', outCount?: number | null, totalCount?: number | null, imprisonedCount?: number | null, ageRanges?: Array<{ __typename?: 'AgeRangeCount', ageRange?: string | null, male?: number | null, female?: number | null } | null> | null } | null };
+export type PrisonerStatusCountsQuery = { __typename?: 'RootQuery', prisonerStatusCounts?: { __typename?: 'PrisonerStatusCounts', outCount?: number | null, totalCount?: number | null, inProcessCount?: number | null, addressCount?: number | null, imprisonedCount?: number | null, ageRanges?: Array<{ __typename?: 'AgeRangeCount', ageRange?: string | null, male?: number | null, female?: number | null } | null> | null } | null };
 
 export const PrisonerItemFragmentDoc = gql`
     fragment PrisonerItem on Prisoner {
@@ -10705,6 +10709,8 @@ export const PrisonerStatusCountsDocument = gql`
   prisonerStatusCounts {
     outCount
     totalCount
+    inProcessCount
+    addressCount
     ageRanges {
       ageRange
       male

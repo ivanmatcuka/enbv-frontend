@@ -233,6 +233,7 @@ export default function Home() {
               позицией, но и те, чья позиция нам неизвестна. На этом сайте есть
               информация только о тех, чьё имя нам известно.
             </Typography>
+            <br />
             <Typography
               variant="subtitle1"
               color="brand.white"
@@ -324,6 +325,7 @@ export default function Home() {
               тех, кто не пользуется широкой поддержкой из-за жесткости и
               неоднозначности обвинений.
             </Typography>
+            <br />
             <Typography variant="subtitle1" component="p">
               Наша позиция простая: нельзя забывать никого. В поддержке
               нуждаются все, кто столкнулся с произволом и жестокостью
