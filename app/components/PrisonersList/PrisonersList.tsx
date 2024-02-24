@@ -122,7 +122,7 @@ export const PrisonersList: FC = () => {
             <FilterCheckbox
               label="пол"
               options={[
-                { id: 'мужской', value: 'мужской' },
+                { id: 'мужской', value: 'мужской' },
                 { id: 'женский', value: 'женский' },
               ]}
               onChange={(value: number | string | null) =>
