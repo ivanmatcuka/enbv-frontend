@@ -52,7 +52,11 @@ export const Cards = () => (
         }
         body="В исправительных учреждениях нет многих вещей, к которым все привыкли на свободе. Вы можете помочь сделать заключенных чуточку счастливее, отправив им передачку с необходимыми продуктами или оплатить такую передачу. Этот раздел находится в разработке."
         catPictureUrl="/icon_parcel.svg"
-        action={<Button variant="outline">Написать</Button>}
+        action={
+          <Button variant="outline" disabled>
+            скоро
+          </Button>
+        }
       />
     </Grid>
     <Grid item>
