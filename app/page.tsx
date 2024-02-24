@@ -4,7 +4,7 @@ import { Grid } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/ru';
 import Image from 'next/image';
-import { useMemo } from 'react';
+// import { useMemo } from 'react';
 moment.locale('ru_RU');
 
 import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
@@ -18,57 +18,57 @@ import styles from './page.module.css';
 
 import { usePrisoners } from '../apollo/hooks/usePrisoners';
 import { Button } from '../components/atoms/Button/Button';
-import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
+// import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
 
 export default function Home() {
   const { data } = usePrisoners(10);
 
-  const birthdays = useMemo(() => {
-    if (!data?.prisoners) return [];
+  // const birthdays = useMemo(() => {
+  //   if (!data?.prisoners) return [];
 
-    return [...data.prisoners.edges]
-      .filter((a) => {
-        const now = moment();
-        const aBirthdayThisYear = moment(a.node.prisonerData?.birthdate).year(
-          now.year(),
-        );
+  //   return [...data.prisoners.edges]
+  //     .filter((a) => {
+  //       const now = moment();
+  //       const aBirthdayThisYear = moment(a.node.prisonerData?.birthdate).year(
+  //         now.year(),
+  //       );
 
-        return now.diff(aBirthdayThisYear) >= 0;
-      })
-      .sort((a, b) => {
-        const now = moment();
-        const aBirthdayThisYear = moment(a.node.prisonerData?.birthdate).year(
-          now.year(),
-        );
-        const bBirthdayThisYear = moment(b.node.prisonerData?.birthdate).year(
-          now.year(),
-        );
+  //       return now.diff(aBirthdayThisYear) >= 0;
+  //     })
+  //     .sort((a, b) => {
+  //       const now = moment();
+  //       const aBirthdayThisYear = moment(a.node.prisonerData?.birthdate).year(
+  //         now.year(),
+  //       );
+  //       const bBirthdayThisYear = moment(b.node.prisonerData?.birthdate).year(
+  //         now.year(),
+  //       );
 
-        return aBirthdayThisYear.diff(now) - bBirthdayThisYear.diff(now);
-      })
-      .slice(0, 3);
-  }, [data?.prisoners]);
+  //       return aBirthdayThisYear.diff(now) - bBirthdayThisYear.diff(now);
+  //     })
+  //     .slice(0, 3);
+  // }, [data?.prisoners]);
 
-  const releases = useMemo(() => {
-    if (!data?.prisoners) return [];
+  // const releases = useMemo(() => {
+  //   if (!data?.prisoners) return [];
 
-    return [...data.prisoners.edges]
-      .filter((a) => {
-        const now = moment();
-        const releaseThisYear = moment(a.node.prisonerData?.freedomdate);
+  //   return [...data.prisoners.edges]
+  //     .filter((a) => {
+  //       const now = moment();
+  //       const releaseThisYear = moment(a.node.prisonerData?.freedomdate);
 
-        return releaseThisYear.diff(now) >= 0;
-      })
-      .sort((a, b) => {
-        const now = moment();
-        const aRelease = moment(a.node.prisonerData?.freedomdate);
-        const bRelease = moment(b.node.prisonerData?.freedomdate);
+  //       return releaseThisYear.diff(now) >= 0;
+  //     })
+  //     .sort((a, b) => {
+  //       const now = moment();
+  //       const aRelease = moment(a.node.prisonerData?.freedomdate);
+  //       const bRelease = moment(b.node.prisonerData?.freedomdate);
 
-        return aRelease.diff(now) - bRelease.diff(now);
-      })
-      .slice(0, 3);
-  }, [data?.prisoners]);
+  //       return aRelease.diff(now) - bRelease.diff(now);
+  //     })
+  //     .slice(0, 3);
+  // }, [data?.prisoners]);
 
   return (
     <Grid container>
@@ -389,7 +389,7 @@ export default function Home() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid
+      {/* <Grid
         item
         className={styles.whom}
         id="whom"
@@ -478,7 +478,7 @@ export default function Home() {
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </Grid> */}
 
       <Grid container>
         <Grid
