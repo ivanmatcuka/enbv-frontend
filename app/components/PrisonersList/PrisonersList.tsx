@@ -197,19 +197,19 @@ export const PrisonersList: FC = () => {
                     sex={prisoner.prisonerData?.sex}
                     pictureUrl={prisoner.featuredImage?.node.mediaItemUrl ?? ''}
                     primaryAction={
-                      <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
-                        {['нет информации', 'домашний арест'].includes(
+                      !(
+                        ['нет информации', 'домашний арест'].includes(
                           prisoner.prisonerData?.coordinatesparsed ?? '',
-                        ) || !prisoner.prisonerData?.coordinatesparsed ? (
-                          <Button>подробнее</Button>
-                        ) : (
+                        ) || !prisoner.prisonerData?.coordinatesparsed
+                      ) && (
+                        <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
                           <Button>написать ✉</Button>
-                        )}
-                      </a>
+                        </a>
+                      )
                     }
                     secondaryAction={
                       <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
-                        <Button variant="outline">помочь</Button>
+                        <Button variant="outline">подробнее</Button>
                       </a>
                     }
                   />
