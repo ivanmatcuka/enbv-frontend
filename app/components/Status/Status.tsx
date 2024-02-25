@@ -22,17 +22,15 @@ const GreenCircle = styled(Circle)(({ theme }) => ({
 type StatusProps = {
   status: string;
 };
-export const Status: FC<StatusProps> = ({ status }) => {
-  return (
-    <Grid container spacing={1}>
-      <Grid item>
-        {status === 'лишен/а свободы' ? <RedCircle /> : <GreenCircle />}
-      </Grid>
-      <Grid item>
-        <Typography variant="button" component="p">
-          {status}
-        </Typography>
-      </Grid>
+export const Status: FC<StatusProps> = ({ status }) => (
+  <Grid container spacing={1}>
+    <Grid item>
+      {status === 'лишен свободы' ? <RedCircle /> : <GreenCircle />}
     </Grid>
-  );
-};
+    <Grid item>
+      <Typography variant="button" component="p">
+        {status}
+      </Typography>
+    </Grid>
+  </Grid>
+);
