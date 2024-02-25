@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import { PropsWithChildren } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { ym } from 'react-ym';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
@@ -18,6 +19,15 @@ export const metadata = {
   title: 'Если б не было войны',
   description: 'Coming...',
 };
+
+if (process.env.NODE_ENV === 'production') {
+  ym.initialize('96529858', {
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: true,
+  });
+}
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
