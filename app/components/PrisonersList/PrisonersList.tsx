@@ -158,16 +158,11 @@ export const PrisonersList: FC = () => {
           <Grid item mr={1} mt={1}>
             <FilterCheckbox
               label="можно написать"
-              value={
-                typeof canWrite !== 'undefined' ? String(canWrite) : undefined
-              }
-              options={[
-                { id: 'true', value: 'true' },
-                { id: 'false', value: 'false' },
-              ]}
+              value={typeof canWrite !== 'undefined' ? 'да' : undefined}
+              options={[{ id: 'да', value: 'да' }]}
               onChange={(value) => {
-                setCanWrite(value === 'true');
-                setFilter({ ...filter, hasAddress: value === 'true' });
+                setCanWrite(!!value);
+                setFilter({ ...filter, hasAddress: !!value });
               }}
             />
           </Grid>
