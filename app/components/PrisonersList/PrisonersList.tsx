@@ -35,6 +35,7 @@ export const PrisonersList: FC = () => {
   const [age, setAge] = useState<number[]>([0, 99]);
   const [region, setRegion] = useState<Value>();
   const [sex, setSex] = useState<Value>();
+  const [canWrite, setCanWrite] = useState<boolean>();
 
   // const hasFilters = useMemo(() => Object.keys(filter).length > 0, [filter]);
 
@@ -134,7 +135,7 @@ export const PrisonersList: FC = () => {
                 id: fullname,
                 value: fullname,
               }))}
-              onChange={(value: number | string | null) => {
+              onChange={(value) => {
                 setRegion(String(value));
                 setFilter({ ...filter, regionName: String(value) });
               }}
@@ -148,9 +149,25 @@ export const PrisonersList: FC = () => {
                 { id: 'мужской', value: 'мужской' },
                 { id: 'женский', value: 'женский' },
               ]}
-              onChange={(value: number | string | null) => {
+              onChange={(value) => {
                 setSex(String(value));
                 setFilter({ ...filter, sex: String(value) });
+              }}
+            />
+          </Grid>
+          <Grid item mr={1} mt={1}>
+            <FilterCheckbox
+              label="можно написать"
+              value={
+                typeof canWrite !== 'undefined' ? String(canWrite) : undefined
+              }
+              options={[
+                { id: 'true', value: 'true' },
+                { id: 'false', value: 'false' },
+              ]}
+              onChange={(value) => {
+                setCanWrite(value === 'true');
+                setFilter({ ...filter, hasAddress: value === 'true' });
               }}
             />
           </Grid>
@@ -162,6 +179,7 @@ export const PrisonersList: FC = () => {
                 setRegion('');
                 setSex('');
                 setName('');
+                setCanWrite(undefined);
                 setFilter({});
               }}
             >
@@ -191,6 +209,7 @@ export const PrisonersList: FC = () => {
                   justifyContent="center"
                 >
                   <CardPZ
+                    status={prisoner.prisonerData?.status}
                     articles={prisoner.article}
                     body={prisoner.prisonerData?.description}
                     name={prisoner.prisonerData?.name}

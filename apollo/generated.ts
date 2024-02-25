@@ -978,7 +978,7 @@ export type Comment_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Comment_Prisonerdata';
   addressparsed?: Maybe<Scalars['String']['output']>;
   age?: Maybe<Scalars['Float']['output']>;
-  articleraw?: Maybe<Scalars['String']['output']>;
+  articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
@@ -992,6 +992,7 @@ export type Comment_Prisonerdata = AcfFieldGroup & {
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   region?: Maybe<Scalars['String']['output']>;
+  servicesparsed?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -1284,7 +1285,7 @@ export type ContentNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentNode_Prisonerdata';
   addressparsed?: Maybe<Scalars['String']['output']>;
   age?: Maybe<Scalars['Float']['output']>;
-  articleraw?: Maybe<Scalars['String']['output']>;
+  articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
@@ -1298,6 +1299,7 @@ export type ContentNode_Prisonerdata = AcfFieldGroup & {
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   region?: Maybe<Scalars['String']['output']>;
+  servicesparsed?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -1315,7 +1317,7 @@ export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   __typename?: 'ContentTemplate_Prisonerdata';
   addressparsed?: Maybe<Scalars['String']['output']>;
   age?: Maybe<Scalars['Float']['output']>;
-  articleraw?: Maybe<Scalars['String']['output']>;
+  articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
@@ -1329,6 +1331,7 @@ export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   region?: Maybe<Scalars['String']['output']>;
+  servicesparsed?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -3402,7 +3405,7 @@ export type MenuItem_Prisonerdata = AcfFieldGroup & {
   __typename?: 'MenuItem_Prisonerdata';
   addressparsed?: Maybe<Scalars['String']['output']>;
   age?: Maybe<Scalars['Float']['output']>;
-  articleraw?: Maybe<Scalars['String']['output']>;
+  articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
@@ -3416,6 +3419,7 @@ export type MenuItem_Prisonerdata = AcfFieldGroup & {
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   region?: Maybe<Scalars['String']['output']>;
+  servicesparsed?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -3490,7 +3494,7 @@ export type Menu_Prisonerdata = AcfFieldGroup & {
   __typename?: 'Menu_Prisonerdata';
   addressparsed?: Maybe<Scalars['String']['output']>;
   age?: Maybe<Scalars['Float']['output']>;
-  articleraw?: Maybe<Scalars['String']['output']>;
+  articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
@@ -3504,6 +3508,7 @@ export type Menu_Prisonerdata = AcfFieldGroup & {
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   region?: Maybe<Scalars['String']['output']>;
+  servicesparsed?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -7857,6 +7862,8 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   ageMax?: InputMaybe<Scalars['Int']['input']>;
   /** The ID of the post object to filter by */
   ageMin?: InputMaybe<Scalars['Int']['input']>;
+  /** The ID of the post object to filter by */
+  articles?: InputMaybe<Scalars['String']['input']>;
   /** Category ID */
   categoryId?: InputMaybe<Scalars['Int']['input']>;
   /** Array of category IDs, used to display objects from one category OR another */
@@ -7867,6 +7874,8 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   categoryNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   /** Filter the connection based on dates */
   dateQuery?: InputMaybe<DateQueryInput>;
+  /** The ID of the post object to filter by */
+  hasAddress?: InputMaybe<Scalars['Boolean']['input']>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
   /** Specific database ID of the object */
@@ -7897,6 +7906,8 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   regionName?: InputMaybe<Scalars['String']['input']>;
   /** Show Posts based on a keyword search */
   search?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the post object to filter by */
+  services?: InputMaybe<Scalars['String']['input']>;
   /** The ID of the post object to filter by */
   sex?: InputMaybe<Scalars['String']['input']>;
   /** Retrieve posts where post status is in an array. */
@@ -9191,7 +9202,7 @@ export type TermNode_Prisonerdata = AcfFieldGroup & {
   __typename?: 'TermNode_Prisonerdata';
   addressparsed?: Maybe<Scalars['String']['output']>;
   age?: Maybe<Scalars['Float']['output']>;
-  articleraw?: Maybe<Scalars['String']['output']>;
+  articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
@@ -9205,6 +9216,7 @@ export type TermNode_Prisonerdata = AcfFieldGroup & {
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   region?: Maybe<Scalars['String']['output']>;
+  servicesparsed?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };
@@ -10487,7 +10499,7 @@ export type User_Prisonerdata = AcfFieldGroup & {
   __typename?: 'User_Prisonerdata';
   addressparsed?: Maybe<Scalars['String']['output']>;
   age?: Maybe<Scalars['Float']['output']>;
-  articleraw?: Maybe<Scalars['String']['output']>;
+  articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
@@ -10501,6 +10513,7 @@ export type User_Prisonerdata = AcfFieldGroup & {
   mailinterestsparsed?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   region?: Maybe<Scalars['String']['output']>;
+  servicesparsed?: Maybe<Scalars['String']['output']>;
   sex?: Maybe<Scalars['String']['output']>;
   status?: Maybe<Scalars['String']['output']>;
 };

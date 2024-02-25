@@ -16,6 +16,7 @@ export const colors = {
   yellow20: tinycolor.mix('#EFC556', '#FFFFFF', 20).toRgbString(),
   yellow40: tinycolor.mix('#EFC556', '#F5545E', 40).toRgbString(),
   green: '#3E4137',
+  emerald: '#308142',
 };
 
 export const palette: PaletteOptions = {

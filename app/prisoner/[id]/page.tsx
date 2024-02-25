@@ -9,6 +9,7 @@ moment.locale('ru_RU');
 import { Cards } from '@/app/components/Cards/Cards';
 import { MessageDialog } from '@/app/components/Dialog/Dialog';
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
+import { Status } from '@/app/components/Status/Status';
 import { Article } from '@/components/atoms/Article/Article';
 import { Button } from '@/components/atoms/Button/Button';
 import { Typography } from '@/components/typography/Typography/Typography';
@@ -85,7 +86,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           mb={8}
           position="relative"
         >
-          <Grid item ml={{ xs: 0, lg: 40 }} mb={4}>
+          <Grid item ml={{ xs: 0, lg: 40 }}>
             <Typography variant="h1">
               {pd?.name && pd?.name.split(' ')[0]}
             </Typography>
@@ -93,6 +94,11 @@ export default function Prisoner({ params }: { params: { id: string } }) {
               {pd?.name && pd.name.split(' ').slice(1).join(' ')}
             </Typography>
           </Grid>
+          {data?.prisoner?.prisonerData?.status && (
+            <Grid item ml={{ xs: 0, lg: 40 }} my={2}>
+              <Status status={data?.prisoner?.prisonerData?.status} />
+            </Grid>
+          )}
           <ProfileImage
             alt={pd?.name ?? 'profile'}
             width={297}

@@ -15,7 +15,7 @@ type Option = {
   value: string;
 };
 
-type Value = number | string | null;
+type Value = number | string | null | boolean;
 
 type FilterCheckboxProps = {
   label: string;
