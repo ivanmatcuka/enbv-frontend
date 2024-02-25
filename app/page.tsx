@@ -86,11 +86,7 @@ export default function Home() {
           justifyContent={{ xs: 'center', lg: 'space-between' }}
         >
           <Grid item flex={1} xs={12} lg={6}>
-            <Grid
-              container
-              mb={{ xs: 3, lg: 11 }}
-              minWidth={{ xs: 0, lg: 695 }}
-            >
+            <Grid container mb={{ xs: 3, lg: 11 }}>
               {/* XS photo */}
               <Grid
                 item

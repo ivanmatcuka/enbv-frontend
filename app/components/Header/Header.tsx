@@ -19,7 +19,7 @@ export default function Header() {
           justifyContent={{ xs: 'center', lg: 'space-between' }}
         >
           <Grid item flex={1} xs={12} lg={6}>
-            <Grid container minWidth={{ xs: 0, lg: 695 }}>
+            <Grid container>
               <Grid item mr={1.5} flexBasis="191px">
                 <a href="/">
                   <Logo />

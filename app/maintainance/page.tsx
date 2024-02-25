@@ -24,11 +24,7 @@ export default function Maintainance() {
           justifyContent={{ xs: 'center', lg: 'space-between' }}
         >
           <Grid item flex={1} xs={12}>
-            <Grid
-              container
-              mb={{ xs: 3, lg: 11 }}
-              minWidth={{ xs: 0, lg: 695 }}
-            >
+            <Grid container mb={{ xs: 3, lg: 11 }}>
               <Grid item mt={{ xs: 3, lg: 11.75 }} mb={{ xs: 1.5, lg: 4.5 }}>
                 <Typography variant="h1" color="brand.red">
                   Возвращайтесь в конце февраля
