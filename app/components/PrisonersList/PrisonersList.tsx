@@ -35,7 +35,7 @@ export const PrisonersList: FC = () => {
   const [age, setAge] = useState<number[]>([0, 99]);
   const [region, setRegion] = useState<Value>();
   const [sex, setSex] = useState<Value>();
-  const [canWrite, setCanWrite] = useState<boolean>();
+  const [canWrite, setCanWrite] = useState<string | undefined>();
 
   // const hasFilters = useMemo(() => Object.keys(filter).length > 0, [filter]);
 
@@ -158,11 +158,12 @@ export const PrisonersList: FC = () => {
           <Grid item mr={1} mt={1}>
             <FilterCheckbox
               label="можно написать"
-              value={typeof canWrite !== 'undefined' ? 'да' : undefined}
+              value={canWrite}
               options={[{ id: 'да', value: 'да' }]}
               onChange={(value) => {
-                setCanWrite(!!value);
-                setFilter({ ...filter, hasAddress: !!value });
+                if (value !== 'да') return;
+                setCanWrite('да');
+                setFilter({ ...filter, hasAddress: value === 'да' });
               }}
             />
           </Grid>
