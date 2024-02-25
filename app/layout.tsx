@@ -6,7 +6,6 @@ import 'slick-carousel/slick/slick.css';
 
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import YM from './components/YM/YM';
 import './globals.css';
 import Maintainance from './maintainance/page';
 
@@ -24,7 +23,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <YM />
         <ApolloWrapper>
           <ThemeRegistry>
             <Header />
@@ -32,6 +30,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
             <Footer />
           </ThemeRegistry>
         </ApolloWrapper>
+        {process.env.NODE_ENV === 'production' && (
+          <script type="text/javascript" src="/ym.js" async />
+        )}
       </body>
     </html>
   );
