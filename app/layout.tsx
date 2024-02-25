@@ -1,12 +1,12 @@
 import { Inter } from 'next/font/google';
 import { PropsWithChildren } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { ym } from 'react-ym';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
+import YM from './components/YM/YM';
 import './globals.css';
 import Maintainance from './maintainance/page';
 
@@ -20,19 +20,11 @@ export const metadata = {
   description: 'Coming...',
 };
 
-if (process.env.NODE_ENV === 'production') {
-  ym.initialize('96529858', {
-    clickmap: true,
-    trackLinks: true,
-    accurateTrackBounce: true,
-    webvisor: true,
-  });
-}
-
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <YM />
         <ApolloWrapper>
           <ThemeRegistry>
             <Header />
