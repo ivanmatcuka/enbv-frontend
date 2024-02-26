@@ -1,6 +1,6 @@
 import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 
 import { FilterCheckbox } from '@/components/molecules/FilterCheckbox/FilterCheckbox';
 import { FilterSlider } from '@/components/molecules/FilterSlider/FilterSlider';
@@ -28,20 +28,28 @@ const Heading = styled(Typography)(() => ({
   wordBreak: 'break-word',
 }));
 
-type Value = number | string | null;
-
 export const PrisonersList: FC = () => {
   const [pagination, setPgination] = useState(DEFAULT_PAGINATION);
-  const [filter, setFilter] = useState<PrisonersInput>({});
   const [cachedPrisoners, setCachedPrisoners] = useState<Prisoners>([]);
 
-  const [name, setName] = useState<Value>();
+  const [name, setName] = useState<string>();
   const [age, setAge] = useState<number[]>([0, 99]);
-  const [region, setRegion] = useState<Value>();
-  const [sex, setSex] = useState<Value>();
+  const [region, setRegion] = useState<string>();
+  const [sex, setSex] = useState<string>();
   const [canWrite, setCanWrite] = useState<string | undefined>();
 
-  // const hasFilters = useMemo(() => Object.keys(filter).length > 0, [filter]);
+  const filter: PrisonersInput = useMemo(() => {
+    return Object.fromEntries(
+      Object.entries({
+        ageMax: age[1],
+        ageMin: age[0],
+        regionName: region ?? undefined,
+        hasAddress: canWrite === 'да',
+        prisonerName: name ?? undefined,
+        sex: sex ?? undefined,
+      }).filter(([, value]) => !!value),
+    );
+  }, [age, region, canWrite, name, sex]);
 
   const { data, loading } = usePrisoners(DEFAULT_OFFSET, filter);
 
@@ -111,7 +119,6 @@ export const PrisonersList: FC = () => {
               onChange={(e) => {
                 {
                   setName(e.target.value);
-                  setFilter({ ...filter, prisonerName: e.target.value });
                 }
               }}
             />
@@ -126,9 +133,6 @@ export const PrisonersList: FC = () => {
                 if (!Array.isArray(value)) return;
                 setAge([value[0], value[1]]);
               }}
-              onChangeCommitted={() =>
-                setFilter({ ...filter, ageMin: age[0], ageMax: age[1] })
-              }
             />
           </Grid>
           <Grid item mr={1} mt={1}>
@@ -141,7 +145,6 @@ export const PrisonersList: FC = () => {
               }))}
               onChange={(value) => {
                 setRegion(String(value));
-                setFilter({ ...filter, regionName: String(value) });
               }}
             />
           </Grid>
@@ -155,7 +158,6 @@ export const PrisonersList: FC = () => {
               ]}
               onChange={(value) => {
                 setSex(String(value));
-                setFilter({ ...filter, sex: String(value) });
               }}
             />
           </Grid>
@@ -167,7 +169,6 @@ export const PrisonersList: FC = () => {
               onChange={(value) => {
                 if (value !== 'да') return;
                 setCanWrite('да');
-                setFilter({ ...filter, hasAddress: value === 'да' });
               }}
             />
           </Grid>
@@ -180,7 +181,6 @@ export const PrisonersList: FC = () => {
                 setSex('');
                 setName('');
                 setCanWrite(undefined);
-                setFilter({});
               }}
             >
               очистить
@@ -221,8 +221,7 @@ export const PrisonersList: FC = () => {
                         ['нет информации', 'домашний арест'].includes(
                           prisoner.prisonerData?.coordinatesparsed ?? '',
                         ) || !prisoner.prisonerData?.coordinatesparsed
-                      ) &&
-                      !prisoner.prisonerData?.freedomdate && (
+                      ) && (
                         <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
                           <Button>написать</Button>
                         </a>

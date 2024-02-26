@@ -40,6 +40,7 @@ export const FilterCheckbox: FC<FilterCheckboxProps> = ({
 
   return (
     <Select
+      name={label}
       id="range-selector"
       value={value}
       IconComponent={Arrow}
