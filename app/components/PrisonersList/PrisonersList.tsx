@@ -24,6 +24,10 @@ const SearchField = styled(Input)(() => ({
   width: '100%',
 }));
 
+const Heading = styled(Typography)(() => ({
+  wordBreak: 'break-word',
+}));
+
 type Value = number | string | null;
 
 export const PrisonersList: FC = () => {
@@ -61,11 +65,11 @@ export const PrisonersList: FC = () => {
       gap={7.25}
     >
       <Grid item textAlign="left" zIndex={200}>
-        <Typography variant="h1" color="brand.red">
+        <Heading variant="h1" color="brand.red">
           Список
           <br />
           преследуемых
-        </Typography>
+        </Heading>
       </Grid>
 
       <Grid width={'100%'} item>
