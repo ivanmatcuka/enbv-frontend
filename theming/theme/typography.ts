@@ -5,7 +5,7 @@ export const typography = {
     lineHeight: 0.85,
 
     ['@media (max-width: 1200px)']: {
-      fontSize: 50,
+      fontSize: 36,
     },
   },
   h2: {
