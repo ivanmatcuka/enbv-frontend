@@ -34,7 +34,7 @@ export const Status: FC<StatusProps> = ({ status, isReleased }) => (
     </Grid>
     <Grid item>
       <Typography variant="button" component="p">
-        {status}
+        {isReleased ? 'на свободе' : status}
       </Typography>
     </Grid>
   </Grid>
