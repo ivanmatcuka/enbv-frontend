@@ -218,7 +218,7 @@ export const PrisonersList: FC = () => {
                           prisoner.prisonerData?.coordinatesparsed ?? '',
                         ) || !prisoner.prisonerData?.coordinatesparsed
                       ) &&
-                      !!prisoner.prisonerData?.freedomdate && (
+                      !prisoner.prisonerData?.freedomdate && (
                         <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
                           <Button>написать</Button>
                         </a>
