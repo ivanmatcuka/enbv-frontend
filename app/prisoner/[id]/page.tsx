@@ -96,7 +96,10 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           </Grid>
           {data?.prisoner?.prisonerData?.status && (
             <Grid item ml={{ xs: 0, lg: 40 }} my={2}>
-              <Status status={data?.prisoner?.prisonerData?.status} />
+              <Status
+                status={data.prisoner.prisonerData?.status}
+                isReleased={!!data.prisoner.prisonerData.freedomdate}
+              />
             </Grid>
           )}
           <ProfileImage

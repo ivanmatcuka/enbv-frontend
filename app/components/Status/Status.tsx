@@ -21,11 +21,16 @@ const GreenCircle = styled(Circle)(({ theme }) => ({
 
 type StatusProps = {
   status: string;
+  isReleased?: boolean;
 };
-export const Status: FC<StatusProps> = ({ status }) => (
+export const Status: FC<StatusProps> = ({ status, isReleased }) => (
   <Grid container spacing={1}>
     <Grid item>
-      {status === 'лишен свободы' ? <RedCircle /> : <GreenCircle />}
+      {status === 'лишен свободы' && !isReleased ? (
+        <RedCircle />
+      ) : (
+        <GreenCircle />
+      )}
     </Grid>
     <Grid item>
       <Typography variant="button" component="p">

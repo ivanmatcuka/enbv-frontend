@@ -211,14 +211,16 @@ export const PrisonersList: FC = () => {
                     name={prisoner.prisonerData?.name}
                     sex={prisoner.prisonerData?.sex}
                     pictureUrl={prisoner.featuredImage?.node.mediaItemUrl ?? ''}
+                    freedomdate={prisoner.prisonerData?.freedomdate}
                     primaryAction={
                       !(
                         ['нет информации', 'домашний арест'].includes(
                           prisoner.prisonerData?.coordinatesparsed ?? '',
                         ) || !prisoner.prisonerData?.coordinatesparsed
-                      ) && (
+                      ) &&
+                      !!prisoner.prisonerData?.freedomdate && (
                         <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
-                          <Button>написать ✉</Button>
+                          <Button>написать</Button>
                         </a>
                       )
                     }

@@ -71,7 +71,7 @@ export default function Home() {
   // }, [data?.prisoners]);
 
   return (
-    <Grid container>
+    <Grid container style={{ overflowX: 'clip' }}>
       <Grid
         item
         className={styles.header}

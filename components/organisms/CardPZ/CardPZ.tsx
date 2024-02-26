@@ -61,6 +61,7 @@ type CardPZProps = {
   body: string | null;
   sex: string | null;
   status: string | null;
+  freedomdate: string | null;
   articles: (null | string)[] | null;
   primaryAction: ReactNode;
   secondaryAction: ReactNode;
@@ -71,6 +72,7 @@ export const CardPZ: FC<Partial<CardPZProps>> = ({
   body,
   sex,
   status,
+  freedomdate,
   articles,
   primaryAction,
   secondaryAction,
@@ -94,7 +96,7 @@ export const CardPZ: FC<Partial<CardPZProps>> = ({
       </Grid>
       {status && (
         <StatusContainer>
-          <Status status={status} />
+          <Status status={status} isReleased={!!freedomdate} />
         </StatusContainer>
       )}
       {filteredArticles && filteredArticles.length > 0 && (

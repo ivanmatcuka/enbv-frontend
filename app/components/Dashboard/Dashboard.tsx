@@ -1,6 +1,6 @@
 'use client';
 
-import { Grid } from '@mui/material';
+import { Grid, styled } from '@mui/material';
 
 import { usePrisonersStats } from '@/apollo/hooks/usePrisonersStats';
 import { FreeNotFree } from '@/components/atoms/FreeNotFree/FreeNotFree';
@@ -8,6 +8,10 @@ import { SexAge } from '@/components/atoms/SexAge/SexAge';
 import { Selector } from '@/components/molecules/Selector/Selector';
 import { Counter } from '@/components/organisms/Counter/Counter';
 import { Typography } from '@/components/typography/Typography/Typography';
+
+const Heading = styled(Typography)({
+  wordBreak: 'break-word',
+});
 
 export default function Dashboard() {
   const { data } = usePrisonersStats();
@@ -17,9 +21,9 @@ export default function Dashboard() {
   return (
     <Grid container maxWidth={1200} margin="auto">
       <Grid item mb={4.5} flex="1 0 100%">
-        <Typography variant="h1" color="brand.red">
+        <Heading variant="h1" color="brand.red">
           Антивоенное дело в цифрах
-        </Typography>
+        </Heading>
       </Grid>
       <Grid item width={392}>
         <Grid
