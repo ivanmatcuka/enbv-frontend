@@ -15,6 +15,7 @@ import {
 import { Button } from '../../../components/atoms/Button/Button';
 import { CardPZ } from '../../../components/organisms/CardPZ/CardPZ';
 import { Typography } from '../../../components/typography/Typography/Typography';
+import { LetterIcon } from '../icons/LetterIcon/LetterIcon';
 import { SearchIcon } from '../icons/SearchIcon/SearchIcon';
 
 const DEFAULT_OFFSET = 300;
@@ -223,7 +224,7 @@ export const PrisonersList: FC = () => {
                         ) || !prisoner.prisonerData?.coordinatesparsed
                       ) && (
                         <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
-                          <Button>написать</Button>
+                          <Button endIcon={<LetterIcon />}>написать</Button>
                         </a>
                       )
                     }
