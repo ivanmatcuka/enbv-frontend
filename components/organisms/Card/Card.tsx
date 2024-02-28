@@ -68,7 +68,7 @@ export const Card: FC<CardProps> = ({ title, body, action, catPictureUrl }) => {
         {body}
       </Typography>
       {action && <ActionContainer>{action}</ActionContainer>}
-      <Background src="/drawing_frame_tilted.png" />
+      <Background src="/images/frames/frame_tilted.svg" />
       {catPictureUrl && (
         <StyledImage
           alt="icon_letter"

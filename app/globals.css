@@ -8,6 +8,10 @@ body {
   scroll-behavior: smooth;
 }
 
+p {
+  word-break: break-all;
+}
+
 .footer {
   position: relative;
 }
