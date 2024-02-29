@@ -23,19 +23,16 @@ type StatusProps = {
   status: string;
   isReleased?: boolean;
 };
-export const Status: FC<StatusProps> = ({ status, isReleased }) => (
-  <Grid container spacing={1}>
-    <Grid item>
-      {status === 'лишен свободы' && !isReleased ? (
-        <RedCircle />
-      ) : (
-        <GreenCircle />
-      )}
+export const Status: FC<StatusProps> = ({ status, isReleased }) => {
+  const isFree = status === 'на свободе' || isReleased;
+  return (
+    <Grid container spacing={1}>
+      <Grid item>{isFree ? <GreenCircle /> : <RedCircle />}</Grid>
+      <Grid item>
+        <Typography variant="button" component="p">
+          {isFree ? 'на свободе' : 'лишён свободы'}
+        </Typography>
+      </Grid>
     </Grid>
-    <Grid item>
-      <Typography variant="button" component="p">
-        {isReleased ? 'на свободе' : status}
-      </Typography>
-    </Grid>
-  </Grid>
-);
+  );
+};

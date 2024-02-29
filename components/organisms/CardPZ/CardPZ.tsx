@@ -100,7 +100,7 @@ export const CardPZ: FC<Partial<CardPZProps>> = ({
       pr={3}
       pb={8}
     >
-      <Grid item>
+      <Grid item maxWidth="100%">
         <StyledName variant="h3" component="p" pl={15.5}>
           {name}
         </StyledName>
