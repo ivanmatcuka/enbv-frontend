@@ -199,16 +199,8 @@ export const PrisonersList: FC = () => {
           <Grid item flex={1} mt={10} flexBasis="100%" maxWidth="100%">
             <Grid container rowSpacing={8.5} justifyContent="center">
               {cachedPrisoners.map(({ node: prisoner }, index) => {
-                const { coordinatesparsed, freedomdate, status } =
+                const { freedomdate, status, canwrite } =
                   prisoner.prisonerData ?? {};
-
-                const canWrite =
-                  !!coordinatesparsed &&
-                  !['домашний арест', 'нет информации'].includes(
-                    coordinatesparsed,
-                  ) &&
-                  !freedomdate &&
-                  status !== 'на свободе';
 
                 return (
                   <Grid
@@ -230,7 +222,7 @@ export const PrisonersList: FC = () => {
                       }
                       freedomdate={freedomdate}
                       primaryAction={
-                        canWrite && (
+                        canwrite && (
                           <a
                             href={`/prisoner/${prisoner.id}`}
                             key={prisoner.id}
