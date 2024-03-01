@@ -46,7 +46,7 @@ export const PrisonersList: FC = () => {
           ageMax: age[1],
           ageMin: age[0],
           regionName: region ?? undefined,
-          hasAddress: canWrite === 'да',
+          canWrite: canWrite === 'да',
           prisonerName: name ?? undefined,
           sex: sex ?? undefined,
         }).filter(([, value]) => !!value),
