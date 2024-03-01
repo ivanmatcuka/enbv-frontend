@@ -15,6 +15,7 @@ import {
 import { Button } from '../../../components/atoms/Button/Button';
 import { CardPZ } from '../../../components/organisms/CardPZ/CardPZ';
 import { Typography } from '../../../components/typography/Typography/Typography';
+import { LetterIcon } from '../icons/LetterIcon/LetterIcon';
 import { SearchIcon } from '../icons/SearchIcon/SearchIcon';
 
 const DEFAULT_OFFSET = 300;
@@ -38,18 +39,20 @@ export const PrisonersList: FC = () => {
   const [sex, setSex] = useState<string>();
   const [canWrite, setCanWrite] = useState<string | undefined>();
 
-  const filter: PrisonersInput = useMemo(() => {
-    return Object.fromEntries(
-      Object.entries({
-        ageMax: age[1],
-        ageMin: age[0],
-        regionName: region ?? undefined,
-        hasAddress: canWrite === 'да',
-        prisonerName: name ?? undefined,
-        sex: sex ?? undefined,
-      }).filter(([, value]) => !!value),
-    );
-  }, [age, region, canWrite, name, sex]);
+  const filter: PrisonersInput = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.entries({
+          ageMax: age[1],
+          ageMin: age[0],
+          regionName: region ?? undefined,
+          hasAddress: canWrite === 'да',
+          prisonerName: name ?? undefined,
+          sex: sex ?? undefined,
+        }).filter(([, value]) => !!value),
+      ),
+    [age, region, canWrite, name, sex],
+  );
 
   const { data, loading } = usePrisoners(DEFAULT_OFFSET, filter);
 
@@ -143,9 +146,7 @@ export const PrisonersList: FC = () => {
                 id: fullname,
                 value: fullname,
               }))}
-              onChange={(value) => {
-                setRegion(String(value));
-              }}
+              onChange={(value) => setRegion(String(value))}
             />
           </Grid>
           <Grid item mr={1} mt={1}>
@@ -156,9 +157,7 @@ export const PrisonersList: FC = () => {
                 { id: 'мужской', value: 'мужской' },
                 { id: 'женский', value: 'женский' },
               ]}
-              onChange={(value) => {
-                setSex(String(value));
-              }}
+              onChange={(value) => setSex(String(value))}
             />
           </Grid>
           <Grid item mr={1} mt={1}>
@@ -199,42 +198,48 @@ export const PrisonersList: FC = () => {
           </Grid>
           <Grid item flex={1} mt={10} flexBasis="100%" maxWidth="100%">
             <Grid container rowSpacing={8.5} justifyContent="center">
-              {cachedPrisoners.map(({ node: prisoner }, index) => (
-                <Grid
-                  item
-                  xs={12}
-                  lg={4}
-                  key={index}
-                  display="flex"
-                  justifyContent="center"
-                >
-                  <CardPZ
-                    status={prisoner.prisonerData?.status}
-                    articles={prisoner.article}
-                    body={prisoner.prisonerData?.description}
-                    name={prisoner.prisonerData?.name}
-                    sex={prisoner.prisonerData?.sex}
-                    pictureUrl={prisoner.featuredImage?.node.mediaItemUrl ?? ''}
-                    freedomdate={prisoner.prisonerData?.freedomdate}
-                    primaryAction={
-                      !(
-                        ['нет информации', 'домашний арест'].includes(
-                          prisoner.prisonerData?.coordinatesparsed ?? '',
-                        ) || !prisoner.prisonerData?.coordinatesparsed
-                      ) && (
+              {cachedPrisoners.map(({ node: prisoner }, index) => {
+                const { freedomdate, status, canwrite } =
+                  prisoner.prisonerData ?? {};
+
+                return (
+                  <Grid
+                    item
+                    xs={12}
+                    lg={4}
+                    key={index}
+                    display="flex"
+                    justifyContent="center"
+                  >
+                    <CardPZ
+                      status={status}
+                      articles={prisoner.article}
+                      body={prisoner.prisonerData?.description}
+                      name={prisoner.prisonerData?.name}
+                      sex={prisoner.prisonerData?.sex}
+                      pictureUrl={
+                        prisoner.featuredImage?.node.mediaItemUrl ?? ''
+                      }
+                      freedomdate={freedomdate}
+                      primaryAction={
+                        canwrite && (
+                          <a
+                            href={`/prisoner/${prisoner.id}`}
+                            key={prisoner.id}
+                          >
+                            <Button endIcon={<LetterIcon />}>написать</Button>
+                          </a>
+                        )
+                      }
+                      secondaryAction={
                         <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
-                          <Button>написать</Button>
+                          <Button variant="outline">подробнее</Button>
                         </a>
-                      )
-                    }
-                    secondaryAction={
-                      <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
-                        <Button variant="outline">подробнее</Button>
-                      </a>
-                    }
-                  />
-                </Grid>
-              ))}
+                      }
+                    />
+                  </Grid>
+                );
+              })}
             </Grid>
           </Grid>
         </Grid>

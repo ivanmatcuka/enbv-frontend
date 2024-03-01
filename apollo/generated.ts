@@ -980,6 +980,7 @@ export type Comment_Prisonerdata = AcfFieldGroup & {
   age?: Maybe<Scalars['Float']['output']>;
   articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
+  canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
@@ -1287,6 +1288,7 @@ export type ContentNode_Prisonerdata = AcfFieldGroup & {
   age?: Maybe<Scalars['Float']['output']>;
   articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
+  canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
@@ -1319,6 +1321,7 @@ export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   age?: Maybe<Scalars['Float']['output']>;
   articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
+  canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
@@ -3407,6 +3410,7 @@ export type MenuItem_Prisonerdata = AcfFieldGroup & {
   age?: Maybe<Scalars['Float']['output']>;
   articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
+  canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
@@ -3496,6 +3500,7 @@ export type Menu_Prisonerdata = AcfFieldGroup & {
   age?: Maybe<Scalars['Float']['output']>;
   articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
+  canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
@@ -7864,6 +7869,8 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   ageMin?: InputMaybe<Scalars['Int']['input']>;
   /** The ID of the post object to filter by */
   articles?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the post object to filter by */
+  canWrite?: InputMaybe<Scalars['Boolean']['input']>;
   /** Category ID */
   categoryId?: InputMaybe<Scalars['Int']['input']>;
   /** Array of category IDs, used to display objects from one category OR another */
@@ -9204,6 +9211,7 @@ export type TermNode_Prisonerdata = AcfFieldGroup & {
   age?: Maybe<Scalars['Float']['output']>;
   articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
+  canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
@@ -10501,6 +10509,7 @@ export type User_Prisonerdata = AcfFieldGroup & {
   age?: Maybe<Scalars['Float']['output']>;
   articlesparsed?: Maybe<Scalars['String']['output']>;
   birthdate?: Maybe<Scalars['String']['output']>;
+  canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
@@ -10588,9 +10597,9 @@ export type PrisonerQueryVariables = Exact<{
 }>;
 
 
-export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null };
+export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null, canwrite?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null };
 
-export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null };
+export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null, canwrite?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null };
 
 export type PrisonersQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -10598,7 +10607,7 @@ export type PrisonersQueryVariables = Exact<{
 }>;
 
 
-export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } }> } | null };
+export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null, canwrite?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } }> } | null };
 
 export type PrisonerStatusCountsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -10624,6 +10633,7 @@ export const PrisonerItemFragmentDoc = gql`
     mailinterests
     sex
     status
+    canwrite
   }
   featuredImage {
     node {

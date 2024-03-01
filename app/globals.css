@@ -8,6 +8,11 @@ body {
   scroll-behavior: smooth;
 }
 
+p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .footer {
   position: relative;
 }

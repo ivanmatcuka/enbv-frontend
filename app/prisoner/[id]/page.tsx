@@ -54,13 +54,8 @@ export default function Prisoner({ params }: { params: { id: string } }) {
   const birthday = pd?.birthdate ? moment(pd.birthdate) : null;
   const arrested = pd?.dateofarrest ? moment(pd.dateofarrest) : null;
   const freed = pd?.freedomdate ? moment(pd.freedomdate) : null;
-  const addressparsed = data?.prisoner?.prisonerData?.addressparsed;
 
   const pictureUrl = data?.prisoner?.featuredImage?.node.mediaItemUrl;
-  const hasAddress =
-    !!addressparsed ||
-    addressparsed === 'нет информации' ||
-    addressparsed === 'домашний арест';
 
   return (
     <Grid container>
@@ -86,35 +81,33 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           mb={8}
           position="relative"
         >
-          <Grid item ml={{ xs: 0, lg: 40 }}>
-            <Typography variant="h1">
-              {pd?.name && pd?.name.split(' ')[0]}
-            </Typography>
-            <Typography variant="h2">
-              {pd?.name && pd.name.split(' ').slice(1).join(' ')}
-            </Typography>
-          </Grid>
-          {data?.prisoner?.prisonerData?.status && (
-            <Grid item ml={{ xs: 0, lg: 40 }} my={2}>
-              <Status
-                status={data.prisoner.prisonerData?.status}
-                isReleased={!!data.prisoner.prisonerData.freedomdate}
-              />
-            </Grid>
-          )}
           <ProfileImage
             alt={pd?.name ?? 'profile'}
             width={297}
             height={306}
             src={getPrisonerPicture(pictureUrl, pd?.sex)}
           />
+          <Grid item ml={{ xs: 0, lg: 40 }} minHeight={128}>
+            <Typography variant="h1">
+              {pd?.name && pd?.name.split(' ')[0]}
+            </Typography>
+            <Typography variant="h2" mb={2}>
+              {pd?.name && pd.name.split(' ').slice(1).join(' ')}
+            </Typography>
+            {data?.prisoner?.prisonerData?.status && (
+              <Status
+                status={data.prisoner.prisonerData?.status}
+                isReleased={!!data.prisoner.prisonerData.freedomdate}
+              />
+            )}
+          </Grid>
           <DrawingFrame
             width="100%"
-            p={4}
             alignSelf="center"
             item
             mb={3}
-            mt={{ xs: '-40px', lg: 'auto' }}
+            mt={{ xs: '-40px', lg: 2 }}
+            p={4}
             pt={{ xs: 10, lg: 4 }}
           >
             <Grid flexDirection="column" container>
@@ -181,7 +174,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                   alignItems="center"
                   flexDirection={{ xs: 'column', lg: 'row' }}
                 >
-                  {hasAddress && (
+                  {data?.prisoner?.prisonerData?.canwrite && (
                     <Grid item>
                       <Button onClick={() => setIsDialogOpen(true)}>
                         написать письмо

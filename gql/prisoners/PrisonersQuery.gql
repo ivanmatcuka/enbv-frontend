@@ -16,6 +16,7 @@ fragment PrisonerItem on Prisoner {
     mailinterests
     sex
     status
+    canwrite
   }
   featuredImage {
     node {
