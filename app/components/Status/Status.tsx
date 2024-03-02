@@ -21,10 +21,9 @@ const GreenCircle = styled(Circle)(({ theme }) => ({
 
 type StatusProps = {
   status: string;
-  isReleased?: boolean;
 };
-export const Status: FC<StatusProps> = ({ status, isReleased }) => {
-  const isFree = status === 'на свободе' || isReleased;
+export const Status: FC<StatusProps> = ({ status }) => {
+  const isFree = status === 'на свободе';
   return (
     <Grid container spacing={1}>
       <Grid item>{isFree ? <GreenCircle /> : <RedCircle />}</Grid>

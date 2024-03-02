@@ -87,7 +87,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
             height={306}
             src={getPrisonerPicture(pictureUrl, pd?.sex)}
           />
-          <Grid item ml={{ xs: 0, lg: 40 }} minHeight={128}>
+          <Grid item ml={{ xs: 0, lg: 40 }} minHeight={{ xs: 'auto', lg: 128 }}>
             <Typography variant="h1">
               {pd?.name && pd?.name.split(' ')[0]}
             </Typography>
@@ -95,10 +95,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
               {pd?.name && pd.name.split(' ').slice(1).join(' ')}
             </Typography>
             {data?.prisoner?.prisonerData?.status && (
-              <Status
-                status={data.prisoner.prisonerData?.status}
-                isReleased={!!data.prisoner.prisonerData.freedomdate}
-              />
+              <Status status={data.prisoner.prisonerData?.status} />
             )}
           </Grid>
           <DrawingFrame
@@ -106,9 +103,9 @@ export default function Prisoner({ params }: { params: { id: string } }) {
             alignSelf="center"
             item
             mb={3}
-            mt={{ xs: '-40px', lg: 2 }}
-            p={4}
-            pt={{ xs: 10, lg: 4 }}
+            mt={2}
+            px={{ xs: 2, lg: 4 }}
+            py={4}
           >
             <Grid flexDirection="column" container>
               <Grid ml={{ xs: 0, lg: 36 }} item>

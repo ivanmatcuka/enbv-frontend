@@ -82,7 +82,6 @@ export const CardPZ: FC<Partial<CardPZProps>> = ({
   body,
   sex,
   status,
-  freedomdate,
   articles,
   primaryAction,
   secondaryAction,
@@ -107,7 +106,7 @@ export const CardPZ: FC<Partial<CardPZProps>> = ({
       </Grid>
       {status && (
         <StatusContainer>
-          <Status status={status} isReleased={!!freedomdate} />
+          <Status status={status} />
         </StatusContainer>
       )}
       {filteredArticles && filteredArticles.length > 0 && (
