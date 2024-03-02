@@ -43,7 +43,7 @@ const Container = styled('div')<{ variant: ButtonProps['variant'] }>(({
       },
     },
 
-    '&:after': {
+    '&:before': {
       content: '""',
 
       position: 'absolute',
