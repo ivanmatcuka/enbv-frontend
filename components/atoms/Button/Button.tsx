@@ -76,6 +76,12 @@ const StyledMUIButton = styled(MUIButton)(({ theme }) => ({
   transform: 'rotate(-2.16deg)',
 
   transition: 'transform 125ms',
+
+  [theme.breakpoints.down('lg')]: {
+    '.MuiButton-endIcon': {
+      display: 'none',
+    },
+  },
 }));
 
 const DefaultButton = styled(StyledMUIButton)(({ theme }) => ({
