@@ -26,7 +26,7 @@ type FilterCheckboxProps = {
 export const FilterCheckbox: FC<FilterCheckboxProps> = ({
   label,
   options,
-  value,
+  value = '',
   onChange,
 }) => {
   const handleChange = useCallback(

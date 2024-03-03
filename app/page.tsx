@@ -13,7 +13,7 @@ import { Cards } from './components/Cards/Cards';
 import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
 import Dashboard from './components/Dashboard/Dashboard';
-import { PrisonersList } from './components/PrisonersList/PrisonersList';
+import { PrisonersSearch } from './components/PrisonersSearch/PrisonersSearch';
 import styles from './page.module.css';
 
 import { usePrisoners } from '../apollo/hooks/usePrisoners';
@@ -510,7 +510,7 @@ export default function Home() {
           py={{ xs: 6, lg: 10.75 }}
           px={2}
         >
-          <PrisonersList />
+          <PrisonersSearch />
         </Grid>
       </Grid>
     </Grid>
