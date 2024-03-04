@@ -5,7 +5,7 @@ import { FC, useRef } from 'react';
 
 const Container = styled(Grid)({
   position: 'relative',
-  borderImageSource: `url("/images/frames/frame_default.svg")`,
+  borderImageSource: `url("/images/frames/frame_default.png")`,
   borderImageSlice: 50,
   borderImageWidth: 5,
   borderStyle: 'solid',
