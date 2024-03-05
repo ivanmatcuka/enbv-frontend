@@ -118,11 +118,7 @@ export const PrisonersSearch: FC = () => {
               value={name}
               startAdornment={<SearchIcon />}
               placeholder="Поиск по ФИО"
-              onChange={(e) => {
-                {
-                  setName(e.target.value);
-                }
-              }}
+              onChange={(e) => setName(e.target.value)}
             />
           </Grid>
           <Grid item mr={1} mt={1}>
@@ -131,10 +127,9 @@ export const PrisonersSearch: FC = () => {
               value={[age[0], age[1]]}
               min={0}
               max={99}
-              onChange={(_, value) => {
-                if (!Array.isArray(value)) return;
-                setAge([value[0], value[1]]);
-              }}
+              onChange={(_, value) =>
+                Array.isArray(value) && setAge([value[0], value[1]])
+              }
             />
           </Grid>
           <Grid item mr={1} mt={1}>

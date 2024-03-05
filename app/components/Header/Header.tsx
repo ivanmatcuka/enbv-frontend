@@ -32,15 +32,17 @@ export default function Header() {
                       element: <a href="/#what">КАК ПОМОЧЬ</a>,
                     },
                     {
-                      element: (
-                        <a href="/#whom">КОМУ НУЖНА ПОМОЩЬ ПРЯМО СЕЙЧАС</a>
-                      ),
-                    },
-                    {
                       element: <a href="/#list">СПИСОК ПРЕСЛЕДУЕМЫХ</a>,
                     },
                     {
                       element: <a href="/#footer">ПОЖЕРТВОВАТЬ ПРОЕКТУ</a>,
+                    },
+                    {
+                      element: (
+                        <a href="https://t.me/enbv_avtozaklive" target="_blank">
+                          БЫТЬ НА СВЯЗИ
+                        </a>
+                      ),
                     },
                   ]}
                 />
