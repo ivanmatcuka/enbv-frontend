@@ -15,6 +15,10 @@ const StyledTypography = styled(Typography)(() => ({
   width: '100%',
 }));
 
+const StyledLink = styled('a')(({ theme }) => ({
+  color: theme.palette.brand.white,
+}));
+
 export default function Footer() {
   return (
     <Grid
@@ -114,7 +118,16 @@ export default function Footer() {
       </Grid>
       <StyledGrid flex={1} item py={6} px={{ xs: 2, lg: 6 }}>
         <StyledTypography variant="p3" component="p" width={1200} color="white">
-          Дизайн сайта разработан студией Neklistic
+          Дизайн сайта разработан студией{' '}
+          <StyledLink href="https://neimark-art.ru" target="_blank">
+            Neklistic
+          </StyledLink>
+        </StyledTypography>
+        <StyledTypography variant="p3" component="p" width={1200} color="white">
+          Спецпроект{' '}
+          <StyledLink href="https://t.me/avtozaklive" target="_blank">
+            Avtozak LIVE
+          </StyledLink>
         </StyledTypography>
       </StyledGrid>
     </Grid>
