@@ -159,7 +159,8 @@ export default function Prisoner({ params }: { params: { id: string } }) {
               {!!data?.prisoner?.prisonerData?.mailinterests && (
                 <Grid item>
                   <Typography variant="p2">
-                    Интересы: {data?.prisoner?.prisonerData?.mailinterests}
+                    Интересы:{' '}
+                    {data?.prisoner?.prisonerData?.mailinterestsparsed}
                   </Typography>
                 </Grid>
               )}

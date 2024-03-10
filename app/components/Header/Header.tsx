@@ -35,7 +35,7 @@ export default function Header() {
                       element: <a href="/#list">СПИСОК ПРЕСЛЕДУЕМЫХ</a>,
                     },
                     {
-                      element: <a href="/#footer">ПОЖЕРТВОВАТЬ ПРОЕКТУ</a>,
+                      element: <a href="#footer">ПОЖЕРТВОВАТЬ ПРОЕКТУ</a>,
                     },
                     {
                       element: (
