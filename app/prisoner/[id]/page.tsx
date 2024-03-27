@@ -17,13 +17,23 @@ import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
 
 import { usePrisoner } from '../../../apollo/hooks/usePrisoner';
 
-const ProfileImage = styled('img')(({ theme }) => ({
+const ProfileImageContainer = styled('div')({
   position: 'absolute',
   zIndex: 100,
 
   inset: 0,
 
+  filter: 'drop-shadow(4px 4px 0px #000000)',
+});
+
+const EmptyProfileImageContainer = styled(ProfileImageContainer)({
+  filter: 'none',
+});
+
+const ProfileImage = styled('img')(({ theme }) => ({
   objectFit: 'cover',
+
+  clipPath: 'polygon(98% 0, 100% 74%, 96% 100%, 0 97%, 4% 0)',
 
   [theme.breakpoints.down('lg')]: {
     position: 'static',
@@ -32,6 +42,10 @@ const ProfileImage = styled('img')(({ theme }) => ({
     height: 188,
   },
 }));
+
+const EmptyProfileImage = styled(ProfileImage)({
+  clipPath: 'none',
+});
 
 const DescriptionLayout = styled(Typography)({
   p: {
@@ -53,8 +67,21 @@ export default function Prisoner({ params }: { params: { id: string } }) {
   const pd = prisoner?.prisonerData;
 
   const birthday = pd?.birthdate ? moment(pd.birthdate) : null;
+  const birthdayString = `День рождения: ${
+    birthday
+      ? `${birthday.format('DD MMMM YYYY')} (${parseInt(birthday.fromNow())})`
+      : '–'
+  }`;
+
   const arrested = pd?.dateofarrest ? moment(pd.dateofarrest) : null;
+  const arrestedString = `Дата задержания: ${
+    arrested ? arrested.format('DD MMMM YYYY') : '–'
+  }`;
+
   const freed = pd?.freedomdate ? moment(pd.freedomdate) : null;
+  const freedString = `Освобождается: ${
+    freed ? freed.format('DD MMMM YYYY') : '–'
+  }`;
 
   const pictureUrl = data?.prisoner?.featuredImage?.node.mediaItemUrl;
 
@@ -82,12 +109,25 @@ export default function Prisoner({ params }: { params: { id: string } }) {
           mb={8}
           position="relative"
         >
-          <ProfileImage
-            alt={pd?.name ?? 'profile'}
-            width={297}
-            height={306}
-            src={getPrisonerPicture(pictureUrl, pd?.sex)}
-          />
+          {pictureUrl ? (
+            <ProfileImageContainer>
+              <ProfileImage
+                alt={pd?.name ?? 'profile'}
+                width={297}
+                height={306}
+                src={pictureUrl}
+              />
+            </ProfileImageContainer>
+          ) : (
+            <EmptyProfileImageContainer>
+              <EmptyProfileImage
+                alt="profile'"
+                width={297}
+                height={306}
+                src={getPrisonerPicture(pictureUrl, pd?.sex)}
+              />
+            </EmptyProfileImageContainer>
+          )}
           <Grid item ml={{ xs: 0, lg: 40 }} minHeight={{ xs: 'auto', lg: 128 }}>
             <Typography variant="h1">
               {pd?.name && pd?.name.split(' ')[0]}
@@ -109,34 +149,20 @@ export default function Prisoner({ params }: { params: { id: string } }) {
             <Grid flexDirection="column" container>
               <Grid ml={{ xs: 0, lg: 36 }} item>
                 <Grid spacing={1} mb={2} container>
-                  {loading && 'Загрузка...'}
-                  <PrisonerArticles article={prisoner?.article} />
+                  {loading && <Typography variant="p3">Загрузка...</Typography>}
+                  {Array.isArray(prisoner?.article) && (
+                    <PrisonerArticles articles={prisoner.article as string[]} />
+                  )}
                 </Grid>
               </Grid>
               <Grid ml={{ xs: 0, lg: 36 }} item>
-                <Typography variant="p3">
-                  {`День рождения: ${
-                    birthday
-                      ? `${birthday.format('DD MMMM YYYY')} (${parseInt(
-                          birthday.fromNow(),
-                        )})`
-                      : '–'
-                  }`}
-                </Typography>
+                <Typography variant="p3">{birthdayString}</Typography>
               </Grid>
               <Grid ml={{ xs: 0, lg: 36 }} item>
-                <Typography variant="p3">
-                  {`Дата задержания: ${
-                    arrested ? arrested.format('DD MMMM YYYY') : '–'
-                  }`}
-                </Typography>
+                <Typography variant="p3">{arrestedString}</Typography>
               </Grid>
               <Grid ml={{ xs: 0, lg: 36 }} item>
-                <Typography variant="p3">
-                  {`Освобождается: ${
-                    freed ? freed.format('DD MMMM YYYY') : '–'
-                  }`}
-                </Typography>
+                <Typography variant="p3">{freedString}</Typography>
               </Grid>
               <Grid ml={{ xs: 0, lg: 36 }} item mb={4}>
                 <Typography variant="p3">Следующий суд: –</Typography>
@@ -181,7 +207,6 @@ export default function Prisoner({ params }: { params: { id: string } }) {
               </Grid>
             </Grid>
           </DrawingFrame>
-
           <Grid width="100%" mt={2} item>
             <Cards />
           </Grid>
