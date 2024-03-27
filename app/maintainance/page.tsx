@@ -1,5 +1,3 @@
-'use client';
-
 import { Grid } from '@mui/material';
 
 import styles from './page.module.css';

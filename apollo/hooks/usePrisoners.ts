@@ -8,6 +8,7 @@ export type Prisoners = NonNullable<
   NonNullable<ReturnType<typeof usePrisoners>['data']>['prisoners']
 >['edges'];
 export type Prisoner = Prisoners[number]['node'];
+export type PrisonerData = Prisoner['prisonerData'];
 export type PrisonersInput = RootQueryToPrisonerConnectionWhereArgs;
 
 export const usePrisoners = (offset?: number, filter?: PrisonersInput) => {

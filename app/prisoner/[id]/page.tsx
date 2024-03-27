@@ -9,8 +9,8 @@ moment.locale('ru_RU');
 import { Cards } from '@/app/components/Cards/Cards';
 import { MessageDialog } from '@/app/components/Dialog/Dialog';
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
+import { PrisonerArticles } from '@/app/components/PrisonerArticles/PrisonerArticles';
 import { Status } from '@/app/components/Status/Status';
-import { Article } from '@/components/atoms/Article/Article';
 import { Button } from '@/components/atoms/Button/Button';
 import { Typography } from '@/components/typography/Typography/Typography';
 import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
@@ -49,7 +49,8 @@ export default function Prisoner({ params }: { params: { id: string } }) {
 
   const { data, loading } = usePrisoner(params.id);
 
-  const pd = data?.prisoner?.prisonerData;
+  const prisoner = data?.prisoner;
+  const pd = prisoner?.prisonerData;
 
   const birthday = pd?.birthdate ? moment(pd.birthdate) : null;
   const arrested = pd?.dateofarrest ? moment(pd.dateofarrest) : null;
@@ -59,9 +60,9 @@ export default function Prisoner({ params }: { params: { id: string } }) {
 
   return (
     <Grid container>
-      {data?.prisoner && (
+      {prisoner && (
         <MessageDialog
-          prisoner={data.prisoner}
+          prisoner={prisoner}
           open={isDialogOpen}
           onClose={() => setIsDialogOpen(false)}
         />
@@ -94,9 +95,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
             <Typography variant="h2" mb={2}>
               {pd?.name && pd.name.split(' ').slice(1).join(' ')}
             </Typography>
-            {data?.prisoner?.prisonerData?.status && (
-              <Status status={data.prisoner.prisonerData?.status} />
-            )}
+            {pd?.status && <Status status={pd?.status} />}
           </Grid>
           <DrawingFrame
             width="100%"
@@ -111,12 +110,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
               <Grid ml={{ xs: 0, lg: 36 }} item>
                 <Grid spacing={1} mb={2} container>
                   {loading && 'Загрузка...'}
-                  {data?.prisoner &&
-                    data.prisoner.article?.map((article) => (
-                      <Grid key={article} item>
-                        <Article label={article} />
-                      </Grid>
-                    ))}
+                  <PrisonerArticles article={prisoner?.article} />
                 </Grid>
               </Grid>
               <Grid ml={{ xs: 0, lg: 36 }} item>
@@ -156,11 +150,10 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                   />
                 </DescriptionLayout>
               </Grid>
-              {!!data?.prisoner?.prisonerData?.mailinterests && (
+              {!!pd?.mailinterests && (
                 <Grid item>
                   <Typography variant="p2">
-                    Интересы:{' '}
-                    {data?.prisoner?.prisonerData?.mailinterestsparsed}
+                    Интересы: {pd?.mailinterestsparsed}
                   </Typography>
                 </Grid>
               )}
@@ -172,7 +165,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                   alignItems="center"
                   flexDirection={{ xs: 'column', lg: 'row' }}
                 >
-                  {data?.prisoner?.prisonerData?.canwrite && (
+                  {pd?.canwrite && (
                     <Grid item>
                       <Button onClick={() => setIsDialogOpen(true)}>
                         написать письмо
