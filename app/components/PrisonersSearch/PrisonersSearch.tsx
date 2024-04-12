@@ -2,7 +2,7 @@ import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
 import { FC, useEffect, useMemo, useState } from 'react';
 
-import * as interestsArray from '@/app/components/PrisonersSearch/interests.json';
+import { interests as interestsArray } from '@/app/components/PrisonersSearch/interests';
 import { FilterCheckbox } from '@/components/molecules/FilterCheckbox/FilterCheckbox';
 import { FilterSlider } from '@/components/molecules/FilterSlider/FilterSlider';
 import { Input } from '@/components/molecules/Input/Input';
