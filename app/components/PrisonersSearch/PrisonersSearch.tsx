@@ -2,6 +2,7 @@ import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
 import { FC, useEffect, useMemo, useState } from 'react';
 
+import * as interestsArray from '@/app/components/PrisonersSearch/interests.json';
 import { FilterCheckbox } from '@/components/molecules/FilterCheckbox/FilterCheckbox';
 import { FilterSlider } from '@/components/molecules/FilterSlider/FilterSlider';
 import { Input } from '@/components/molecules/Input/Input';
@@ -37,6 +38,7 @@ export const PrisonersSearch: FC = () => {
   const [region, setRegion] = useState<string>('');
   const [sex, setSex] = useState<string>('');
   const [canWrite, setCanWrite] = useState<string | undefined>();
+  const [mailInterests, setMailInterests] = useState<string[]>([]);
 
   const filter: PrisonersInput = useMemo(
     () =>
@@ -48,9 +50,10 @@ export const PrisonersSearch: FC = () => {
           canWrite: canWrite === 'да',
           prisonerName: name ?? undefined,
           sex: sex ?? undefined,
+          mailInterests: mailInterests.join(',') ?? undefined,
         }).filter(([, value]) => !!value),
       ),
-    [age, region, canWrite, name, sex],
+    [age, region, canWrite, name, mailInterests, sex],
   );
 
   const { data, loading } = usePrisoners(DEFAULT_OFFSET, filter);
@@ -165,6 +168,22 @@ export const PrisonersSearch: FC = () => {
               }}
             />
           </Grid>
+          <Grid item mr={1} mt={1}>
+            <FilterCheckbox
+              label="интересы"
+              value={mailInterests}
+              options={interestsArray.map((interest) => ({
+                id: interest,
+                value: interest,
+              }))}
+              onChange={(value) => {
+                if (!Array.isArray(value)) return;
+                value &&
+                  setMailInterests(value.map((interest) => String(interest)));
+              }}
+              multiple
+            />
+          </Grid>
           <Grid item mt={1}>
             <Button
               variant="outline"
@@ -174,6 +193,7 @@ export const PrisonersSearch: FC = () => {
                 setSex('');
                 setName('');
                 setCanWrite(undefined);
+                setMailInterests([]);
               }}
             >
               очистить

@@ -17,14 +17,16 @@ import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
 
 import { usePrisoner } from '../../../apollo/hooks/usePrisoner';
 
-const ProfileImageContainer = styled('div')({
+const ProfileImageContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   zIndex: 100,
 
-  inset: 0,
-
   filter: 'drop-shadow(4px 4px 0px #000000)',
-});
+
+  [theme.breakpoints.down('lg')]: {
+    position: 'static',
+  },
+}));
 
 const EmptyProfileImageContainer = styled(ProfileImageContainer)({
   filter: 'none',
@@ -36,8 +38,6 @@ const ProfileImage = styled('img')(({ theme }) => ({
   clipPath: 'polygon(98% 0, 100% 74%, 96% 100%, 0 97%, 4% 0)',
 
   [theme.breakpoints.down('lg')]: {
-    position: 'static',
-
     width: 184,
     height: 188,
   },
@@ -164,10 +164,10 @@ export default function Prisoner({ params }: { params: { id: string } }) {
               <Grid ml={{ xs: 0, lg: 36 }} item>
                 <Typography variant="p3">{freedString}</Typography>
               </Grid>
-              <Grid ml={{ xs: 0, lg: 36 }} item mb={4}>
+              <Grid ml={{ xs: 0, lg: 36 }} item>
                 <Typography variant="p3">Следующий суд: –</Typography>
               </Grid>
-              <Grid item>
+              <Grid item my={4}>
                 <DescriptionLayout variant="p2">
                   <div
                     dangerouslySetInnerHTML={{
@@ -176,9 +176,9 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                   />
                 </DescriptionLayout>
               </Grid>
-              {!!pd?.mailinterests && (
+              {!!pd?.mailinterestsparsed && (
                 <Grid item>
-                  <Typography variant="p2">
+                  <Typography variant="p2" color="gray">
                     Интересы: {pd?.mailinterestsparsed}
                   </Typography>
                 </Grid>
