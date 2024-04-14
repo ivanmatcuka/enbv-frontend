@@ -74,7 +74,6 @@ export default function Home() {
     <Grid container style={{ overflowX: 'clip' }}>
       <Grid
         item
-        className={styles.header}
         width="100%"
         padding={{ xs: 1, sm: 2, lg: 10.75 }}
         pt={{ xs: 0, sm: 0, lg: 0 }}

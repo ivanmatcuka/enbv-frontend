@@ -5,7 +5,7 @@ import { Menu } from '@/components/molecules/Menu/Menu';
 
 export default function Header() {
   return (
-    <Grid container overflow="hidden">
+    <Grid container overflow="hidden" className="header">
       <Grid
         item
         width="100%"
