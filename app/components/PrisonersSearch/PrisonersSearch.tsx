@@ -40,24 +40,24 @@ export const PrisonersSearch: FC = () => {
   const [canWrite, setCanWrite] = useState<string | undefined>();
   const [mailInterests, setMailInterests] = useState<string[]>([]);
 
-  const filter: PrisonersInput = useMemo(
+  const filter = useMemo(
     () =>
-      Object.fromEntries(
-        Object.entries({
-          ageMax: age[1],
-          ageMin: age[0],
-          regionName: region ?? undefined,
-          canWrite: canWrite === 'да',
-          prisonerName: name ?? undefined,
-          sex: sex ?? undefined,
-          mailInterests: mailInterests.join(',') ?? undefined,
-        }).filter(([, value]) => !!value),
+      Object.entries({
+        ageMax: age[1],
+        ageMin: age[0],
+        regionName: region,
+        canWrite: canWrite === 'да',
+        prisonerName: name,
+        sex,
+        mailInterests: mailInterests.join(','),
+      }).reduce<PrisonersInput>(
+        (acc, [key, value]) => (value ? { ...acc, [key]: value } : acc),
+        {},
       ),
     [age, region, canWrite, name, mailInterests, sex],
   );
 
   const { data, loading } = usePrisoners(DEFAULT_OFFSET, filter);
-
   const prisoners = data?.prisoners?.edges;
 
   useEffect(() => {

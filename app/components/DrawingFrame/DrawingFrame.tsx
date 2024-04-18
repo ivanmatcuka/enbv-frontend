@@ -1,7 +1,7 @@
 'use client';
 
 import { Grid, GridProps, styled } from '@mui/material';
-import { FC, useRef } from 'react';
+import { FC } from 'react';
 
 const Container = styled(Grid)({
   position: 'relative',
@@ -11,12 +11,6 @@ const Container = styled(Grid)({
   borderStyle: 'solid',
 });
 
-export const DrawingFrame: FC<GridProps> = ({ children, ...rest }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  return (
-    <Container {...rest} ref={containerRef}>
-      {children}
-    </Container>
-  );
-};
+export const DrawingFrame: FC<GridProps> = ({ children, ...rest }) => (
+  <Container {...rest}>{children}</Container>
+);

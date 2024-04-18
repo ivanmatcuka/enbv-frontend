@@ -9,8 +9,8 @@ import { LetterIcon } from '../icons/LetterIcon/LetterIcon';
 type PrisonersListProps = {
   prisoners: Prisoners;
 };
-export const PrisonersList: FC<PrisonersListProps> = ({ prisoners }) => {
-  return prisoners.map(({ node: prisoner }, index) => {
+export const PrisonersList: FC<PrisonersListProps> = ({ prisoners }) =>
+  prisoners.map(({ node: prisoner }, index) => {
     const { freedomdate, status, canwrite } = prisoner.prisonerData ?? {};
 
     return (
@@ -46,4 +46,3 @@ export const PrisonersList: FC<PrisonersListProps> = ({ prisoners }) => {
       </Grid>
     );
   });
-};
