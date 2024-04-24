@@ -2,6 +2,7 @@ fragment PrisonerItem on Prisoner {
   id
   article
   content
+  slug
   prisonerData {
     addressparsed
     coordinatesparsed

@@ -6,6 +6,7 @@ import 'moment/locale/ru';
 import { useState } from 'react';
 moment.locale('ru_RU');
 
+import { usePrisoners } from '@/apollo/hooks/usePrisoners';
 import { Cards } from '@/app/components/Cards/Cards';
 import { MessageDialog } from '@/app/components/Dialog/Dialog';
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
@@ -14,8 +15,6 @@ import { Status } from '@/app/components/Status/Status';
 import { Button } from '@/components/atoms/Button/Button';
 import { Typography } from '@/components/typography/Typography/Typography';
 import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
-
-import { usePrisoner } from '../../../apollo/hooks/usePrisoner';
 
 const ProfileImageContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -58,12 +57,14 @@ const DescriptionLayout = styled(Typography)({
   },
 });
 
-export default function Prisoner({ params }: { params: { id: string } }) {
+export default function Prisoner({ params }: { params: { slug: string } }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const { data, loading } = usePrisoner(params.id);
+  const { data, loading } = usePrisoners(1, {
+    slug: params.slug,
+  });
 
-  const prisoner = data?.prisoner;
+  const prisoner = data?.prisoners?.edges[0]?.node;
   const pd = prisoner?.prisonerData;
 
   const birthday = pd?.birthdate ? moment(pd.birthdate) : null;
@@ -83,7 +84,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
     freed ? freed.format('DD MMMM YYYY') : '–'
   }`;
 
-  const pictureUrl = data?.prisoner?.featuredImage?.node.mediaItemUrl;
+  const pictureUrl = prisoner?.featuredImage?.node.mediaItemUrl;
 
   return (
     <Grid container>
@@ -171,7 +172,7 @@ export default function Prisoner({ params }: { params: { id: string } }) {
                 <DescriptionLayout variant="p2">
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: data?.prisoner?.content ?? '',
+                      __html: prisoner?.content ?? '',
                     }}
                   />
                 </DescriptionLayout>

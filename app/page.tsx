@@ -247,9 +247,8 @@ export default function Home() {
                     !!prisoner.featuredImage?.node.mediaItemUrl,
                 )
                 .map(({ node: prisoner }) => (
-                  <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
+                  <a href={`/prisoner/${prisoner.slug}`} key={prisoner.id}>
                     <CarouselImage
-                      key={prisoner.id}
                       height={150}
                       src={getPrisonerPicture(
                         prisoner.featuredImage?.node.mediaItemUrl,

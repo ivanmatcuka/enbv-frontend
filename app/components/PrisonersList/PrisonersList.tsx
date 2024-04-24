@@ -32,13 +32,13 @@ export const PrisonersList: FC<PrisonersListProps> = ({ prisoners }) =>
           freedomdate={freedomdate}
           primaryAction={
             canwrite && (
-              <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
+              <a href={`/prisoner/${prisoner.slug}`} key={prisoner.id}>
                 <Button endIcon={<LetterIcon />}>написать</Button>
               </a>
             )
           }
           secondaryAction={
-            <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
+            <a href={`/prisoner/${prisoner.slug}`} key={prisoner.id}>
               <Button variant="outline">подробнее</Button>
             </a>
           }
