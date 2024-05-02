@@ -87,8 +87,8 @@ export const FilterCheckbox: FC<FilterCheckboxProps> = ({
           <Checkbox
             checked={
               multiple
-                ? !!(value as string[]).includes(option.id.toString())
-                : !!value
+                ? (value as string[]).includes(option.id.toString())
+                : value === option.id
             }
           />
           <Typography variant="button">{option.value}</Typography>

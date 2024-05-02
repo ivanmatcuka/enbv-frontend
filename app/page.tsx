@@ -4,6 +4,7 @@ import { Grid } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/ru';
 import Image from 'next/image';
+import Link from 'next/link';
 // import { useMemo } from 'react';
 moment.locale('ru_RU');
 
@@ -508,7 +509,13 @@ export default function Home() {
           py={{ xs: 6, lg: 10.75 }}
           px={2}
         >
-          <PrisonersSearch />
+          <PrisonersSearch
+            overrideCta={
+              <Link href="/prisoners">
+                <Button variant="outline">Показать еще</Button>
+              </Link>
+            }
+          />
         </Grid>
       </Grid>
     </Grid>
