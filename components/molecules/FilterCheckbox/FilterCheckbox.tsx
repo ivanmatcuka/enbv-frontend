@@ -1,7 +1,7 @@
 'use client';
 
 import { SelectChangeEvent, SelectProps } from '@mui/material';
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 
 import { Checkbox } from '../../../components/atoms/Checkbox/Checkbox';
 import { Typography } from '../../../components/typography/Typography/Typography';
@@ -15,18 +15,24 @@ type Option = {
   value: string;
 };
 
-type Value = number | string | null | boolean;
+type Value =
+  | number
+  | string
+  | null
+  | boolean
+  | (number | string | null | boolean)[];
 
 type FilterCheckboxProps = {
   label: string;
   options: Option[];
   onChange?: (value: Value) => void;
-} & Pick<SelectProps, 'value'>;
+} & Pick<SelectProps, 'value' | 'multiple'>;
 
 export const FilterCheckbox: FC<FilterCheckboxProps> = ({
   label,
   options,
   value = '',
+  multiple = false,
   onChange,
 }) => {
   const handleChange = useCallback(
@@ -37,6 +43,12 @@ export const FilterCheckbox: FC<FilterCheckboxProps> = ({
     },
     [onChange],
   );
+
+  const renderValueString = useMemo(() => {
+    const isSet = Array.isArray(value) ? value.length : value;
+
+    return `${label}${isSet ? ` (${value})` : ''}`;
+  }, [label, value]);
 
   return (
     <Select
@@ -54,11 +66,10 @@ export const FilterCheckbox: FC<FilterCheckboxProps> = ({
       }}
       displayEmpty
       renderValue={() => (
-        <Typography variant="button">{`${label}${
-          value ? ` (${value})` : ''
-        }`}</Typography>
+        <Typography variant="button">{renderValueString}</Typography>
       )}
       onChange={handleChange}
+      multiple={multiple}
     >
       <MenuItem value="">
         <Typography variant="button" color="brand.grey">
@@ -73,7 +84,13 @@ export const FilterCheckbox: FC<FilterCheckboxProps> = ({
           disableRipple
           autoFocus
         >
-          <Checkbox checked={option.id === value} />
+          <Checkbox
+            checked={
+              multiple
+                ? (value as string[]).includes(option.id.toString())
+                : value === option.id
+            }
+          />
           <Typography variant="button">{option.value}</Typography>
         </MenuItem>
       ))}

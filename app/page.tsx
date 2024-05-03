@@ -4,6 +4,7 @@ import { Grid } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/ru';
 import Image from 'next/image';
+import Link from 'next/link';
 // import { useMemo } from 'react';
 moment.locale('ru_RU');
 
@@ -74,7 +75,6 @@ export default function Home() {
     <Grid container style={{ overflowX: 'clip' }}>
       <Grid
         item
-        className={styles.header}
         width="100%"
         padding={{ xs: 1, sm: 2, lg: 10.75 }}
         pt={{ xs: 0, sm: 0, lg: 0 }}
@@ -248,9 +248,8 @@ export default function Home() {
                     !!prisoner.featuredImage?.node.mediaItemUrl,
                 )
                 .map(({ node: prisoner }) => (
-                  <a href={`/prisoner/${prisoner.id}`} key={prisoner.id}>
+                  <a href={`/prisoner/${prisoner.slug}`} key={prisoner.id}>
                     <CarouselImage
-                      key={prisoner.id}
                       height={150}
                       src={getPrisonerPicture(
                         prisoner.featuredImage?.node.mediaItemUrl,
@@ -510,7 +509,13 @@ export default function Home() {
           py={{ xs: 6, lg: 10.75 }}
           px={2}
         >
-          <PrisonersSearch />
+          <PrisonersSearch
+            overrideCta={
+              <Link href="/prisoners">
+                <Button variant="outline">Показать еще</Button>
+              </Link>
+            }
+          />
         </Grid>
       </Grid>
     </Grid>

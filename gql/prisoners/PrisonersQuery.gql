@@ -2,6 +2,7 @@ fragment PrisonerItem on Prisoner {
   id
   article
   content
+  slug
   prisonerData {
     addressparsed
     coordinatesparsed
@@ -17,6 +18,7 @@ fragment PrisonerItem on Prisoner {
     sex
     status
     canwrite
+    mailinterestsparsed
   }
   featuredImage {
     node {

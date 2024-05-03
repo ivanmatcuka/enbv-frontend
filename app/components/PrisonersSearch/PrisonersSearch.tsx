@@ -1,7 +1,8 @@
 import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, ReactNode, useEffect, useMemo, useState } from 'react';
 
+import { interests as interestsArray } from '@/app/components/PrisonersSearch/interests';
 import { FilterCheckbox } from '@/components/molecules/FilterCheckbox/FilterCheckbox';
 import { FilterSlider } from '@/components/molecules/FilterSlider/FilterSlider';
 import { Input } from '@/components/molecules/Input/Input';
@@ -28,8 +29,16 @@ const Heading = styled(Typography)(() => ({
   wordBreak: 'break-word',
 }));
 
-export const PrisonersSearch: FC = () => {
-  const [pagination, setPgination] = useState(DEFAULT_PAGINATION);
+type PrisonersSearchProps = {
+  paginationStep?: number;
+  overrideCta?: ReactNode;
+};
+
+export const PrisonersSearch: FC<PrisonersSearchProps> = ({
+  paginationStep = DEFAULT_PAGINATION,
+  overrideCta,
+}) => {
+  const [pagination, setPgination] = useState(paginationStep);
   const [cachedPrisoners, setCachedPrisoners] = useState<Prisoners>([]);
 
   const [name, setName] = useState<string>('');
@@ -37,33 +46,35 @@ export const PrisonersSearch: FC = () => {
   const [region, setRegion] = useState<string>('');
   const [sex, setSex] = useState<string>('');
   const [canWrite, setCanWrite] = useState<string | undefined>();
+  const [mailInterests, setMailInterests] = useState<string[]>([]);
 
-  const filter: PrisonersInput = useMemo(
+  const filter = useMemo(
     () =>
-      Object.fromEntries(
-        Object.entries({
-          ageMax: age[1],
-          ageMin: age[0],
-          regionName: region ?? undefined,
-          canWrite: canWrite === 'да',
-          prisonerName: name ?? undefined,
-          sex: sex ?? undefined,
-        }).filter(([, value]) => !!value),
+      Object.entries({
+        ageMax: age[1],
+        ageMin: age[0],
+        regionName: region,
+        canWrite: canWrite === 'да',
+        prisonerName: name,
+        sex,
+        mailInterests: mailInterests.join(','),
+      }).reduce<PrisonersInput>(
+        (acc, [key, value]) => (value ? { ...acc, [key]: value } : acc),
+        {},
       ),
-    [age, region, canWrite, name, sex],
+    [age, region, canWrite, name, mailInterests, sex],
   );
 
   const { data, loading } = usePrisoners(DEFAULT_OFFSET, filter);
 
   const prisoners = data?.prisoners?.edges;
+  const hasMore = !!((data?.prisoners?.edges.length ?? 0) + 1 > pagination);
 
   useEffect(() => {
     if (!prisoners || loading) return;
 
     setCachedPrisoners(prisoners.slice(0, pagination));
   }, [prisoners, loading, pagination]);
-
-  const hasMore = !!((data?.prisoners?.edges.length ?? 0) + 1 > pagination);
 
   return (
     <Grid
@@ -165,6 +176,22 @@ export const PrisonersSearch: FC = () => {
               }}
             />
           </Grid>
+          <Grid item mr={1} mt={1}>
+            <FilterCheckbox
+              label="интересы"
+              value={mailInterests}
+              options={interestsArray.map((interest) => ({
+                id: interest,
+                value: interest,
+              }))}
+              onChange={(value) => {
+                if (!Array.isArray(value)) return;
+                value &&
+                  setMailInterests(value.map((interest) => String(interest)));
+              }}
+              multiple
+            />
+          </Grid>
           <Grid item mt={1}>
             <Button
               variant="outline"
@@ -174,6 +201,7 @@ export const PrisonersSearch: FC = () => {
                 setSex('');
                 setName('');
                 setCanWrite(undefined);
+                setMailInterests([]);
               }}
             >
               очистить
@@ -201,13 +229,15 @@ export const PrisonersSearch: FC = () => {
       </Grid>
       {hasMore && (
         <Grid m="auto" item>
-          <Button
-            disabled={loading}
-            variant="outline"
-            onClick={() => setPgination(pagination + DEFAULT_PAGINATION)}
-          >
-            {loading ? 'загрузка...' : ' показать ещё'}
-          </Button>
+          {overrideCta ?? (
+            <Button
+              disabled={loading}
+              variant="outline"
+              onClick={() => setPgination(pagination + paginationStep)}
+            >
+              {loading ? 'загрузка...' : ' показать ещё'}
+            </Button>
+          )}
         </Grid>
       )}
     </Grid>

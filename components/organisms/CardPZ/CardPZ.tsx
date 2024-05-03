@@ -123,7 +123,7 @@ export const CardPZ: FC<Partial<CardPZProps>> = ({
       <Grid item pb={2} height={175}>
         <Typography variant="p3" component="div">
           <ShowMoreText
-            lines={6}
+            lines={5}
             more=""
             less=""
             truncatedEndingComponent={'...'}

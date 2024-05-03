@@ -6,6 +6,10 @@ body {
   margin: 0;
 
   scroll-behavior: smooth;
+
+  background-image: url('/background.png');
+  background-repeat: no-repeat;
+  background-position: left top;
 }
 
 p {
@@ -35,10 +39,6 @@ p {
   width: 1197px;
 
   background-color: #3e4137;
-
-  @media (max-width: 1200px) {
-    display: none;
-  }
 }
 
 .footer::before {
@@ -55,13 +55,20 @@ p {
   width: 1174px;
 
   background-color: #3e4137;
-
-  @media (max-width: 1200px) {
-    display: none;
-  }
 }
 
 .footer__merch {
   position: absolute;
   z-index: 200;
+}
+
+@media (max-width: 1200px) {
+  .footer::after {
+    display: none;
+  }
+
+  .footer::before {
+    top: -16px;
+    left: -161px;
+  }
 }

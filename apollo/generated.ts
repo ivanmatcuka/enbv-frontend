@@ -99,8 +99,14 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -640,7 +646,7 @@ export type CategoryToTaxonomyConnectionEdge = Edge & OneToOneConnection & Taxon
 };
 
 /** A Comment object */
-export type Comment = DatabaseIdentifier & Node & {
+export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & {
   __typename?: 'Comment';
   /** User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL. */
   agent?: Maybe<Scalars['String']['output']>;
@@ -670,10 +676,22 @@ export type Comment = DatabaseIdentifier & Node & {
   dateGmt?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier for the comment object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
   /** Karma value for the comment. This field is equivalent to WP_Comment-&gt;comment_karma and the value matching the &quot;comment_karma&quot; column in SQL. */
   karma?: Maybe<Scalars['Int']['output']>;
+  /** The permalink of the comment */
+  link?: Maybe<Scalars['String']['output']>;
   /** Connection between the Comment type and the Comment type */
   parent?: Maybe<CommentToParentCommentConnectionEdge>;
   /** The database id of the parent comment node or null if it is the root comment */
@@ -688,6 +706,8 @@ export type Comment = DatabaseIdentifier & Node & {
   status?: Maybe<CommentStatusEnum>;
   /** Type of comment. This field is equivalent to WP_Comment-&gt;comment_type and the value matching the &quot;comment_type&quot; column in SQL. */
   type?: Maybe<Scalars['String']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -982,6 +1002,7 @@ export type Comment_Prisonerdata = AcfFieldGroup & {
   birthdate?: Maybe<Scalars['String']['output']>;
   canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -1096,8 +1117,14 @@ export type ContentNode = {
   guid?: Maybe<Scalars['String']['output']>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -1290,6 +1317,7 @@ export type ContentNode_Prisonerdata = AcfFieldGroup & {
   birthdate?: Maybe<Scalars['String']['output']>;
   canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -1323,6 +1351,7 @@ export type ContentTemplate_Prisonerdata = AcfFieldGroup & {
   birthdate?: Maybe<Scalars['String']['output']>;
   canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -1364,6 +1393,8 @@ export type ContentType = Node & UniformResourceIdentifiable & {
   hierarchical?: Maybe<Scalars['Boolean']['output']>;
   /** The globally unique identifier of the post-type object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
   /** Whether this page is set to the static front page. */
@@ -2404,8 +2435,14 @@ export type HierarchicalContentNode = {
   guid?: Maybe<Scalars['String']['output']>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -2661,8 +2698,14 @@ export type HierarchicalTermNode = {
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -2778,10 +2821,18 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   fileSize?: Maybe<Scalars['Int']['output']>;
   /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
   guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the attachment object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
   /** The globally unique identifier of the attachment object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -2815,6 +2866,8 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   parentDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** The globally unique identifier of the parent node. */
   parentId?: Maybe<Scalars['ID']['output']>;
+  /** The password for the attachment object. */
+  password?: Maybe<Scalars['String']['output']>;
   /** The database id of the preview node */
   previewRevisionDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** Whether the object is a node in the preview state */
@@ -3313,8 +3366,14 @@ export type MenuItemLinkable = {
   databaseId: Scalars['Int']['output'];
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
   /** The unique resource identifier path */
@@ -3412,6 +3471,7 @@ export type MenuItem_Prisonerdata = AcfFieldGroup & {
   birthdate?: Maybe<Scalars['String']['output']>;
   canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -3502,6 +3562,7 @@ export type Menu_Prisonerdata = AcfFieldGroup & {
   birthdate?: Maybe<Scalars['String']['output']>;
   canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -3638,6 +3699,8 @@ export enum MimeTypeEnum {
   AudioXMsWma = 'AUDIO_X_MS_WMA',
   /** audio/x-realaudio mime type. */
   AudioXRealaudio = 'AUDIO_X_REALAUDIO',
+  /** image/avif mime type. */
+  ImageAvif = 'IMAGE_AVIF',
   /** image/bmp mime type. */
   ImageBmp = 'IMAGE_BMP',
   /** image/gif mime type. */
@@ -3912,8 +3975,12 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   featuredImageId?: Maybe<Scalars['ID']['output']>;
   /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
   guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the page object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
   /** The globally unique identifier of the page object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
   /** Whether this page is set to the static front page. */
@@ -3951,6 +4018,8 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   parentDatabaseId?: Maybe<Scalars['Int']['output']>;
   /** The globally unique identifier of the parent node. */
   parentId?: Maybe<Scalars['ID']['output']>;
+  /** The password for the page object. */
+  password?: Maybe<Scalars['String']['output']>;
   /** Connection between the Page type and the page type */
   preview?: Maybe<PageToPreviewConnectionEdge>;
   /** The database id of the preview node */
@@ -4400,10 +4469,18 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   featuredImageId?: Maybe<Scalars['ID']['output']>;
   /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
   guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the post object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
   /** The globally unique identifier of the post object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -4422,6 +4499,8 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** The password for the post object. */
+  password?: Maybe<Scalars['String']['output']>;
   /** Whether the pings are open or closed for this particular post. */
   pingStatus?: Maybe<Scalars['String']['output']>;
   /** URLs that have been pinged. */
@@ -4626,8 +4705,14 @@ export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceI
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -5677,10 +5762,18 @@ export type Prisoner = ContentNode & DatabaseIdentifier & MenuItemLinkable & Nod
   featuredImageId?: Maybe<Scalars['ID']['output']>;
   /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
   guid?: Maybe<Scalars['String']['output']>;
+  /** Whether the prisoner object is password protected. */
+  hasPassword?: Maybe<Scalars['Boolean']['output']>;
   /** The globally unique identifier of the prisoner object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -5695,6 +5788,8 @@ export type Prisoner = ContentNode & DatabaseIdentifier & MenuItemLinkable & Nod
   modified?: Maybe<Scalars['String']['output']>;
   /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
   modifiedGmt?: Maybe<Scalars['String']['output']>;
+  /** The password for the prisoner object. */
+  password?: Maybe<Scalars['String']['output']>;
   /** Connection between the Prisoner type and the prisoner type */
   preview?: Maybe<PrisonerToPreviewConnectionEdge>;
   /** The database id of the preview node */
@@ -7883,12 +7978,16 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** The ID of the post object to filter by */
   hasAddress?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The ID of the post object to filter by */
+  hasInterests?: InputMaybe<Scalars['Boolean']['input']>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
   /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']['input']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** The ID of the post object to filter by */
+  mailInterests?: InputMaybe<Scalars['String']['input']>;
   /** Get objects with a specific mimeType property */
   mimeType?: InputMaybe<MimeTypeEnum>;
   /** Slug / post_name of the object */
@@ -7917,6 +8016,8 @@ export type RootQueryToPrisonerConnectionWhereArgs = {
   services?: InputMaybe<Scalars['String']['input']>;
   /** The ID of the post object to filter by */
   sex?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the post object to filter by */
+  slug?: InputMaybe<Scalars['String']['input']>;
   /** Retrieve posts where post status is in an array. */
   stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
   /** Show posts with a specific status. */
@@ -8424,8 +8525,14 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -9052,8 +9159,14 @@ export type TermNode = {
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -9213,6 +9326,7 @@ export type TermNode_Prisonerdata = AcfFieldGroup & {
   birthdate?: Maybe<Scalars['String']['output']>;
   canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -9308,8 +9422,14 @@ export type ThemeConnectionPageInfo = {
 export type UniformResourceIdentifiable = {
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
   /** The unique resource identifier path */
@@ -9741,8 +9861,14 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   firstName?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier for the user object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -10511,6 +10637,7 @@ export type User_Prisonerdata = AcfFieldGroup & {
   birthdate?: Maybe<Scalars['String']['output']>;
   canwrite?: Maybe<Scalars['Boolean']['output']>;
   city?: Maybe<Scalars['String']['output']>;
+  coordinates?: Maybe<Scalars['String']['output']>;
   coordinatesparsed?: Maybe<Scalars['String']['output']>;
   dateofarrest?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -10597,9 +10724,9 @@ export type PrisonerQueryVariables = Exact<{
 }>;
 
 
-export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null, canwrite?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null };
+export type PrisonerQuery = { __typename?: 'RootQuery', prisoner?: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, slug?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null, canwrite?: boolean | null, mailinterestsparsed?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } | null };
 
-export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null, canwrite?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null };
+export type PrisonerItemFragment = { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, slug?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null, canwrite?: boolean | null, mailinterestsparsed?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null };
 
 export type PrisonersQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -10607,7 +10734,7 @@ export type PrisonersQueryVariables = Exact<{
 }>;
 
 
-export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null, canwrite?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } }> } | null };
+export type PrisonersQuery = { __typename?: 'RootQuery', prisoners?: { __typename?: 'RootQueryToPrisonerConnection', edges: Array<{ __typename?: 'RootQueryToPrisonerConnectionEdge', node: { __typename?: 'Prisoner', id: string, article?: Array<string | null> | null, content?: string | null, slug?: string | null, prisonerData?: { __typename?: 'ContentNode_Prisonerdata', addressparsed?: string | null, coordinatesparsed?: string | null, institutionshortnameparsed?: string | null, birthdate?: string | null, city?: string | null, dateofarrest?: string | null, description?: string | null, fieldGroupName?: string | null, freedomdate?: string | null, name?: string | null, mailinterests?: string | null, sex?: string | null, status?: string | null, canwrite?: boolean | null, mailinterestsparsed?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', mediaItemUrl?: string | null } } | null } }> } | null };
 
 export type PrisonerStatusCountsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -10619,6 +10746,7 @@ export const PrisonerItemFragmentDoc = gql`
   id
   article
   content
+  slug
   prisonerData {
     addressparsed
     coordinatesparsed
@@ -10634,6 +10762,7 @@ export const PrisonerItemFragmentDoc = gql`
     sex
     status
     canwrite
+    mailinterestsparsed
   }
   featuredImage {
     node {

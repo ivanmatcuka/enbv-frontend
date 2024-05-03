@@ -1,8 +1,3 @@
-.header {
-  background: url('/background.png') left no-repeat white;
-  background-size: contain;
-}
-
 .carousel {
   background: url('/bg-section-carousel.png') center no-repeat white;
   background-size: cover;
@@ -14,21 +9,22 @@
   transform: rotate(-2deg);
 
   margin: auto;
+
+  @media (max-width: 1200px) {
+    height: auto;
+  }
 }
 
 .frame {
   max-width: 493px;
   height: 650px;
 
-  background: url('/frame.png') center no-repeat white;
+  background: url('/images/frames/frame_landing.png') center no-repeat;
   background-size: contain;
 
   @media (max-width: 1200px) {
     max-width: 100%;
     height: 380px;
-
-    background: url('/frame_sm.png') center no-repeat white;
-    background-size: contain;
   }
 }
 
