@@ -48,7 +48,7 @@ export const MessageDialog: FC<MessageDialogProps> = ({
         <Grid item>
           <Typography variant="subtitle1">
             Хорошо, что ты решил начать переписку! Вот данные, которые могут
-            пригодится:
+            пригодиться:
           </Typography>
         </Grid>
         <Grid mt={8} item>
