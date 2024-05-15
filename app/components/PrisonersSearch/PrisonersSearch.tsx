@@ -1,3 +1,5 @@
+'use client';
+
 import { Grid, styled } from '@mui/material';
 import Image from 'next/image';
 import { FC, ReactNode, useEffect, useMemo, useState } from 'react';

@@ -7,8 +7,9 @@ import {
   NextSSRInMemoryCache,
   SSRMultipartLink,
 } from '@apollo/experimental-nextjs-app-support/ssr';
+import { PropsWithChildren } from 'react';
 
-function makeClient() {
+export function makeClient() {
   const httpLink = new HttpLink({
     uri: 'https://staging.politzek.org/graphql',
   });
@@ -27,7 +28,7 @@ function makeClient() {
   });
 }
 
-export function ApolloWrapper({ children }: React.PropsWithChildren) {
+export function ApolloWrapper({ children }: PropsWithChildren) {
   return (
     <ApolloNextAppProvider makeClient={makeClient}>
       {children}

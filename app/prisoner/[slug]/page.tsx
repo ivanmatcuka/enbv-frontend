@@ -88,6 +88,17 @@ export default function Prisoner({ params }: { params: { slug: string } }) {
 
   return (
     <Grid container>
+      {/* TODO: refactor to SSR */}
+      {/* <title>{pd?.name}</title>
+      <meta
+        property="og:title"
+        content={`${pd?.name} | Если б не было войны`}
+      />
+      <meta
+        property="og:description"
+        content={pd?.description ?? 'Если б не было войны'}
+      /> */}
+
       {prisoner && (
         <MessageDialog
           prisoner={prisoner}

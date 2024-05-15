@@ -1,5 +1,11 @@
-'use client';
+// 'use client';
 
+import { ApolloLink, HttpLink } from '@apollo/client';
+import {
+  NextSSRApolloClient,
+  NextSSRInMemoryCache,
+  SSRMultipartLink,
+} from '@apollo/experimental-nextjs-app-support/ssr';
 import { Grid } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -17,13 +23,16 @@ import Dashboard from './components/Dashboard/Dashboard';
 import { PrisonersSearch } from './components/PrisonersSearch/PrisonersSearch';
 import styles from './page.module.css';
 
-import { usePrisoners } from '../apollo/hooks/usePrisoners';
+import {
+  PrisonersDocument,
+  PrisonersQueryResult,
+} from '../apollo/hooks/usePrisoners';
 import { Button } from '../components/atoms/Button/Button';
 // import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
 
-export default function Home() {
-  const { data } = usePrisoners(50);
+export default async function Home() {
+  const prisoners = await getData();
 
   // const birthdays = useMemo(() => {
   //   if (!data?.prisoners) return [];
@@ -242,7 +251,7 @@ export default function Home() {
           </Grid>
           <Grid item height={150} width="100%" mt={7} zIndex={200}>
             <Carousel>
-              {data?.prisoners?.edges
+              {prisoners?.edges
                 .filter(
                   ({ node: prisoner }) =>
                     !!prisoner.featuredImage?.node.mediaItemUrl,
@@ -521,3 +530,35 @@ export default function Home() {
     </Grid>
   );
 }
+
+export function makeClient() {
+  const httpLink = new HttpLink({
+    uri: 'https://staging.politzek.org/graphql',
+  });
+
+  return new NextSSRApolloClient({
+    cache: new NextSSRInMemoryCache(),
+    link:
+      typeof window === 'undefined'
+        ? ApolloLink.from([
+            new SSRMultipartLink({
+              stripDefer: true,
+            }),
+            httpLink,
+          ])
+        : httpLink,
+  });
+}
+
+export const getData = async (): Promise<
+  NonNullable<PrisonersQueryResult['data']>['prisoners']
+> => {
+  const client = makeClient();
+
+  const res = await client.query({
+    query: PrisonersDocument,
+    variables: { offset: 50 },
+    errorPolicy: 'all',
+  });
+  return res.data.prisoners;
+};
