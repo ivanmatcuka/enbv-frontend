@@ -1,9 +1,9 @@
 import { Grid } from '@mui/material';
 
-import styles from './page.module.css';
+import { Button } from '@/components/atoms/Button/Button';
+import { Typography } from '@/components/typography/Typography/Typography';
 
-import { Button } from '../../components/atoms/Button/Button';
-import { Typography } from '../../components/typography/Typography/Typography';
+import styles from './page.module.css';
 
 export default function Maintainance() {
   return (
