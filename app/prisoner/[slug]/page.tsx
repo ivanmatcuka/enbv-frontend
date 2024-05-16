@@ -35,9 +35,10 @@ export async function generateMetadata({
 
   return {
     title: prisoner?.prisonerData?.name ?? params.slug,
-    description: prisoner?.prisonerData?.description ?? '',
+    description: 'Платформа для помощи политзаключенным в России.',
     openGraph: {
-      description: prisoner?.prisonerData?.description ?? '',
+      title: prisoner?.prisonerData?.name ?? params.slug,
+      description: 'Платформа для помощи политзаключенным в России.',
       images: [getPrisonerPicture(prisoner?.featuredImage?.node.mediaItemUrl)],
     },
   };
