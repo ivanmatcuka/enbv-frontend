@@ -1,11 +1,24 @@
-'use client';
-
 import { Grid } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/ru';
 moment.locale('ru_RU');
 
 import { PrisonersSearch } from '../components/PrisonersSearch/PrisonersSearch';
+
+export async function generateMetadata() {
+  const title = 'Если б не было войны';
+  const description = 'Платформа для помощи политзаключенным в России.';
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: '/images/logo.png',
+    },
+  };
+}
 
 export default function Prisoners() {
   return (

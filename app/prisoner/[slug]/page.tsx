@@ -1,70 +1,60 @@
-'use client';
-
-import { Grid, styled } from '@mui/material';
+import { Grid } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/ru';
-import { useState } from 'react';
+import { Metadata } from 'next';
 moment.locale('ru_RU');
 
-import { usePrisoners } from '@/apollo/hooks/usePrisoners';
+import { PrisonersDocument, PrisonersQueryResult } from '@/apollo/generated';
+import { Prisoner } from '@/apollo/hooks/usePrisoners';
 import { Cards } from '@/app/components/Cards/Cards';
-import { MessageDialog } from '@/app/components/Dialog/Dialog';
 import { DrawingFrame } from '@/app/components/DrawingFrame/DrawingFrame';
+import { LetterDialog } from '@/app/components/LetterDialog/LetterDialog';
 import { PrisonerArticles } from '@/app/components/PrisonerArticles/PrisonerArticles';
 import { Status } from '@/app/components/Status/Status';
 import { Button } from '@/components/atoms/Button/Button';
 import { Typography } from '@/components/typography/Typography/Typography';
 import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
+import { makeClient } from '@/helpers/makeClient';
 
-const ProfileImageContainer = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  zIndex: 100,
+import {
+  DescriptionLayout,
+  EmptyProfileImage,
+  EmptyProfileImageContainer,
+  ProfileImage,
+  ProfileImageContainer,
+} from './ui';
 
-  filter: 'drop-shadow(4px 4px 0px #000000)',
+type Props = { slug: string };
 
-  [theme.breakpoints.down('lg')]: {
-    position: 'static',
-  },
-}));
+export async function generateMetadata({
+  params,
+}: {
+  params: Props;
+}): Promise<Metadata> {
+  const prisoner = await getPrisoner(params.slug);
+  const title = `${
+    prisoner?.prisonerData?.name ?? 'Страница заключенного'
+  } — Если б не было войны`;
+  const picture = prisoner?.featuredImage?.node.mediaItemUrl;
+  const description = 'Платформа для помощи политзаключенным в России.';
 
-const EmptyProfileImageContainer = styled(ProfileImageContainer)({
-  filter: 'none',
-});
-
-const ProfileImage = styled('img')(({ theme }) => ({
-  objectFit: 'cover',
-
-  clipPath: 'polygon(98% 0, 100% 74%, 96% 100%, 0 97%, 4% 0)',
-
-  [theme.breakpoints.down('lg')]: {
-    width: 184,
-    height: 188,
-  },
-}));
-
-const EmptyProfileImage = styled(ProfileImage)({
-  clipPath: 'none',
-});
-
-const DescriptionLayout = styled(Typography)({
-  p: {
-    '&:first-of-type': {
-      marginTop: 0,
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: picture ? [getPrisonerPicture(picture)] : undefined,
     },
-    '&:last-of-type': {
-      marginBottom: 0,
-    },
-  },
-});
+  };
+}
 
-export default function Prisoner({ params }: { params: { slug: string } }) {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const { data, loading } = usePrisoners(1, {
-    slug: params.slug,
-  });
-
-  const prisoner = data?.prisoners?.edges[0]?.node;
+export default async function PrisonerPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const prisoner = await getPrisoner(params.slug);
   const pd = prisoner?.prisonerData;
 
   const birthday = pd?.birthdate ? moment(pd.birthdate) : null;
@@ -88,13 +78,6 @@ export default function Prisoner({ params }: { params: { slug: string } }) {
 
   return (
     <Grid container>
-      {prisoner && (
-        <MessageDialog
-          prisoner={prisoner}
-          open={isDialogOpen}
-          onClose={() => setIsDialogOpen(false)}
-        />
-      )}
       <Grid
         item
         width="100%"
@@ -150,7 +133,6 @@ export default function Prisoner({ params }: { params: { slug: string } }) {
             <Grid flexDirection="column" container>
               <Grid ml={{ xs: 0, lg: 36 }} item>
                 <Grid spacing={1} mb={2} container>
-                  {loading && <Typography variant="p3">Загрузка...</Typography>}
                   {Array.isArray(prisoner?.article) && (
                     <PrisonerArticles articles={prisoner.article as string[]} />
                   )}
@@ -192,12 +174,8 @@ export default function Prisoner({ params }: { params: { slug: string } }) {
                   alignItems="center"
                   flexDirection={{ xs: 'column', lg: 'row' }}
                 >
-                  {pd?.canwrite && (
-                    <Grid item>
-                      <Button onClick={() => setIsDialogOpen(true)}>
-                        написать письмо
-                      </Button>
-                    </Grid>
+                  {prisoner && pd?.canwrite && (
+                    <LetterDialog prisoner={prisoner} />
                   )}
                   <Grid item>
                     <a href="https://t.me/avtozakinfo_bot" target="_blank">
@@ -216,3 +194,16 @@ export default function Prisoner({ params }: { params: { slug: string } }) {
     </Grid>
   );
 }
+
+const getPrisoner = async (slug: string): Promise<Prisoner | null> => {
+  const client = makeClient();
+
+  const res: Partial<PrisonersQueryResult> = await client.query({
+    query: PrisonersDocument,
+    variables: { offset: 1, filter: { slug } },
+    errorPolicy: 'all',
+    fetchPolicy: 'no-cache',
+  });
+
+  return res.data?.prisoners?.edges[0]?.node ?? null;
+};

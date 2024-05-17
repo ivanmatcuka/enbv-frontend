@@ -1,13 +1,9 @@
-'use client';
-
 import { ApolloLink, HttpLink } from '@apollo/client';
 import {
-  ApolloNextAppProvider,
   NextSSRApolloClient,
   NextSSRInMemoryCache,
   SSRMultipartLink,
 } from '@apollo/experimental-nextjs-app-support/ssr';
-import { PropsWithChildren } from 'react';
 
 export function makeClient() {
   const httpLink = new HttpLink({
@@ -16,6 +12,7 @@ export function makeClient() {
 
   return new NextSSRApolloClient({
     cache: new NextSSRInMemoryCache(),
+    ssrMode: typeof window === 'undefined',
     link:
       typeof window === 'undefined'
         ? ApolloLink.from([
@@ -26,12 +23,4 @@ export function makeClient() {
           ])
         : httpLink,
   });
-}
-
-export function ApolloWrapper({ children }: PropsWithChildren) {
-  return (
-    <ApolloNextAppProvider makeClient={makeClient}>
-      {children}
-    </ApolloNextAppProvider>
-  );
 }

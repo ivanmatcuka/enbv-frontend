@@ -1,29 +1,31 @@
-'use client';
-
 import { Grid } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/ru';
 import Image from 'next/image';
 import Link from 'next/link';
-// import { useMemo } from 'react';
 moment.locale('ru_RU');
 
 import { getPrisonerPicture } from '@/helpers/getPrisonerPicture';
+import { makeClient } from '@/helpers/makeClient';
 
 import { Cards } from './components/Cards/Cards';
 import { Carousel } from './components/Carousel/Carousel';
 import { CarouselImage } from './components/CarouselImage/CarouselImage';
 import Dashboard from './components/Dashboard/Dashboard';
 import { PrisonersSearch } from './components/PrisonersSearch/PrisonersSearch';
+import { Container } from './Container';
 import styles from './page.module.css';
 
-import { usePrisoners } from '../apollo/hooks/usePrisoners';
+import {
+  PrisonersDocument,
+  PrisonersQueryResult,
+} from '../apollo/hooks/usePrisoners';
 import { Button } from '../components/atoms/Button/Button';
-// import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 import { Typography } from '../components/typography/Typography/Typography';
+// import { PersonCard } from '../components/organisms/PersonCard/PersonCard';
 
-export default function Home() {
-  const { data } = usePrisoners(50);
+export default async function Home() {
+  const prisoners = await getPrisoners();
 
   // const birthdays = useMemo(() => {
   //   if (!data?.prisoners) return [];
@@ -73,6 +75,7 @@ export default function Home() {
 
   return (
     <Grid container style={{ overflowX: 'clip' }}>
+      <Container />
       <Grid
         item
         width="100%"
@@ -242,7 +245,7 @@ export default function Home() {
           </Grid>
           <Grid item height={150} width="100%" mt={7} zIndex={200}>
             <Carousel>
-              {data?.prisoners?.edges
+              {prisoners?.edges
                 .filter(
                   ({ node: prisoner }) =>
                     !!prisoner.featuredImage?.node.mediaItemUrl,
@@ -521,3 +524,17 @@ export default function Home() {
     </Grid>
   );
 }
+
+const getPrisoners = async (): Promise<
+  NonNullable<PrisonersQueryResult['data']>['prisoners']
+> => {
+  const client = makeClient();
+
+  const res: Partial<PrisonersQueryResult> = await client.query({
+    query: PrisonersDocument,
+    variables: { offset: 50 },
+    errorPolicy: 'all',
+  });
+
+  return res.data?.prisoners;
+};
