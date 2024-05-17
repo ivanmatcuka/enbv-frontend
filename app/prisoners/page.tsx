@@ -7,7 +7,7 @@ import { PrisonersSearch } from '../components/PrisonersSearch/PrisonersSearch';
 
 export async function generateMetadata() {
   const title = 'Если б не было войны';
-  const description = 'Список политзаключённых.';
+  const description = 'Список политзаключённых';
 
   return {
     title,

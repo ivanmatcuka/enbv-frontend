@@ -36,7 +36,7 @@ export async function generateMetadata({
     prisoner?.prisonerData?.name ?? 'Страница заключенного'
   } — Если б не было войны`;
   const picture = prisoner?.featuredImage?.node.mediaItemUrl;
-  const description = 'Платформа для помощи политзаключенным в России.';
+  const description = 'Платформа для помощи политзаключенным в России';
 
   return {
     title,

@@ -17,7 +17,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export async function generateMetadata() {
   const title = 'Если б не было войны';
-  const description = 'Платформа для помощи политзаключенным в России.';
+  const description = 'Платформа для помощи политзаключенным в России';
 
   return {
     title,
