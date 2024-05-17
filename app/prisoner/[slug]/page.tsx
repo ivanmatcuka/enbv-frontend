@@ -32,14 +32,19 @@ export async function generateMetadata({
   params: Props;
 }): Promise<Metadata> {
   const prisoner = await getPrisoner(params.slug);
+  const title = `${
+    prisoner?.prisonerData?.name ?? 'Страница заключенного'
+  } — Если б не было войны`;
+  const picture = prisoner?.featuredImage?.node.mediaItemUrl;
+  const description = 'Платформа для помощи политзаключенным в России.';
 
   return {
-    title: prisoner?.prisonerData?.name ?? params.slug,
-    description: 'Платформа для помощи политзаключенным в России.',
+    title,
+    description,
     openGraph: {
-      title: prisoner?.prisonerData?.name ?? params.slug,
-      description: 'Платформа для помощи политзаключенным в России.',
-      images: [getPrisonerPicture(prisoner?.featuredImage?.node.mediaItemUrl)],
+      title,
+      description,
+      images: picture ? [getPrisonerPicture(picture)] : undefined,
     },
   };
 }
@@ -50,7 +55,6 @@ export default async function PrisonerPage({
   params: { slug: string };
 }) {
   const prisoner = await getPrisoner(params.slug);
-  console.log(params.slug, 'prisoner');
   const pd = prisoner?.prisonerData;
 
   const birthday = pd?.birthdate ? moment(pd.birthdate) : null;

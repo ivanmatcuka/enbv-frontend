@@ -15,10 +15,20 @@ import ThemeRegistry from '../theming/ThemeRegistry';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: 'Если б не было войны',
-  description: 'Coming...',
-};
+export async function generateMetadata() {
+  const title = 'Если б не было войны';
+  const description = 'Платформа для помощи политзаключенным в России.';
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: '/images/logo.png',
+    },
+  };
+}
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
