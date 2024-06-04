@@ -160,9 +160,9 @@ export default async function Home() {
                     pl={1.5}
                     flexBasis={{ xs: 'calc(100% - 140px)', lg: 'auto' }}
                   >
-                    <a href="#list">
+                    <Link href="/prisoners">
                       <Button>Узнать их истории</Button>
-                    </a>
+                    </Link>
                   </Grid>
                 </Grid>
               </Grid>
@@ -264,9 +264,9 @@ export default async function Home() {
             </Carousel>
           </Grid>
           <Grid item alignSelf="center" mt={8}>
-            <a href="/#list">
+            <Link href="/prisoners">
               <Button variant="red">Смотреть список</Button>
-            </a>
+            </Link>
           </Grid>
         </Grid>
       </Grid>
@@ -506,7 +506,6 @@ export default async function Home() {
         <Grid
           item
           className={styles.list}
-          id="list"
           width="100%"
           position="relative"
           py={{ xs: 6, lg: 10.75 }}

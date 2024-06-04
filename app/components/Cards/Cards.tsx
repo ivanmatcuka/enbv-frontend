@@ -1,6 +1,7 @@
 'use client';
 
 import { Grid } from '@mui/material';
+import Link from 'next/link';
 
 import { Button } from '@/components/atoms/Button/Button';
 import { Card } from '@/components/organisms/Card/Card';
@@ -19,9 +20,9 @@ export const Cards = () => (
         body="Самый простой и быстрый способ поддержать заключенного – отправить ему письмо. Мы поможем выбрать собеседника и расскажем, куда отправлять письмо!"
         catPictureUrl="/icon_letter.svg"
         action={
-          <a href="/#list">
+          <Link href="/prisoners">
             <Button>Написать</Button>
-          </a>
+          </Link>
         }
       />
     </Grid>

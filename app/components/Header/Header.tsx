@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+import Link from 'next/link';
 
 import { Logo } from '@/components/atoms/Logo/Logo';
 import { Menu } from '@/components/molecules/Menu/Menu';
@@ -31,7 +32,7 @@ export const Header = () => (
                     element: <a href="/#what">КАК ПОМОЧЬ</a>,
                   },
                   {
-                    element: <a href="/#list">СПИСОК ПРЕСЛЕДУЕМЫХ</a>,
+                    element: <Link href="/prisoners">СПИСОК ПРЕСЛЕДУЕМЫХ</Link>,
                   },
                   {
                     element: <a href="#footer">ПОЖЕРТВОВАТЬ ПРОЕКТУ</a>,
