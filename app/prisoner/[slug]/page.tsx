@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 import { Grid } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/ru';
