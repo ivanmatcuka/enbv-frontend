@@ -54,7 +54,7 @@ export default function Dashboard() {
           </Grid>
           <Grid item>
             <Counter label="Имена фигурантов известны">
-              {prisonerStatusCounts?.in_process_count}
+              {prisonerStatusCounts?.imprisoned_count}
             </Counter>
           </Grid>
           <Grid item>

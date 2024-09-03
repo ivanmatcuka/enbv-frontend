@@ -60,7 +60,7 @@ export const PrisonersSearch: FC<PrisonersSearchProps> = ({
 
         ...(region ? { region: { eq: region } } : {}),
         ...(canWrite ? { can_write: { eq: canWrite === 'да' } } : {}),
-        ...(name ? { name: { eq: name } } : {}),
+        ...(name ? { name: { ilike: `%${name}%` } } : {}),
         ...(sex ? { gender: { eq: sex } } : {}),
         ...mailInterests.map((i) => ({ interests: { contains: i } })),
       }).reduce<PrisonersInput>(
