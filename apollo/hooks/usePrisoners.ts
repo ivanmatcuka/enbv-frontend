@@ -7,10 +7,8 @@ import {
   usePrisonersQuery,
 } from '../generated';
 export type Prisoners = NonNullable<
-  NonNullable<
-    ReturnType<typeof usePrisoners>['data']
-  >['airtable_data_edgeCollection']
->['edges'];
+  NonNullable<NonNullable<ReturnType<typeof usePrisoners>>>['data']
+>;
 export type Prisoner = Prisoners[number]['node'];
 export type PrisonersInput = Airtable_Data_EdgeFilter;
 export { PrisonersDocument };
@@ -26,5 +24,17 @@ export const usePrisoners = (offset?: number, filter?: PrisonersInput) => {
     },
   });
 
-  return useMemo(() => ({ loading, error, data }), [loading, error, data]);
+  const result = useMemo(
+    () => data?.airtable_data_edgeCollection?.edges ?? [],
+    [data?.airtable_data_edgeCollection?.edges],
+  );
+
+  return useMemo(
+    () => ({
+      loading,
+      error,
+      data: result,
+    }),
+    [loading, error, result],
+  );
 };

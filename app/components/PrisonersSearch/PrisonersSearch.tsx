@@ -70,13 +70,9 @@ export const PrisonersSearch: FC<PrisonersSearchProps> = ({
     [age, region, canWrite, name, mailInterests, sex],
   );
 
-  const { data, loading } = usePrisoners(DEFAULT_OFFSET, filter);
+  const { data: prisoners, loading } = usePrisoners(DEFAULT_OFFSET, filter);
 
-  const prisoners = data?.airtable_data_edgeCollection?.edges;
-  const hasMore = !!(
-    (data?.airtable_data_edgeCollection?.edges.length ?? 0) + 1 >
-    pagination
-  );
+  const hasMore = !!((prisoners.length ?? 0) + 1 > pagination);
 
   useEffect(() => {
     if (!prisoners || loading) return;
