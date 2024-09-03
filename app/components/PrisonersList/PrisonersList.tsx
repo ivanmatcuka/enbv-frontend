@@ -26,7 +26,7 @@ export const PrisonersList: FC<PrisonersListProps> = ({ prisoners }) =>
           body={prisoner.description}
           name={prisoner.name}
           sex={prisoner.gender}
-          // pictureUrl={prisoner.featuredImage?.node.mediaItemUrl ?? ''}
+          pictureUrl={prisoner.photo ?? ''}
           freedomdate={prisoner.release_date}
           primaryAction={
             prisoner.can_write && (
