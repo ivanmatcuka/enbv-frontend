@@ -1,17 +1,18 @@
 import { useMemo } from 'react';
 
 import {
+  Airtable_Data_EdgeFilter,
   PrisonersDocument,
   PrisonersQueryResult,
-  RootQueryToPrisonerConnectionWhereArgs,
   usePrisonersQuery,
 } from '../generated';
 export type Prisoners = NonNullable<
-  NonNullable<ReturnType<typeof usePrisoners>['data']>['prisoners']
+  NonNullable<
+    ReturnType<typeof usePrisoners>['data']
+  >['airtable_data_edgeCollection']
 >['edges'];
 export type Prisoner = Prisoners[number]['node'];
-export type PrisonerData = Prisoner['prisonerData'];
-export type PrisonersInput = RootQueryToPrisonerConnectionWhereArgs;
+export type PrisonersInput = Airtable_Data_EdgeFilter;
 export { PrisonersDocument };
 export type { PrisonersQueryResult };
 

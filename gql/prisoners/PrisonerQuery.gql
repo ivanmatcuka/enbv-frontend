@@ -1,5 +1,9 @@
-query prisoner($id: ID!) {
-  prisoner(id: $id) {
-    ...PrisonerItem
+query prisoner($id: StringFilter!) {
+  airtable_data_edgeCollection(filter: { id: $id }) {
+    edges {
+      node {
+        ...PrisonerItem
+      }
+    }
   }
 }

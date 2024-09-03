@@ -52,14 +52,12 @@ export const MessageDialog: FC<MessageDialogProps> = ({
           </Typography>
         </Grid>
         <Grid mt={8} item>
-          <Typography variant="p3">{prisoner.prisonerData?.name}</Typography>
+          <Typography variant="p3">{prisoner.name}</Typography>
+          <br />
+          <Typography variant="p3">{prisoner.address_for_letters}</Typography>
           <br />
           <Typography variant="p3">
-            {prisoner.prisonerData?.addressparsed}
-          </Typography>
-          <br />
-          <Typography variant="p3">
-            {prisoner.prisonerData?.institutionshortnameparsed}
+            {prisoner.institution_short_name}
           </Typography>
         </Grid>
         <Grid mt={8} item flex={1}>

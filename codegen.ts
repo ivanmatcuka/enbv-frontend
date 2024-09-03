@@ -2,7 +2,13 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: 'https://staging.politzek.org/graphql',
+  schema: {
+    [`${process.env.API_URL}/graphql/v1`]: {
+      headers: {
+        apikey: process.env.NEXT_PUBLIC_SUPABASE_KEY ?? '',
+      },
+    },
+  },
   documents: 'gql/**/*.gql',
   generates: {
     'apollo/generated.ts': {

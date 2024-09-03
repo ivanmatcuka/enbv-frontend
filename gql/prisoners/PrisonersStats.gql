@@ -1,14 +1,17 @@
 query prisonerStatusCounts {
-  prisonerStatusCounts {
-    outCount
-    totalCount
-    inProcessCount
-    addressCount
-    ageRanges {
-      ageRange
-      male
-      female
+  prisoner_statsCollection {
+    edges {
+      node {
+        id
+        total_count
+        in_process_count
+        imprisoned_count
+        address_count
+        out_count
+        age_ranges
+        created_at
+        updated_at
+      }
     }
-    imprisonedCount
   }
 }

@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
 
-import { usePrisonerQuery } from '../generated';
+import { StringFilter, usePrisonerQuery } from '../generated';
 
 export const usePrisoner = (id: string) => {
+  const stringFilter: StringFilter = { eq: id };
   const { loading, error, data } = usePrisonerQuery({
-    variables: { id },
+    variables: { id: stringFilter },
     fetchPolicy: 'no-cache',
     errorPolicy: 'all',
   });
