@@ -11,8 +11,6 @@ type PrisonersListProps = {
 };
 export const PrisonersList: FC<PrisonersListProps> = ({ prisoners }) =>
   prisoners.map(({ node: prisoner }, index) => {
-    const { freedomdate, status, canwrite } = prisoner.prisonerData ?? {};
-
     return (
       <Grid
         item
@@ -23,15 +21,15 @@ export const PrisonersList: FC<PrisonersListProps> = ({ prisoners }) =>
         justifyContent="center"
       >
         <CardPZ
-          status={status}
-          articles={prisoner.article}
-          body={prisoner.prisonerData?.description}
-          name={prisoner.prisonerData?.name}
-          sex={prisoner.prisonerData?.sex}
-          pictureUrl={prisoner.featuredImage?.node.mediaItemUrl ?? ''}
-          freedomdate={freedomdate}
+          status={prisoner.status}
+          articles={prisoner.articles}
+          body={prisoner.description}
+          name={prisoner.name}
+          sex={prisoner.gender}
+          // pictureUrl={prisoner.featuredImage?.node.mediaItemUrl ?? ''}
+          freedomdate={prisoner.release_date}
           primaryAction={
-            canwrite && (
+            prisoner.can_write && (
               <a href={`/prisoner/${prisoner.slug}`} key={prisoner.id}>
                 <Button endIcon={<LetterIcon />}>написать</Button>
               </a>

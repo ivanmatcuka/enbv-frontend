@@ -35,9 +35,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const prisoner = await getPrisoner(params.slug);
   const title = `${
-    prisoner?.prisonerData?.name ?? 'Страница заключенного'
+    prisoner?.name ?? 'Страница заключенного'
   } — Если б не было войны`;
-  const picture = prisoner?.featuredImage?.node.mediaItemUrl;
+  const picture = prisoner?.photo;
   const description = 'Платформа для помощи политзаключенным в России';
 
   return {
@@ -57,26 +57,29 @@ export default async function PrisonerPage({
   params: { slug: string };
 }) {
   const prisoner = await getPrisoner(params.slug);
-  const pd = prisoner?.prisonerData;
 
-  const birthday = pd?.birthdate ? moment(pd.birthdate) : null;
+  const birthday = prisoner?.date_of_birth
+    ? moment(prisoner.date_of_birth)
+    : null;
   const birthdayString = `День рождения: ${
     birthday
       ? `${birthday.format('DD MMMM YYYY')} (${parseInt(birthday.fromNow())})`
       : '–'
   }`;
 
-  const arrested = pd?.dateofarrest ? moment(pd.dateofarrest) : null;
+  const arrested = prisoner?.date_of_arrest
+    ? moment(prisoner.date_of_arrest)
+    : null;
   const arrestedString = `Дата задержания: ${
     arrested ? arrested.format('DD MMMM YYYY') : '–'
   }`;
 
-  const freed = pd?.freedomdate ? moment(pd.freedomdate) : null;
+  const freed = prisoner?.release_date ? moment(prisoner?.release_date) : null;
   const freedString = `Освобождается: ${
     freed ? freed.format('DD MMMM YYYY') : '–'
   }`;
 
-  const pictureUrl = prisoner?.featuredImage?.node.mediaItemUrl;
+  const pictureUrl = prisoner?.photo;
 
   return (
     <Grid container>
@@ -98,7 +101,7 @@ export default async function PrisonerPage({
           {pictureUrl ? (
             <ProfileImageContainer>
               <ProfileImage
-                alt={pd?.name ?? 'profile'}
+                alt={prisoner?.name ?? 'profile'}
                 width={297}
                 height={306}
                 src={pictureUrl}
@@ -110,18 +113,18 @@ export default async function PrisonerPage({
                 alt="profile'"
                 width={297}
                 height={306}
-                src={getPrisonerPicture(pictureUrl, pd?.sex)}
+                src={getPrisonerPicture(pictureUrl, prisoner?.gender)}
               />
             </EmptyProfileImageContainer>
           )}
           <Grid item ml={{ xs: 0, lg: 40 }} minHeight={{ xs: 'auto', lg: 128 }}>
             <Typography variant="h1">
-              {pd?.name && pd?.name.split(' ')[0]}
+              {prisoner?.name && prisoner.name.split(' ')[0]}
             </Typography>
             <Typography variant="h2" mb={2}>
-              {pd?.name && pd.name.split(' ').slice(1).join(' ')}
+              {prisoner?.name && prisoner.name.split(' ').slice(1).join(' ')}
             </Typography>
-            {pd?.status && <Status status={pd?.status} />}
+            {prisoner?.status && <Status status={prisoner.status} />}
           </Grid>
           <DrawingFrame
             width="100%"
@@ -135,8 +138,10 @@ export default async function PrisonerPage({
             <Grid flexDirection="column" container>
               <Grid ml={{ xs: 0, lg: 36 }} item>
                 <Grid spacing={1} mb={2} container>
-                  {Array.isArray(prisoner?.article) && (
-                    <PrisonerArticles articles={prisoner.article as string[]} />
+                  {Array.isArray(prisoner?.articles) && (
+                    <PrisonerArticles
+                      articles={prisoner.articles as string[]}
+                    />
                   )}
                 </Grid>
               </Grid>
@@ -154,17 +159,13 @@ export default async function PrisonerPage({
               </Grid>
               <Grid item my={4}>
                 <DescriptionLayout variant="p2">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: prisoner?.content ?? '',
-                    }}
-                  />
+                  {prisoner?.description}
                 </DescriptionLayout>
               </Grid>
-              {!!pd?.mailinterestsparsed && (
+              {!!prisoner?.interests && (
                 <Grid item>
                   <Typography variant="p2" color="gray">
-                    Интересы: {pd?.mailinterestsparsed}
+                    Интересы: {prisoner?.interests}
                   </Typography>
                 </Grid>
               )}
@@ -176,9 +177,7 @@ export default async function PrisonerPage({
                   alignItems="center"
                   flexDirection={{ xs: 'column', lg: 'row' }}
                 >
-                  {prisoner && pd?.canwrite && (
-                    <LetterDialog prisoner={prisoner} />
-                  )}
+                  {prisoner?.can_write && <LetterDialog prisoner={prisoner} />}
                   <Grid item>
                     <a href="https://t.me/avtozakinfo_bot" target="_blank">
                       <Button variant="outline">Сообщить о неточности</Button>
@@ -202,10 +201,10 @@ const getPrisoner = async (slug: string): Promise<Prisoner | null> => {
 
   const res: Partial<PrisonersQueryResult> = await client.query({
     query: PrisonersDocument,
-    variables: { offset: 1, filter: { slug } },
+    variables: { offset: 1, filter: { slug: { eq: slug } } },
     errorPolicy: 'all',
     fetchPolicy: 'no-cache',
   });
 
-  return res.data?.prisoners?.edges[0]?.node ?? null;
+  return res.data?.airtable_data_edgeCollection?.edges[0]?.node ?? null;
 };

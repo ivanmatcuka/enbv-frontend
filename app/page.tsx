@@ -246,18 +246,12 @@ export default async function Home() {
           <Grid item height={150} width="100%" mt={7} zIndex={200}>
             <Carousel>
               {prisoners?.edges
-                .filter(
-                  ({ node: prisoner }) =>
-                    !!prisoner.featuredImage?.node.mediaItemUrl,
-                )
+                .filter(({ node: prisoner }) => !!prisoner.photo)
                 .map(({ node: prisoner }) => (
                   <a href={`/prisoner/${prisoner.slug}`} key={prisoner.id}>
                     <CarouselImage
                       height={150}
-                      src={getPrisonerPicture(
-                        prisoner.featuredImage?.node.mediaItemUrl,
-                        prisoner.prisonerData?.sex,
-                      )}
+                      src={getPrisonerPicture(prisoner.photo, prisoner.gender)}
                     />
                   </a>
                 ))}
@@ -525,15 +519,15 @@ export default async function Home() {
 }
 
 const getPrisoners = async (): Promise<
-  NonNullable<PrisonersQueryResult['data']>['prisoners']
+  NonNullable<PrisonersQueryResult['data']>['airtable_data_edgeCollection']
 > => {
   const client = makeClient();
 
   const res: Partial<PrisonersQueryResult> = await client.query({
     query: PrisonersDocument,
-    variables: { offset: 50 },
+    // variables: { offset: 50 },
     errorPolicy: 'all',
   });
 
-  return res.data?.prisoners;
+  return res.data?.airtable_data_edgeCollection;
 };

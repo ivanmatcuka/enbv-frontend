@@ -1,6 +1,7 @@
 'use client';
 
 import { Grid, styled } from '@mui/material';
+import { useMemo } from 'react';
 
 import { usePrisonersStats } from '@/apollo/hooks/usePrisonersStats';
 import { FreeNotFree } from '@/components/atoms/FreeNotFree/FreeNotFree';
@@ -14,9 +15,22 @@ const Heading = styled(Typography)({
 });
 
 export default function Dashboard() {
-  const { data } = usePrisonersStats();
+  const { data: prisonerStatusCounts } = usePrisonersStats();
 
-  const prisonerStatusCounts = data?.prisonerStatusCounts;
+  const ageRanges = useMemo(
+    () =>
+      prisonerStatusCounts?.age_ranges
+        ? JSON.parse(prisonerStatusCounts?.age_ranges)?.map(
+            (ageRange: { male: number; female: number; ageRange: string }) => ({
+              age: ageRange?.ageRange ? parseInt(ageRange.ageRange) : 0,
+              label: ageRange?.ageRange ?? '',
+              male: ageRange?.male ?? 0,
+              female: ageRange?.female ?? 0,
+            }),
+          )
+        : [],
+    [prisonerStatusCounts],
+  );
 
   return (
     <Grid container maxWidth={1200} margin="auto">
@@ -35,12 +49,12 @@ export default function Dashboard() {
         >
           <Grid item>
             <Counter label="Всего фигурантов уголовных дел">
-              {prisonerStatusCounts?.totalCount}
+              {prisonerStatusCounts?.total_count}
             </Counter>
           </Grid>
           <Grid item>
             <Counter label="Имена фигурантов известны">
-              {prisonerStatusCounts?.inProcessCount}
+              {prisonerStatusCounts?.in_process_count}
             </Counter>
           </Grid>
           <Grid item>
@@ -48,41 +62,24 @@ export default function Dashboard() {
               label="Заключенным можно написать"
               catPictureUrl="/cat_3.svg"
             >
-              {prisonerStatusCounts?.addressCount}
+              {prisonerStatusCounts?.address_count}
             </Counter>
           </Grid>
-          <Grid item>{/* <Button>НАПИСАТЬ ПИСЬМО</Button> */}</Grid>
         </Grid>
       </Grid>
-      {/* Right */}
       <Grid item mt={{ xs: 3, lg: -1.5 }} mb={{ xs: 8 }}>
         <Selector
           items={[
             {
               label: 'по полу и возрасту:',
-              element: (
-                <SexAge
-                  data={
-                    prisonerStatusCounts?.ageRanges
-                      ? prisonerStatusCounts.ageRanges.map((ageRange) => ({
-                          age: ageRange?.ageRange
-                            ? parseInt(ageRange.ageRange)
-                            : 0,
-                          label: ageRange?.ageRange ?? '',
-                          male: ageRange?.male ?? 0,
-                          female: ageRange?.female ?? 0,
-                        }))
-                      : []
-                  }
-                />
-              ),
+              element: <SexAge data={ageRanges} />,
             },
             {
               label: 'лишены свободы/на свободе',
               element: (
                 <FreeNotFree
-                  free={prisonerStatusCounts?.outCount ?? 0}
-                  notFree={prisonerStatusCounts?.imprisonedCount ?? 0}
+                  free={prisonerStatusCounts?.out_count ?? 0}
+                  notFree={prisonerStatusCounts?.imprisoned_count ?? 0}
                 />
               ),
             },

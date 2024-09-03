@@ -53,13 +53,16 @@ export const PrisonersSearch: FC<PrisonersSearchProps> = ({
   const filter = useMemo(
     () =>
       Object.entries({
-        ageMax: age[1],
-        ageMin: age[0],
-        regionName: region,
-        canWrite: canWrite === 'да',
-        prisonerName: name,
-        sex,
-        mailInterests: mailInterests.join(','),
+        age: {
+          gt: age[0],
+          lt: age[1],
+        },
+
+        ...(region ? { region: { eq: region } } : {}),
+        ...(canWrite ? { can_write: { eq: canWrite === 'да' } } : {}),
+        ...(name ? { name: { eq: name } } : {}),
+        ...(sex ? { gender: { eq: sex } } : {}),
+        ...mailInterests.map((i) => ({ interests: { contains: i } })),
       }).reduce<PrisonersInput>(
         (acc, [key, value]) => (value ? { ...acc, [key]: value } : acc),
         {},
@@ -67,10 +70,9 @@ export const PrisonersSearch: FC<PrisonersSearchProps> = ({
     [age, region, canWrite, name, mailInterests, sex],
   );
 
-  const { data, loading } = usePrisoners(DEFAULT_OFFSET, filter);
+  const { data: prisoners, loading } = usePrisoners(DEFAULT_OFFSET, filter);
 
-  const prisoners = data?.prisoners?.edges;
-  const hasMore = !!((data?.prisoners?.edges.length ?? 0) + 1 > pagination);
+  const hasMore = !!((prisoners.length ?? 0) + 1 > pagination);
 
   useEffect(() => {
     if (!prisoners || loading) return;
@@ -214,7 +216,7 @@ export const PrisonersSearch: FC<PrisonersSearchProps> = ({
               {loading
                 ? 'Загрузка...'
                 : `Найдено: ${
-                    (prisoners?.length ?? 0) >= 300
+                    (prisoners?.length ?? 0) >= 30
                       ? `${prisoners?.length}+`
                       : `${prisoners?.length}`
                   }`}

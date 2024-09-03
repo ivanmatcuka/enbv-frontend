@@ -11,7 +11,10 @@ import { PropsWithChildren } from 'react';
 
 export function makeClient() {
   const httpLink = new HttpLink({
-    uri: 'https://staging.politzek.org/graphql',
+    uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql/v1`,
+    headers: {
+      apikey: process.env.NEXT_PUBLIC_SUPABASE_KEY ?? '',
+    },
   });
 
   return new NextSSRApolloClient({

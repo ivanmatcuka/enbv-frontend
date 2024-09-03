@@ -8,5 +8,13 @@ export const usePrisonersStats = () => {
     errorPolicy: 'all',
   });
 
-  return useMemo(() => ({ loading, error, data }), [loading, error, data]);
+  const result = useMemo(
+    () => data?.prisoner_statsCollection?.edges[0].node,
+    [data?.prisoner_statsCollection?.edges],
+  );
+
+  return useMemo(
+    () => ({ loading, error, data: result }),
+    [loading, error, result],
+  );
 };
