@@ -62,7 +62,7 @@ export const PrisonersSearch: FC<PrisonersSearchProps> = ({
         ...(canWrite ? { can_write: { eq: canWrite === 'да' } } : {}),
         ...(name ? { name: { ilike: `%${name}%` } } : {}),
         ...(sex ? { gender: { eq: sex } } : {}),
-        ...mailInterests.map((i) => ({ interests: { contains: i } })),
+        or: mailInterests.map((i) => ({ interests: { contains: i } })),
       }).reduce<PrisonersInput>(
         (acc, [key, value]) => (value ? { ...acc, [key]: value } : acc),
         {},
@@ -216,7 +216,7 @@ export const PrisonersSearch: FC<PrisonersSearchProps> = ({
               {loading
                 ? 'Загрузка...'
                 : `Найдено: ${
-                    (prisoners?.length ?? 0) >= 30
+                    (prisoners?.length ?? 0) >= 300
                       ? `${prisoners?.length}+`
                       : `${prisoners?.length}`
                   }`}
