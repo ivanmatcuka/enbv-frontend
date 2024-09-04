@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Article } from '@/components/atoms/Article/Article';
 
 type PrisonerArticlesProps = {
-  articles: string[];
+  articles: (string | null)[];
 };
 export const PrisonerArticles: FC<PrisonerArticlesProps> = ({ articles }) => {
   return articles?.map((article) => (

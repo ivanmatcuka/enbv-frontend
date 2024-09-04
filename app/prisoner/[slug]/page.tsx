@@ -139,9 +139,7 @@ export default async function PrisonerPage({
               <Grid ml={{ xs: 0, lg: 36 }} item>
                 <Grid spacing={1} mb={2} container>
                   {Array.isArray(prisoner?.articles) && (
-                    <PrisonerArticles
-                      articles={prisoner.articles as string[]}
-                    />
+                    <PrisonerArticles articles={prisoner.articles} />
                   )}
                 </Grid>
               </Grid>
@@ -165,7 +163,7 @@ export default async function PrisonerPage({
               {!!prisoner?.interests && (
                 <Grid item>
                   <Typography variant="p2" color="gray">
-                    Интересы: {prisoner?.interests}
+                    Интересы: {prisoner?.interests.join(', ')}
                   </Typography>
                 </Grid>
               )}
