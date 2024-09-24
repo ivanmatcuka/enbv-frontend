@@ -73,6 +73,13 @@ export const PrisonersSearch: FC<PrisonersSearchProps> = ({
   const { data: prisoners, loading } = usePrisoners(DEFAULT_OFFSET, filter);
 
   const hasMore = !!((prisoners.length ?? 0) + 1 > pagination);
+  const loadingInfo = loading
+    ? 'Загрузка...'
+    : `Найдено: ${
+        (prisoners?.length ?? 0) >= DEFAULT_OFFSET
+          ? `${prisoners?.length}+`
+          : `${prisoners?.length}`
+      }`;
 
   useEffect(() => {
     if (!prisoners || loading) return;
@@ -212,15 +219,7 @@ export const PrisonersSearch: FC<PrisonersSearchProps> = ({
             </Button>
           </Grid>
           <Grid item flexBasis="100%" textAlign="center" mt={1} mb={4}>
-            <Typography variant="subtitle1">
-              {loading
-                ? 'Загрузка...'
-                : `Найдено: ${
-                    (prisoners?.length ?? 0) >= 300
-                      ? `${prisoners?.length}+`
-                      : `${prisoners?.length}`
-                  }`}
-            </Typography>
+            <Typography variant="subtitle1">{loadingInfo}</Typography>
           </Grid>
           {prisoners && (
             <Grid item flex={1} mt={10} flexBasis="100%" maxWidth="100%">
