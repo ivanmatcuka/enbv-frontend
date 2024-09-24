@@ -1,11 +1,21 @@
+'use client';
+
 import { Grid } from '@mui/material';
+import { LoginButton } from '@telegram-auth/react';
 import Link from 'next/link';
 
 import { Logo } from '@/components/atoms/Logo/Logo';
 import { Menu } from '@/components/molecules/Menu/Menu';
-
 export const Header = () => (
   <Grid container overflow="hidden" className="header">
+    <LoginButton
+      botUsername={process.env.NEXT_PUBLIC_TELEGRAM_NAME ?? ''}
+      authCallbackUrl="/path/to/callback/url"
+      buttonSize="large" // "large" | "medium" | "small"
+      cornerRadius={5} // 0 - 20
+      showAvatar={true} // true | false
+      lang="en"
+    />
     <Grid
       item
       width="100%"
