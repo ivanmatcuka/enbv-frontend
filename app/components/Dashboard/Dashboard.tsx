@@ -21,9 +21,13 @@ export default function Dashboard() {
     () =>
       prisonerStatusCounts?.age_ranges
         ? JSON.parse(prisonerStatusCounts?.age_ranges)?.map(
-            (ageRange: { male: number; female: number; ageRange: string }) => ({
-              age: ageRange?.ageRange ? parseInt(ageRange.ageRange) : 0,
-              label: ageRange?.ageRange ?? '',
+            (ageRange: {
+              male: number;
+              female: number;
+              age_range: string;
+            }) => ({
+              age: ageRange?.age_range ? parseInt(ageRange.age_range) : 0,
+              label: ageRange?.age_range ?? '',
               male: ageRange?.male ?? 0,
               female: ageRange?.female ?? 0,
             }),
