@@ -3,7 +3,7 @@
 import { Grid, styled } from '@mui/material';
 import { useMemo } from 'react';
 
-import { usePrisonersStats } from '@/apollo/hooks/usePrisonersStats';
+import { AgeRanges, usePrisonersStats } from '@/apollo/hooks/usePrisonersStats';
 import { FreeNotFree } from '@/components/atoms/FreeNotFree/FreeNotFree';
 import { SexAge } from '@/components/atoms/SexAge/SexAge';
 import { Selector } from '@/components/molecules/Selector/Selector';
@@ -13,28 +13,25 @@ import { Typography } from '@/components/typography/Typography/Typography';
 const Heading = styled(Typography)({
   wordBreak: 'break-word',
 });
-
 export default function Dashboard() {
   const { data: prisonerStatusCounts } = usePrisonersStats();
 
-  const ageRanges = useMemo(
-    () =>
-      prisonerStatusCounts?.age_ranges
-        ? JSON.parse(prisonerStatusCounts?.age_ranges)?.map(
-            (ageRange: {
-              male: number;
-              female: number;
-              age_range: string;
-            }) => ({
-              age: ageRange?.age_range ? parseInt(ageRange.age_range) : 0,
-              label: ageRange?.age_range ?? '',
-              male: ageRange?.male ?? 0,
-              female: ageRange?.female ?? 0,
-            }),
-          )
-        : [],
-    [prisonerStatusCounts],
-  );
+  const ageRanges = useMemo(() => {
+    if (!prisonerStatusCounts?.age_ranges) return [];
+
+    try {
+      return JSON.parse(prisonerStatusCounts.age_ranges).map(
+        (ageRange: AgeRanges) => ({
+          age: ageRange.age_range ?? 0,
+          label: ageRange.age_range ?? '',
+          male: ageRange.male ?? 0,
+          female: ageRange.female ?? 0,
+        }),
+      );
+    } catch (error) {
+      return [];
+    }
+  }, [prisonerStatusCounts]);
 
   return (
     <Grid container maxWidth={1200} margin="auto">
@@ -58,7 +55,7 @@ export default function Dashboard() {
           </Grid>
           <Grid item>
             <Counter label="Имена фигурантов известны">
-              {prisonerStatusCounts?.imprisoned_count}
+              {prisonerStatusCounts?.in_process_count}
             </Counter>
           </Grid>
           <Grid item>
@@ -66,7 +63,7 @@ export default function Dashboard() {
               label="Заключенным можно написать"
               catPictureUrl="/cat_3.svg"
             >
-              {prisonerStatusCounts?.in_process_count}
+              {prisonerStatusCounts?.imprisoned_count}
             </Counter>
           </Grid>
         </Grid>
