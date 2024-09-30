@@ -62,7 +62,7 @@ export default function Dashboard() {
               label="Заключенным можно написать"
               catPictureUrl="/cat_3.svg"
             >
-              {prisonerStatusCounts?.imprisoned_count}
+              {prisonerStatusCounts?.in_process_count}
             </Counter>
           </Grid>
         </Grid>
