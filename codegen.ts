@@ -5,7 +5,7 @@ const config: CodegenConfig = {
   schema: {
     [`${process.env.NEXT_PUBLIC_API_URL}/graphql/v1`]: {
       headers: {
-        apikey: process.env.SUPABASE_KEY ?? '',
+        apikey: process.env.NEXT_PUBLIC_SUPABASE_KEY ?? '',
       },
     },
   },
