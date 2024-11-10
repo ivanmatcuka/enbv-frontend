@@ -23,7 +23,7 @@ type FreeNotFreeProps = {
 };
 export const FreeNotFree: FC<FreeNotFreeProps> = ({ notFree, free }) => {
   return (
-    <Grid container width={536} gap={2}>
+    <Grid container maxWidth={536} gap={2} justifyContent="center">
       <Grid width={260} textAlign="center">
         <Typography variant="legend">{`${notFree} – лишены свободы`}</Typography>
       </Grid>
