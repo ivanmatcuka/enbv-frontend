@@ -75,7 +75,9 @@ export default async function PrisonerPage({
     true,
   );
 
-  const sentenceString = parseCardDate('Приговор', prisoner?.sentence);
+  const sentenceString = prisoner?.sentence
+    ? `Приговор: ${prisoner.sentence}`
+    : 'Приговор: -';
 
   const pictureUrl = prisoner?.photo;
 
